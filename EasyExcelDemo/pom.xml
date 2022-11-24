@@ -50,7 +50,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>5.7.7</scope>
         </dependency>
 
 
