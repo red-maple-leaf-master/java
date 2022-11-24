@@ -23,6 +23,6 @@ public class MdCusController {
 
     @RequestMapping("/one")
     public String one(){
-        return "hhhhhhhh  你终于成功 了";
+        return "hhhhhhhh  你终于成功了  === 成功更新代码";
     }
 }
