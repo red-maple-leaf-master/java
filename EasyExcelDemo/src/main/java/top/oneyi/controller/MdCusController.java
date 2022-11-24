@@ -20,4 +20,9 @@ public class MdCusController {
     public List<MdCus> find(){
         return mdCusService.list();
     }
+
+    @RequestMapping("/one")
+    public String one(){
+        return "hhhhhhhh  你终于成功 了";
+    }
 }
