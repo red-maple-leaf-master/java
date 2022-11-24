@@ -13,6 +13,11 @@ import java.util.List;
  * 查询客户
  */
 @Repository
-public interface MdCusMapper extends MyMapper<MdCus> {
+public interface MdCusMapper{
 
+    /**
+     * 查询全部
+     * @return
+     */
+    List<MdCus> selectAll();
 }
