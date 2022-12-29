@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: @activatedEnv@   #  动态获取环境状态
+
