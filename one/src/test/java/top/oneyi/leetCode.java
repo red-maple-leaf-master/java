@@ -2,6 +2,8 @@ package top.oneyi;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class leetCode {
 
     /**
@@ -60,10 +62,29 @@ public class leetCode {
 
     /**
      * 插入排序
+     * 从第一个位置开始排,最前面的都是排好序的,直到左边的小于右边的
      */
     @Test
-    public void test02(){
+    public void insertSort(){
+        int[] arr = {3,5,7,1,4,77,54,0,23};
+        int len = arr.length;
+        for (int i = 0; i < len; i++) {
+            for (int j = i; j > 0; j--) {
+                if(arr[j] < arr[j -1 ]){
+                    leetCode.swap(arr,j,j-1);
+                }else{
+                    break;
+                }
 
+            }
+        }
+        System.out.println("Arrays.toString(arr) = " + Arrays.toString(arr));
+    }
+    //核心代码---结束  交换位置
+    private static void swap(int [] arr, int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
     }
 
 }
