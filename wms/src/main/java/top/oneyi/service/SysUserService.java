@@ -1,6 +1,10 @@
 package top.oneyi.service;
 
+
 import top.oneyi.common.responseServer;
+import top.oneyi.pojo.po.SysUser;
+
+import java.util.List;
 
 /**
  * 用户
@@ -15,4 +19,11 @@ public interface SysUserService {
      * @return
      */
     responseServer loginSysUser(String userName, String userPassword);
+
+    /**
+     * 查找所有用户
+     * @param user
+     * @return
+     */
+    List<SysUser> findAll(SysUser user);
 }

@@ -1,4 +1,4 @@
-package top.oneyi.demo;
+package top.oneyi.demo.builder;
 /**
  *  Java链式调用
  * @author oneyi

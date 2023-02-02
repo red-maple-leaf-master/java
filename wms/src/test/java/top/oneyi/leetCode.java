@@ -58,4 +58,12 @@ public class leetCode {
         }
     }
 
+    /**
+     * 插入排序
+     */
+    @Test
+    public void test02(){
+
+    }
+
 }

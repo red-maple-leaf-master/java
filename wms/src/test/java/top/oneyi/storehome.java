@@ -2,6 +2,8 @@ package top.oneyi;
 
 import org.junit.Test;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,4 +52,7 @@ public class storehome {
         Map<String, String> business = this.buildAccessory("business", 4, fujian);
         System.out.println(business);
     }
+
+
+
 }

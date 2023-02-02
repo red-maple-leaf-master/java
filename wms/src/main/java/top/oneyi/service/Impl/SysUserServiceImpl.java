@@ -1,5 +1,7 @@
 package top.oneyi.service.Impl;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.util.StringUtil;
@@ -9,6 +11,8 @@ import top.oneyi.pojo.po.SysUser;
 import top.oneyi.service.SysUserService;
 import top.oneyi.util.JWTUtil;
 import top.oneyi.util.PasswordHelp;
+
+import java.util.List;
 
 /**
  * 用户
@@ -51,5 +55,16 @@ public class SysUserServiceImpl implements SysUserService {
         //登录成功生成token返回给前端
         String token = JWTUtil.sign(sysUser.getId(), sysUser.getUserName(), sysUser.getUserPassword(), null);
         return responseServer.createByCodeMessage(1,"登录成功 ",token,sysUser.getId(),sysUser.getUserName(),sysUser.getRealName());
+    }
+
+    /**
+     * 查找所有用户
+     *
+     * @param user
+     * @return
+     */
+    @Override
+    public List<SysUser> findAll(SysUser user) {
+        return sysUserMapper.findAll(user);
     }
 }
