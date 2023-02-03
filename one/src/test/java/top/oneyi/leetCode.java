@@ -60,13 +60,15 @@ public class leetCode {
         }
     }
 
+
+    int[] arr = {3,5,7,1,4,77,54,0,23,22};
     /**
      * 插入排序
      * 从第一个位置开始排,最前面的都是排好序的,直到左边的小于右边的
      */
     @Test
     public void insertSort(){
-        int[] arr = {3,5,7,1,4,77,54,0,23};
+
         int len = arr.length;
         for (int i = 0; i < len; i++) {
             for (int j = i; j > 0; j--) {
@@ -87,4 +89,19 @@ public class leetCode {
         arr[j] = t;
     }
 
-}
+    /**
+     * 希尔排序
+     */
+    public void shellSort(){
+
+
+    }
+
+    }
+
+
+
+
+
+
+
