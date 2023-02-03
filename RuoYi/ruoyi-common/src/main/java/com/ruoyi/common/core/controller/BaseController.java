@@ -109,10 +109,13 @@ public class BaseController
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     protected TableDataInfo getDataTable(List<?> list)
-    {
+    {   // 创建分页数据对象
         TableDataInfo rspData = new TableDataInfo();
+        // 设置消息状态码
         rspData.setCode(0);
+        // 设置返回数据
         rspData.setRows(list);
+        // 设置记录数
         rspData.setTotal(new PageInfo(list).getTotal());
         return rspData;
     }

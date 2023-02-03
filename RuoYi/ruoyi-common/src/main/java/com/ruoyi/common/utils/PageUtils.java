@@ -17,6 +17,7 @@ public class PageUtils extends PageHelper
      */
     public static void startPage()
     {
+
         PageDomain pageDomain = TableSupport.buildPageRequest();
         Integer pageNum = pageDomain.getPageNum();
         Integer pageSize = pageDomain.getPageSize();
