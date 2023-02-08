@@ -39,7 +39,7 @@ public class FutureTest08 {
             return 3.2;
         });
 
-        // cf和cf2的异步任务都执行完成后，会将其执行结果作为方法入参传递给cf3,且有返回值
+        // cf和cf2的异步任务都执行完成后，会将其执行结果作为方法入参传递给cf3,且有返回值  applyToEither
         CompletableFuture<Double> cf3=cf.applyToEither(cf2,(result)->{
             System.out.println(Thread.currentThread()+" start job3,time->"+System.currentTimeMillis());
             System.out.println("job3 param result->"+result);
@@ -51,7 +51,7 @@ public class FutureTest08 {
             return result;
         });
 
-/*
+
         // cf和cf2的异步任务都执行完成后，会将其执行结果作为方法入参传递给cf3,无返回值
         CompletableFuture cf4=cf.acceptEither(cf2,(result)->{
             System.out.println(Thread.currentThread()+" start job4,time->"+System.currentTimeMillis());
@@ -73,15 +73,15 @@ public class FutureTest08 {
             System.out.println("cf5 do something");
             System.out.println(Thread.currentThread()+" exit job5,time->"+System.currentTimeMillis());
         });
-*/
+
 
         System.out.println("main thread start cf.get(),time->"+System.currentTimeMillis());
 
         // 等待子任务执行完成
         System.out.println("cf run result->"+cf.get());
         System.out.println("cf3 run result->"+cf3.get());
-//        System.out.println("main thread start cf5.get(),time->"+System.currentTimeMillis());
-//        System.out.println("cf5 run result->"+cf5.get());
+        System.out.println("main thread start cf5.get(),time->"+System.currentTimeMillis());
+        System.out.println("cf5 run result->"+cf5.get());
         System.out.println("main thread exit,time->"+System.currentTimeMillis());
 
     }
