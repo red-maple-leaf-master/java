@@ -3,9 +3,13 @@ package top.oneyi;
 import org.junit.Test;
 
 
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import java.util.HashMap;
-import java.util.Map;
+import static java.util.stream.Collectors.reducing;
+import static java.util.stream.Collectors.toList;
 
 public class storehome {
     private Map<String, String> buildAccessory(String type, int num, String fuJian) {
@@ -51,6 +55,32 @@ public class storehome {
                 "http://114.67.96.145:20178/customerData/business04/345f51cc-1bae-4905-9e33-793fffb6d8b4_开票信息.jpg";
         Map<String, String> business = this.buildAccessory("business", 4, fujian);
         System.out.println(business);
+    }
+
+    @Test
+    public void test02(){
+        String pallcode="";
+        String pallcode02="";
+
+        ArrayList<String> strings = new ArrayList<>(Arrays.asList(pallcode.split(",")));
+        ArrayList<String> strings02 = new ArrayList<>(Arrays.asList(pallcode02.split(",")));
+        Iterator<String> iterator = strings.iterator();
+        while(iterator.hasNext()){
+            String next = iterator.next();
+            for (String s : strings02) {
+                if(s.equals(next)){
+                    iterator.remove();
+                }
+            }
+        }
+        String join = String.join(",", strings);
+        System.out.println("join = " + join);
+
+
+    }
+
+    private static  List<String> transferArrayToList(String str){
+        return new ArrayList<>(Arrays.asList(str.split(",")));
     }
 
 
