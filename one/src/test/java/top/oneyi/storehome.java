@@ -59,8 +59,8 @@ public class storehome {
 
     @Test
     public void test02(){
-        String pallcode="";
-        String pallcode02="";
+        String pallcode="12,14,13,15,16,18,17";
+        String pallcode02="14,15";
 
         ArrayList<String> strings = new ArrayList<>(Arrays.asList(pallcode.split(",")));
         ArrayList<String> strings02 = new ArrayList<>(Arrays.asList(pallcode02.split(",")));
@@ -73,16 +73,32 @@ public class storehome {
                 }
             }
         }
-        String join = String.join(",", strings);
-        System.out.println("join = " + join);
+     /*   String join = String.join(",", strings);
+        System.out.println("join = " + join);*/
 
-
+        StringJoiner joiner = new StringJoiner(",");
+        for (String string : strings) {
+            joiner.add(string);
+        }
+        String s = joiner.toString();
+        System.out.println("s = " + s);
     }
 
     private static  List<String> transferArrayToList(String str){
         return new ArrayList<>(Arrays.asList(str.split(",")));
     }
+    @Test
+    public void test03(){
+        StringJoiner sj = new StringJoiner(":", "[", "]");
+        sj.add("George").add("Sally").add("Fred");
+        String desiredString = sj.toString();
+        System.out.println("desiredString = " + desiredString);
 
+        StringJoiner sj2 = new StringJoiner(",", "[", "]");
+        sj2.add("one");
+        StringJoiner merge = sj2.merge(sj);
+        System.out.println("merge.toString() = " + merge.toString());
+    }
 
 
 }
