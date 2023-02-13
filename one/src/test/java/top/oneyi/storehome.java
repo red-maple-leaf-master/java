@@ -1,5 +1,6 @@
 package top.oneyi;
 
+import net.minidev.json.JSONUtil;
 import org.junit.Test;
 
 
@@ -94,11 +95,20 @@ public class storehome {
         String desiredString = sj.toString();
         System.out.println("desiredString = " + desiredString);
 
-        StringJoiner sj2 = new StringJoiner(",", "[", "]");
+        StringJoiner sj2 = new StringJoiner(",", "(", ")");
         sj2.add("one");
         StringJoiner merge = sj2.merge(sj);
         System.out.println("merge.toString() = " + merge.toString());
     }
 
+
+    @Test
+    public void test04(){
+        int n=100;
+        double pow = Math.pow(2, n);
+        for (int i=0;i< pow;i++){
+            System.out.println("我执行了"+ i+"次");
+        }
+    }
 
 }
