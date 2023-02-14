@@ -1,3 +1,4 @@
+/*
 package top.oneyi;
 
 import com.rabbitmq.client.Channel;
@@ -6,27 +7,35 @@ import com.rabbitmq.client.QueueingConsumer;
 import org.junit.Test;
 import top.one.util.ConnectionUtil;
 
+*/
 /**
  * 订阅模式 一个生产者 多个消费者,生产者把消息发送给交换机,交换机再把消息发送给队列
  *
  * @author oneyi
  * @date 2023/2/14
- */
+ *//*
+
 
 public class ExchangeTest {
-    /**
+    */
+/**
      * 叫环节名称
-     */
+     *//*
+
     private final static String EXCHANGE_NAME = "test_exchange_fanout";
-    /**
+    */
+/**
      * 队列名称
-     */
+     *//*
+
     private final static String QUEUE_NAME = "test_queue_work1";
 
-    /**
+    */
+/**
      * 生产者
      * 需要注意的是叫环节没有存储消息的能力,消息只能存在队列中
-     */
+     *//*
+
     @Test
     public void test01() throws Exception {
         // 获取连接 创建通道
@@ -43,9 +52,11 @@ public class ExchangeTest {
         connection.close();
     }
 
-    /**
+    */
+/**
      * 消费者 1
-     */
+     *//*
+
     @Test
     public void test02() throws Exception {
         //创建连接和通道
@@ -71,9 +82,11 @@ public class ExchangeTest {
         }
     }
 
-    /**
+    */
+/**
      * 消费者2
-     */
+     *//*
+
     @Test
     public void test03() throws Exception {
       // 创建连接和通道
@@ -99,3 +112,4 @@ public class ExchangeTest {
         }
     }
 }
+*/

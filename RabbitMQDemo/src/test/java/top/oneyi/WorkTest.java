@@ -1,3 +1,4 @@
+/*
 package top.oneyi;
 
 
@@ -8,21 +9,25 @@ import com.rabbitmq.client.QueueingConsumer;
 import org.junit.Test;
 import top.one.util.ConnectionUtil;
 
+*/
 /**
  * work 模式 能者多劳
  * 测试结果 消费者 1 消费的消息比消费者2 消费的消息多
  * @author oneyi
  * @date 2023/2/13
- */
+ *//*
+
 
 public class WorkTest {
 
     private final static String QUEUE_NAME ="test_queue_work01";
 
-    /**
+    */
+/**
      * 消费者1
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void test01() throws Exception {
         // 获取到连接以及mq通道
@@ -53,9 +58,11 @@ public class WorkTest {
 
     }
 
-    /**
+    */
+/**
      * 消费者2
-     */
+     *//*
+
     @Test
     public void test02() throws Exception {
         // 建立连接 和 通道
@@ -82,9 +89,11 @@ public class WorkTest {
         }
     }
 
-    /**
+    */
+/**
      * 生产者
-     */
+     *//*
+
     @Test
     public void test03() throws Exception {
         // 建立连接 和 通道
@@ -107,3 +116,4 @@ public class WorkTest {
     }
 
 }
+*/

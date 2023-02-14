@@ -1,3 +1,4 @@
+/*
 package top.oneyi;
 
 import com.rabbitmq.client.Channel;
@@ -6,31 +7,41 @@ import com.rabbitmq.client.QueueingConsumer;
 import org.junit.Test;
 import top.one.util.ConnectionUtil;
 
+*/
 /**
  * 主题模式
  * @author oneyi
  * @date 2023/2/14
- */
+ *//*
+
 
 public class TopicTest {
-    /**
+    */
+/**
      * 主题交换机 名称
-     */
+     *//*
+
     private final static String EXCHANGE_NAME = "test_exchange_topic";
 
-    /**
+    */
+/**
      * 队列 1
-     */
+     *//*
+
     private final static String QUEUE_NAME_1 = "test_queue_topic_work_1";
 
-    /**
+    */
+/**
      * 队列 2
-     */
+     *//*
+
     private final static String QUEUE_NAME_2 = "test_queue_topic_work_2";
 
-    /**
+    */
+/**
      * 生产者
-     */
+     *//*
+
     @Test
     public void topicExchange() throws Exception {
         // 创建连接 和通道
@@ -47,9 +58,11 @@ public class TopicTest {
         connection.close();
     }
 
-    /**
+    */
+/**
      * 消费者 1
-     */
+     *//*
+
     @Test
     public void topicQueue_1() throws Exception {
         // 获取连接 获取通道
@@ -75,9 +88,11 @@ public class TopicTest {
         }
     }
 
-    /**
+    */
+/**
      * 消费者2
-     */
+     *//*
+
     @Test
     public void topicQueue_2() throws Exception {
         // 获取连接 获取通道
@@ -104,3 +119,4 @@ public class TopicTest {
     }
 
 }
+*/

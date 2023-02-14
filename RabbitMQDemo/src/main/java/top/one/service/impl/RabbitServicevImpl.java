@@ -1,3 +1,4 @@
+/*
 package top.one.service.impl;
 
 import com.rabbitmq.client.Channel;
@@ -11,10 +12,12 @@ public class RabbitServicevImpl implements RabbitService {
     private final static String QUEUE_NAME = "test_channel";
 
 
-    /**
+    */
+/**
      * 发送简单消息到队列
      * 生产消息
-     */
+     *//*
+
     @Override
     public void sendSimpleMsg() throws Exception {
         // 获取到连接以及mq通道
@@ -32,11 +35,13 @@ public class RabbitServicevImpl implements RabbitService {
         connection.close();
     }
 
-    /**
+    */
+/**
      * 接收到简单消息队列的消息
      * 消费消息
      * @return
-     */
+     *//*
+
     @Override
     public void recvSimpleMsg() throws Exception {
 
@@ -61,3 +66,4 @@ public class RabbitServicevImpl implements RabbitService {
         }
     }
 }
+*/

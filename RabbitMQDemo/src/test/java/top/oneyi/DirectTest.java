@@ -1,3 +1,4 @@
+/*
 package top.oneyi;
 
 import com.rabbitmq.client.Channel;
@@ -6,30 +7,40 @@ import com.rabbitmq.client.QueueingConsumer;
 import org.junit.Test;
 import top.one.util.ConnectionUtil;
 
+*/
 /**
  * 路由模式
  *  根据key向指定的队列发送消息
  * @author oneyi
  * @date 2023/2/14
- */
+ *//*
+
 
 public class DirectTest {
-    /**
+    */
+/**
      * 路由交换机
-     */
+     *//*
+
     private final static String EXCHANGE_NAME = "test_exchange_direct";
-    /**
+    */
+/**
      *  队列1
-     */
+     *//*
+
     private  final static String QUEUE_NAME_1 = "test_queue_direct_1";
-    /**
+    */
+/**
      * 队列2
-     */
+     *//*
+
     private  final static String QUEUE_NAME_2 = "test_queue_direct_2";
 
-    /**
+    */
+/**
      * 生产者
-     */
+     *//*
+
     @Test
     public void direct() throws Exception {
         // 创建链接和通道
@@ -46,9 +57,11 @@ public class DirectTest {
         connection.close();
     }
 
-    /**
+    */
+/**
      * 消费者 1
-     */
+     *//*
+
     @Test
     public void direct_queue_1() throws Exception {
         // 创建连接 创建通道
@@ -74,9 +87,11 @@ public class DirectTest {
             channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         }
     }
-    /**
+    */
+/**
      * 消费者 2
-     */
+     *//*
+
     @Test
     public void direct_queue_2() throws Exception {
         // 创建连接 创建通道
@@ -106,3 +121,4 @@ public class DirectTest {
 
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package top.oneyi;
 
 import com.rabbitmq.client.Channel;
@@ -5,13 +6,15 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.QueueingConsumer;
 import org.junit.Test;
 import top.one.util.ConnectionUtil;
+*/
 /**
  * 消费者1 和消费者 2 收到的消息都是一样的 一个偶数 一个奇数
  * 消费者1 延时短应该消费者1 多消费 应该根据消费者的能力分配消息
  *
  * @author oneyi
  * @date 2023/2/13
- */
+ *//*
+
 
 
 
@@ -19,9 +22,11 @@ public class DemoTest {
 
     private final static String QUEUE_NAME = "test_queue_work";
 
-    /**
+    */
+/**
      * 消费者 1
-     */
+     *//*
+
     @Test
     public void test() throws Exception {
         // 获取连接 创建mq通道
@@ -43,9 +48,11 @@ public class DemoTest {
         }
     }
 
-    /**
+    */
+/**
      * 消费者2
-     */
+     *//*
+
     @Test
     public void test01() throws Exception {
         // 获取连接 创建mq通道
@@ -67,9 +74,11 @@ public class DemoTest {
         }
     }
 
-    /**
+    */
+/**
      * 生产者
-     */
+     *//*
+
     @Test
     public void test02() throws Exception {
         // 获取连接和通道
@@ -88,3 +97,4 @@ public class DemoTest {
         connection.close();
     }
 }
+*/
