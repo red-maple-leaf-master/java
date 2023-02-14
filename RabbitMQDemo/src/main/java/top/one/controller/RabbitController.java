@@ -12,40 +12,8 @@ import top.one.service.RabbitService;
 @RestController
 public class RabbitController {
 
-  /*  @Autowired
+    @Autowired
     private RabbitService rabbitService;
-
-    *//**
-     * 简单消息发送
-     *
-     * @return
-     *//*
-    @GetMapping("/sendSimple")
-    public String sendSimpleMsg() {
-        try {
-            rabbitService.sendSimpleMsg();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "发送成功!";
-    }
-
-    *//**
-     * 简单消息接收
-     *
-     * @return
-     *//*
-    @GetMapping("/recvSimple")
-    public String recvSimpleMsg() {
-        String messge = null;
-        try {
-            rabbitService.recvSimpleMsg();
-            messge = "简单消息接收关闭";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return messge;
-    }*/
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
