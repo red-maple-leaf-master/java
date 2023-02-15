@@ -21,10 +21,11 @@ public class Consumer01 {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody());
             try {
-                Thread.sleep(40000);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            channel.basicQos(1);
             System.out.println(message);
             // 1 消息标记tag 2 false代表只应答接收到的那个传递的消息 true为应答所有消息包括传递过来的消息
             channel.basicAck(delivery.getEnvelope().getDeliveryTag(),false);
@@ -36,7 +37,7 @@ public class Consumer01 {
         System.out.println("C2 消费者启动等待消费......");
 
 
-        // 手动应答 设置false
+        // 手动应答 设置false 可以防止消息丢失
         channel.basicConsume(QUEUE_NAME, false, deliverCallback, cancelCallback);
     }
 }
