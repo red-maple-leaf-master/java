@@ -13,7 +13,7 @@ public class ScheduleTestRabbitMqSender {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    @Scheduled(cron = "0/6 * * * * ?")
+    //@Scheduled(cron = "0/6 * * * * ?")
     public void SendRabbitmqMessage() {
 
         Map<String, Object> mapA = new HashMap<>();
