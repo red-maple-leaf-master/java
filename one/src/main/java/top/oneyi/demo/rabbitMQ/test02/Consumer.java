@@ -38,7 +38,8 @@ public class Consumer {
 
 
         // 手动应答 设置false
-        channel.basicConsume(QUEUE_NAME, false, deliverCallback, cancelCallback);
+        boolean autoAck = false;
+        channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, cancelCallback);
     }
 
 }

@@ -16,7 +16,8 @@ public class Producer {
     public static void main(String[] args) throws Exception {
         try(Channel channel= RabbitMqUtils.getChannel();) {
             // 1 队列名称  2 队列是否持久化
-            channel.queueDeclare(QUEUE_NAME,true,false,false,null);
+            boolean durable = true;
+            channel.queueDeclare(QUEUE_NAME,durable,false,false,null);
             //从控制台当中接受信息
             Scanner scanner = new Scanner(System.in);
             while (scanner.hasNext()){
