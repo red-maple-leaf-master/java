@@ -13,6 +13,7 @@ spring:
     virtual-host: /
     username: admin
     password: admin
+    publisher-confirms: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml  # xml文件路径
   type-aliases-package: top.oneyi.pojo.po
