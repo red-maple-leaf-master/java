@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.oneyi.mapper.MdCusMapper">
+  <resultMap id="BaseResultMap" type="top.oneyi.pojo.MdCus">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="sys_org_code" jdbcType="VARCHAR" property="sysOrgCode" />
+    <result column="sys_company_code" jdbcType="VARCHAR" property="sysCompanyCode" />
+    <result column="zhong_wen_qch" jdbcType="VARCHAR" property="zhongWenQch" />
+    <result column="zhu_ji_ma" jdbcType="VARCHAR" property="zhuJiMa" />
+    <result column="ke_hu_jian_cheng" jdbcType="VARCHAR" property="keHuJianCheng" />
+    <result column="ke_hu_bian_ma" jdbcType="VARCHAR" property="keHuBianMa" />
+    <result column="ke_hu_ying_wen" jdbcType="VARCHAR" property="keHuYingWen" />
+    <result column="zeng_yong_qi" jdbcType="VARCHAR" property="zengYongQi" />
+    <result column="zeng_yong_qi_ye" jdbcType="VARCHAR" property="zengYongQiYe" />
+    <result column="ke_hu_zhuang_tai" jdbcType="VARCHAR" property="keHuZhuangTai" />
+    <result column="xing_ye_fen_lei" jdbcType="VARCHAR" property="xingYeFenLei" />
+    <result column="ke_hu_deng_ji" jdbcType="VARCHAR" property="keHuDengJi" />
+    <result column="suo_shu_xing_ye" jdbcType="VARCHAR" property="suoShuXingYe" />
+    <result column="shou_qian_ri_qi" jdbcType="TIMESTAMP" property="shouQianRiQi" />
+    <result column="zhong_zhi_he_shi_jian" jdbcType="TIMESTAMP" property="zhongZhiHeShiJian" />
+    <result column="shen_qing_shi_jian" jdbcType="TIMESTAMP" property="shenQingShiJian" />
+    <result column="ke_hu_shu_xing" jdbcType="VARCHAR" property="keHuShuXing" />
+    <result column="gui_shu_zu_zh" jdbcType="VARCHAR" property="guiShuZuZh" />
+    <result column="gui_shu_sheng" jdbcType="VARCHAR" property="guiShuSheng" />
+    <result column="gui_shu_shi_dai" jdbcType="VARCHAR" property="guiShuShiDai" />
+    <result column="gui_shu" jdbcType="VARCHAR" property="guiShu" />
+    <result column="di_zhi" jdbcType="VARCHAR" property="diZhi" />
+    <result column="you_zheng_bian_ma" jdbcType="VARCHAR" property="youZhengBianMa" />
+    <result column="zhu_lian_xi_ren" jdbcType="VARCHAR" property="zhuLianXiRen" />
+    <result column="dian_hua" jdbcType="VARCHAR" property="dianHua" />
+    <result column="shou_ji" jdbcType="VARCHAR" property="shouJi" />
+    <result column="chuan_zhen" jdbcType="VARCHAR" property="chuanZhen" />
+    <result column="Emaildi_zhi" jdbcType="VARCHAR" property="emaildiZhi" />
+    <result column="wang_ye_di_zhi" jdbcType="VARCHAR" property="wangYeDiZhi" />
+    <result column="fa_ren_dai_biao" jdbcType="VARCHAR" property="faRenDaiBiao" />
+    <result column="fa_ren_shen_fen" jdbcType="VARCHAR" property="faRenShenFen" />
+    <result column="zhu_ce_zi_jin" jdbcType="VARCHAR" property="zhuCeZiJin" />
+    <result column="bi_bie" jdbcType="VARCHAR" property="biBie" />
+    <result column="ying_ye_zhi_zhao" jdbcType="VARCHAR" property="yingYeZhiZhao" />
+    <result column="shui_wu_deng" jdbcType="VARCHAR" property="shuiWuDeng" />
+    <result column="zu_zhi_ji_gou" jdbcType="VARCHAR" property="zuZhiJiGou" />
+    <result column="dao_lu_yun_shu" jdbcType="VARCHAR" property="daoLuYunShu" />
+    <result column="zhu_ying_ye_wu" jdbcType="VARCHAR" property="zhuYingYeWu" />
+    <result column="he_yi_xiang" jdbcType="VARCHAR" property="heYiXiang" />
+    <result column="pi_zhun_ji_guan" jdbcType="VARCHAR" property="piZhunJiGuan" />
+    <result column="pi_zhun_wen_hao" jdbcType="VARCHAR" property="piZhunWenHao" />
+    <result column="zhu_ce_ri_qi" jdbcType="TIMESTAMP" property="zhuCeRiQi" />
+    <result column="bei_zhu" jdbcType="VARCHAR" property="beiZhu" />
+    <result column="zhu_lian_xi_ren1" jdbcType="VARCHAR" property="zhuLianXiRen1" />
+    <result column="dian_hua1" jdbcType="VARCHAR" property="dianHua1" />
+    <result column="fu_jian" jdbcType="VARCHAR" property="fuJian" />
+    <result column="ke_hu_lei_xing" jdbcType="VARCHAR" property="keHuLeiXing" />
+    <result column="billing_cycle" jdbcType="VARCHAR" property="billingCycle" />
+    <result column="storage_bill_way" jdbcType="VARCHAR" property="storageBillWay" />
+    <result column="floor_days" jdbcType="VARCHAR" property="floorDays" />
+    <result column="floor_weights" jdbcType="VARCHAR" property="floorWeights" />
+    <result column="storage_charge" jdbcType="VARCHAR" property="storageCharge" />
+    <result column="billing_number" jdbcType="VARCHAR" property="billingNumber" />
+    <result column="bin_number" jdbcType="VARCHAR" property="binNumber" />
+    <result column="stock_number" jdbcType="VARCHAR" property="stockNumber" />
+    <result column="billing_weight" jdbcType="VARCHAR" property="billingWeight" />
+    <result column="charge_cycle" jdbcType="VARCHAR" property="chargeCycle" />
+    <result column="charge_discount" jdbcType="VARCHAR" property="chargeDiscount" />
+    <result column="hand_charge_bill_way" jdbcType="VARCHAR" property="handChargeBillWay" />
+    <result column="hand_charges" jdbcType="VARCHAR" property="handCharges" />
+    <result column="land_charges" jdbcType="VARCHAR" property="landCharges" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="weight" jdbcType="VARCHAR" property="weight" />
+    <result column="contract_life" jdbcType="VARCHAR" property="contractLife" />
+    <result column="land_charge_bill_way" jdbcType="VARCHAR" property="landChargeBillWay" />
+    <result column="expir_date" jdbcType="VARCHAR" property="expirDate" />
+    <result column="storage_template" jdbcType="VARCHAR" property="storageTemplate" />
+    <result column="hand_charge_template" jdbcType="VARCHAR" property="handChargeTemplate" />
+    <result column="land_charge_template" jdbcType="VARCHAR" property="landChargeTemplate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from `md_cus`
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="top.oneyi.pojo.MdCus" useGeneratedKeys="true">
+    insert into `md_cus` (create_name, create_by, create_date, 
+      update_name, update_by, update_date, 
+      sys_org_code, sys_company_code, zhong_wen_qch, 
+      zhu_ji_ma, ke_hu_jian_cheng, ke_hu_bian_ma, 
+      ke_hu_ying_wen, zeng_yong_qi, zeng_yong_qi_ye, 
+      ke_hu_zhuang_tai, xing_ye_fen_lei, ke_hu_deng_ji, 
+      suo_shu_xing_ye, shou_qian_ri_qi, zhong_zhi_he_shi_jian, 
+      shen_qing_shi_jian, ke_hu_shu_xing, gui_shu_zu_zh, 
+      gui_shu_sheng, gui_shu_shi_dai, gui_shu, 
+      di_zhi, you_zheng_bian_ma, zhu_lian_xi_ren, 
+      dian_hua, shou_ji, chuan_zhen, 
+      Emaildi_zhi, wang_ye_di_zhi, fa_ren_dai_biao, 
+      fa_ren_shen_fen, zhu_ce_zi_jin, bi_bie, 
+      ying_ye_zhi_zhao, shui_wu_deng, zu_zhi_ji_gou, 
+      dao_lu_yun_shu, zhu_ying_ye_wu, he_yi_xiang, 
+      pi_zhun_ji_guan, pi_zhun_wen_hao, zhu_ce_ri_qi, 
+      bei_zhu, zhu_lian_xi_ren1, dian_hua1, 
+      fu_jian, ke_hu_lei_xing, billing_cycle, 
+      storage_bill_way, floor_days, floor_weights, 
+      storage_charge, billing_number, bin_number, 
+      stock_number, billing_weight, charge_cycle, 
+      charge_discount, hand_charge_bill_way, hand_charges, 
+      land_charges, number, weight, 
+      contract_life, land_charge_bill_way, expir_date, 
+      storage_template, hand_charge_template, land_charge_template
+      )
+    values (#{createName,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateName,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{sysOrgCode,jdbcType=VARCHAR}, #{sysCompanyCode,jdbcType=VARCHAR}, #{zhongWenQch,jdbcType=VARCHAR}, 
+      #{zhuJiMa,jdbcType=VARCHAR}, #{keHuJianCheng,jdbcType=VARCHAR}, #{keHuBianMa,jdbcType=VARCHAR}, 
+      #{keHuYingWen,jdbcType=VARCHAR}, #{zengYongQi,jdbcType=VARCHAR}, #{zengYongQiYe,jdbcType=VARCHAR}, 
+      #{keHuZhuangTai,jdbcType=VARCHAR}, #{xingYeFenLei,jdbcType=VARCHAR}, #{keHuDengJi,jdbcType=VARCHAR}, 
+      #{suoShuXingYe,jdbcType=VARCHAR}, #{shouQianRiQi,jdbcType=TIMESTAMP}, #{zhongZhiHeShiJian,jdbcType=TIMESTAMP}, 
+      #{shenQingShiJian,jdbcType=TIMESTAMP}, #{keHuShuXing,jdbcType=VARCHAR}, #{guiShuZuZh,jdbcType=VARCHAR}, 
+      #{guiShuSheng,jdbcType=VARCHAR}, #{guiShuShiDai,jdbcType=VARCHAR}, #{guiShu,jdbcType=VARCHAR}, 
+      #{diZhi,jdbcType=VARCHAR}, #{youZhengBianMa,jdbcType=VARCHAR}, #{zhuLianXiRen,jdbcType=VARCHAR}, 
+      #{dianHua,jdbcType=VARCHAR}, #{shouJi,jdbcType=VARCHAR}, #{chuanZhen,jdbcType=VARCHAR}, 
+      #{emaildiZhi,jdbcType=VARCHAR}, #{wangYeDiZhi,jdbcType=VARCHAR}, #{faRenDaiBiao,jdbcType=VARCHAR}, 
+      #{faRenShenFen,jdbcType=VARCHAR}, #{zhuCeZiJin,jdbcType=VARCHAR}, #{biBie,jdbcType=VARCHAR}, 
+      #{yingYeZhiZhao,jdbcType=VARCHAR}, #{shuiWuDeng,jdbcType=VARCHAR}, #{zuZhiJiGou,jdbcType=VARCHAR}, 
+      #{daoLuYunShu,jdbcType=VARCHAR}, #{zhuYingYeWu,jdbcType=VARCHAR}, #{heYiXiang,jdbcType=VARCHAR}, 
+      #{piZhunJiGuan,jdbcType=VARCHAR}, #{piZhunWenHao,jdbcType=VARCHAR}, #{zhuCeRiQi,jdbcType=TIMESTAMP}, 
+      #{beiZhu,jdbcType=VARCHAR}, #{zhuLianXiRen1,jdbcType=VARCHAR}, #{dianHua1,jdbcType=VARCHAR}, 
+      #{fuJian,jdbcType=VARCHAR}, #{keHuLeiXing,jdbcType=VARCHAR}, #{billingCycle,jdbcType=VARCHAR}, 
+      #{storageBillWay,jdbcType=VARCHAR}, #{floorDays,jdbcType=VARCHAR}, #{floorWeights,jdbcType=VARCHAR}, 
+      #{storageCharge,jdbcType=VARCHAR}, #{billingNumber,jdbcType=VARCHAR}, #{binNumber,jdbcType=VARCHAR}, 
+      #{stockNumber,jdbcType=VARCHAR}, #{billingWeight,jdbcType=VARCHAR}, #{chargeCycle,jdbcType=VARCHAR}, 
+      #{chargeDiscount,jdbcType=VARCHAR}, #{handChargeBillWay,jdbcType=VARCHAR}, #{handCharges,jdbcType=VARCHAR}, 
+      #{landCharges,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, 
+      #{contractLife,jdbcType=VARCHAR}, #{landChargeBillWay,jdbcType=VARCHAR}, #{expirDate,jdbcType=VARCHAR}, 
+      #{storageTemplate,jdbcType=VARCHAR}, #{handChargeTemplate,jdbcType=VARCHAR}, #{landChargeTemplate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="top.oneyi.pojo.MdCus">
+    update `md_cus`
+    set create_name = #{createName,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      sys_org_code = #{sysOrgCode,jdbcType=VARCHAR},
+      sys_company_code = #{sysCompanyCode,jdbcType=VARCHAR},
+      zhong_wen_qch = #{zhongWenQch,jdbcType=VARCHAR},
+      zhu_ji_ma = #{zhuJiMa,jdbcType=VARCHAR},
+      ke_hu_jian_cheng = #{keHuJianCheng,jdbcType=VARCHAR},
+      ke_hu_bian_ma = #{keHuBianMa,jdbcType=VARCHAR},
+      ke_hu_ying_wen = #{keHuYingWen,jdbcType=VARCHAR},
+      zeng_yong_qi = #{zengYongQi,jdbcType=VARCHAR},
+      zeng_yong_qi_ye = #{zengYongQiYe,jdbcType=VARCHAR},
+      ke_hu_zhuang_tai = #{keHuZhuangTai,jdbcType=VARCHAR},
+      xing_ye_fen_lei = #{xingYeFenLei,jdbcType=VARCHAR},
+      ke_hu_deng_ji = #{keHuDengJi,jdbcType=VARCHAR},
+      suo_shu_xing_ye = #{suoShuXingYe,jdbcType=VARCHAR},
+      shou_qian_ri_qi = #{shouQianRiQi,jdbcType=TIMESTAMP},
+      zhong_zhi_he_shi_jian = #{zhongZhiHeShiJian,jdbcType=TIMESTAMP},
+      shen_qing_shi_jian = #{shenQingShiJian,jdbcType=TIMESTAMP},
+      ke_hu_shu_xing = #{keHuShuXing,jdbcType=VARCHAR},
+      gui_shu_zu_zh = #{guiShuZuZh,jdbcType=VARCHAR},
+      gui_shu_sheng = #{guiShuSheng,jdbcType=VARCHAR},
+      gui_shu_shi_dai = #{guiShuShiDai,jdbcType=VARCHAR},
+      gui_shu = #{guiShu,jdbcType=VARCHAR},
+      di_zhi = #{diZhi,jdbcType=VARCHAR},
+      you_zheng_bian_ma = #{youZhengBianMa,jdbcType=VARCHAR},
+      zhu_lian_xi_ren = #{zhuLianXiRen,jdbcType=VARCHAR},
+      dian_hua = #{dianHua,jdbcType=VARCHAR},
+      shou_ji = #{shouJi,jdbcType=VARCHAR},
+      chuan_zhen = #{chuanZhen,jdbcType=VARCHAR},
+      Emaildi_zhi = #{emaildiZhi,jdbcType=VARCHAR},
+      wang_ye_di_zhi = #{wangYeDiZhi,jdbcType=VARCHAR},
+      fa_ren_dai_biao = #{faRenDaiBiao,jdbcType=VARCHAR},
+      fa_ren_shen_fen = #{faRenShenFen,jdbcType=VARCHAR},
+      zhu_ce_zi_jin = #{zhuCeZiJin,jdbcType=VARCHAR},
+      bi_bie = #{biBie,jdbcType=VARCHAR},
+      ying_ye_zhi_zhao = #{yingYeZhiZhao,jdbcType=VARCHAR},
+      shui_wu_deng = #{shuiWuDeng,jdbcType=VARCHAR},
+      zu_zhi_ji_gou = #{zuZhiJiGou,jdbcType=VARCHAR},
+      dao_lu_yun_shu = #{daoLuYunShu,jdbcType=VARCHAR},
+      zhu_ying_ye_wu = #{zhuYingYeWu,jdbcType=VARCHAR},
+      he_yi_xiang = #{heYiXiang,jdbcType=VARCHAR},
+      pi_zhun_ji_guan = #{piZhunJiGuan,jdbcType=VARCHAR},
+      pi_zhun_wen_hao = #{piZhunWenHao,jdbcType=VARCHAR},
+      zhu_ce_ri_qi = #{zhuCeRiQi,jdbcType=TIMESTAMP},
+      bei_zhu = #{beiZhu,jdbcType=VARCHAR},
+      zhu_lian_xi_ren1 = #{zhuLianXiRen1,jdbcType=VARCHAR},
+      dian_hua1 = #{dianHua1,jdbcType=VARCHAR},
+      fu_jian = #{fuJian,jdbcType=VARCHAR},
+      ke_hu_lei_xing = #{keHuLeiXing,jdbcType=VARCHAR},
+      billing_cycle = #{billingCycle,jdbcType=VARCHAR},
+      storage_bill_way = #{storageBillWay,jdbcType=VARCHAR},
+      floor_days = #{floorDays,jdbcType=VARCHAR},
+      floor_weights = #{floorWeights,jdbcType=VARCHAR},
+      storage_charge = #{storageCharge,jdbcType=VARCHAR},
+      billing_number = #{billingNumber,jdbcType=VARCHAR},
+      bin_number = #{binNumber,jdbcType=VARCHAR},
+      stock_number = #{stockNumber,jdbcType=VARCHAR},
+      billing_weight = #{billingWeight,jdbcType=VARCHAR},
+      charge_cycle = #{chargeCycle,jdbcType=VARCHAR},
+      charge_discount = #{chargeDiscount,jdbcType=VARCHAR},
+      hand_charge_bill_way = #{handChargeBillWay,jdbcType=VARCHAR},
+      hand_charges = #{handCharges,jdbcType=VARCHAR},
+      land_charges = #{landCharges,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      contract_life = #{contractLife,jdbcType=VARCHAR},
+      land_charge_bill_way = #{landChargeBillWay,jdbcType=VARCHAR},
+      expir_date = #{expirDate,jdbcType=VARCHAR},
+      storage_template = #{storageTemplate,jdbcType=VARCHAR},
+      hand_charge_template = #{handChargeTemplate,jdbcType=VARCHAR},
+      land_charge_template = #{landChargeTemplate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, create_name, create_by, create_date, update_name, update_by, update_date, 
+    sys_org_code, sys_company_code, zhong_wen_qch, zhu_ji_ma, ke_hu_jian_cheng, ke_hu_bian_ma, 
+    ke_hu_ying_wen, zeng_yong_qi, zeng_yong_qi_ye, ke_hu_zhuang_tai, xing_ye_fen_lei, 
+    ke_hu_deng_ji, suo_shu_xing_ye, shou_qian_ri_qi, zhong_zhi_he_shi_jian, shen_qing_shi_jian, 
+    ke_hu_shu_xing, gui_shu_zu_zh, gui_shu_sheng, gui_shu_shi_dai, gui_shu, di_zhi, you_zheng_bian_ma, 
+    zhu_lian_xi_ren, dian_hua, shou_ji, chuan_zhen, Emaildi_zhi, wang_ye_di_zhi, fa_ren_dai_biao, 
+    fa_ren_shen_fen, zhu_ce_zi_jin, bi_bie, ying_ye_zhi_zhao, shui_wu_deng, zu_zhi_ji_gou, 
+    dao_lu_yun_shu, zhu_ying_ye_wu, he_yi_xiang, pi_zhun_ji_guan, pi_zhun_wen_hao, zhu_ce_ri_qi, 
+    bei_zhu, zhu_lian_xi_ren1, dian_hua1, fu_jian, ke_hu_lei_xing, billing_cycle, storage_bill_way, 
+    floor_days, floor_weights, storage_charge, billing_number, bin_number, stock_number, 
+    billing_weight, charge_cycle, charge_discount, hand_charge_bill_way, hand_charges, 
+    land_charges, number, weight, contract_life, land_charge_bill_way, expir_date, storage_template, 
+    hand_charge_template, land_charge_template
+    from `md_cus`
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, create_name, create_by, create_date, update_name, update_by, update_date, 
+    sys_org_code, sys_company_code, zhong_wen_qch, zhu_ji_ma, ke_hu_jian_cheng, ke_hu_bian_ma, 
+    ke_hu_ying_wen, zeng_yong_qi, zeng_yong_qi_ye, ke_hu_zhuang_tai, xing_ye_fen_lei, 
+    ke_hu_deng_ji, suo_shu_xing_ye, shou_qian_ri_qi, zhong_zhi_he_shi_jian, shen_qing_shi_jian, 
+    ke_hu_shu_xing, gui_shu_zu_zh, gui_shu_sheng, gui_shu_shi_dai, gui_shu, di_zhi, you_zheng_bian_ma, 
+    zhu_lian_xi_ren, dian_hua, shou_ji, chuan_zhen, Emaildi_zhi, wang_ye_di_zhi, fa_ren_dai_biao, 
+    fa_ren_shen_fen, zhu_ce_zi_jin, bi_bie, ying_ye_zhi_zhao, shui_wu_deng, zu_zhi_ji_gou, 
+    dao_lu_yun_shu, zhu_ying_ye_wu, he_yi_xiang, pi_zhun_ji_guan, pi_zhun_wen_hao, zhu_ce_ri_qi, 
+    bei_zhu, zhu_lian_xi_ren1, dian_hua1, fu_jian, ke_hu_lei_xing, billing_cycle, storage_bill_way, 
+    floor_days, floor_weights, storage_charge, billing_number, bin_number, stock_number, 
+    billing_weight, charge_cycle, charge_discount, hand_charge_bill_way, hand_charges, 
+    land_charges, number, weight, contract_life, land_charge_bill_way, expir_date, storage_template, 
+    hand_charge_template, land_charge_template
+    from `md_cus`
+  </select>
+</mapper>

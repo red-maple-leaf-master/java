@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.oneyi.mapper.MdGoodsMapper">
+  <resultMap id="BaseResultMap" type="top.oneyi.pojo.MdGoods">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="sys_org_code" jdbcType="VARCHAR" property="sysOrgCode" />
+    <result column="sys_company_code" jdbcType="VARCHAR" property="sysCompanyCode" />
+    <result column="suo_shu_ke_hu" jdbcType="VARCHAR" property="suoShuKeHu" />
+    <result column="shp_ming_cheng" jdbcType="VARCHAR" property="shpMingCheng" />
+    <result column="shp_jian_cheng" jdbcType="VARCHAR" property="shpJianCheng" />
+    <result column="shp_bian_ma" jdbcType="VARCHAR" property="shpBianMa" />
+    <result column="shp_xing_hao" jdbcType="VARCHAR" property="shpXingHao" />
+    <result column="shp_gui_ge" jdbcType="VARCHAR" property="shpGuiGe" />
+    <result column="shp_yan_se" jdbcType="VARCHAR" property="shpYanSe" />
+    <result column="chp_shu_xing" jdbcType="VARCHAR" property="chpShuXing" />
+    <result column="cf_wen_ceng" jdbcType="VARCHAR" property="cfWenCeng" />
+    <result column="chl_kong_zhi" jdbcType="VARCHAR" property="chlKongZhi" />
+    <result column="mp_dan_ceng" jdbcType="VARCHAR" property="mpDanCeng" />
+    <result column="mp_ceng_gao" jdbcType="VARCHAR" property="mpCengGao" />
+    <result column="jf_shp_lei" jdbcType="VARCHAR" property="jfShpLei" />
+    <result column="shp_pin_pai" jdbcType="VARCHAR" property="shpPinPai" />
+    <result column="shp_tiao_ma" jdbcType="VARCHAR" property="shpTiaoMa" />
+    <result column="pp_tu_pian" jdbcType="VARCHAR" property="ppTuPian" />
+    <result column="bzhi_qi" jdbcType="VARCHAR" property="bzhiQi" />
+    <result column="shl_dan_wei" jdbcType="VARCHAR" property="shlDanWei" />
+    <result column="jsh_dan_wei" jdbcType="VARCHAR" property="jshDanWei" />
+    <result column="ti_ji_cm" jdbcType="VARCHAR" property="tiJiCm" />
+    <result column="zhl_kg" jdbcType="VARCHAR" property="zhlKg" />
+    <result column="chl_shl" jdbcType="VARCHAR" property="chlShl" />
+    <result column="jti_ji_bi" jdbcType="VARCHAR" property="jtiJiBi" />
+    <result column="jm_zhong_bi" jdbcType="VARCHAR" property="jmZhongBi" />
+    <result column="jj_zhong_bi" jdbcType="VARCHAR" property="jjZhongBi" />
+    <result column="chc_dan_wei" jdbcType="VARCHAR" property="chcDanWei" />
+    <result column="ch_dan_pin" jdbcType="VARCHAR" property="chDanPin" />
+    <result column="ku_dan_pin" jdbcType="VARCHAR" property="kuDanPin" />
+    <result column="gao_dan_pin" jdbcType="VARCHAR" property="gaoDanPin" />
+    <result column="ch_zh_xiang" jdbcType="VARCHAR" property="chZhXiang" />
+    <result column="ku_zh_xiang" jdbcType="VARCHAR" property="kuZhXiang" />
+    <result column="gao_zh_xiang" jdbcType="VARCHAR" property="gaoZhXiang" />
+    <result column="shp_miao_shu" jdbcType="VARCHAR" property="shpMiaoShu" />
+    <result column="zhuang_tai" jdbcType="VARCHAR" property="zhuangTai" />
+    <result column="zhl_kgm" jdbcType="VARCHAR" property="zhlKgm" />
+    <result column="SHP_BIAN_MAKH" jdbcType="VARCHAR" property="shpBianMakh" />
+    <result column="JIZHUN_WENDU" jdbcType="VARCHAR" property="jizhunWendu" />
+    <result column="yw_ming_cheng" jdbcType="VARCHAR" property="ywMingCheng" />
+    <result column="rw_ming_cheng" jdbcType="VARCHAR" property="rwMingCheng" />
+    <result column="cus_name" jdbcType="VARCHAR" property="cusName" />
+    <result column="peisongdian" jdbcType="VARCHAR" property="peisongdian" />
+    <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="min_stock" jdbcType="VARCHAR" property="minStock" />
+    <result column="sku" jdbcType="VARCHAR" property="sku" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="load_template_code" jdbcType="VARCHAR" property="loadTemplateCode" />
+    <result column="store_template_code" jdbcType="VARCHAR" property="storeTemplateCode" />
+    <result column="un_load_template_code" jdbcType="VARCHAR" property="unLoadTemplateCode" />
+    <result column="load_template_name" jdbcType="VARCHAR" property="loadTemplateName" />
+    <result column="store_template_name" jdbcType="VARCHAR" property="storeTemplateName" />
+    <result column="un_load_template_name" jdbcType="VARCHAR" property="unLoadTemplateName" />
+    <result column="good_price" jdbcType="VARCHAR" property="goodPrice" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from `md_goods`
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="top.oneyi.pojo.MdGoods" useGeneratedKeys="true">
+    insert into `md_goods` (create_name, create_by, create_date, 
+      update_name, update_by, update_date, 
+      sys_org_code, sys_company_code, suo_shu_ke_hu, 
+      shp_ming_cheng, shp_jian_cheng, shp_bian_ma, 
+      shp_xing_hao, shp_gui_ge, shp_yan_se, 
+      chp_shu_xing, cf_wen_ceng, chl_kong_zhi, 
+      mp_dan_ceng, mp_ceng_gao, jf_shp_lei, 
+      shp_pin_pai, shp_tiao_ma, pp_tu_pian, 
+      bzhi_qi, shl_dan_wei, jsh_dan_wei, 
+      ti_ji_cm, zhl_kg, chl_shl, 
+      jti_ji_bi, jm_zhong_bi, jj_zhong_bi, 
+      chc_dan_wei, ch_dan_pin, ku_dan_pin, 
+      gao_dan_pin, ch_zh_xiang, ku_zh_xiang, 
+      gao_zh_xiang, shp_miao_shu, zhuang_tai, 
+      zhl_kgm, SHP_BIAN_MAKH, JIZHUN_WENDU, 
+      yw_ming_cheng, rw_ming_cheng, cus_name, 
+      peisongdian, category_code, category_id, 
+      min_stock, sku, category_name, 
+      load_template_code, store_template_code, un_load_template_code, 
+      load_template_name, store_template_name, un_load_template_name, 
+      good_price)
+    values (#{createName,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateName,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{sysOrgCode,jdbcType=VARCHAR}, #{sysCompanyCode,jdbcType=VARCHAR}, #{suoShuKeHu,jdbcType=VARCHAR}, 
+      #{shpMingCheng,jdbcType=VARCHAR}, #{shpJianCheng,jdbcType=VARCHAR}, #{shpBianMa,jdbcType=VARCHAR}, 
+      #{shpXingHao,jdbcType=VARCHAR}, #{shpGuiGe,jdbcType=VARCHAR}, #{shpYanSe,jdbcType=VARCHAR}, 
+      #{chpShuXing,jdbcType=VARCHAR}, #{cfWenCeng,jdbcType=VARCHAR}, #{chlKongZhi,jdbcType=VARCHAR}, 
+      #{mpDanCeng,jdbcType=VARCHAR}, #{mpCengGao,jdbcType=VARCHAR}, #{jfShpLei,jdbcType=VARCHAR}, 
+      #{shpPinPai,jdbcType=VARCHAR}, #{shpTiaoMa,jdbcType=VARCHAR}, #{ppTuPian,jdbcType=VARCHAR}, 
+      #{bzhiQi,jdbcType=VARCHAR}, #{shlDanWei,jdbcType=VARCHAR}, #{jshDanWei,jdbcType=VARCHAR}, 
+      #{tiJiCm,jdbcType=VARCHAR}, #{zhlKg,jdbcType=VARCHAR}, #{chlShl,jdbcType=VARCHAR}, 
+      #{jtiJiBi,jdbcType=VARCHAR}, #{jmZhongBi,jdbcType=VARCHAR}, #{jjZhongBi,jdbcType=VARCHAR}, 
+      #{chcDanWei,jdbcType=VARCHAR}, #{chDanPin,jdbcType=VARCHAR}, #{kuDanPin,jdbcType=VARCHAR}, 
+      #{gaoDanPin,jdbcType=VARCHAR}, #{chZhXiang,jdbcType=VARCHAR}, #{kuZhXiang,jdbcType=VARCHAR}, 
+      #{gaoZhXiang,jdbcType=VARCHAR}, #{shpMiaoShu,jdbcType=VARCHAR}, #{zhuangTai,jdbcType=VARCHAR}, 
+      #{zhlKgm,jdbcType=VARCHAR}, #{shpBianMakh,jdbcType=VARCHAR}, #{jizhunWendu,jdbcType=VARCHAR}, 
+      #{ywMingCheng,jdbcType=VARCHAR}, #{rwMingCheng,jdbcType=VARCHAR}, #{cusName,jdbcType=VARCHAR}, 
+      #{peisongdian,jdbcType=VARCHAR}, #{categoryCode,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, 
+      #{minStock,jdbcType=VARCHAR}, #{sku,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, 
+      #{loadTemplateCode,jdbcType=VARCHAR}, #{storeTemplateCode,jdbcType=VARCHAR}, #{unLoadTemplateCode,jdbcType=VARCHAR}, 
+      #{loadTemplateName,jdbcType=VARCHAR}, #{storeTemplateName,jdbcType=VARCHAR}, #{unLoadTemplateName,jdbcType=VARCHAR}, 
+      #{goodPrice,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="top.oneyi.pojo.MdGoods">
+    update `md_goods`
+    set create_name = #{createName,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      sys_org_code = #{sysOrgCode,jdbcType=VARCHAR},
+      sys_company_code = #{sysCompanyCode,jdbcType=VARCHAR},
+      suo_shu_ke_hu = #{suoShuKeHu,jdbcType=VARCHAR},
+      shp_ming_cheng = #{shpMingCheng,jdbcType=VARCHAR},
+      shp_jian_cheng = #{shpJianCheng,jdbcType=VARCHAR},
+      shp_bian_ma = #{shpBianMa,jdbcType=VARCHAR},
+      shp_xing_hao = #{shpXingHao,jdbcType=VARCHAR},
+      shp_gui_ge = #{shpGuiGe,jdbcType=VARCHAR},
+      shp_yan_se = #{shpYanSe,jdbcType=VARCHAR},
+      chp_shu_xing = #{chpShuXing,jdbcType=VARCHAR},
+      cf_wen_ceng = #{cfWenCeng,jdbcType=VARCHAR},
+      chl_kong_zhi = #{chlKongZhi,jdbcType=VARCHAR},
+      mp_dan_ceng = #{mpDanCeng,jdbcType=VARCHAR},
+      mp_ceng_gao = #{mpCengGao,jdbcType=VARCHAR},
+      jf_shp_lei = #{jfShpLei,jdbcType=VARCHAR},
+      shp_pin_pai = #{shpPinPai,jdbcType=VARCHAR},
+      shp_tiao_ma = #{shpTiaoMa,jdbcType=VARCHAR},
+      pp_tu_pian = #{ppTuPian,jdbcType=VARCHAR},
+      bzhi_qi = #{bzhiQi,jdbcType=VARCHAR},
+      shl_dan_wei = #{shlDanWei,jdbcType=VARCHAR},
+      jsh_dan_wei = #{jshDanWei,jdbcType=VARCHAR},
+      ti_ji_cm = #{tiJiCm,jdbcType=VARCHAR},
+      zhl_kg = #{zhlKg,jdbcType=VARCHAR},
+      chl_shl = #{chlShl,jdbcType=VARCHAR},
+      jti_ji_bi = #{jtiJiBi,jdbcType=VARCHAR},
+      jm_zhong_bi = #{jmZhongBi,jdbcType=VARCHAR},
+      jj_zhong_bi = #{jjZhongBi,jdbcType=VARCHAR},
+      chc_dan_wei = #{chcDanWei,jdbcType=VARCHAR},
+      ch_dan_pin = #{chDanPin,jdbcType=VARCHAR},
+      ku_dan_pin = #{kuDanPin,jdbcType=VARCHAR},
+      gao_dan_pin = #{gaoDanPin,jdbcType=VARCHAR},
+      ch_zh_xiang = #{chZhXiang,jdbcType=VARCHAR},
+      ku_zh_xiang = #{kuZhXiang,jdbcType=VARCHAR},
+      gao_zh_xiang = #{gaoZhXiang,jdbcType=VARCHAR},
+      shp_miao_shu = #{shpMiaoShu,jdbcType=VARCHAR},
+      zhuang_tai = #{zhuangTai,jdbcType=VARCHAR},
+      zhl_kgm = #{zhlKgm,jdbcType=VARCHAR},
+      SHP_BIAN_MAKH = #{shpBianMakh,jdbcType=VARCHAR},
+      JIZHUN_WENDU = #{jizhunWendu,jdbcType=VARCHAR},
+      yw_ming_cheng = #{ywMingCheng,jdbcType=VARCHAR},
+      rw_ming_cheng = #{rwMingCheng,jdbcType=VARCHAR},
+      cus_name = #{cusName,jdbcType=VARCHAR},
+      peisongdian = #{peisongdian,jdbcType=VARCHAR},
+      category_code = #{categoryCode,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      min_stock = #{minStock,jdbcType=VARCHAR},
+      sku = #{sku,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      load_template_code = #{loadTemplateCode,jdbcType=VARCHAR},
+      store_template_code = #{storeTemplateCode,jdbcType=VARCHAR},
+      un_load_template_code = #{unLoadTemplateCode,jdbcType=VARCHAR},
+      load_template_name = #{loadTemplateName,jdbcType=VARCHAR},
+      store_template_name = #{storeTemplateName,jdbcType=VARCHAR},
+      un_load_template_name = #{unLoadTemplateName,jdbcType=VARCHAR},
+      good_price = #{goodPrice,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, create_name, create_by, create_date, update_name, update_by, update_date, 
+    sys_org_code, sys_company_code, suo_shu_ke_hu, shp_ming_cheng, shp_jian_cheng, shp_bian_ma, 
+    shp_xing_hao, shp_gui_ge, shp_yan_se, chp_shu_xing, cf_wen_ceng, chl_kong_zhi, mp_dan_ceng, 
+    mp_ceng_gao, jf_shp_lei, shp_pin_pai, shp_tiao_ma, pp_tu_pian, bzhi_qi, shl_dan_wei, 
+    jsh_dan_wei, ti_ji_cm, zhl_kg, chl_shl, jti_ji_bi, jm_zhong_bi, jj_zhong_bi, chc_dan_wei, 
+    ch_dan_pin, ku_dan_pin, gao_dan_pin, ch_zh_xiang, ku_zh_xiang, gao_zh_xiang, shp_miao_shu, 
+    zhuang_tai, zhl_kgm, SHP_BIAN_MAKH, JIZHUN_WENDU, yw_ming_cheng, rw_ming_cheng, cus_name, 
+    peisongdian, category_code, category_id, min_stock, sku, category_name, load_template_code, 
+    store_template_code, un_load_template_code, load_template_name, store_template_name, 
+    un_load_template_name, good_price
+    from `md_goods`
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, create_name, create_by, create_date, update_name, update_by, update_date, 
+    sys_org_code, sys_company_code, suo_shu_ke_hu, shp_ming_cheng, shp_jian_cheng, shp_bian_ma, 
+    shp_xing_hao, shp_gui_ge, shp_yan_se, chp_shu_xing, cf_wen_ceng, chl_kong_zhi, mp_dan_ceng, 
+    mp_ceng_gao, jf_shp_lei, shp_pin_pai, shp_tiao_ma, pp_tu_pian, bzhi_qi, shl_dan_wei, 
+    jsh_dan_wei, ti_ji_cm, zhl_kg, chl_shl, jti_ji_bi, jm_zhong_bi, jj_zhong_bi, chc_dan_wei, 
+    ch_dan_pin, ku_dan_pin, gao_dan_pin, ch_zh_xiang, ku_zh_xiang, gao_zh_xiang, shp_miao_shu, 
+    zhuang_tai, zhl_kgm, SHP_BIAN_MAKH, JIZHUN_WENDU, yw_ming_cheng, rw_ming_cheng, cus_name, 
+    peisongdian, category_code, category_id, min_stock, sku, category_name, load_template_code, 
+    store_template_code, un_load_template_code, load_template_name, store_template_name, 
+    un_load_template_name, good_price
+    from `md_goods`
+  </select>
+</mapper>
