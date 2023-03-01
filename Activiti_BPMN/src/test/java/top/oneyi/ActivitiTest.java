@@ -11,6 +11,8 @@ import org.activiti.engine.task.TaskQuery;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ActivitiTest {
 
@@ -74,6 +76,24 @@ public class ActivitiTest {
             System.out.println("任务负责人：" + task.getAssignee());
             System.out.println("任务名称：" + task.getName());
         }
+/// ==================================================================================
+
+        // 根据 实例key 和特定的任务负责人 查询到任务集合   获取任务集合
+        List<Task> taskList = taskService.createTaskQuery()
+                .processDefinitionKey("creditFlow")
+                .taskAssignee(assignee)
+                .list();
+
+//使用stream流获取到对应的 流程实例id集合
+        Set<String> processInstanceIds = taskList.stream().map(Task::getProcessInstanceId).collect(Collectors.toSet());
+// 流程实例集合id 查询流程实例集合
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        List<ProcessInstance> processInstanceList = runtimeService.createProcessInstanceQuery().processInstanceIds(processInstanceIds).list();
+//再根据流程实例集合  获取业务id集合
+        List<String> businessKeyList = processInstanceList.stream().map(ProcessInstance::getBusinessKey).collect(Collectors.toList());
+//根据业务id集合获取业务记录集合
+//        List<EnterpriseCreditInfoVo> creditInfoList = new ArrayList<>();
+//        creditInfoList = baseMapper.selectVoBatchIds(businessKeyList);
 
 
     }
@@ -97,7 +117,7 @@ public class ActivitiTest {
         taskService.complete(task.getId());
 
 
-        //根据businessKey获得流程实例id
+        // 根据businessKey获得流程实例id
 //        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 
         HistoryService historyService = processEngine.getHistoryService();
@@ -114,8 +134,6 @@ public class ActivitiTest {
 //获取TaskService
 //        TaskService taskService = processEngine.getTaskService();
 //        taskService.complete(taskId);
-
-
 
 
     }
