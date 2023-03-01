@@ -12,42 +12,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@RequestMapping("/test")
+/**
+ * 审批流程
+ *
+ * @author oneyi
+ * @date 2023/3/1
+ */
+
+@RequestMapping("/workflow")
 @RestController
 public class ActivitiTestController {
 
     private static final Logger logger = LoggerFactory.getLogger(ActivitiTestController.class);
+//    流程id
+    private static final String KRY = "wan";
+    @Resource
+    private RuntimeService runtimeService;
 
-    @Autowired
-    RuntimeService runtimeService;
-
-    @Autowired
+    @Resource
     private TaskService taskService;
 
-    @RequestMapping("/test1")
-    public void test1() {
-        logger.info("Start.........");
-        ProcessInstance pi = runtimeService.startProcessInstanceByKey("test");
-        logger.info("流程启动成功，流程id:{}", pi.getId());
-    }
-
-
-    @RequestMapping("/test2")
-    public void test2() {
-        //        任务负责人
+    @RequestMapping("/create")
+    public void create() {
+        //根据 流程定义Id 启动流程
+        ProcessInstance processInstance = runtimeService
+                .startProcessInstanceByKey(KRY);
+        // 输出内容
+        System.out.println("流程定义id：" + processInstance.getProcessDefinitionId());
+        System.out.println("流程实例id：" + processInstance.getId());
+        System.out.println("当前活动Id：" + processInstance.getActivityId());
+        // 任务负责人
         String assignee = "zhangsan";
-        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-//        创建TaskService
-        TaskService taskService = processEngine.getTaskService();
-//        根据流程key 和 任务负责人 查询任务
+        // 根据流程key 和 任务负责人 查询任务
         List<Task> list = taskService.createTaskQuery()
-                .processDefinitionKey("wan") //流程Key
+                .processDefinitionKey(KRY) //流程Key
                 .taskAssignee(assignee)//只查询该任务负责人的任务
                 .list();
-        logger.info("任务列表：{}", list);
+        for (Task task : list) {
+            System.out.println("流程实例id：" + task.getProcessInstanceId());
+            System.out.println("任务id：" + task.getId());
+            System.out.println("任务负责人：" + task.getAssignee());
+            System.out.println("任务名称：" + task.getName());
+
+        }
     }
+
 
 }
 

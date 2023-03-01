@@ -6,6 +6,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.activiti.engine.task.TaskQuery;
 import org.junit.Test;
 
 import java.util.List;
@@ -63,16 +64,39 @@ public class ActivitiTest {
 //        根据流程key 和 任务负责人 查询任务
         List<Task> list = taskService.createTaskQuery()
                 .processDefinitionKey("wan") //流程Key
-                .taskAssignee(assignee)//只查询该任务负责人的任务
+//                .taskAssignee(assignee)//只查询该任务负责人的任务
                 .list();
 
         for (Task task : list) {
-
             System.out.println("流程实例id：" + task.getProcessInstanceId());
             System.out.println("任务id：" + task.getId());
             System.out.println("任务负责人：" + task.getAssignee());
             System.out.println("任务名称：" + task.getName());
+        }
 
+
+    }
+
+    // 完成任务  任务id 10005   12505  实例id   10001   12501
+    @Test
+    public void completTask() {
+//        获取引擎
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+//        获取taskService
+        TaskService taskService = processEngine.getTaskService();
+
+//        根据流程key 和 任务的负责人 查询任务
+//        返回一个任务对象
+        List<Task> list = taskService.createTaskQuery()
+                .processDefinitionKey("wan") //流程Key
+                .taskAssignee("zhangsan")  //要查询的负责人
+                .list();
+
+        for (Task task : list) {
+            if(task.getId().equals("10005")){
+                //        完成任务,参数：任务id
+                taskService.complete(task.getId());
+            }
         }
     }
 
@@ -92,7 +116,7 @@ public class ActivitiTest {
 //          orderByProcessDefinitionVersion 按照版本排序
 //        desc倒叙
 //        list 返回集合
-        List<ProcessDefinition> definitionList = processDefinitionQuery.processDefinitionKey("PROCESS_1")
+        List<ProcessDefinition> definitionList = processDefinitionQuery.processDefinitionKey("wan")
                 .orderByProcessDefinitionVersion()
                 .desc()
                 .list();
