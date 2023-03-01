@@ -46,8 +46,9 @@ public class ActivitiTest {
 //        2、获取RunTimeService
         RuntimeService runtimeService = processEngine.getRuntimeService();
 //        3、根据流程定义Id启动流程
-        ProcessInstance processInstance = runtimeService
-                .startProcessInstanceById("wan", "businessId");
+//      runtimeService.startProcessInstanceByKey("wan");
+        // 启动流程实例 添加业务id
+        ProcessInstance processInstance =    runtimeService.startProcessInstanceByKey("wan","businessId");
 //        输出内容
         System.out.println("流程定义id：" + processInstance.getProcessDefinitionId());
         System.out.println("流程实例id：" + processInstance.getId());
