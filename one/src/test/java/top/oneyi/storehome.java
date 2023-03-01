@@ -4,10 +4,14 @@ import net.minidev.json.JSONUtil;
 import org.junit.Test;
 
 
+import java.io.*;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.ZipOutputStream;
 
 import static java.util.stream.Collectors.reducing;
 import static java.util.stream.Collectors.toList;
@@ -108,6 +112,30 @@ public class storehome {
         double pow = Math.pow(2, n);
         for (int i=0;i< pow;i++){
             System.out.println("我执行了"+ i+"次");
+        }
+    }
+    @Test
+    public void test05(){
+
+        String nums = "202302280012";
+       int  num = (Integer.parseInt(nums) + 1);
+        System.out.println("num = " + num);
+        nums = String.valueOf(num);
+        System.out.println("nums111111111111 = " + nums);
+
+
+    }
+
+    @Test
+    public void test06() throws IOException {
+        String path = "E:\\Desktop\\身份证人像.jpg";
+       String downPath = "E:\\Desktop\\one\\java\\one\\1.jpg";
+        FileOutputStream os = new FileOutputStream(new File(downPath));
+        FileInputStream is = new FileInputStream(new File(path));
+        byte[] len = new byte[1024 * 8];
+        while((is.read(len) != -1)){
+            os.write(len);
+            os.flush();
         }
     }
 

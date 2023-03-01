@@ -63,5 +63,16 @@ public class MybatisPlusTest {
 
     }
 
+    @Test
+    public void test03(){
+
+        String 中文 = new String("我是中文");
+        String zhongwen = new String("我是拼音");
+        System.out.println(zhongwen);
+        System.out.println(中文);
+
+    }
+
+
 
 }
