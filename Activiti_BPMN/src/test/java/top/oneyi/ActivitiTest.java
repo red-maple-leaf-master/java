@@ -1,6 +1,7 @@
 package top.oneyi;
 
 import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
@@ -44,7 +45,7 @@ public class ActivitiTest {
         RuntimeService runtimeService = processEngine.getRuntimeService();
 //        3、根据流程定义Id启动流程
         ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey("wan");
+                .startProcessInstanceById("wan", "businessId");
 //        输出内容
         System.out.println("流程定义id：" + processInstance.getProcessDefinitionId());
         System.out.println("流程实例id：" + processInstance.getId());
@@ -87,17 +88,36 @@ public class ActivitiTest {
 
 //        根据流程key 和 任务的负责人 查询任务
 //        返回一个任务对象
-        List<Task> list = taskService.createTaskQuery()
+        Task task = taskService.createTaskQuery()
                 .processDefinitionKey("wan") //流程Key
-                .taskAssignee("zhangsan")  //要查询的负责人
-                .list();
+                .taskAssignee("lisi")  //要查询的负责人
+                .singleResult();
 
-        for (Task task : list) {
-            if(task.getId().equals("10005")){
-                //        完成任务,参数：任务id
-                taskService.complete(task.getId());
-            }
-        }
+
+        taskService.complete(task.getId());
+
+
+        //根据businessKey获得流程实例id
+//        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+
+        HistoryService historyService = processEngine.getHistoryService();
+        HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().processInstanceBusinessKey("id").singleResult();
+//        String processInstanceId = ObjectUtil.isNotEmpty(historicProcessInstance) ? historicProcessInstance.getId() : "";
+//        System.out.println(processInstanceId);
+
+
+//根据流程实例id获取任务，流程实例是唯一的，因此查询出任务也是唯一的
+//        ActRuTask actRuTask = actRuTaskMapper.selectOne(new QueryWrapper<ActRuTask>().eq("PROC_INST_ID_", processInstanceId));
+//        String taskId = actRuTask.getId();
+
+
+//获取TaskService
+//        TaskService taskService = processEngine.getTaskService();
+//        taskService.complete(taskId);
+
+
+
+
     }
 
     /**

@@ -1,9 +1,8 @@
 package top.oneyi.controller;
 
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
+import org.activiti.engine.*;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.slf4j.Logger;
@@ -34,29 +33,31 @@ public class ActivitiTestController {
 
     @Resource
     private TaskService taskService;
+    @Resource
+    private RepositoryService repositoryService;
 
+    /**
+     *  创建申请 传递流程key
+     */
     @RequestMapping("/create")
-    public void create() {
+    public void create(String key) {
         //根据 流程定义Id 启动流程
-        ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey(KRY);
-        // 输出内容
-        System.out.println("流程定义id：" + processInstance.getProcessDefinitionId());
-        System.out.println("流程实例id：" + processInstance.getId());
-        System.out.println("当前活动Id：" + processInstance.getActivityId());
-        // 任务负责人
-        String assignee = "zhangsan";
-        // 根据流程key 和 任务负责人 查询任务
-        List<Task> list = taskService.createTaskQuery()
-                .processDefinitionKey(KRY) //流程Key
-                .taskAssignee(assignee)//只查询该任务负责人的任务
-                .list();
-        for (Task task : list) {
-            System.out.println("流程实例id：" + task.getProcessInstanceId());
-            System.out.println("任务id：" + task.getId());
-            System.out.println("任务负责人：" + task.getAssignee());
-            System.out.println("任务名称：" + task.getName());
-
+        runtimeService.startProcessInstanceByKey(key);
+        runtimeService.startProcessInstanceById(key,"id");
+    }
+    /**
+     *  查询到所有的流程实例
+     */
+    @RequestMapping("/list")
+    public void list() {
+        ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();
+        List<ProcessDefinition> list = processDefinitionQuery.list();
+        for (ProcessDefinition processDefinition : list) {
+            System.out.println("流程定义 id=" + processDefinition.getId());
+            System.out.println("流程定义 name=" + processDefinition.getName());
+            System.out.println("流程定义 key=" + processDefinition.getKey());
+            System.out.println("流程定义 Version=" + processDefinition.getVersion());
+            System.out.println("流程部署ID =" + processDefinition.getDeploymentId());
         }
     }
 
