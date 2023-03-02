@@ -66,7 +66,7 @@ public class guarantyTest {
         map.put("bmjl", "2");
         map.put("zxfzr", "3");
         map.put("zjl", "4");
-        map.put("businessId-05","324343243243");
+        map.put("businessId-05", "324343243243");
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("financial", "324343243243", map);
         System.out.println("processInstance.getBusinessKey() = " + processInstance.getBusinessKey());
         System.out.println("processInstance.getName() = " + processInstance.getName());
@@ -116,31 +116,31 @@ public class guarantyTest {
         String processInstanceId = historicProcessInstance.getId();
         TaskQuery taskQuery = taskService.createTaskQuery();
         Task task = taskQuery.processInstanceBusinessKey(id) // 业务id
-                            .processDefinitionKey("financial") // 流程实例key
-                            .processInstanceId(processInstanceId) // 流程实例id
-                            .singleResult();
+                .processDefinitionKey("financial") // 流程实例key
+                .processInstanceId(processInstanceId) // 流程实例id
+                .singleResult();
 
         String taskId = task.getId();
         String processInstanceId1 = task.getProcessInstanceId();
-        System.out.println(" 任务id :"+taskId);
-        System.out.println(" 业务流程ID　"+processInstanceId1);
+        System.out.println(" 任务id :" + taskId);
+        System.out.println(" 业务流程ID　" + processInstanceId1);
         Map<String, Object> variables = taskService.getVariables(task.getId());
         System.out.println("variables = " + variables);
-        Map<String,Object> maps =new HashMap<>();
-        maps.put("4","审批通过");
-        maps.put("msg04","财产状态良好,给予通过");
-        taskService.complete(task.getId(),maps);
+        Map<String, Object> maps = new HashMap<>();
+        maps.put("4", "审批通过");
+        maps.put("msg04", "财产状态良好,给予通过");
+        taskService.complete(task.getId(), maps);
 
 //        taskService.setOwner(task.getId(),"中心负责人");
     }
 
     @Test
-    public void test(){
+    public void test() {
 // 开始流程
 /*        ProcessInstance pi1 = runtimeService.startProcessInstanceByKey("financial", "businessKey1");
         ProcessInstance pi2 = runtimeService.startProcessInstanceByKey("financial", "businessKey2");*/
-String pId2="eef0c8e6-b8f1-11ed-b5a2-a036bc096aaf";
-String pId1="eeeb71b0-b8f1-11ed-b5a2-a036bc096aaf";
+        String pId2 = "eef0c8e6-b8f1-11ed-b5a2-a036bc096aaf";
+        String pId1 = "eeeb71b0-b8f1-11ed-b5a2-a036bc096aaf";
         // 查询执行流
         Execution exe1 = runtimeService.createExecutionQuery()
                 .processInstanceId(pId1).singleResult();
@@ -270,16 +270,16 @@ String pId1="eeeb71b0-b8f1-11ed-b5a2-a036bc096aaf";
     @Test
     public void deleteProcessInstanceTest() {
         String processDefinitionKey = "financial";
-        List<ProcessInstance> list = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-04","213").list();
-        if(list.size() > 1){
+        List<ProcessInstance> list = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-05", "324343243243").list();
+        if (list.size() > 1) {
             System.out.println("流程实例的长度为:" + list.size());
             for (ProcessInstance processInstance : list) {
                 String processInstanceId = processInstance.getProcessInstanceId();
                 runtimeService.deleteProcessInstance(processInstanceId, "删除测试");
             }
-        }else{
+        } else {
             System.out.println("流程实例的长度为:" + list.size());
-            ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-04", "213").singleResult();
+            ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-05", "324343243243").singleResult();
             String processInstanceId = processInstance.getProcessInstanceId();
             runtimeService.deleteProcessInstance(processInstanceId, "删除测试");
         }
@@ -309,7 +309,7 @@ String pId1="eeeb71b0-b8f1-11ed-b5a2-a036bc096aaf";
     }
 
     @Test
-    public void test03(){
+    public void test03() {
 
 
     }
