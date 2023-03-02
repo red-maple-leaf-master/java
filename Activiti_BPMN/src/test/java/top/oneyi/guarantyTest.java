@@ -31,9 +31,10 @@ public class guarantyTest {
     @Autowired
     private RuntimeService runtimeService;
     @Autowired
-    private  RepositoryService repositoryService;
+    private RepositoryService repositoryService;
     @Autowired
     private TaskService taskService;
+
     /**
      * 单文件部署
      */
@@ -55,17 +56,18 @@ public class guarantyTest {
     }
 
     /**
-     *  当担保物提交之后,创建流程
+     * 当担保物提交之后,创建流程
      */
     @Test
-    public void add(){
+    public void add() {
         // 担保物完成提交
-        Map<String,Object> map = new HashMap<>();
-        map.put("khjl", "客户经理");
-        map.put("bmjl", "部门经理");
-        map.put("zxfzr", "中心负责人");
-        map.put("zjl", "总经理");
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("financial", "businessId", map);
+        Map<String, Object> map = new HashMap<>();
+        map.put("khjl", "1");
+        map.put("bmjl", "2");
+        map.put("zxfzr", "3");
+        map.put("zjl", "4");
+        map.put("businessId-05","324343243243");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("financial", "324343243243", map);
         System.out.println("processInstance.getBusinessKey() = " + processInstance.getBusinessKey());
         System.out.println("processInstance.getName() = " + processInstance.getName());
         System.out.println("processInstance.getDescription() = " + processInstance.getDescription());
@@ -84,9 +86,9 @@ public class guarantyTest {
      * 创建流程实例
      */
     @Test
-    public void createProcessInstance(){
+    public void createProcessInstance() {
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().singleResult();
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("khjl", "客户经理");
         map.put("bmjl", "部门经理");
         map.put("zxfzr", "中心负责人");
@@ -103,30 +105,62 @@ public class guarantyTest {
      * 完成每一个流程实例的当前任务
      */
     @Test
-    public void finishTask(){
-        String id="businessId-01";
-        // 根据业务id找到自己的申请担保物的一条流程实例
-        //根据businessKey获得流程实例id
+    public void finishTask() {
+        String id = "324343243243";
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-
+        HistoryService historyService = processEngine.getHistoryService();
+        HistoricProcessInstance historicProcessInstance = historyService
+                .createHistoricProcessInstanceQuery()
+                .processInstanceBusinessKey(id)
+                .singleResult();
+        String processInstanceId = historicProcessInstance.getId();
         TaskQuery taskQuery = taskService.createTaskQuery();
-        List<Task> list = taskQuery.list();
-        for (Task task : list) {
-            String assignee = task.getAssignee();
-            System.out.println(assignee);
-            Map<String, Object> processVariables = task.getProcessVariables();
-            System.out.println("processVariables = " + processVariables);
-            String processInstanceId = task.getProcessInstanceId();
-            System.out.println("processInstanceId = " + processInstanceId);
-        }
+        Task task = taskQuery.processInstanceBusinessKey(id) // 业务id
+                            .processDefinitionKey("financial") // 流程实例key
+                            .processInstanceId(processInstanceId) // 流程实例id
+                            .singleResult();
 
+        String taskId = task.getId();
+        String processInstanceId1 = task.getProcessInstanceId();
+        System.out.println(" 任务id :"+taskId);
+        System.out.println(" 业务流程ID　"+processInstanceId1);
+        Map<String, Object> variables = taskService.getVariables(task.getId());
+        System.out.println("variables = " + variables);
+        Map<String,Object> maps =new HashMap<>();
+        maps.put("4","审批通过");
+        maps.put("msg04","财产状态良好,给予通过");
+        taskService.complete(task.getId(),maps);
+
+//        taskService.setOwner(task.getId(),"中心负责人");
+    }
+
+    @Test
+    public void test(){
+// 开始流程
+/*        ProcessInstance pi1 = runtimeService.startProcessInstanceByKey("financial", "businessKey1");
+        ProcessInstance pi2 = runtimeService.startProcessInstanceByKey("financial", "businessKey2");*/
+String pId2="eef0c8e6-b8f1-11ed-b5a2-a036bc096aaf";
+String pId1="eeeb71b0-b8f1-11ed-b5a2-a036bc096aaf";
+        // 查询执行流
+        Execution exe1 = runtimeService.createExecutionQuery()
+                .processInstanceId(pId1).singleResult();
+        Execution exe2 = runtimeService.createExecutionQuery()
+                .processInstanceId(pId2).singleResult();
+        System.out.println("exe1 = " + exe1);
+        // 完成第一条流程
+        runtimeService.signalEventReceived(exe2.getId());
+        exe1 = runtimeService.createExecutionQuery()
+                .processInstanceId(pId1).singleResult();
+//        runtimeService.signalEventReceived(exe1.getId());
+        System.out.println("exe1 = " + exe1);
 
     }
+
     /**
      * 查询所有的流程实例上的任务
      */
     @Test
-    public void task(){
+    public void task() {
         TaskQuery taskQuery = taskService.createTaskQuery();
         List<Task> list = taskQuery.processDefinitionKey("financial").list();
         for (Task task : list) {
@@ -145,8 +179,8 @@ public class guarantyTest {
      * 挂起实例 激活实例
      */
     @Test
-    public void processList(){
-        String processInstanceId="cb8ccef6-b8a9-11ed-af11-a036bc096aaf";
+    public void processList() {
+        String processInstanceId = "cb8ccef6-b8a9-11ed-af11-a036bc096aaf";
         // 挂起流程实例
         runtimeService.suspendProcessInstanceById(processInstanceId);
         //验证是否挂起   suspended挂起为 true  激活为false
@@ -196,26 +230,27 @@ public class guarantyTest {
 
         //查询激活的流程实例
         List<ProcessInstance> activateList = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).active().list();
-        Assert.assertTrue(activateList.size()>0);
+        Assert.assertTrue(activateList.size() > 0);
 
         //相反 查询挂起的流程则是
         List<ProcessInstance> suspendList = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).suspended().list();
-        Assert.assertTrue(suspendList.size()==0);
+        Assert.assertTrue(suspendList.size() == 0);
 
         //根据变量来查询
         // 根据title='启动流程',以及processDefinitionKey来作为查询条件进行查询
-        List<ProcessInstance> varList = runtimeService.createProcessInstanceQuery().variableValueEquals("担保物审批流程 部署","financial").list();
-        Assert.assertTrue(varList.size()>0);
+        List<ProcessInstance> varList = runtimeService.createProcessInstanceQuery().variableValueEquals("担保物审批流程 部署", "financial").list();
+        Assert.assertTrue(varList.size() > 0);
 
     }
+
     /**
      * 执行流（流程对象）的查询
      * 执行流的查询
      * RuntimeService中有createExecutionQuery方法可以得到一个ExecutionQuery对象，该对象就可以根据执行流的相关数据查询执行流
      */
     @Test
-    public void executionQueryTest(){
-        String  processDefinitionKey = "financial";
+    public void executionQueryTest() {
+        String processDefinitionKey = "financial";
         List<Execution> executionList = runtimeService.createExecutionQuery().processDefinitionKey(processDefinitionKey).list();
         for (Execution execution : executionList) {
             System.out.println("execution.getActivityId() = " + execution.getActivityId());
@@ -226,37 +261,56 @@ public class guarantyTest {
             System.out.println("execution.getParentProcessInstanceId() = " + execution.getParentProcessInstanceId());
             System.out.println("==================================================");
         }
-        Assert.assertTrue(executionList.size()>0);
+        Assert.assertTrue(executionList.size() > 0);
     }
 
     /**
      * 流程实例的删除
      */
     @Test
-    public void deleteProcessInstanceTest(){
-        String  processDefinitionKey = "financial";
-//        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("title","启动流程").singleResult();
-//        String processInstanceId = processInstance.getProcessInstanceId();
-        runtimeService.deleteProcessInstance("cb8ccef6-b8a9-11ed-af11-a036bc096aaf","删除测试");
+    public void deleteProcessInstanceTest() {
+        String processDefinitionKey = "financial";
+        List<ProcessInstance> list = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-04","213").list();
+        if(list.size() > 1){
+            System.out.println("流程实例的长度为:" + list.size());
+            for (ProcessInstance processInstance : list) {
+                String processInstanceId = processInstance.getProcessInstanceId();
+                runtimeService.deleteProcessInstance(processInstanceId, "删除测试");
+            }
+        }else{
+            System.out.println("流程实例的长度为:" + list.size());
+            ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-04", "213").singleResult();
+            String processInstanceId = processInstance.getProcessInstanceId();
+            runtimeService.deleteProcessInstance(processInstanceId, "删除测试");
+        }
+
+
     }
+
     /**
      * 流程实例的状态查询（就是查询流程正在执行，还是已经结束）
-     *
+     * <p>
      * 注：在流程执行的过程中，创建的流程实例ID在整个流程执行过程中都不会变化，当流程结束后，流程实例会在正在执行的流程对象表中删除act_ru_execution
      */
     @Test
-    public void queryProcessInstanceState(){
-        String  processDefinitionKey = "financial";
+    public void queryProcessInstanceState() {
+        String processDefinitionKey = "financial";
         List<ProcessInstance> list = runtimeService.createProcessInstanceQuery()
                 .processDefinitionKey(processDefinitionKey).list();
         for (ProcessInstance processInstance : list) {
-            if(processInstance!=null){
-                System.out.println("当前流程处在："+processInstance.getActivityId());
-            }else{
+            if (processInstance != null) {
+                System.out.println("当前流程处在：" + processInstance.getActivityId());
+            } else {
                 System.out.println("当前流程已结束");
             }
             System.out.println("================================================");
         }
+
+    }
+
+    @Test
+    public void test03(){
+
 
     }
 }
