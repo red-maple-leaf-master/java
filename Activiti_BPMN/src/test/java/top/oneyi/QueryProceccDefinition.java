@@ -27,7 +27,7 @@ public class QueryProceccDefinition {
     @Test
     public void queryProceccDefinition() {
         // 流程定义key
-        String processDefinitionKey = "PROCESS_1";
+        String processDefinitionKey = "wan";
         //1.得到ProcessEngine对象
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 

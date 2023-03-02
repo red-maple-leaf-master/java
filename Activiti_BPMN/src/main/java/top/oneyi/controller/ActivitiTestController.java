@@ -26,7 +26,7 @@ import java.util.List;
 public class ActivitiTestController {
 
     private static final Logger logger = LoggerFactory.getLogger(ActivitiTestController.class);
-//    流程id
+    //    流程id
     private static final String KRY = "wan";
     @Resource
     private RuntimeService runtimeService;
@@ -37,16 +37,17 @@ public class ActivitiTestController {
     private RepositoryService repositoryService;
 
     /**
-     *  创建申请 传递流程key
+     * 创建申请 传递流程key
      */
     @RequestMapping("/create")
     public void create(String key) {
         //根据 流程定义Id 启动流程
         runtimeService.startProcessInstanceByKey(key);
-        runtimeService.startProcessInstanceById(key,"id");
+        runtimeService.startProcessInstanceById(key, "id");
     }
+
     /**
-     *  查询到所有的流程实例
+     * 查询到所有的流程实例
      */
     @RequestMapping("/list")
     public void list() {
@@ -61,6 +62,19 @@ public class ActivitiTestController {
         }
     }
 
+    /*     map.put("khjl", "6");
+            map.put("bmjl", "7");
+            map.put("zxfzr", "8");
+            map.put("zjl", "9");
+        //根据流程定义的key启动流程实例,这个key是在定义bpmn的时候设置的
+        //在启动流程的时候将业务key加入进去 将任务负责人也加进去
+        ProcessInstance instance = runtimeService
+                .startProcessInstanceByKey("creditFlow", businessKey, map);*/
+    // 提交担保物之后,状态为
+    @RequestMapping("/add")
+    public void add() {
+
+    }
 
 }
 

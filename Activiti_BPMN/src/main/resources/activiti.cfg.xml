@@ -10,7 +10,7 @@
     <!--数据源配置dbcp-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/activiti-01"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/activiti"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </bean>

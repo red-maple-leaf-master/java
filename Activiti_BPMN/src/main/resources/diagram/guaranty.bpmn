@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/processdef" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:yaoqiang="http://bpmn.sourceforge.net" exporter="耀强BPMN编辑器" exporterVersion="5.3" expressionLanguage="http://www.w3.org/1999/XPath" id="_1677725584250" name="" targetNamespace="http://www.activiti.org/processdef" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
+  <process id="financial" isClosed="false" isExecutable="true" name="担保物审批" processType="None">
+    <extensionElements>
+      <yaoqiang:description/>
+      <yaoqiang:pageFormat height="841.8897637795276" imageableHeight="831.8897637795276" imageableWidth="588.1102362204724" imageableX="5.0" imageableY="5.0" orientation="0" width="598.1102362204724"/>
+      <yaoqiang:page background="#FFFFFF" horizontalCount="1" verticalCount="1"/>
+    </extensionElements>
+    <startEvent id="sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173" isInterrupting="true" parallelMultiple="false">
+      <outgoing>sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D</outgoing>
+      <outputSet/>
+    </startEvent>
+    <userTask activiti:assignee="common" completionQuantity="1" id="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" implementation="##unspecified" isForCompensation="false" name="客户提交担保物" startQuantity="1">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
+          <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+        </modeler:initiator-can-complete>
+      </extensionElements>
+      <incoming>sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D</incoming>
+      <outgoing>sid-08A37C3B-4749-4A3D-BC24-01D334D07976</outgoing>
+    </userTask>
+    <userTask activiti:assignee="khjl" completionQuantity="1" id="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED" implementation="##unspecified" isForCompensation="false" name="客户经理审批" startQuantity="1">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
+          <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+        </modeler:initiator-can-complete>
+      </extensionElements>
+      <incoming>sid-08A37C3B-4749-4A3D-BC24-01D334D07976</incoming>
+      <outgoing>sid-FE78CD84-86CA-4790-BF1E-316D925026E9</outgoing>
+    </userTask>
+    <userTask activiti:assignee="bmjl" completionQuantity="1" id="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1" implementation="##unspecified" isForCompensation="false" name="部门经理审批" startQuantity="1">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
+          <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+        </modeler:initiator-can-complete>
+      </extensionElements>
+      <incoming>sid-FE78CD84-86CA-4790-BF1E-316D925026E9</incoming>
+      <outgoing>sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB</outgoing>
+    </userTask>
+    <userTask activiti:assignee="zxfzr" completionQuantity="1" id="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" implementation="##unspecified" isForCompensation="false" name="中心负责人审批" startQuantity="1">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
+          <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+        </modeler:initiator-can-complete>
+      </extensionElements>
+      <incoming>sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB</incoming>
+      <outgoing>sid-D73953E5-E955-419D-8AE2-A99541229D1C</outgoing>
+    </userTask>
+    <userTask activiti:assignee="zjl" completionQuantity="1" id="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" implementation="##unspecified" isForCompensation="false" name="总经理审批" startQuantity="1">
+      <extensionElements>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
+          <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+        </modeler:initiator-can-complete>
+      </extensionElements>
+      <incoming>sid-D73953E5-E955-419D-8AE2-A99541229D1C</incoming>
+      <outgoing>sid-22290ACC-2B37-4EAA-A994-D2CC367998C6</outgoing>
+    </userTask>
+    <endEvent id="sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3">
+      <incoming>sid-22290ACC-2B37-4EAA-A994-D2CC367998C6</incoming>
+      <inputSet/>
+    </endEvent>
+    <sequenceFlow id="sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D" sourceRef="sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173" targetRef="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9"/>
+    <sequenceFlow id="sid-08A37C3B-4749-4A3D-BC24-01D334D07976" sourceRef="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" targetRef="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED"/>
+    <sequenceFlow id="sid-FE78CD84-86CA-4790-BF1E-316D925026E9" sourceRef="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED" targetRef="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1"/>
+    <sequenceFlow id="sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB" sourceRef="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1" targetRef="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3"/>
+    <sequenceFlow id="sid-D73953E5-E955-419D-8AE2-A99541229D1C" sourceRef="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" targetRef="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77"/>
+    <sequenceFlow id="sid-22290ACC-2B37-4EAA-A994-D2CC367998C6" sourceRef="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" targetRef="sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3"/>
+  </process>
+  <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-financial" name="未命名图" resolution="96.0">
+    <bpmndi:BPMNPlane bpmnElement="financial">
+      <bpmndi:BPMNShape bpmnElement="sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173" id="Yaoqiang-sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173">
+        <omgdc:Bounds height="32.0" width="32.0" x="45.0" y="195.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="58.0" y="234.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" id="Yaoqiang-sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9">
+        <omgdc:Bounds height="80.0" width="100.0" x="135.0" y="170.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="83.0" x="143.5" y="201.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED" id="Yaoqiang-sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED">
+        <omgdc:Bounds height="80.0" width="100.0" x="315.0" y="170.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="72.0" x="329.0" y="201.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1" id="Yaoqiang-sid-585DEF32-EDCB-4540-9D75-913DD710AAE1">
+        <omgdc:Bounds height="80.0" width="100.0" x="480.0" y="170.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="72.0" x="494.0" y="201.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" id="Yaoqiang-sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3">
+        <omgdc:Bounds height="80.0" width="100.0" x="630.0" y="170.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="83.0" x="638.5" y="201.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" id="Yaoqiang-sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77">
+        <omgdc:Bounds height="80.0" width="100.0" x="810.0" y="170.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="61.0" x="829.5" y="201.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3" id="Yaoqiang-sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3">
+        <omgdc:Bounds height="32.0" width="32.0" x="1035.0" y="196.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="1048.0" y="235.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-22290ACC-2B37-4EAA-A994-D2CC367998C6" id="Yaoqiang-sid-22290ACC-2B37-4EAA-A994-D2CC367998C6">
+        <omgdi:waypoint x="910.0" y="210.0"/>
+        <omgdi:waypoint x="1035.0" y="212.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="969.5" y="200.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D" id="Yaoqiang-sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D">
+        <omgdi:waypoint x="77.0" y="211.0"/>
+        <omgdi:waypoint x="135.0" y="210.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="103.0" y="199.99"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-FE78CD84-86CA-4790-BF1E-316D925026E9" id="Yaoqiang-sid-FE78CD84-86CA-4790-BF1E-316D925026E9">
+        <omgdi:waypoint x="415.0" y="210.0"/>
+        <omgdi:waypoint x="480.0" y="210.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="444.5" y="199.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-D73953E5-E955-419D-8AE2-A99541229D1C" id="Yaoqiang-sid-D73953E5-E955-419D-8AE2-A99541229D1C">
+        <omgdi:waypoint x="730.0" y="210.0"/>
+        <omgdi:waypoint x="810.0" y="210.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="767.0" y="199.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB" id="Yaoqiang-sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB">
+        <omgdi:waypoint x="580.0" y="210.0"/>
+        <omgdi:waypoint x="630.0" y="210.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="602.0" y="199.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-08A37C3B-4749-4A3D-BC24-01D334D07976" id="Yaoqiang-sid-08A37C3B-4749-4A3D-BC24-01D334D07976">
+        <omgdi:waypoint x="235.0" y="210.0"/>
+        <omgdi:waypoint x="315.0" y="210.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="21.02" width="6.0" x="272.0" y="199.49"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

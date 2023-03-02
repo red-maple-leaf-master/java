@@ -7,7 +7,7 @@ spring:
   datasource:
     name: mysqlDatasource
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/activiti-01?useUnicode=true&amp;characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/activiti?useUnicode=true&amp;characterEncoding=UTF-8
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -26,10 +26,10 @@ spring:
       -**.bpmn20.xml
     #保存历史数据级别设置为full最高级别，便于历史数据的追溯
     history-level: full
-  # activiti 安全访问
-  security:
-    basic:
-      enabled: true
-    user:
-      name: root
-      password: root
+#  # activiti 安全访问
+#  security:
+#    basic:
+#      enabled: true
+#    user:
+#      name: root
+#      password: root

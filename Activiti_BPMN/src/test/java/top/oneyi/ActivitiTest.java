@@ -7,10 +7,15 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.activiti.engine.task.TaskQuery;
+import org.activiti.engine.test.ActivitiRule;
+import org.assertj.core.util.Maps;
+import org.junit.Rule;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,8 +32,8 @@ public class ActivitiTest {
         RepositoryService repositoryService = processEngine.getRepositoryService();
 //        3、使用RepositoryService进行部署
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("diagram/wan.bpmn") // 添加bpmn资源
-                .addClasspathResource("diagram/wan.png")  // 添加png资源
+                .addClasspathResource("diagram/guaranty.bpmn") // 添加bpmn资源
+                .addClasspathResource("diagram/guaranty.png")  // 添加png资源
                 .name("测试流程1")
                 .deploy();
 //        4、输出部署信息
@@ -167,6 +172,24 @@ public class ActivitiTest {
             System.out.println("流程定义 Version=" + processDefinition.getVersion());
             System.out.println("流程部署ID =" + processDefinition.getDeploymentId());
         }
+
+    }
+
+
+    @Rule
+    public ActivitiRule activitiRule = new ActivitiRule();
+
+
+    @Test
+    public void test02(){
+        ProcessDefinition processDefinition = activitiRule.getRepositoryService().createProcessDefinitionQuery().singleResult();
+        RuntimeService runtimeService = activitiRule.getRuntimeService();
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("key1", "value1");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceById(processDefinition.getId(), variables);
+        System.out.println("processInstance = " + processInstance);
+        System.out.println("processInstance.getName() = " + processInstance.getName());
+        System.out.println("processDefinition.getDeploymentId() = " + processDefinition.getDeploymentId());
 
     }
 }
