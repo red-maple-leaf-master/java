@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/processdef" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:yaoqiang="http://bpmn.sourceforge.net" exporter="è€€å¼ºBPMNç¼–è¾‘å™¨" exporterVersion="5.3" expressionLanguage="http://www.w3.org/1999/XPath" id="_1677725584250" name="" targetNamespace="http://www.activiti.org/processdef" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
-  <process id="financial" isClosed="false" isExecutable="true" name="æ‹…ä¿ç‰©å®¡æ‰¹" processType="None">
+<?xml version="1.0" encoding="GBK" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/processdef" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:yaoqiang="http://bpmn.sourceforge.net" exporter="Ò«Ç¿BPMN±à¼­Æ÷" exporterVersion="5.3" expressionLanguage="http://www.w3.org/1999/XPath" id="_1677725584250" name="" targetNamespace="http://www.activiti.org/processdef" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
+  <process id="financial" isClosed="false" isExecutable="true" name="µ£±£ÎïÉóÅú" processType="None">
     <extensionElements>
       <yaoqiang:description/>
       <yaoqiang:pageFormat height="841.8897637795276" imageableHeight="831.8897637795276" imageableWidth="588.1102362204724" imageableX="5.0" imageableY="5.0" orientation="0" width="598.1102362204724"/>
@@ -10,12 +10,14 @@
       <outgoing>sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D</outgoing>
       <outputSet/>
     </startEvent>
-    <userTask activiti:assignee="common" completionQuantity="1" id="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" implementation="##unspecified" isForCompensation="false" name="å®¢æˆ·æäº¤æ‹…ä¿ç‰©" startQuantity="1">
+    <userTask activiti:assignee="common" completionQuantity="1" id="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" implementation="##unspecified" isForCompensation="false" name="¿Í»§Ìá½»µ£±£Îï" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
             <initiator-can-complete>
-              <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              <initiator-can-complete>
+                <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              </initiator-can-complete>
             </initiator-can-complete>
           </initiator-can-complete>
         </modeler:initiator-can-complete>
@@ -23,12 +25,14 @@
       <incoming>sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D</incoming>
       <outgoing>sid-08A37C3B-4749-4A3D-BC24-01D334D07976</outgoing>
     </userTask>
-    <userTask activiti:assignee="khjl" completionQuantity="1" id="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED" implementation="##unspecified" isForCompensation="false" name="å®¢æˆ·ç»ç†å®¡æ‰¹" startQuantity="1">
+    <userTask activiti:assignee="khjl" completionQuantity="1" id="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED" implementation="##unspecified" isForCompensation="false" name="¿Í»§¾­ÀíÉóÅú" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
             <initiator-can-complete>
-              <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              <initiator-can-complete>
+                <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              </initiator-can-complete>
             </initiator-can-complete>
           </initiator-can-complete>
         </modeler:initiator-can-complete>
@@ -36,12 +40,14 @@
       <incoming>sid-08A37C3B-4749-4A3D-BC24-01D334D07976</incoming>
       <outgoing>sid-FE78CD84-86CA-4790-BF1E-316D925026E9</outgoing>
     </userTask>
-    <userTask activiti:assignee="bmjl" completionQuantity="1" id="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1" implementation="##unspecified" isForCompensation="false" name="éƒ¨é—¨ç»ç†å®¡æ‰¹" startQuantity="1">
+    <userTask activiti:assignee="bmjl" completionQuantity="1" id="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1" implementation="##unspecified" isForCompensation="false" name="²¿ÃÅ¾­ÀíÉóÅú" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
             <initiator-can-complete>
-              <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              <initiator-can-complete>
+                <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              </initiator-can-complete>
             </initiator-can-complete>
           </initiator-can-complete>
         </modeler:initiator-can-complete>
@@ -49,12 +55,14 @@
       <incoming>sid-FE78CD84-86CA-4790-BF1E-316D925026E9</incoming>
       <outgoing>sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB</outgoing>
     </userTask>
-    <userTask activiti:assignee="zxfzr" completionQuantity="1" id="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" implementation="##unspecified" isForCompensation="false" name="ä¸­å¿ƒè´Ÿè´£äººå®¡æ‰¹" startQuantity="1">
+    <userTask activiti:assignee="zxfzr" completionQuantity="1" id="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" implementation="##unspecified" isForCompensation="false" name="ÖÐÐÄ¸ºÔðÈËÉóÅú" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
             <initiator-can-complete>
-              <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              <initiator-can-complete>
+                <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              </initiator-can-complete>
             </initiator-can-complete>
           </initiator-can-complete>
         </modeler:initiator-can-complete>
@@ -62,12 +70,14 @@
       <incoming>sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB</incoming>
       <outgoing>sid-D73953E5-E955-419D-8AE2-A99541229D1C</outgoing>
     </userTask>
-    <userTask activiti:assignee="zjl" completionQuantity="1" id="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" implementation="##unspecified" isForCompensation="false" name="æ€»ç»ç†å®¡æ‰¹" startQuantity="1">
+    <userTask activiti:assignee="zjl" completionQuantity="1" id="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" implementation="##unspecified" isForCompensation="false" name="×Ü¾­ÀíÉóÅú" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
             <initiator-can-complete>
-              <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              <initiator-can-complete>
+                <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+              </initiator-can-complete>
             </initiator-can-complete>
           </initiator-can-complete>
         </modeler:initiator-can-complete>
@@ -86,12 +96,12 @@
     <sequenceFlow id="sid-D73953E5-E955-419D-8AE2-A99541229D1C" sourceRef="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" targetRef="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77"/>
     <sequenceFlow id="sid-22290ACC-2B37-4EAA-A994-D2CC367998C6" sourceRef="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" targetRef="sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3"/>
   </process>
-  <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-financial" name="æœªå‘½åå›¾" resolution="96.0">
+  <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-financial" name="Î´ÃüÃûÍ¼" resolution="96.0">
     <bpmndi:BPMNPlane bpmnElement="financial">
       <bpmndi:BPMNShape bpmnElement="sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173" id="Yaoqiang-sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173">
         <omgdc:Bounds height="32.0" width="32.0" x="45.0" y="195.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="21.02" width="6.0" x="58.0" y="234.45"/>
+          <omgdc:Bounds height="21.02" width="6.0" x="58.0" y="234.43"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" id="Yaoqiang-sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9">
@@ -127,7 +137,7 @@
       <bpmndi:BPMNShape bpmnElement="sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3" id="Yaoqiang-sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3">
         <omgdc:Bounds height="32.0" width="32.0" x="1035.0" y="196.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="21.02" width="6.0" x="1048.0" y="235.45"/>
+          <omgdc:Bounds height="21.02" width="6.0" x="1048.0" y="235.43"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="sid-22290ACC-2B37-4EAA-A994-D2CC367998C6" id="Yaoqiang-sid-22290ACC-2B37-4EAA-A994-D2CC367998C6">

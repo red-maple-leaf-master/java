@@ -59,9 +59,9 @@ public class oneTest {
         map.put("bmjl", "2");
         map.put("zxfzr", "3");
         map.put("zjl", "4");
-        map.put("businessId","3");
+        map.put("businessId","5");
         // 开启实例
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key, "3", map);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key, "5", map);
         System.out.println("processInstance.getBusinessKey() = " + processInstance.getBusinessKey());
         System.out.println("processInstance.getName() = " + processInstance.getName());
         System.out.println("processInstance.getDescription() = " + processInstance.getDescription());
