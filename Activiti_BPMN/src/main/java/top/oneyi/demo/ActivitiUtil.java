@@ -109,7 +109,7 @@ public class ActivitiUtil {
 
     /**
      * 查询历史任务,返回集合,去重之后获得任务集合,根据每个任务名称来获取对应的任务id去跳转到指定流程
-     *  getTaskDefinitionKey()
+     * getTaskDefinitionKey()
      *
      * @param processInstanceId
      * @return
@@ -126,26 +126,40 @@ public class ActivitiUtil {
 
     /**
      * 根据实例定义id查询当前的任务
+     *
      * @param processInstanceId
      * @return
      */
-    public Task findTask(String processInstanceId){
+    public Task findTask(String processInstanceId) {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         return taskService.createTaskQuery().processInstanceId(processInstanceId).singleResult();
     }
 
     /**
+     * 根据实例定义id查询当前的任务
+     *
+     * @param businessKey
+     * @param key
+     * @return
+     */
+    public Task findTask(String businessKey, String key) {
+        ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
+        return this.findTask(processInstance.getProcessInstanceId());
+    }
+
+    /**
      * 根据流程定义key 和 任务审批人来查找任务
+     *
      * @param key
      * @param assinge
      * @return
      */
-    public List<Task> findTasks(String key,String assinge){
+    public List<Task> findTasks(String key, String assinge) {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         List<Task> list = taskService.createTaskQuery().processDefinitionKey(key).list();
-        return list.stream().filter(s->assinge.equals(s.getAssignee())).collect(Collectors.toList());
+        return list.stream().filter(s -> assinge.equals(s.getAssignee())).collect(Collectors.toList());
 
     }
 

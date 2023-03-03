@@ -10,7 +10,7 @@
       <outgoing>sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D</outgoing>
       <outputSet/>
     </startEvent>
-    <userTask activiti:assignee="common" completionQuantity="1" id="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" implementation="##unspecified" isForCompensation="false" name="客户提交担保物" startQuantity="1">
+    <userTask activiti:assignee="#{common}" completionQuantity="1" id="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" implementation="##unspecified" isForCompensation="false" name="客户提交担保物" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
@@ -25,7 +25,7 @@
       <incoming>sid-D0CE9B8F-F1D4-4A8A-B886-8D6B62B9289D</incoming>
       <outgoing>sid-08A37C3B-4749-4A3D-BC24-01D334D07976</outgoing>
     </userTask>
-    <userTask activiti:assignee="khjl" completionQuantity="1" id="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED" implementation="##unspecified" isForCompensation="false" name="客户经理审批" startQuantity="1">
+    <userTask activiti:assignee="#{khjl}" completionQuantity="1" id="sid-1A0DB463-8F1D-408A-81E0-62FC607AF7ED" implementation="##unspecified" isForCompensation="false" name="客户经理审批" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
@@ -40,7 +40,7 @@
       <incoming>sid-08A37C3B-4749-4A3D-BC24-01D334D07976</incoming>
       <outgoing>sid-FE78CD84-86CA-4790-BF1E-316D925026E9</outgoing>
     </userTask>
-    <userTask activiti:assignee="bmjl" completionQuantity="1" id="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1" implementation="##unspecified" isForCompensation="false" name="部门经理审批" startQuantity="1">
+    <userTask activiti:assignee="#{bmjl}" completionQuantity="1" id="sid-585DEF32-EDCB-4540-9D75-913DD710AAE1" implementation="##unspecified" isForCompensation="false" name="部门经理审批" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
@@ -55,7 +55,7 @@
       <incoming>sid-FE78CD84-86CA-4790-BF1E-316D925026E9</incoming>
       <outgoing>sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB</outgoing>
     </userTask>
-    <userTask activiti:assignee="zxfzr" completionQuantity="1" id="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" implementation="##unspecified" isForCompensation="false" name="中心负责人审批" startQuantity="1">
+    <userTask activiti:assignee="#{zxfzr}" completionQuantity="1" id="sid-DEACD257-D03F-48B1-A0CA-39A45FCC23E3" implementation="##unspecified" isForCompensation="false" name="中心负责人审批" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
@@ -70,7 +70,7 @@
       <incoming>sid-CCFCE69A-D396-42F9-B8E5-96AC6B6EABBB</incoming>
       <outgoing>sid-D73953E5-E955-419D-8AE2-A99541229D1C</outgoing>
     </userTask>
-    <userTask activiti:assignee="zjl" completionQuantity="1" id="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" implementation="##unspecified" isForCompensation="false" name="总经理审批" startQuantity="1">
+    <userTask activiti:assignee="#{zjl}" completionQuantity="1" id="sid-57A64CB5-4D8E-4482-9CAE-334159A1DE77" implementation="##unspecified" isForCompensation="false" name="总经理审批" startQuantity="1">
       <extensionElements>
         <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler">
           <initiator-can-complete>
