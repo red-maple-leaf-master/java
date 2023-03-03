@@ -270,7 +270,9 @@ public class guarantyTest {
     @Test
     public void deleteProcessInstanceTest() {
         String processDefinitionKey = "financial";
-        List<ProcessInstance> list = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-05", "324343243243").list();
+        List<ProcessInstance> list = runtimeService.createProcessInstanceQuery()
+                .processDefinitionKey(processDefinitionKey)
+                .list();
         if (list.size() > 1) {
             System.out.println("流程实例的长度为:" + list.size());
             for (ProcessInstance processInstance : list) {
@@ -279,7 +281,8 @@ public class guarantyTest {
             }
         } else {
             System.out.println("流程实例的长度为:" + list.size());
-            ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey).variableValueEquals("businessId-05", "324343243243").singleResult();
+            ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                    .processDefinitionKey(processDefinitionKey).singleResult();
             String processInstanceId = processInstance.getProcessInstanceId();
             runtimeService.deleteProcessInstance(processInstanceId, "删除测试");
         }

@@ -28,6 +28,7 @@ public class oneTest {
     private RepositoryService repositoryService;
     @Autowired
     private TaskService taskService;
+
     // 业务id
     private final static String businessId = "34354543245";
     // 流程实例key
@@ -58,9 +59,9 @@ public class oneTest {
         map.put("bmjl", "2");
         map.put("zxfzr", "3");
         map.put("zjl", "4");
-        map.put("businessId","2");
+        map.put("businessId","3");
         // 开启实例
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key, "2", map);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key, "3", map);
         System.out.println("processInstance.getBusinessKey() = " + processInstance.getBusinessKey());
         System.out.println("processInstance.getName() = " + processInstance.getName());
         System.out.println("processInstance.getDescription() = " + processInstance.getDescription());
@@ -84,7 +85,15 @@ public class oneTest {
         for (Task task : list) {
             System.out.println("task = " + task);
             System.out.println("操作人的权限名称为" + task.getAssignee());
+            System.out.println("task.getDescription() = " + task.getDescription());
         }
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                .processDefinitionKey(key).processInstanceBusinessKey("1").singleResult();
+        System.out.println("processInstance.getProcessInstanceId() = " + processInstance.getProcessInstanceId());
+        System.out.println("processInstance.getDeploymentId() = " + processInstance.getDeploymentId());
+        System.out.println("processInstance.getTenantId() = " + processInstance.getTenantId());
+        System.out.println("processInstance.getActivityId() = " + processInstance.getActivityId());
+
     }
 
     /**
@@ -111,5 +120,11 @@ public class oneTest {
                 .processDefinitionKey(key)
                 .singleResult();
         taskService.complete(task.getId());
+        List<Task> list = taskService.createTaskQuery().list();
+        for (Task task2 : list) {
+            System.out.println("task = " + task2);
+            System.out.println("操作人的权限名称为" + task2.getAssignee());
+            System.out.println("task.getDescription() = " + task2.getDescription());
+        }
     }
 }
