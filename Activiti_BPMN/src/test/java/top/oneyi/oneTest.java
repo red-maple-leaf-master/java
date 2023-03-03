@@ -67,6 +67,7 @@ public class oneTest {
         System.out.println("processInstance.getDescription() = " + processInstance.getDescription());
         System.out.println("processInstance.getId() = " + processInstance.getId());
         System.out.println("processInstance.getStartTime() = " + processInstance.getStartTime());
+        System.out.println("processInstance.getProcessInstanceId() = " + processInstance.getProcessInstanceId());
         // 遍历variables值 对应表 act_ru_variable
         Map<String, Object> variables = runtimeService.getVariables(processInstance.getId());
         for (Map.Entry<String, Object> stringObjectEntry : variables.entrySet()) {
