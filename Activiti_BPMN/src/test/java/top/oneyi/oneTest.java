@@ -128,4 +128,20 @@ public class oneTest {
             System.out.println("task.getDescription() = " + task2.getDescription());
         }
     }
+
+    /**
+     * 获取流程实例的状态
+     */
+    @Test
+    public void test02(){
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                .processDefinitionKey(key)
+                .processInstanceBusinessKey("1234")
+                .singleResult();
+        if(processInstance != null){
+            System.out.println("流程实例未结束");
+        }else{
+            System.out.println("流程实例结束了");
+        }
+    }
 }
