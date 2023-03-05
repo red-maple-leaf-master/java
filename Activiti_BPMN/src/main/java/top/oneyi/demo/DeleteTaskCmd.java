@@ -29,7 +29,7 @@ public class DeleteTaskCmd extends NeedsActiveTaskCmd<String> {
         // 获取当前任务的执行对象实例
         ExecutionEntity executionEntity = currentTask.getExecution();
         // 删除当前任务,来源任务
-        taskEntityManager.deleteTask(currentTask, "jumpReason", false, false);
+        taskEntityManager.deleteTask(currentTask, "驳回", false, false);
         // 返回当前任务的执行对象id
         return executionEntity.getId();
     }

@@ -39,7 +39,6 @@ public class ActivitiUtil {
         TaskService taskService = processEngine.getTaskService();
         RepositoryService repositoryService = processEngine.getRepositoryService();
         ManagementService managementService = processEngine.getManagementService();
-
         // 获取当前任务
         Task currentTask = taskService.createTaskQuery()
                 .processInstanceBusinessKey(businessKey)
@@ -48,6 +47,8 @@ public class ActivitiUtil {
         BpmnModel bpmnModel = repositoryService.getBpmnModel(currentTask.getProcessDefinitionId());
         // 获取流程定义
         Process process = bpmnModel.getMainProcess();
+
+
         // 获取目标节点定义
         FlowNode targetNode = (FlowNode) process.getFlowElement(goalNode);
         // 删除当前运行任务，同时返回执行id，该id在并发情况下也是唯一的
@@ -161,6 +162,19 @@ public class ActivitiUtil {
         List<Task> list = taskService.createTaskQuery().processDefinitionKey(key).list();
         return list.stream().filter(s -> assinge.equals(s.getAssignee())).collect(Collectors.toList());
 
+    }
+
+    /**
+     * 删除流程定义
+     * @param businessKey
+     * @param key
+     */
+    public void deleteProcessInstance(String businessKey, String key){
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        // 通过 key  和业务id删除
+        ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
+        repositoryService.deleteDeployment(processInstance.getId());
     }
 
 

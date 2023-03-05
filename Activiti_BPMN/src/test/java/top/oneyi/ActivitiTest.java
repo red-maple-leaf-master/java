@@ -12,6 +12,7 @@ import org.assertj.core.util.Maps;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import top.oneyi.demo.ActivitiUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -52,8 +53,14 @@ public class ActivitiTest {
         RuntimeService runtimeService = processEngine.getRuntimeService();
 //        3、根据流程定义Id启动流程
 //      runtimeService.startProcessInstanceByKey("wan");
+        Map<String,Object> map = new HashMap<>();
+        map.put("common", "6");
+        map.put("khjl", "6");
+        map.put("bmjl", "7");
+        map.put("zxfzr", "8");
+        map.put("zjl", "9");
         // 启动流程实例 添加业务id
-        ProcessInstance processInstance =    runtimeService.startProcessInstanceByKey("wan","businessId");
+        ProcessInstance processInstance =    runtimeService.startProcessInstanceByKey("financial","1234",map);
 //        输出内容
         System.out.println("流程定义id：" + processInstance.getProcessDefinitionId());
         System.out.println("流程实例id：" + processInstance.getId());
@@ -111,23 +118,29 @@ public class ActivitiTest {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 //        获取taskService
         TaskService taskService = processEngine.getTaskService();
-
+        ProcessInstance processInstance = processEngine.getRuntimeService()
+                .createProcessInstanceQuery()
+                .processInstanceBusinessKey("1234")
+                .processDefinitionKey("financial").singleResult();
 //        根据流程key 和 任务的负责人 查询任务
 //        返回一个任务对象
         Task task = taskService.createTaskQuery()
-                .processDefinitionKey("wan") //流程Key
-                .taskAssignee("lisi")  //要查询的负责人
+                .processDefinitionKey("financial") //流程Key
+                .processInstanceBusinessKey("1234")
+//                .taskAssignee("lisi")  //要查询的负责人
                 .singleResult();
-
-
-        taskService.complete(task.getId());
+        taskService.addComment(task.getId(), processInstance.getProcessInstanceId(),task.getName()+":审批不通过","内容不合格  写的什么玩意");
+//        taskService.complete(task.getId());
+        ActivitiUtil util = new ActivitiUtil();
+        // 跳到指定的节点
+        util.jumpTask(processInstance,"sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9","1234");
 
 
         // 根据businessKey获得流程实例id
 //        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 
-        HistoryService historyService = processEngine.getHistoryService();
-        HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().processInstanceBusinessKey("id").singleResult();
+//        HistoryService historyService = processEngine.getHistoryService();
+//        HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().processInstanceBusinessKey("id").singleResult();
 //        String processInstanceId = ObjectUtil.isNotEmpty(historicProcessInstance) ? historicProcessInstance.getId() : "";
 //        System.out.println(processInstanceId);
 
