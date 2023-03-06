@@ -2,15 +2,16 @@ package top.oneyi;
 
 import net.bytebuddy.asm.Advice;
 import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.impl.interceptor.Command;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.Execution;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
-import org.activiti.engine.task.Event;
-import org.activiti.engine.task.Task;
-import org.activiti.engine.task.TaskQuery;
+import org.activiti.engine.task.*;
 import org.apache.shiro.crypto.hash.Hash;
 import org.junit.Assert;
 import org.junit.Test;
@@ -62,12 +63,13 @@ public class guarantyTest {
     public void add() {
         // 担保物完成提交
         Map<String, Object> map = new HashMap<>();
+        map.put("common", "0");
         map.put("khjl", "1");
         map.put("bmjl", "2");
         map.put("zxfzr", "3");
         map.put("zjl", "4");
-        map.put("businessId-05", "324343243243");
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("financial", "324343243243", map);
+        map.put("businessId-01", "123");
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("financial", "123", map);
         System.out.println("processInstance.getBusinessKey() = " + processInstance.getBusinessKey());
         System.out.println("processInstance.getName() = " + processInstance.getName());
         System.out.println("processInstance.getDescription() = " + processInstance.getDescription());
@@ -106,7 +108,7 @@ public class guarantyTest {
      */
     @Test
     public void finishTask() {
-        String id = "324343243243";
+        String id = "123";
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         HistoryService historyService = processEngine.getHistoryService();
         HistoricProcessInstance historicProcessInstance = historyService
@@ -126,13 +128,31 @@ public class guarantyTest {
         System.out.println(" 业务流程ID　" + processInstanceId1);
         Map<String, Object> variables = taskService.getVariables(task.getId());
         System.out.println("variables = " + variables);
-        Map<String, Object> maps = new HashMap<>();
-        maps.put("4", "审批通过");
-        maps.put("msg04", "财产状态良好,给予通过");
-        taskService.complete(task.getId(), maps);
+        taskService.addComment(taskId,processInstanceId1,task.getName()+"-通过","给予通过");
+        taskService.complete(task.getId());
 
 //        taskService.setOwner(task.getId(),"中心负责人");
     }
+
+    /**
+     * 获取历史审批信息
+     */
+    @Test
+    public void selectHistory(){
+        String id = "123";
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        ProcessInstance financial = runtimeService.createProcessInstanceQuery().processDefinitionKey("financial").processInstanceBusinessKey(id).singleResult();
+        String processInstanceId = financial.getProcessInstanceId();
+        List<Comment> comments = taskService.getProcessInstanceComments(processInstanceId);//参数为是流程实例ID
+        for (Comment comment : comments) {
+            System.out.println("comment.getFullMessage() = " + comment.getFullMessage());
+            System.out.println("comment.getType() = " + comment.getType());
+            System.out.println("comment.getTaskId() = " + comment.getTaskId());
+            System.out.println("comment.getUserId() = " + comment.getUserId());
+        }
+    }
+
 
     @Test
     public void test() {
