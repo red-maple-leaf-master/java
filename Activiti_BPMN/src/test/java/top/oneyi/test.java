@@ -207,15 +207,25 @@ public class test {
 
         }
 
+
+
     }
     @Test
     public void test06(){
-        String key="financial";
-        String assinge="bmjl";
-        List<Task> tasks = activitiUtil.findTasks(key, assinge);
-        for (Task task : tasks) {
-            System.out.println("task = " + task);
-        }
+List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        list.forEach(s->{
+            if(s.equals("3")){
+                System.out.println("我进去了");
+            }else{
+                System.out.println("s = " + s);
+            }
+
+        });
     }
 
 
