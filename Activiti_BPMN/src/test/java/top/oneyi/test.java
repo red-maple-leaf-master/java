@@ -208,24 +208,43 @@ public class test {
         }
 
 
-
     }
+
     @Test
-    public void test06(){
-List<String> list = new ArrayList<>();
+    public void test06() {
+        List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");
         list.add("3");
         list.add("4");
         list.add("5");
-        list.forEach(s->{
-            if(s.equals("3")){
+        list.forEach(s -> {
+            if (s.equals("3")) {
                 System.out.println("我进去了");
-            }else{
+            } else {
                 System.out.println("s = " + s);
             }
 
         });
+    }
+
+    @Test
+    public void test07(){
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        List<String> list2 = new ArrayList<>();
+        List<String> list3 = new ArrayList<>();
+        List<String> list4 = null;
+        list.addAll(list2);
+        list.addAll(list3);
+        for (String s : list4) {
+            System.out.println(s);
+        }
+
     }
 
 

@@ -18,7 +18,9 @@
               <initiator-can-complete>
                 <initiator-can-complete>
                   <initiator-can-complete>
-                    <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    <initiator-can-complete>
+                      <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    </initiator-can-complete>
                   </initiator-can-complete>
                 </initiator-can-complete>
               </initiator-can-complete>
@@ -37,7 +39,9 @@
               <initiator-can-complete>
                 <initiator-can-complete>
                   <initiator-can-complete>
-                    <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    <initiator-can-complete>
+                      <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    </initiator-can-complete>
                   </initiator-can-complete>
                 </initiator-can-complete>
               </initiator-can-complete>
@@ -56,7 +60,9 @@
               <initiator-can-complete>
                 <initiator-can-complete>
                   <initiator-can-complete>
-                    <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    <initiator-can-complete>
+                      <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    </initiator-can-complete>
                   </initiator-can-complete>
                 </initiator-can-complete>
               </initiator-can-complete>
@@ -75,7 +81,9 @@
               <initiator-can-complete>
                 <initiator-can-complete>
                   <initiator-can-complete>
-                    <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    <initiator-can-complete>
+                      <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    </initiator-can-complete>
                   </initiator-can-complete>
                 </initiator-can-complete>
               </initiator-can-complete>
@@ -94,7 +102,9 @@
               <initiator-can-complete>
                 <initiator-can-complete>
                   <initiator-can-complete>
-                    <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    <initiator-can-complete>
+                      <initiator-can-complete><![CDATA[false]]></initiator-can-complete>
+                    </initiator-can-complete>
                   </initiator-can-complete>
                 </initiator-can-complete>
               </initiator-can-complete>
@@ -121,7 +131,7 @@
       <bpmndi:BPMNShape bpmnElement="sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173" id="Yaoqiang-sid-62CF8F6A-7447-45F4-9E5B-189BCD86F173">
         <omgdc:Bounds height="32.0" width="32.0" x="45.0" y="195.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="21.02" width="6.0" x="58.0" y="234.39"/>
+          <omgdc:Bounds height="21.02" width="6.0" x="58.0" y="234.37"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9" id="Yaoqiang-sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9">
@@ -157,7 +167,7 @@
       <bpmndi:BPMNShape bpmnElement="sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3" id="Yaoqiang-sid-E9F9E292-3068-4E5E-BD07-DF0B59E624E3">
         <omgdc:Bounds height="32.0" width="32.0" x="1035.0" y="196.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="21.02" width="6.0" x="1048.0" y="235.39"/>
+          <omgdc:Bounds height="21.02" width="6.0" x="1048.0" y="235.37"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="sid-22290ACC-2B37-4EAA-A994-D2CC367998C6" id="Yaoqiang-sid-22290ACC-2B37-4EAA-A994-D2CC367998C6">

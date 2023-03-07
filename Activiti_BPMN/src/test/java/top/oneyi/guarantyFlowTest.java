@@ -1,6 +1,8 @@
 package top.oneyi;
 
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.demo.ActivitiUtil;
+import top.oneyi.mapper.ActRuTaskMapper;
+import top.oneyi.pojo.Entry;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
 @SpringBootTest(classes = ActivtiSpringBootApplication.class)//加载 SpringBoot 启动类
@@ -22,27 +26,156 @@ public class guarantyFlowTest {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private ActRuTaskMapper actRuTaskMapper;
+
     @Test
-    public void create(){
-        Map<String, Object> map = new HashMap<>();
-        map.put("common","5");
-        map.put("khjl", "6");
-        map.put("bmjl", "7");
-        map.put("zxfzr", "8");
-        map.put("zjl", "9");
-        activitiUtil.createProcessInstance("key01","financial",map);
+    public void test(){
+        List<Map<String, String>> list = actRuTaskMapper.list();
+        Entry<String,Object> map = new Entry<>();
+        map.setKey("list");
+        map.setValue(list);
+        System.out.println(map);
     }
+
+
+    /**
+     * 创建流程实例
+     */
     @Test
-    public void doTask(){
-        Task task = activitiUtil.findTask("key01", "financial");
-        taskService.setAssignee(task.getId(),"替换掉同意人");
-        taskService.setOwner(task.getId(),"我是审批人或者拥有人");
-        taskService.addComment(task.getId(),task.getProcessInstanceId(),task.getOwner()+"-: 同意","通过意见");
+    public void create() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("common", "1");
+        map.put("khjl", "2");
+        map.put("bmjl", "3");
+        map.put("zxfzr", "4");
+        map.put("zjl", "5");
+        activitiUtil.createProcessInstance("businessKey-004", "financial", map);
+    }
+
+    /**
+     * 完成任务
+     */
+    @Test
+    public void doTask() {
+        Task task = activitiUtil.findTask("businessKey-003", "financial");
+        taskService.addComment(task.getId(), task.getProcessInstanceId(), task.getName() + "-: 同意", "通过意见");
         taskService.complete(task.getId());
     }
 
+    /**
+     * 跳过任务
+     */
     @Test
-    public void selectComment(){
+    public void jumpTest() {
+        String taskDefKey = "sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9";
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("businessKey-001", "financial");
+        activitiUtil.jumpTask(processInstance, taskDefKey, "businessKey-001");
+    }
+
+    /**
+     * 根据负责人id 和业务key 查找指定任务
+     */
+    @Test
+    public void selectHistoryTask() {
+        // 负责人id
+        String assigne = "2";
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("businessKey-001", "financial");
+        List<HistoricTaskInstance> list = activitiUtil.assignHistoryTasks(processInstance.getProcessInstanceId(), assigne);
+        for (HistoricTaskInstance historicTaskInstance : list) {
+            System.out.println("historicTaskInstance.getName() = " + historicTaskInstance.getName());
+            System.out.println("historicTaskInstance.getAssignee() = " + historicTaskInstance.getAssignee());
+            System.out.println("historicTaskInstance.getDeleteReason() = " + historicTaskInstance.getDeleteReason());
+            System.out.println("historicTaskInstance.getEndTime() = " + historicTaskInstance.getEndTime());
+            System.out.println("historicTaskInstance.getStartTime() = " + historicTaskInstance.getStartTime());
+            System.out.println("================================================================================");
+        }
+    }
+
+    /**
+     * 该负责人需要经手和未经受的任务
+     */
+    @Test
+    public void selectHistoryTasks() {
+        // 负责人id
+        String assigne = "2";
+        List<HistoricTaskInstance> financial = activitiUtil.findByassigneeHistoryTasks("financial", assigne);
+/*        List<String> list = Arrays.asList("businessKey-001","businessKey-002","businessKey-003","businessKey-004");
+        Map<String,Object> map = new HashMap<>();
+        map.put("businessKey-001",null);
+        map.put("businessKey-002",null);
+        map.put("businessKey-003",null);
+        map.put("businessKey-004",null);*/
+        // 1,获取审批通过和审批驳回的历史任务数据
+        List<HistoricTaskInstance> HistoricTasks = new ArrayList<>(); // 驳回集合
+        List<HistoricTaskInstance> HistoricTasksPass = new ArrayList<>(); // 审批通过集合
+        System.out.println("===========================该负责人的所有历史任务start===================================");
+        for (HistoricTaskInstance historicTaskInstance : financial) {
+            if (historicTaskInstance.getDeleteReason() != null && historicTaskInstance.getEndTime() != null) {
+                // 驳回的任务
+                HistoricTasks.add(historicTaskInstance);
+            }
+            if (historicTaskInstance.getDeleteReason() == null && historicTaskInstance.getEndTime() != null) {
+                //通过的任务
+                HistoricTasksPass.add(historicTaskInstance);
+            }
+
+            System.out.println("任务名称:" + historicTaskInstance.getName());
+            System.out.println("任务负责人 " + historicTaskInstance.getAssignee());
+            System.out.println("删除原因 " + historicTaskInstance.getDeleteReason());
+            System.out.println("任务结束时间" + historicTaskInstance.getEndTime());
+            System.out.println("任务开始时间 " + historicTaskInstance.getStartTime());
+            System.out.println("流程定义id" + historicTaskInstance.getProcessInstanceId());
+            System.out.println("historicTask.getTaskDefinitionKey() = " + historicTaskInstance.getTaskDefinitionKey());
+
+        }
+        System.out.println("==============================该负责人的所有历史任务end===============================");
+
+        System.out.println("==================================取得所有的审批驳回的历史任务 start===============================");
+        for (HistoricTaskInstance historicTask : HistoricTasks) {
+            System.out.println(historicTask);
+            System.out.println("任务名称:" + historicTask.getName());
+            System.out.println("任务负责人 " + historicTask.getAssignee());
+            System.out.println("删除原因 " + historicTask.getDeleteReason());
+            System.out.println("任务结束时间" + historicTask.getEndTime());
+            System.out.println("任务开始时间 " + historicTask.getStartTime());
+            System.out.println("流程定义id" + historicTask.getProcessInstanceId());
+            System.out.println("historicTask.getTaskDefinitionKey() = " + historicTask.getTaskDefinitionKey());
+
+        }
+        System.out.println("====================================取得所有的审批驳回的历史任务 end===========================");
+        //2,反复驳回的数据会有重复的历史数据需要去重
+        HistoricTasks = HistoricTasks.stream().collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(
+                        Comparator.comparing(HistoricTaskInstance::getProcessInstanceId))), ArrayList::new));
+        // 3 获得已完成的和驳回的数据
+        System.out.println("==================================去重之后审批驳回的历史任务 start===============================");
+        for (HistoricTaskInstance historicTask : HistoricTasks) {
+
+            System.out.println("任务名称:" + historicTask.getName());
+            System.out.println("任务负责人 " + historicTask.getAssignee());
+            System.out.println("删除原因 " + historicTask.getDeleteReason());
+            System.out.println("任务结束时间" + historicTask.getEndTime());
+            System.out.println("任务开始时间 " + historicTask.getStartTime());
+            System.out.println("流程定义id" + historicTask.getProcessInstanceId());
+            System.out.println("historicTask.getTaskDefinitionKey() = " + historicTask.getTaskDefinitionKey());
+
+        }
+        System.out.println("====================================去重之后审批驳回的历史任务 end===========================");
+
+        System.out.println("==================================审批通过的历史任务 start===============================");
+        for (HistoricTaskInstance historicTasksPass : HistoricTasksPass) {
+
+            System.out.println("任务名称:" + historicTasksPass.getName());
+            System.out.println("任务负责人 " + historicTasksPass.getAssignee());
+            System.out.println("删除原因 " + historicTasksPass.getDeleteReason());
+            System.out.println("任务结束时间" + historicTasksPass.getEndTime());
+            System.out.println("任务开始时间 " + historicTasksPass.getStartTime());
+            System.out.println("流程定义id" + historicTasksPass.getProcessInstanceId());
+            System.out.println("historicTask.getTaskDefinitionKey() = " + historicTasksPass.getTaskDefinitionKey());
+
+        }
+        System.out.println("====================================审批通过的历史任务 end===========================");
 
     }
 }

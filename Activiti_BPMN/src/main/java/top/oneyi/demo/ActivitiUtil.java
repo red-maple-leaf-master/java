@@ -126,6 +126,26 @@ public class ActivitiUtil {
     }
 
     /**
+     * 查询历史任务,返回集合,去重之后获得任务集合,根据每个任务名称来获取对应的任务id去跳转到指定流程
+     * getTaskDefinitionKey()
+     *
+     * @param processInstanceId
+     * @return
+     */
+    public List<HistoricTaskInstance> assignHistoryTasks(String processInstanceId,String assignee) {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        HistoryService historyService = processEngine.getHistoryService();
+        List<HistoricTaskInstance> list = historyService
+                .createHistoricTaskInstanceQuery()
+                .processInstanceId(processInstanceId)
+                .taskAssignee(assignee)
+                .orderByHistoricTaskInstanceStartTime()
+                .desc()
+                .list();
+        return list;
+    }
+
+    /**
      * 根据实例定义id查询当前的任务
      *
      * @param processInstanceId
@@ -159,9 +179,29 @@ public class ActivitiUtil {
     public List<Task> findTasks(String key, String assinge) {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         TaskService taskService = processEngine.getTaskService();
-        List<Task> list = taskService.createTaskQuery().processDefinitionKey(key).list();
+        List<Task> list = taskService
+                .createTaskQuery()
+                .processDefinitionKey(key)
+                .list();
         return list.stream().filter(s -> assinge.equals(s.getAssignee())).collect(Collectors.toList());
 
+    }
+    /**
+     * 根据流程定义key 和 任务审批人来查找 该审批人的历史任务
+     *
+     * @param key
+     * @param assinge
+     * @return
+     */
+    public List<HistoricTaskInstance> findByassigneeHistoryTasks(String key, String assinge) {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        HistoryService historyService = processEngine.getHistoryService();
+        List<HistoricTaskInstance> list = historyService
+                .createHistoricTaskInstanceQuery()
+                .processDefinitionKey(key)
+                .taskAssignee(assinge)
+                .list();
+        return list.stream().filter(s -> assinge.equals(s.getAssignee())).collect(Collectors.toList());
     }
 
     /**
