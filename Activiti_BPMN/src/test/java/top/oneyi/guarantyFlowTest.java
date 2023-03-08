@@ -1,5 +1,8 @@
 package top.oneyi;
 
+import org.activiti.engine.HistoryService;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -14,6 +17,9 @@ import top.oneyi.mapper.ActRuTaskMapper;
 import top.oneyi.pojo.Entry;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
@@ -30,9 +36,9 @@ public class guarantyFlowTest {
     private ActRuTaskMapper actRuTaskMapper;
 
     @Test
-    public void test(){
+    public void test() {
         List<Map<String, String>> list = actRuTaskMapper.list();
-        Entry<String,Object> map = new Entry<>();
+        Entry<String, Object> map = new Entry<>();
         map.setKey("list");
         map.setValue(list);
         System.out.println(map);
@@ -58,7 +64,7 @@ public class guarantyFlowTest {
      */
     @Test
     public void doTask() {
-        Task task = activitiUtil.findTask("businessKey-003", "financial");
+        Task task = activitiUtil.findTask("5d4e9230-bc96-11ed-b4ef-a036bc096aaf");
         taskService.addComment(task.getId(), task.getProcessInstanceId(), task.getName() + "-: 同意", "通过意见");
         taskService.complete(task.getId());
     }
@@ -69,7 +75,7 @@ public class guarantyFlowTest {
     @Test
     public void jumpTest() {
         String taskDefKey = "sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9";
-        ProcessInstance processInstance = activitiUtil.findProcessInstance("businessKey-001", "financial");
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("businessKey-002", "financial");
         activitiUtil.jumpTask(processInstance, taskDefKey, "businessKey-001");
     }
 
@@ -119,7 +125,6 @@ public class guarantyFlowTest {
                 //通过的任务
                 HistoricTasksPass.add(historicTaskInstance);
             }
-
             System.out.println("任务名称:" + historicTaskInstance.getName());
             System.out.println("任务负责人 " + historicTaskInstance.getAssignee());
             System.out.println("删除原因 " + historicTaskInstance.getDeleteReason());
@@ -176,6 +181,75 @@ public class guarantyFlowTest {
 
         }
         System.out.println("====================================审批通过的历史任务 end===========================");
+
+    }
+
+
+    @Test
+    public void newHistoryTask() {
+        // 负责人id
+        String assigne = "2";
+        List<HistoricTaskInstance> financial = activitiUtil.findByassigneeHistoryTasks("financial", assigne);
+        // 1,获取审批通过和审批驳回的历史任务数据
+        List<HistoricTaskInstance> collect = financial.stream().filter(distinctByKey(HistoricTaskInstance::getProcessInstanceId))
+                .collect(Collectors.toList());
+/*        for (HistoricTaskInstance historicTaskInstance : financial) {
+            System.out.println("historicTaskInstance.getAssignee() = " + historicTaskInstance.getAssignee());
+            System.out.println("historicTaskInstance.getProcessInstanceId() = " + historicTaskInstance.getProcessInstanceId());
+            System.out.println("historicTaskInstance.getCreateTime() = " + historicTaskInstance.getCreateTime());
+            System.out.println("historicTaskInstance.getEndTime() = " + historicTaskInstance.getEndTime());
+            System.out.println("======================================================");
+        }*/
+
+        for (HistoricTaskInstance historicTaskInstance : collect) {
+            if (historicTaskInstance.getDeleteReason() != null && historicTaskInstance.getEndTime() != null) {
+                System.out.println("===================驳回的任务=========================");
+                // 驳回的任务
+                System.out.println("historicTaskInstance.getAssignee() = " + historicTaskInstance.getAssignee());
+                System.out.println("historicTaskInstance.getProcessInstanceId() = " + historicTaskInstance.getProcessInstanceId());
+                System.out.println("historicTaskInstance.getCreateTime() = " + historicTaskInstance.getCreateTime());
+                System.out.println("historicTaskInstance.getEndTime() = " + historicTaskInstance.getEndTime());
+
+            }
+            if (historicTaskInstance.getDeleteReason() == null && historicTaskInstance.getEndTime() != null) {
+                System.out.println("===================通过的任务=========================");
+                //通过的任务
+                System.out.println("historicTaskInstance.getAssignee() = " + historicTaskInstance.getAssignee());
+                System.out.println("historicTaskInstance.getProcessInstanceId() = " + historicTaskInstance.getProcessInstanceId());
+                System.out.println("historicTaskInstance.getCreateTime() = " + historicTaskInstance.getCreateTime());
+                System.out.println("historicTaskInstance.getEndTime() = " + historicTaskInstance.getEndTime());
+
+            }
+        }
+    }
+
+    private <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+        Map<Object, Boolean> concurrentHashMap = new ConcurrentHashMap<>();
+        return t -> concurrentHashMap.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+    }
+
+
+    @Test
+    public void test01() {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        HistoryService historyService = processEngine.getHistoryService();
+        List<HistoricTaskInstance> list = historyService
+                .createHistoricTaskInstanceQuery()
+                .processDefinitionKey("financial")
+                .taskAssignee("2")
+                .orderByTaskCreateTime()
+                .desc()
+                .finished()
+                .list();
+        list = list.stream().filter(s -> "2".equals(s.getAssignee())).collect(Collectors.toList());
+        System.out.println("一共"+ list.size()+"条任务历史数据");
+        for (HistoricTaskInstance historicTaskInstance : list) {
+            System.out.println("historicTaskInstance.getAssignee() = " + historicTaskInstance.getAssignee());
+            System.out.println("historicTaskInstance.getProcessInstanceId() = " + historicTaskInstance.getProcessInstanceId());
+            System.out.println("historicTaskInstance.getCreateTime() = " + historicTaskInstance.getCreateTime());
+            System.out.println("historicTaskInstance.getEndTime() = " + historicTaskInstance.getEndTime());
+            System.out.println("======================================================");
+        }
 
     }
 }

@@ -20,6 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.demo.ActivitiUtil;
 import top.oneyi.demo.DeleteTaskCmd;
 import top.oneyi.demo.SetFLowNodeAndGoCmd;
+import top.oneyi.pojo.ActBusinessStatus;
+import top.oneyi.service.ActBusinessStatusService;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -247,5 +249,12 @@ public class test {
 
     }
 
+    @Autowired
+    private ActBusinessStatusService actBusinessStatusService;
+
+    @Test
+    public void test08(){
+        actBusinessStatusService.list(new ActBusinessStatus());
+    }
 
 }

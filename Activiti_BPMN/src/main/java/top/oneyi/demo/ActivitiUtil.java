@@ -200,6 +200,8 @@ public class ActivitiUtil {
                 .createHistoricTaskInstanceQuery()
                 .processDefinitionKey(key)
                 .taskAssignee(assinge)
+                .orderByTaskCreateTime()
+                .desc()
                 .list();
         return list.stream().filter(s -> assinge.equals(s.getAssignee())).collect(Collectors.toList());
     }
