@@ -2,6 +2,9 @@ package top.oneyi.pojo;
 
 import lombok.Data;
 import top.oneyi.common.BaseEntity;
+
+import java.util.List;
+
 /**
  * 用户
  * @author oneyi
@@ -26,6 +29,15 @@ public class SysUser extends BaseEntity {
      * 密码
      */
     private String password;
+
+    /** 部门ID */
+    private Long deptId;
+
+    /** 部门父ID */
+    private Long parentId;
+
+    /** 角色ID */
+    private Long roleId;
     /**
      * 用户头像
      */
@@ -54,5 +66,15 @@ public class SysUser extends BaseEntity {
      * 盐加密
      */
     private String salt;
+    /** 部门对象 */
+    private SysDept dept;
+
+    private List<SysRole> roles;
+
+    /** 角色组 */
+    private Long[] roleIds;
+
+    /** 岗位组 */
+    private Long[] postIds;
 
 }
