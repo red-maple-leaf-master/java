@@ -241,8 +241,7 @@ public class test {
         List<String> list2 = new ArrayList<>();
         List<String> list3 = new ArrayList<>();
         List<String> list4 = null;
-        list.addAll(list2);
-        list.addAll(list3);
+        Arrays.asList(list2,list3,list);
         for (String s : list4) {
             System.out.println(s);
         }

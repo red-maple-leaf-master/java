@@ -15,7 +15,9 @@ import top.oneyi.demo.ActivitiStartInstance;
 import top.oneyi.demo.ActivitiUtil;
 import top.oneyi.mapper.ActBusinessStatusMapper;
 import top.oneyi.pojo.ActBusinessStatus;
+import top.oneyi.util.OneUtils;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -87,6 +89,8 @@ public class ActivitiDome {
 //        ProcessInstance processInstance = this.startFlow("3", KEY);
 //        ProcessInstance processInstance = this.startFlow("4", KEY);
     }
+    @Resource
+    private OneUtils oneUtils;
 
     /**
      * 根据审批人查找任务
@@ -121,6 +125,11 @@ public class ActivitiDome {
             }
             System.out.println(map);
 
+        }
+        List<String> collect = list.stream().map(HistoricTaskInstance::getProcessInstanceId).collect(Collectors.toList());
+        List<String> byProcessIds = oneUtils.findByProcessIds(businessStatusMapper, collect);
+        for (String byProcessId : byProcessIds) {
+            System.out.println("业务Key: == "+byProcessId);
         }
 
     }
