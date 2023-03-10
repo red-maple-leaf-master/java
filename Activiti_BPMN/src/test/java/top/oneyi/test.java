@@ -21,6 +21,7 @@ import top.oneyi.demo.ActivitiUtil;
 import top.oneyi.demo.DeleteTaskCmd;
 import top.oneyi.demo.SetFLowNodeAndGoCmd;
 import top.oneyi.pojo.ActBusinessStatus;
+import top.oneyi.pojo.ActResult;
 import top.oneyi.service.ActBusinessStatusService;
 
 import java.util.*;
@@ -253,7 +254,26 @@ public class test {
 
     @Test
     public void test08(){
-        actBusinessStatusService.list(new ActBusinessStatus());
+//        actBusinessStatusService.list(new ActBusinessStatus());
+
+        ActResult actResult = new ActResult();
+        actResult.setReject(Arrays.asList("1","2","3"));
+        actResult.setApprove(Arrays.asList("4","5","6"));
+        actResult.setApprovalPending(Arrays.asList("7","8","9"));
+        Map<String, List<String>> build = actResult.build("4","1","3");
+        System.out.println("build.get(\"1\") = " + build.get("1"));
+        System.out.println("build.get(\"3\") = " + build.get("3"));
+        System.out.println("build.get(\"4\") = " + build.get("4"));
+
+        String[] strings = {"4", "1", "3"};
+        for (String string : strings) {
+            List<String> strings1 = build.get(string);
+
+        }
     }
+
+
+
+
 
 }

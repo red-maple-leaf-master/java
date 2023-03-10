@@ -7,6 +7,7 @@ import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricTaskInstanceQuery;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 import org.activiti.bpmn.model.Process;
 import org.springframework.stereotype.Component;
@@ -68,11 +69,20 @@ public class ActivitiUtil {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         RuntimeService runtimeService = processEngine.getRuntimeService();
 
-        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+        List<ProcessInstance> processInstance = runtimeService.createProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .processDefinitionKey(key)
-                .singleResult();
-        return processInstance;
+                .list();
+        if(processInstance.size() > 1){
+            System.out.println("processInstance = " + processInstance);
+            for (ProcessInstance instance : processInstance) {
+                System.out.println("instance.getStartTime() = " + instance.getStartTime());
+                System.out.println("instance.getTenantId() = " + instance.getTenantId());
+                System.out.println("instance.getProcessDefinitionId() = " + instance.getProcessDefinitionId());
+            }
+            return null;
+        }
+        return processInstance.get(0);
     }
 
     /**
@@ -218,6 +228,26 @@ public class ActivitiUtil {
         ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
         repositoryService.deleteDeployment(processInstance.getId());
     }
+
+
+
+    /**
+     * 根据流程定义key 和 任务审批人来查找任务批注信息
+     *
+     * @param key
+     * @param key
+     * @return
+     */
+    public List<Comment> findTaskNodes(String businessKey, String key){
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
+        List<Comment> comments = taskService.getProcessInstanceComments(processInstance.getProcessInstanceId());//参数为是流程实例ID
+        return comments;
+    }
+
+
+
 
 
 }

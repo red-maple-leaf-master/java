@@ -18,4 +18,6 @@ import top.oneyi.util.MyMapper;
 public interface ActBusinessStatusMapper extends MyMapper<ActBusinessStatus>, CommonMapper<ActBusinessStatus> {
 
      ActBusinessStatus selectByProcessInstanceId(String processInstanceId);
+
+     String selectByAssignee(String businessKey);
 }

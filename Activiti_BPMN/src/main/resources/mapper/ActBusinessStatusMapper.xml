@@ -19,6 +19,9 @@
     <select id="selectByProcessInstanceId" resultType="top.oneyi.pojo.ActBusinessStatus">
         select * from act_business_status where process_instance_id = #{processInstanceId}
     </select>
+    <select id="selectByAssignee" resultType="java.lang.String">
+        select process_instance_id from  act_business_status where business_key = #{businessKey}
+    </select>
 
 
 </mapper>
