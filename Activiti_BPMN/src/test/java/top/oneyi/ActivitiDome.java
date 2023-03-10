@@ -105,7 +105,7 @@ public class ActivitiDome {
 //        ProcessInstance processInstance = this.startFlow("3", KEY);
 //        ProcessInstance processInstance = this.startFlow("4", KEY);
 //        ProcessInstance processInstance = this.startFlow("6", KEY);
-        ProcessInstance processInstance = this.startFlow("10", KEY);
+        ProcessInstance processInstance = this.startFlow("11", KEY);
     }
 
     @Resource
@@ -198,11 +198,11 @@ public class ActivitiDome {
      */
     @Test
     public void doTask() {
-        ProcessInstance processInstance = activitiUtil.findProcessInstance("10", KEY);
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("11", KEY);
         if (processInstance != null) {
 
             Task task = activitiUtil.findTask(processInstance.getProcessInstanceId());
-            taskService.addComment(task.getId(), task.getProcessInstanceId(), task.getName() + ":同意:" + task.getAssignee(), "通过意见");
+            taskService.addComment(task.getId(), task.getProcessInstanceId(), "通过意见");
             taskService.complete(task.getId());
         } else {
             System.out.println("任务已终结");
@@ -215,17 +215,17 @@ public class ActivitiDome {
      */
     @Test
     public void jumpTest() {
-        ProcessInstance processInstance = activitiUtil.findProcessInstance("6", KEY);
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("11", KEY);
         List<HistoricTaskInstance> historicTaskInstances = activitiUtil.historyTasks(processInstance.getProcessInstanceId());
         for (HistoricTaskInstance historicTaskInstance : historicTaskInstances) {
             // 根据跳转指定节点名称确定
             if ("客户提交担保物".equals(historicTaskInstance.getName())) {
                 Task task = activitiUtil.findTask(processInstance.getProcessInstanceId());
-                taskService.addComment(task.getId(), task.getProcessInstanceId(), task.getName() + "-: 不同意", "担保物太便宜了,不予通过");
+                taskService.addComment(task.getId(), task.getProcessInstanceId(),  "担保物太便宜了,不予通过");
                 // taskDefinitionKey 每个节点都一样 id是不一样的
                 String taskDefinitionKey = historicTaskInstance.getTaskDefinitionKey();
                 // 流程实例 跳转转任务节点，业务id
-                activitiUtil.jumpTask(processInstance, taskDefinitionKey, "6");
+                activitiUtil.jumpTask(processInstance, taskDefinitionKey, "11");
             }
         }
 
@@ -282,10 +282,14 @@ public class ActivitiDome {
     @Autowired
     private ActBusinessStatusMapper actBusinessStatusMapper;
 
+
+    /**
+     * 查询审批历史  返回试图
+     */
     @Test
     public void test04() {
 
-        String processInstanceId = actBusinessStatusMapper.selectByAssignee("10");
+        String processInstanceId = actBusinessStatusMapper.selectByAssignee("11");
 
         //查询任务办理记录
         List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId)
@@ -294,7 +298,6 @@ public class ActivitiDome {
         list.stream().sorted(Comparator.comparing(HistoricTaskInstance::getEndTime, Comparator.nullsFirst(Date::compareTo))).collect(Collectors.toList());
         // 创建历史流程视图集合
         List<ActHistoryInfoVo> actHistoryInfoVoList = new ArrayList<>();
-
         for (HistoricTaskInstance historicTaskInstance : list) {
             ActHistoryInfoVo actHistoryInfoVo = new ActHistoryInfoVo();
             // 复制属性
@@ -304,13 +307,13 @@ public class ActivitiDome {
             if (actHistoryInfoVo.getEndTime() != null) {
                 actHistoryInfoVo.setStatus(historicTaskInstance.getDeleteReason() != null ? "驳回" : "审批通过");
             }
-
             List<Comment> taskComments = taskService.getTaskComments(historicTaskInstance.getId());
+            System.out.println(taskComments);
             if (CollectionUtil.isNotEmpty(taskComments)) {
                 actHistoryInfoVo.setCommentId(taskComments.get(0).getId());
                 String message = taskComments.stream()
-                        .map(Comment::getFullMessage).collect(Collectors.joining("。"));
-                if (StringUtils.isNotBlank(message)) {
+                        .map(Comment::getFullMessage).collect(Collectors.joining("-"));
+                if (!("").equals(message)) {
                     actHistoryInfoVo.setComment(message);
                 }
             }
@@ -333,6 +336,7 @@ public class ActivitiDome {
         List<ActHistoryInfoVo> waitingTask = actHistoryInfoVoList.stream().filter(e -> e.getEndTime() == null).collect(Collectors.toList());
         //已办理
         List<ActHistoryInfoVo> finishTask = actHistoryInfoVoList.stream().filter(e -> e.getEndTime() != null).collect(Collectors.toList());
+
         collect.addAll(waitingTask);
         collect.addAll(finishTask);
 
