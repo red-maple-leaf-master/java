@@ -49,7 +49,7 @@ public class guarantyFlowTest {
      * 创建流程实例
      */
     @Test
-    public void create() {
+    public void create() throws Exception {
         Map<String, Object> map = new HashMap<>();
         map.put("common", "1");
         map.put("khjl", "2");

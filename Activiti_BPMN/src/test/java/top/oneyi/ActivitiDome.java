@@ -5,9 +5,11 @@ import org.activiti.bpmn.model.Process;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.impl.util.CollectionUtil;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.DelegationState;
 import org.activiti.engine.task.Task;
@@ -51,7 +53,7 @@ public class ActivitiDome {
     private HistoryService historyService;
 
     private static final String KEY = "financial";
-    private static final String BussinessKey = "5";
+    private static final String BussinessKey = "12";
     @Autowired
     private ActBusinessStatusMapper businessStatusMapper;
 
@@ -66,7 +68,7 @@ public class ActivitiDome {
         Deployment deployment = repositoryService.createDeployment()
                 .addClasspathResource("diagram/guaranty.bpmn")
                 .addClasspathResource("diagram/guaranty.png")
-                .name("流程定义测试")
+                .name("oneyi")
                 .deploy();
     }
 
@@ -105,7 +107,7 @@ public class ActivitiDome {
 //        ProcessInstance processInstance = this.startFlow("3", KEY);
 //        ProcessInstance processInstance = this.startFlow("4", KEY);
 //        ProcessInstance processInstance = this.startFlow("6", KEY);
-        ProcessInstance processInstance = this.startFlow("11", KEY);
+        ProcessInstance processInstance = this.startFlow("13", KEY);
     }
 
     @Resource
@@ -284,7 +286,7 @@ public class ActivitiDome {
 
 
     /**
-     * 查询审批历史  返回试图
+     * 查询审批历史  返回视图
      */
     @Test
     public void test04() {
@@ -355,6 +357,81 @@ public class ActivitiDome {
         List<SysUser> byIds = sysUserMapper02.findByIds(assigneeList);
         for (SysUser byId : byIds) {
             System.out.println("byId = " + byId);
+        }
+    }
+
+    /**
+     * 提交申请启动流程实例(启动实例流程)
+     */
+    @Test
+    public void test07(){
+        String bussinessKey = "16";
+        // 业务key判空
+        if(StringUtils.isBlank(bussinessKey)){
+          // 抛出异常 或者返回错误代码给前端
+        }
+        // 判断该业务是否已经开启流程实例
+        ProcessInstance processInstance = activitiUtil.findProcessInstance(bussinessKey, KEY);
+        if(processInstance != null){
+            // 返回该业务 key 已经绑定了流程实例
+        }
+        //在流程实例中设置必要参数
+
+        // 设置启动人
+        Authentication.setAuthenticatedUserId("5");
+        // 启动流程实例（提交申请）
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("common", "5");
+        variables.put("khjl", "6");
+        variables.put("bmjl", "7");
+        variables.put("zxfzr", "8");
+        variables.put("zjl", "9");
+        ProcessInstance pi = runtimeService.startProcessInstanceByKey(KEY, bussinessKey, variables);
+        // 将流程定义名称 作为 流程实例名称
+        // 申请人执行流程
+        List<Task> taskList = taskService.createTaskQuery().processInstanceId(pi.getId()).list();
+        if (taskList.size() > 1) {
+            System.out.println("抛出异常,检查第一个环节是否为申请人");
+        }
+        // 设置流程定义名称
+        runtimeService.setProcessInstanceName(pi.getProcessInstanceId(), pi.getProcessDefinitionName());
+        // 设置流程发起人
+        taskService.setAssignee(taskList.get(0).getId(),"5");
+        taskService.setVariable(taskList.get(0).getId(),"processInstanceId", pi.getProcessInstanceId());
+        // 插入业务状态
+        ActBusinessStatus actBusinessStatus = new ActBusinessStatus();
+        actBusinessStatus.setId(bussinessKey);
+        actBusinessStatus.setBusinessKey(bussinessKey);
+        actBusinessStatus.setProcessInstanceId(pi.getProcessInstanceId());
+        actBusinessStatus.setCreateTime(new Date());
+        actBusinessStatus.setUpdateTime(new Date());
+        actBusinessStatus.setCreateBy("管理员");
+        actBusinessStatus.setUpdateBy("管理员");
+        businessStatusMapper.insert(actBusinessStatus);
+
+    }
+
+    /**
+     * 查询正在运行的流程实例
+     */
+    @Test
+    public void test06(){
+
+        // 任务发起人
+        String person = "5";
+        // 流程名称
+//        String name="流程定义测试";
+        String name="担保物审批";
+        // 创建查询实例对象
+        ProcessInstanceQuery query  = runtimeService.createProcessInstanceQuery();
+//        query.processInstanceNameLikeIgnoreCase(name);
+        query.startedBy("5");
+        // 分页查
+        List<ProcessInstance> processInstances = query.list();
+        for (ProcessInstance processInstance : processInstances) {
+            System.out.println("processInstance.getProcessInstanceId() = " + processInstance.getProcessInstanceId());
+            System.out.println("processInstance.getName() = " + processInstance.getProcessDefinitionName());
+            System.out.println("processInstance.getLocalizedName() = " + processInstance.getLocalizedName());
         }
     }
 

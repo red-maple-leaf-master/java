@@ -6,11 +6,16 @@ import org.activiti.bpmn.model.FlowNode;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.history.HistoricTaskInstanceQuery;
+import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 import org.activiti.bpmn.model.Process;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import top.oneyi.mapper.ActBusinessStatusMapper;
+import top.oneyi.pojo.ActBusinessStatus;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -74,16 +79,16 @@ public class ActivitiUtil {
                 .processDefinitionKey(key)
                 .list();
         if(processInstance.size() > 1){
-            System.out.println("processInstance = " + processInstance);
-            for (ProcessInstance instance : processInstance) {
-                System.out.println("instance.getStartTime() = " + instance.getStartTime());
-                System.out.println("instance.getTenantId() = " + instance.getTenantId());
-                System.out.println("instance.getProcessDefinitionId() = " + instance.getProcessDefinitionId());
-            }
+            return null;
+        }
+        if(processInstance.size() == 0){
             return null;
         }
         return processInstance.get(0);
     }
+
+    @Autowired
+    private ActBusinessStatusMapper actBusinessStatusMapper;
 
     /**
      * 创建流程实例
@@ -92,14 +97,54 @@ public class ActivitiUtil {
      * @param key
      * @param variables
      */
-    public void createProcessInstance(String businessKey, String key, Map<String, Object> variables) {
+    public void createProcessInstance(String businessKey, String key, Map<String, Object> variables) throws Exception {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
         RuntimeService runtimeService = processEngine.getRuntimeService();
-        ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
-        // 防止同一个业务key创建多个流程实例
-        if (processInstance == null) {
-            runtimeService.startProcessInstanceByKey(key, businessKey, variables);
+        // 业务key判空
+        if(StringUtils.isBlank(businessKey)){
+            // 抛出异常 或者返回错误代码给前端
+            throw new Exception("业务key为null");
         }
+        // 判断该业务是否已经开启流程实例
+        ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
+        if(processInstance != null){
+            // 返回该业务 key 已经绑定了流程实例
+            throw new Exception(businessKey+"已经绑定了流程实例");
+        }
+        //在流程实例中设置必要参数
+        // 设置启动人
+        String roleUserId = "5";
+        Authentication.setAuthenticatedUserId(roleUserId);
+        // 启动流程实例（提交申请）
+/*        variables.put("common", "5");
+        variables.put("khjl", "6");
+        variables.put("bmjl", "7");
+        variables.put("zxfzr", "8");
+        variables.put("zjl", "9");*/
+        ProcessInstance pi = runtimeService.startProcessInstanceByKey(key, businessKey, variables);
+        // 将流程定义名称 作为 流程实例名称
+        // 申请人执行流程
+        List<Task> taskList = taskService.createTaskQuery().processInstanceId(pi.getId()).list();
+        if (taskList.size() > 1) {
+            throw new Exception("检查第一个环节是否为申请人");
+        }
+        // 设置流程定义名称
+        runtimeService.setProcessInstanceName(pi.getProcessInstanceId(), pi.getProcessDefinitionName());
+        // 设置流程发起人
+        taskService.setAssignee(taskList.get(0).getId(),"5");
+        taskService.setVariable(taskList.get(0).getId(),"processInstanceId", pi.getProcessInstanceId());
+        // 插入业务状态
+        ActBusinessStatus actBusinessStatus = new ActBusinessStatus();
+        actBusinessStatus.setId(businessKey);
+        actBusinessStatus.setBusinessKey(businessKey);
+        actBusinessStatus.setProcessInstanceId(pi.getProcessInstanceId());
+        actBusinessStatus.setCreateTime(new Date());
+        actBusinessStatus.setUpdateTime(new Date());
+        actBusinessStatus.setCreateBy("管理员");
+        actBusinessStatus.setUpdateBy("管理员");
+        actBusinessStatusMapper.insert(actBusinessStatus);
+
     }
 
     /**
