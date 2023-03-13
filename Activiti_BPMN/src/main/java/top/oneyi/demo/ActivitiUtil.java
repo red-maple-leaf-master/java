@@ -176,7 +176,7 @@ public class ActivitiUtil {
         List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId).list();
         list = list.stream().collect(Collectors.collectingAndThen(
                 Collectors.toCollection(() -> new TreeSet<>(
-                        Comparator.comparing(HistoricTaskInstance::getTaskDefinitionKey))), ArrayList::new));
+                        Comparator.comparing(HistoricTaskInstance::getProcessInstanceId))), ArrayList::new));
         return list;
     }
 

@@ -35,6 +35,7 @@ import top.oneyi.util.OneUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
@@ -222,13 +223,14 @@ public class ActivitiDome {
         for (HistoricTaskInstance historicTaskInstance : historicTaskInstances) {
             // 根据跳转指定节点名称确定
             if ("客户提交担保物".equals(historicTaskInstance.getName())) {
-                Task task = activitiUtil.findTask(processInstance.getProcessInstanceId());
-                taskService.addComment(task.getId(), task.getProcessInstanceId(),  "担保物太便宜了,不予通过");
+//                Task task = activitiUtil.findTask(processInstance.getProcessInstanceId());
+//                taskService.addComment(task.getId(), task.getProcessInstanceId(),  "担保物太便宜了,不予通过");
                 // taskDefinitionKey 每个节点都一样 id是不一样的
-                String taskDefinitionKey = historicTaskInstance.getTaskDefinitionKey();
+//                String taskDefinitionKey = historicTaskInstance.getTaskDefinitionKey();
                 // 流程实例 跳转转任务节点，业务id
-                activitiUtil.jumpTask(processInstance, taskDefinitionKey, "11");
+//                activitiUtil.jumpTask(processInstance, taskDefinitionKey, "11");
             }
+            System.out.println("historicTaskInstance.getName() = " + historicTaskInstance.getName());
         }
 
     }
@@ -364,15 +366,15 @@ public class ActivitiDome {
      * 提交申请启动流程实例(启动实例流程)
      */
     @Test
-    public void test07(){
+    public void test07() {
         String bussinessKey = "16";
         // 业务key判空
-        if(StringUtils.isBlank(bussinessKey)){
-          // 抛出异常 或者返回错误代码给前端
+        if (StringUtils.isBlank(bussinessKey)) {
+            // 抛出异常 或者返回错误代码给前端
         }
         // 判断该业务是否已经开启流程实例
         ProcessInstance processInstance = activitiUtil.findProcessInstance(bussinessKey, KEY);
-        if(processInstance != null){
+        if (processInstance != null) {
             // 返回该业务 key 已经绑定了流程实例
         }
         //在流程实例中设置必要参数
@@ -396,8 +398,8 @@ public class ActivitiDome {
         // 设置流程定义名称
         runtimeService.setProcessInstanceName(pi.getProcessInstanceId(), pi.getProcessDefinitionName());
         // 设置流程发起人
-        taskService.setAssignee(taskList.get(0).getId(),"5");
-        taskService.setVariable(taskList.get(0).getId(),"processInstanceId", pi.getProcessInstanceId());
+        taskService.setAssignee(taskList.get(0).getId(), "5");
+        taskService.setVariable(taskList.get(0).getId(), "processInstanceId", pi.getProcessInstanceId());
         // 插入业务状态
         ActBusinessStatus actBusinessStatus = new ActBusinessStatus();
         actBusinessStatus.setId(bussinessKey);
@@ -415,15 +417,15 @@ public class ActivitiDome {
      * 查询正在运行的流程实例
      */
     @Test
-    public void test06(){
+    public void test06() {
 
         // 任务发起人
         String person = "5";
         // 流程名称
 //        String name="流程定义测试";
-        String name="担保物审批";
+        String name = "担保物审批";
         // 创建查询实例对象
-        ProcessInstanceQuery query  = runtimeService.createProcessInstanceQuery();
+        ProcessInstanceQuery query = runtimeService.createProcessInstanceQuery();
 //        query.processInstanceNameLikeIgnoreCase(name);
         query.startedBy("5");
         // 分页查
@@ -435,5 +437,79 @@ public class ActivitiDome {
         }
     }
 
+
+    @Test
+    public void test08() {
+        String processInstanceId = "1a038d8e-bf2c-11ed-b732-a036bc096aaf";
+        List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery()
+                .processInstanceId(processInstanceId)
+                .orderByTaskCreateTime()
+                .asc()
+                .list();
+        for (HistoricTaskInstance historicTaskInstance : list) {
+            System.out.println("任务名称:" + historicTaskInstance.getName());
+            System.out.println("开始事件 : " + DateUtil.formatAsDatetime(historicTaskInstance.getStartTime()));
+        }
+        Task task = activitiUtil.findTask(processInstanceId);
+//        taskService.complete(task.getId());
+
+        list = list.stream().collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(
+                        Comparator.comparing(HistoricTaskInstance::getProcessInstanceId))), ArrayList::new));
+    }
+
+
+    @Test
+    public void test09() throws InterruptedException {
+        List<SysUser> users = new ArrayList<>();
+        SysUser sysUser = new SysUser();
+        sysUser.setNickName("占山");
+        Thread.sleep(100);
+        sysUser.setCreateTime(new Date());
+        users.add(sysUser);
+        sysUser = new SysUser();
+        sysUser.setNickName("lisi");
+        Thread.sleep(100);
+        sysUser.setCreateTime(new Date());
+        users.add(sysUser);
+        sysUser = new SysUser();
+        sysUser.setNickName("温热 ");
+        Thread.sleep(100);
+        sysUser.setCreateTime(new Date());
+        users.add(sysUser);
+        sysUser = new SysUser();
+        sysUser.setNickName("的");
+        Thread.sleep(100);
+        sysUser.setCreateTime(new Date());
+        users.add(sysUser);
+        sysUser = new SysUser();
+        sysUser.setNickName("占山");
+        Thread.sleep(100);
+        sysUser.setCreateTime(new Date());
+        users.add(sysUser);
+        sysUser = new SysUser();
+        sysUser.setNickName("苏菲");
+        Thread.sleep(100);
+        sysUser.setCreateTime(new Date());
+        users.add(sysUser);
+        sysUser = new SysUser();
+        sysUser.setNickName("占山");
+        Thread.sleep(100);
+        sysUser.setCreateTime(new Date());
+        users.add(sysUser);
+        for (SysUser user : users) {
+            System.out.println("user.getNickName() = " + user.getNickName());
+            System.out.println("user.getCreateTime() = " + user.getCreateTime());
+        }
+        System.out.println("=====================================");
+        users = users.stream().collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(
+                        Comparator.comparing(SysUser::getNickName)
+                )), ArrayList::new));
+        for (SysUser user : users) {
+            System.out.println("user.getNickName() = " + user.getNickName());
+            System.out.println("user.getCreateTime() = " + user.getCreateTime());
+        }
+    }
 
 }
