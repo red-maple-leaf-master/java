@@ -300,6 +300,12 @@ public class ActivitiDome {
                 .orderByHistoricTaskInstanceEndTime().desc().list();
         // 根据结束事件排序
         list.stream().sorted(Comparator.comparing(HistoricTaskInstance::getEndTime, Comparator.nullsFirst(Date::compareTo))).collect(Collectors.toList());
+        String taskId = "";
+        if(list.size() > 0){
+            HistoricTaskInstance historicTaskInstance = list.get(0);
+            taskId=historicTaskInstance.getTaskDefinitionKey();
+        }
+
         // 创建历史流程视图集合
         List<ActHistoryInfoVo> actHistoryInfoVoList = new ArrayList<>();
         for (HistoricTaskInstance historicTaskInstance : list) {
@@ -310,6 +316,9 @@ public class ActivitiDome {
             actHistoryInfoVo.setStatus(actHistoryInfoVo.getEndTime() == null ? "待审批" : "审批通过");
             if (actHistoryInfoVo.getEndTime() != null) {
                 actHistoryInfoVo.setStatus(historicTaskInstance.getDeleteReason() != null ? "驳回" : "审批通过");
+            }
+            if(historicTaskInstance.getTaskDefinitionKey().equals(taskId)){
+                actHistoryInfoVo.setStatus("已提交");
             }
             List<Comment> taskComments = taskService.getTaskComments(historicTaskInstance.getId());
             System.out.println(taskComments);

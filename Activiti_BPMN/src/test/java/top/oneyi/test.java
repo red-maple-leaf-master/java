@@ -272,6 +272,18 @@ public class test {
         }
     }
 
+    @Test
+    public void test09(){
+        List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().list();
+        for (ProcessDefinition processDefinition : list) {
+            System.out.println("processDefinition.getId() = " + processDefinition.getId());
+            System.out.println("processDefinition.getName() = " + processDefinition.getName());
+            System.out.println("processDefinition.getKey() = " + processDefinition.getKey());
+            System.out.println("processDefinition.getVersion() = " + processDefinition.getVersion());
+            System.out.println("processDefinition.getResourceName() = " + processDefinition.getResourceName());
+        }
+    }
+
 
 
 

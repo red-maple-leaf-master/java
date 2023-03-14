@@ -1,12 +1,10 @@
-package top.oneyi.pojo.Dto;
+package top.oneyi.pojo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import top.oneyi.pojo.RespCode;
-
-import java.util.Objects;
 
 @Data
 @AllArgsConstructor
