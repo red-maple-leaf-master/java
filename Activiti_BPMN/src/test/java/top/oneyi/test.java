@@ -17,10 +17,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.oneyi.demo.ActivitiUtil;
-import top.oneyi.demo.DeleteTaskCmd;
-import top.oneyi.demo.SetFLowNodeAndGoCmd;
-import top.oneyi.demo.SinglyLinkedList;
+import top.oneyi.demo.*;
 import top.oneyi.pojo.ActBusinessStatus;
 import top.oneyi.pojo.ActResult;
 import top.oneyi.service.ActBusinessStatusService;
@@ -296,6 +293,9 @@ public class test {
         for(int i=0;i< 4;i++){
             System.out.println(node.get(i));
         }
+
+        SinglyLinkedListSentinel list = new SinglyLinkedListSentinel();
+        list.addLast(1);
     }
 
 

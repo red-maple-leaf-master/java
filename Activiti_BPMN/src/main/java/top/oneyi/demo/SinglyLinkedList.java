@@ -29,9 +29,6 @@ public class SinglyLinkedList {
             this.next = next;
         }
 
-        public int getValue(){
-            return value;
-        }
     }
 
 
