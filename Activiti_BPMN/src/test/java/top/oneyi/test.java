@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.demo.ActivitiUtil;
 import top.oneyi.demo.DeleteTaskCmd;
 import top.oneyi.demo.SetFLowNodeAndGoCmd;
+import top.oneyi.demo.SinglyLinkedList;
 import top.oneyi.pojo.ActBusinessStatus;
 import top.oneyi.pojo.ActResult;
 import top.oneyi.service.ActBusinessStatusService;
@@ -281,6 +282,19 @@ public class test {
             System.out.println("processDefinition.getKey() = " + processDefinition.getKey());
             System.out.println("processDefinition.getVersion() = " + processDefinition.getVersion());
             System.out.println("processDefinition.getResourceName() = " + processDefinition.getResourceName());
+        }
+    }
+
+    @Test
+    public void test10(){
+        SinglyLinkedList node = new SinglyLinkedList();
+        node.addFirst(1);
+        node.addFirst(2);
+        node.addFirst(3);
+        node.addFirst(4);
+
+        for(int i=0;i< 4;i++){
+            System.out.println(node.get(i));
         }
     }
 

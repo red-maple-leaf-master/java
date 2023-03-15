@@ -69,11 +69,11 @@
             </dependency>
 
             <!--Shiro-->
-            <dependency>
+<!--            <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring</artifactId>
                 <version>1.4.0</version>
-            </dependency>
+            </dependency>-->
 
             <!--commons工具包-->
             <dependency>
