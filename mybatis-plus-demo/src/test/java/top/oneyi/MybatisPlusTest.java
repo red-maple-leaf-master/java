@@ -3,16 +3,18 @@ package top.oneyi;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.mapper.UserMapper;
 import top.oneyi.pojo.User;
 
 import java.util.Collections;
 
-@SpringBootTest
+@RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
+@SpringBootTest(classes = MybatisPlusDemo.class)//加载 SpringBoot 启动类
 public class MybatisPlusTest {
     @Autowired
     private UserMapper userMapper;
@@ -25,7 +27,7 @@ public class MybatisPlusTest {
 
     @Test
     public void testInsert() {
-        User user = new User(null, "李四", 23, "lisi@qteoc.com");
+        User user = new User(null, "六分你", 23, "lisi@qteoc.com");
         int rows = userMapper.insert(user);
         System.out.println("受影响的行数" + rows);
         Long id = user.getId();
@@ -63,15 +65,7 @@ public class MybatisPlusTest {
 
     }
 
-    @Test
-    public void test03(){
 
-        String 中文 = new String("我是中文");
-        String zhongwen = new String("我是拼音");
-        System.out.println(zhongwen);
-        System.out.println(中文);
-
-    }
 
 
 
