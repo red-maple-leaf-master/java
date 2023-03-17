@@ -1,18 +1,17 @@
 package top.oneyi;
 
-import net.bytebuddy.asm.Advice;
+
 import org.activiti.engine.*;
-import org.activiti.engine.history.HistoricActivityInstance;
+
 import org.activiti.engine.history.HistoricProcessInstance;
-import org.activiti.engine.history.HistoricTaskInstance;
-import org.activiti.engine.impl.interceptor.Command;
+
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.Execution;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.*;
-import org.apache.shiro.crypto.hash.Hash;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
