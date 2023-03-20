@@ -4,17 +4,17 @@ public class SinglyLinkedListSentinel {
     /**
      * 添加一个Node作为哨兵/哑元
      */
-    private Node head = new Node(Integer.MIN_VALUE, null);
+    private final Node head = new Node(Integer.MIN_VALUE, null);
 
     private static class Node {
         /**
          * 节点值
          */
-        private int value;
+        private  final int value;
         /**
          * 下一个节点
          */
-        private Node next;
+        private  Node next;
 
         public Node(int value, Node next) {
             this.value = value;

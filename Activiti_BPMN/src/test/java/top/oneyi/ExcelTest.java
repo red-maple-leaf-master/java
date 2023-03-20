@@ -13,10 +13,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.apache.ibatis.ognl.Ognl.getClassResolver;
 import static org.apache.ibatis.ognl.Ognl.getValue;
@@ -153,6 +150,193 @@ public class ExcelTest {
             return "类型为空";
         }
     }
+
+    /**
+     * 斐波那契数列
+     */
+    @Test
+    public void test01(){
+        int f = f(2);
+        System.out.println("f = " + f);
+    }
+
+    private int f(int n){
+        if(n == 0){
+            return 0;
+        }
+        if(n == 1) {
+            return 1;
+        }
+        return f(n - 2) + f(n - 1);
+    }
+
+    @Test
+    public void test02(){
+        int n = 13;
+        int[] cache = new int[n + 1];
+        // 初始化 数据 数据全部 设置为 -1
+        Arrays.fill(cache, -1);
+        cache[0] = 0;
+        cache[1] = 1;
+        System.out.println(f(cache, n));
+    }
+    public  int f(int[] cache, int n) {
+        if (cache[n] != -1) {
+            return cache[n];
+        }
+        // 遇到新的值优先放置到数组中 ,遇到调用过的 直接返回结果即可
+        cache[n] = f(cache, n - 1) + f(cache, n - 2);
+        return cache[n];
+    }
+
+    @Test
+    public void test03(){
+        sum(12000);
+    }
+
+    public  long sum(long n) {
+        if (n == 1) {
+            return 1;
+        }
+        long m = sum(n - 1);
+        return n + m;
+    }
+
+    /**
+     * 给你一个整数数组 nums 。如果任一值在数组中出现 至少两次 ，
+     * 返回 true ；如果数组中每个元素互不相同，返回 false 。
+     */
+    @Test
+    public void test04(){
+        int []nums = new int[]{1,2,3,4};
+        int []nums2 = new int[]{1,1,1,3,3,4,3,2,4,2};
+        System.out.println("containsDuplicate(nums) = " + containsDuplicate(nums2));
+    }
+
+
+    public boolean containsDuplicate(int[] nums) {
+        // 先排序
+        Arrays.sort(nums);
+
+        // 相邻是否相同
+        for (int i = 0; i < nums.length - 1; i++) {
+            if(nums[i] == nums[i +1]){
+                return true;
+            }
+        }
+      return false;
+    }
+
+    /**
+     * 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组
+     * （子数组最少包含一个元素），返回其最大和。
+     *
+     * 子数组 是数组中的一个连续部分。
+     */
+    @Test
+    public void test05(){
+
+        int [] arr = new int[]{-2,1,-3,4,-1,2,1,-5,4};
+        int dp[] = new int[arr.length];
+        dp[0] = arr[0];
+        int res=dp[0];
+        for (int i = 1; i < arr.length; i++) {
+            if(dp[i - 1] > 0){
+                dp[i]=dp[i - 1] + arr[i];
+                Math.max(res,dp[i]);
+            }else{
+                dp[i]=arr[i];
+            }
+        }
+        maxSubArray(arr);
+    }
+
+
+    public int maxSubArray(int[] nums) {
+        int len = nums.length;
+        // dp[i] 表示：以 nums[i] 结尾的连续子数组的最大和
+        int[] dp = new int[len];
+        dp[0] = nums[0];
+
+        for (int i = 1; i < len; i++) {
+            if (dp[i - 1] > 0) {
+                dp[i] = dp[i - 1] + nums[i];
+            } else {
+                dp[i] = nums[i];
+            }
+        }
+        System.out.println("dp = " + Arrays.toString(dp));
+        // 也可以在上面遍历的同时求出 res 的最大值，这里我们为了语义清晰分开写，大家可以自行选择
+        int res = dp[0];
+        for (int i = 1; i < len; i++) {
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
+
+    /**
+     * 俩数之和
+     */
+    @Test
+    public void test06(){
+        int[] nums = {2,7,11,15};
+        int target = 9;
+        int [] res = toSum(target,nums);
+        System.out.println(Arrays.toString(res));
+    }
+
+    private int[] toSum(int target, int[] nums) {
+  /*    // map解题
+   Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if(map.containsKey(target - nums[i])){
+                return new int[]{map.get(target - nums[i]),i};
+            }
+            map.put(nums[i],i);
+        }
+        return new int[]{};*/
+
+        // 双指针解题
+        int l=0;
+        int r=1;
+        int maxNum = nums.length - 1;
+        while(l < maxNum){
+            if(target == nums[r] + nums[l]){
+            return new int[]{r,l};
+        }
+            if(r == maxNum){
+                l=l+1;
+                r=l;
+            }
+            r++;
+        }
+        return new int[]{};
+    }
+
+
+    /**
+     * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+     */
+    @Test
+    public void test07(){
+       String str = "abcabcbb";
+       int num =  lengthOfLongestSubstring("abcbb");
+        System.out.println("num = " + num);
+    }
+        public int lengthOfLongestSubstring(String s) {
+            if (s.length()==0) return 0;
+            HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+            int max = 0;
+            int left = 0;
+            for(int i = 0; i < s.length(); i ++){
+                if(map.containsKey(s.charAt(i))){
+                    left = Math.max(left,map.get(s.charAt(i)) + 1);
+                }
+                map.put(s.charAt(i),i);
+                max = Math.max(max,i-left+1);
+            }
+            return max;
+        }
 
 
 }
