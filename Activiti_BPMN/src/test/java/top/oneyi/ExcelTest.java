@@ -22,7 +22,7 @@ public class ExcelTest {
 
 
     @Test
-    public void test(){
+    public void test() {
         String path = "C:\\Users\\ASUS\\Documents\\WeChat Files\\wxid_0w3o2p8ahwug22\\FileStorage\\File\\2023-03\\20级UI学员总表.xlsx";
         String sheel = "UI1班";
         String sheel2 = "UI2班";
@@ -30,20 +30,20 @@ public class ExcelTest {
 
         try {
             String str = "''";
-            List<String> list1 = this.readXls(path,sheel);
-            List<String> list2 = this.readXls(path,sheel2);
-            List<String> list3 = this.readXls(path,sheel3);
+            List<String> list1 = this.readXls(path, sheel);
+            List<String> list2 = this.readXls(path, sheel2);
+            List<String> list3 = this.readXls(path, sheel3);
             list1.addAll(list2);
             list1.addAll(list3);
             System.out.println("list2.size() = " + list2.size());
-            Map<String,String> map = new HashMap<>();
-            int count=0;
-            System.out.println("一共 "+list1.size()+" 条学员数据");
+            Map<String, String> map = new HashMap<>();
+            int count = 0;
+            System.out.println("一共 " + list1.size() + " 条学员数据");
             for (String s : list1) {
-                System.out.print(s+" ");
-                map.put(s,count+"");
+                System.out.print(s + " ");
+                map.put(s, count + "");
                 count++;
-                 if(count % 15 == 0 ){
+                if (count % 15 == 0) {
                     System.out.println();
                 }
 
@@ -72,13 +72,14 @@ public class ExcelTest {
 
     /**
      * 根据文件名、sheel名读取excel中信息
-     * @param path 文件地址
+     *
+     * @param path  文件地址
      * @param sheel
      * @return
      * @throws Exception
      */
     public static List<String> readXls(String path, String sheel) throws Exception {
-        String  fileName=path.substring(path.lastIndexOf(".") + 1);
+        String fileName = path.substring(path.lastIndexOf(".") + 1);
         Workbook workbook = null;
         InputStream input = Files.newInputStream(Paths.get(path));
         List<String> list = new ArrayList<>();
@@ -106,11 +107,11 @@ public class ExcelTest {
                     if (row != null) {
                         // 每一行 的每一格的数据
                         for (int i = 0; i < row.getLastCellNum(); i++) {
-                            if(i == 2){
+                            if (i == 2) {
                                 Cell cell = row.getCell(i);
-                                if(cell != null){
+                                if (cell != null) {
                                     // 暂时只要姓名这一列
-                                    if(!"姓名".equals(getValue(cell))){
+                                    if (!"姓名".equals(getValue(cell))) {
                                         list.add(getValue(cell));
                                     }
                                 }
@@ -124,27 +125,29 @@ public class ExcelTest {
         }
         return list;
     }
+
     /**
      * 转换格式
+     *
      * @return
      */
     private static String getValue(Cell cell) {
         if (null != cell) {
             switch (cell.getCellType()) {
                 case HSSFCell.CELL_TYPE_NUMERIC: // 数字
-                    return String.valueOf(cell.getNumericCellValue()) ;
+                    return String.valueOf(cell.getNumericCellValue());
                 case HSSFCell.CELL_TYPE_STRING: // 字符串
-                    return String.valueOf(cell.getStringCellValue()) ;
+                    return String.valueOf(cell.getStringCellValue());
                 case HSSFCell.CELL_TYPE_BOOLEAN: // Boolean
-                    return String.valueOf(cell.getBooleanCellValue()) ;
+                    return String.valueOf(cell.getBooleanCellValue());
                 case HSSFCell.CELL_TYPE_FORMULA: // 公式
-                    return String.valueOf(cell.getCellFormula()) ;
+                    return String.valueOf(cell.getCellFormula());
                 case HSSFCell.CELL_TYPE_BLANK: // 空值
-                    return "" ;
+                    return "";
                 case HSSFCell.CELL_TYPE_ERROR: // 故障
-                    return "类型错误" ;
+                    return "类型错误";
                 default:
-                    return "未知类型" ;
+                    return "未知类型";
             }
         } else {
             return "类型为空";
@@ -155,23 +158,23 @@ public class ExcelTest {
      * 斐波那契数列
      */
     @Test
-    public void test01(){
+    public void test01() {
         int f = f(2);
         System.out.println("f = " + f);
     }
 
-    private int f(int n){
-        if(n == 0){
+    private int f(int n) {
+        if (n == 0) {
             return 0;
         }
-        if(n == 1) {
+        if (n == 1) {
             return 1;
         }
         return f(n - 2) + f(n - 1);
     }
 
     @Test
-    public void test02(){
+    public void test02() {
         int n = 13;
         int[] cache = new int[n + 1];
         // 初始化 数据 数据全部 设置为 -1
@@ -180,7 +183,8 @@ public class ExcelTest {
         cache[1] = 1;
         System.out.println(f(cache, n));
     }
-    public  int f(int[] cache, int n) {
+
+    public int f(int[] cache, int n) {
         if (cache[n] != -1) {
             return cache[n];
         }
@@ -190,11 +194,11 @@ public class ExcelTest {
     }
 
     @Test
-    public void test03(){
+    public void test03() {
         sum(12000);
     }
 
-    public  long sum(long n) {
+    public long sum(long n) {
         if (n == 1) {
             return 1;
         }
@@ -207,9 +211,9 @@ public class ExcelTest {
      * 返回 true ；如果数组中每个元素互不相同，返回 false 。
      */
     @Test
-    public void test04(){
-        int []nums = new int[]{1,2,3,4};
-        int []nums2 = new int[]{1,1,1,3,3,4,3,2,4,2};
+    public void test04() {
+        int[] nums = new int[]{1, 2, 3, 4};
+        int[] nums2 = new int[]{1, 1, 1, 3, 3, 4, 3, 2, 4, 2};
         System.out.println("containsDuplicate(nums) = " + containsDuplicate(nums2));
     }
 
@@ -220,32 +224,32 @@ public class ExcelTest {
 
         // 相邻是否相同
         for (int i = 0; i < nums.length - 1; i++) {
-            if(nums[i] == nums[i +1]){
+            if (nums[i] == nums[i + 1]) {
                 return true;
             }
         }
-      return false;
+        return false;
     }
 
     /**
      * 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组
      * （子数组最少包含一个元素），返回其最大和。
-     *
+     * <p>
      * 子数组 是数组中的一个连续部分。
      */
     @Test
-    public void test05(){
+    public void test05() {
 
-        int [] arr = new int[]{-2,1,-3,4,-1,2,1,-5,4};
+        int[] arr = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
         int dp[] = new int[arr.length];
         dp[0] = arr[0];
-        int res=dp[0];
+        int res = dp[0];
         for (int i = 1; i < arr.length; i++) {
-            if(dp[i - 1] > 0){
-                dp[i]=dp[i - 1] + arr[i];
-                Math.max(res,dp[i]);
-            }else{
-                dp[i]=arr[i];
+            if (dp[i - 1] > 0) {
+                dp[i] = dp[i - 1] + arr[i];
+                Math.max(res, dp[i]);
+            } else {
+                dp[i] = arr[i];
             }
         }
         maxSubArray(arr);
@@ -278,10 +282,10 @@ public class ExcelTest {
      * 俩数之和
      */
     @Test
-    public void test06(){
-        int[] nums = {2,7,11,15};
+    public void test06() {
+        int[] nums = {2, 7, 11, 15};
         int target = 9;
-        int [] res = toSum(target,nums);
+        int[] res = toSum(target, nums);
         System.out.println(Arrays.toString(res));
     }
 
@@ -297,16 +301,16 @@ public class ExcelTest {
         return new int[]{};*/
 
         // 双指针解题
-        int l=0;
-        int r=1;
+        int l = 0;
+        int r = 1;
         int maxNum = nums.length - 1;
-        while(l < maxNum){
-            if(target == nums[r] + nums[l]){
-            return new int[]{r,l};
-        }
-            if(r == maxNum){
-                l=l+1;
-                r=l;
+        while (l < maxNum) {
+            if (target == nums[r] + nums[l]) {
+                return new int[]{r, l};
+            }
+            if (r == maxNum) {
+                l = l + 1;
+                r = l;
             }
             r++;
         }
@@ -318,25 +322,57 @@ public class ExcelTest {
      * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
      */
     @Test
-    public void test07(){
-       String str = "abcabcbb";
-       int num =  lengthOfLongestSubstring("abcbb");
+    public void test07() {
+        String str = "abcabcbb";
+        int num = lengthOfLongestSubstring("abcbb");
         System.out.println("num = " + num);
     }
-        public int lengthOfLongestSubstring(String s) {
-            if (s.length()==0) return 0;
-            HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-            int max = 0;
-            int left = 0;
-            for(int i = 0; i < s.length(); i ++){
-                if(map.containsKey(s.charAt(i))){
-                    left = Math.max(left,map.get(s.charAt(i)) + 1);
-                }
-                map.put(s.charAt(i),i);
-                max = Math.max(max,i-left+1);
+
+    public int lengthOfLongestSubstring(String s) {
+        if (s.length() == 0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max = 0;
+        int left = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                left = Math.max(left, map.get(s.charAt(i)) + 1);
             }
-            return max;
+            map.put(s.charAt(i), i);
+            max = Math.max(max, i - left + 1);
         }
+        return max;
+    }
 
 
+    @Test
+    public void test08() {
+
+    }
+
+    public String longestCommonPrefix(String[] strs) {
+        String str = new String("0");
+        for(int i=0;i<strs.length;i++){
+            while(strs[i].indexOf(str) != 0){//indexOf  找出字符串第一次出现的索引  如果找不到 返回 -1
+                str = str.substring(0,str.length() -1);// 找不到 就切去后面的一个字符  一直切到 能在字符串中找到这个前缀
+            }
+        }
+        return str;
+    }
+
+    public int[] res(int[] nums, int target) {
+        // 双指针
+        int l = 0;
+        int r = 1;
+        while (l < nums.length - 1) {
+            if (target == nums[r] + nums[l]) {
+                return new int[]{r, l};
+            }
+            if(r == nums.length -1){
+                l++;
+                r=l;
+            }
+            r++;
+        }
+        return new int[]{};
+    }
 }
