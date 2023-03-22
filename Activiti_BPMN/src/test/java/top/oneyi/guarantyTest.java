@@ -7,6 +7,7 @@ import org.activiti.engine.history.HistoricProcessInstance;
 
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.Execution;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
@@ -34,6 +35,9 @@ public class guarantyTest {
     private RepositoryService repositoryService;
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private HistoryService historyService;
 
     /**
      * 单文件部署
@@ -332,6 +336,19 @@ public class guarantyTest {
 
     @Test
     public void test03() {
+        String key = "financial";
+        String id = "";
+        ProcessDefinitionQuery query = repositoryService.createProcessDefinitionQuery().processDefinitionKey(key);
+
+        List<ProcessDefinition> definitionList = query.list();
+        for (ProcessDefinition processDefinition : definitionList) {
+            if(!processDefinition.getId().equals(id)){
+                Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(processDefinition.getDeploymentId()).singleResult();
+
+            }
+        }
+
+
 
 
     }

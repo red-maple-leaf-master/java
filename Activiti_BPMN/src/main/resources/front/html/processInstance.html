@@ -29,7 +29,7 @@
     </el-table>
 </div>
 <script src="../js/vue.js"></script>
-<script src="../js/axios.js"></script>
+<script src="../api/request.js"></script>
 <!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <!-- 引入组件库 -->
@@ -45,7 +45,9 @@
         methods: {
             getData() {
                 axios({
-                    url: 'http://localhost:8014/workflow/processDefinition/list'
+                    url: 'http://localhost:8014/workflow/processDefinition/list',
+                    method:'get'
+
                 }).then(res => {
                     console.log(res.data.vos);
                     this.vos=res.data.vos;

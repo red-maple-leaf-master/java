@@ -1,6 +1,7 @@
 package top.oneyi.controller;
 
 import org.springframework.web.bind.annotation.*;
+import top.oneyi.pojo.dto.UserDto;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +14,11 @@ public class AxiosController {
     }
 
     @PostMapping("/api/a2")
-    public String a2() {
+    public String a2(@RequestBody UserDto dto) {
+        System.out.println(dto);
+        for (String list : dto.getLists()) {
+            System.out.println("list = " + list);
+        }
         return "post request";
     }
 
