@@ -230,7 +230,7 @@ public class test {
     }
 
     @Test
-    public void test07(){
+    public void test07() {
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");
@@ -240,7 +240,7 @@ public class test {
         List<String> list2 = new ArrayList<>();
         List<String> list3 = new ArrayList<>();
         List<String> list4 = null;
-        Arrays.asList(list2,list3,list);
+        Arrays.asList(list2, list3, list);
         for (String s : list4) {
             System.out.println(s);
         }
@@ -251,14 +251,14 @@ public class test {
     private ActBusinessStatusService actBusinessStatusService;
 
     @Test
-    public void test08(){
+    public void test08() {
 //        actBusinessStatusService.list(new ActBusinessStatus());
 
         ActResult actResult = new ActResult();
-        actResult.setReject(Arrays.asList("1","2","3"));
-        actResult.setApprove(Arrays.asList("4","5","6"));
-        actResult.setApprovalPending(Arrays.asList("7","8","9"));
-        Map<String, List<String>> build = actResult.build("4","1","3");
+        actResult.setReject(Arrays.asList("1", "2", "3"));
+        actResult.setApprove(Arrays.asList("4", "5", "6"));
+        actResult.setApprovalPending(Arrays.asList("7", "8", "9"));
+        Map<String, List<String>> build = actResult.build("4", "1", "3");
         System.out.println("build.get(\"1\") = " + build.get("1"));
         System.out.println("build.get(\"3\") = " + build.get("3"));
         System.out.println("build.get(\"4\") = " + build.get("4"));
@@ -271,7 +271,7 @@ public class test {
     }
 
     @Test
-    public void test09(){
+    public void test09() {
         List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().list();
         for (ProcessDefinition processDefinition : list) {
             System.out.println("processDefinition.getId() = " + processDefinition.getId());
@@ -283,14 +283,14 @@ public class test {
     }
 
     @Test
-    public void test10(){
+    public void test10() {
         SinglyLinkedList node = new SinglyLinkedList();
         node.addFirst(1);
         node.addFirst(2);
         node.addFirst(3);
         node.addFirst(4);
 
-        for(int i=0;i< 4;i++){
+        for (int i = 0; i < 4; i++) {
             System.out.println(node.get(i));
         }
 
@@ -298,8 +298,33 @@ public class test {
         list.addLast(1);
     }
 
+    @Test
+    public void test11() {
+        List<String> list = new ArrayList<>();
+        List<String> list2=null ;
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        StringJoiner add = new StringJoiner(",");
+        assert list2 != null;
+        list2.forEach(add::add);
+        System.out.println("add = " + add);
+
+    }
 
 
+    @Test
+    public void test12(){
+        ProcessInstance processInstance = runtimeService
+                .createProcessInstanceQuery()
+                .processInstanceId("74791a6c-bf17-11ed-a002-a036bc096aaf")
+                .startedBy("5")
+                .singleResult();
+//        assert processInstance != null;
+        System.out.println("processInstance = " + processInstance);
 
+    }
 
 }

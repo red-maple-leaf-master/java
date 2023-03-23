@@ -3,7 +3,6 @@ package top.oneyi;
 import org.activiti.bpmn.model.*;
 import org.activiti.bpmn.model.Process;
 import org.activiti.engine.*;
-import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.impl.util.CollectionUtil;
@@ -11,7 +10,6 @@ import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Comment;
-import org.activiti.engine.task.DelegationState;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
 import org.assertj.core.util.DateUtil;
@@ -21,12 +19,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.oneyi.demo.ActivitiStartInstance;
 import top.oneyi.demo.ActivitiUtil;
 import top.oneyi.mapper.ActBusinessStatusMapper;
-import top.oneyi.mapper.SysUserMapper02;
+import top.oneyi.mapper.UserMapper;
 import top.oneyi.pojo.ActBusinessStatus;
 import top.oneyi.pojo.ActHistoryInfoVo;
 import top.oneyi.pojo.ActProcessNodeVo;
@@ -35,7 +31,6 @@ import top.oneyi.util.OneUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
@@ -83,6 +78,7 @@ public class ActivitiDome {
         map.put("bmjl", "7");
         map.put("zxfzr", "8");
         map.put("zjl", "9");
+        Authentication.setAuthenticatedUserId("5");
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key, businessKey, map);
         ActBusinessStatus actBusinessStatus = new ActBusinessStatus();
         actBusinessStatus.setId(businessKey);
@@ -108,7 +104,7 @@ public class ActivitiDome {
 //        ProcessInstance processInstance = this.startFlow("3", KEY);
 //        ProcessInstance processInstance = this.startFlow("4", KEY);
 //        ProcessInstance processInstance = this.startFlow("6", KEY);
-        ProcessInstance processInstance = this.startFlow("13", KEY);
+        ProcessInstance processInstance = this.startFlow("100", KEY);
     }
 
     @Resource
@@ -201,7 +197,7 @@ public class ActivitiDome {
      */
     @Test
     public void doTask() {
-        ProcessInstance processInstance = activitiUtil.findProcessInstance("11", KEY);
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("100", KEY);
         if (processInstance != null) {
 
             Task task = activitiUtil.findTask(processInstance.getProcessInstanceId());
@@ -237,16 +233,78 @@ public class ActivitiDome {
 
     @Test
     public void test02() {
-/*        List<HistoricProcessInstance> instanceList = historyService.createHistoricProcessInstanceQuery()
-                .processInstanceBusinessKey("5").list();
-        for (HistoricProcessInstance historicProcessInstance : instanceList) {
-            System.out.println("historicProcessInstance.getStartTime() = " + historicProcessInstance.getStartTime());
 
-        }*/
 
+
+
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("100", KEY);
+        List<HistoricTaskInstance> list1 = historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstance.getProcessInstanceId())
+                .orderByHistoricTaskInstanceEndTime().desc().list();
+        // 目标节点
+        HistoricTaskInstance actTaskNode = list1.get(0);
+
+
+
+        List<Task> list = taskService.createTaskQuery().processInstanceId(processInstance.getProcessInstanceId()).list();
+        for (Task task : list) {
+            // 1 获取流程模型实例  BpmnModel  ProcessDefinitionId 流程部署id ==> financial:3:a6bfbf38-c14d-11ed-a5c2-a036bc096aaf
+            BpmnModel bpmnModel = repositoryService.getBpmnModel(task.getProcessDefinitionId());
+            // 2 当前节点信息
+            FlowNode flowNode = (FlowNode) bpmnModel.getFlowElement(task.getTaskDefinitionKey());
+            // 3 获取当前节点原出口连线
+            List<SequenceFlow> outgoingFlows = flowNode.getOutgoingFlows();
+            // 4 临时存储当前节点原出口连线
+            List<SequenceFlow> oldsequenceFlows = new ArrayList<>();
+            oldsequenceFlows.addAll(outgoingFlows);
+            //5  把当前节点的原出口清空
+            outgoingFlows.clear();
+            // 6. 获取目标节点信息  也就是第一个提交申请的节点
+            FlowNode targetFlowNode = (FlowNode) bpmnModel.getFlowElement(actTaskNode.getTaskDefinitionKey());
+            // 7 获取目标节点的入口连线
+            List<SequenceFlow> incomingFlows = targetFlowNode.getIncomingFlows();
+            // 8. 存储所有目标出口
+            List<SequenceFlow> targetSequenceFlow = new ArrayList<>();
+            for (SequenceFlow incomingFlow : incomingFlows) {
+               // 找到入口连线的源头(获取目标节点的父节点)
+                FlowNode source = (FlowNode) incomingFlow.getSourceFlowElement();
+                // 创建出口连线集合
+                List<SequenceFlow> sequenceFlows;
+                if( source instanceof ParallelGateway){
+                    // 并行网关: 获取目标节点的父节点(并行网关) 的所有出口
+                    sequenceFlows = source.getOutgoingFlows();
+                }else{
+                    // 其他类型父节点,则获取目标节点的入口连续
+                    sequenceFlows = targetFlowNode.getIncomingFlows();
+                }
+                targetSequenceFlow.addAll(sequenceFlows);
+            }
+            // 9. 将当前节点的出口设置为新节点的入口连线
+            flowNode.setOutgoingFlows(targetSequenceFlow);
+            // 10. 完成当前任务，流程就会流向目标节点创建新目标任务
+            // 当前任务，完成当前任务
+            taskService.addComment(task.getId(), task.getProcessInstanceId(),"申请人撤销申请");
+            taskService.setAssignee(task.getId(), "1002我是撤回申请人");
+            // 完成任务，就会进行驳回到目标节点，产生目标节点的任务数据
+            taskService.complete(task.getId());
+            // 11. 完成驳回功能后，将当前节点的原出口方向进行恢复
+            flowNode.setOutgoingFlows(oldsequenceFlows);
+        }
 
     }
 
+    @Test
+    public void queryTest(){
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("100", KEY);
+        String processInstId = processInstance.getProcessInstanceId();
+        List<Task> newTaskList = taskService.createTaskQuery()
+                .processInstanceId(processInstId).list().stream()
+                .filter(e-> org.apache.commons.lang3.StringUtils.isBlank(e.getParentTaskId())).collect(Collectors.toList());
+        for (Task task : newTaskList) {
+            System.out.println("task.getName() = " + task.getName());
+            System.out.println("task.getProcessDefinitionId() = " + task.getProcessDefinitionId());
+            System.out.println("task.getAssignee() = " + task.getAssignee());
+        }
+    }
 
     @Test
     public void test03() {
@@ -282,7 +340,7 @@ public class ActivitiDome {
     }
 
     @Autowired
-    private SysUserMapper02 sysUserMapper02;
+    private UserMapper userMapper;
     @Autowired
     private ActBusinessStatusMapper actBusinessStatusMapper;
 
@@ -336,7 +394,7 @@ public class ActivitiDome {
         if (actHistoryInfoVoList.size() > 0) {
             List<Long> assigneeList = actHistoryInfoVoList.stream().map(e -> Long.valueOf(e.getAssignee())).collect(Collectors.toList());
             if (assigneeList.size() > 0) {
-                List<SysUser> sysUsers = sysUserMapper02.findByIds(assigneeList);
+                List<SysUser> sysUsers = userMapper.findByIds(assigneeList);
                 actHistoryInfoVoList.forEach(e -> {
                     sysUsers.stream().filter(u -> u.getUserId().toString().equals(e.getAssignee())).findFirst().ifPresent(u -> {
                         e.setNickName(u.getNickName());
@@ -365,7 +423,7 @@ public class ActivitiDome {
         assigneeList.add(5L);
         assigneeList.add(6L);
         assigneeList.add(7L);
-        List<SysUser> byIds = sysUserMapper02.findByIds(assigneeList);
+        List<SysUser> byIds = userMapper.findByIds(assigneeList);
         for (SysUser byId : byIds) {
             System.out.println("byId = " + byId);
         }

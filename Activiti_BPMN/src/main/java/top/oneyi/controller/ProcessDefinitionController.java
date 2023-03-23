@@ -2,20 +2,23 @@ package top.oneyi.controller;
 
 import org.activiti.engine.*;
 import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.oneyi.pojo.vo.ProcessDefinitionVo;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipInputStream;
+
 /**
  * 流程定义
  * @author oneyi
@@ -36,6 +39,39 @@ public class ProcessDefinitionController {
     private ManagementService managementService;
     @Autowired
     private HistoryService historyService;
+
+
+    /**
+     * 通过zip或xml部署流程定义
+     * @param file
+     */
+    @PostMapping("/deployByFile")
+    public void deployByFile(@RequestParam("file") MultipartFile file) {
+        try{
+            // 文件名+后缀名
+            String filename = file.getOriginalFilename();
+            // 文件后缀名
+            assert filename != null;
+            String suffix = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
+            InputStream inputStream = file.getInputStream();
+            DeploymentBuilder deployment = repositoryService.createDeployment();
+            if("zip".equals(suffix)){
+                // zip
+                deployment.addZipInputStream(new ZipInputStream(inputStream));
+            }else{
+                // xml 或者  bpmn
+                deployment.addInputStream(filename, inputStream);
+            }
+
+            // 部署名称
+            deployment.name(filename.substring(0, filename.lastIndexOf(".")));
+
+            // 开始部署
+            deployment.deploy();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 查询流程实例定义
