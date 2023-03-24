@@ -12,6 +12,7 @@ Content-Type: application/json
   "updateTime": "",
   "updateBy": ""
 }
+
 ###
 # 删除 用户
 DELETE http://localhost:2333/customer/3
@@ -44,5 +45,10 @@ Content-Type: application/json
 # 根据id查询用户
 GET http://localhost:2333/customer/3
 Content-Type: application/json
+
+###
+# 根据name查询用户
+GET http://localhost:2333/customer/name?name=admin
+
 
 

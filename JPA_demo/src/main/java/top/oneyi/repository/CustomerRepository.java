@@ -7,8 +7,14 @@ import top.oneyi.pojo.Customer;
 
 import java.util.List;
 
+
 public interface CustomerRepository extends JpaRepository<Customer,Long>, JpaSpecificationExecutor<Customer> {
 
-    @Query(value = "from customer where name = ?1")
+    /**
+     * nativeQuery 属性为 true 时 是原生sql 为false 则是 实体类
+     * @param name
+     * @return
+     */
+    @Query(value = "select * from customer where name = ?1",nativeQuery = true)
     List<Customer> findByName(String name);
 }

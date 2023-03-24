@@ -2,6 +2,7 @@ package top.oneyi.controller;
 
 import org.springframework.web.bind.annotation.*;
 import top.oneyi.pojo.Customer;
+import top.oneyi.repository.CustomerRepository;
 import top.oneyi.service.CustomerService;
 
 import javax.annotation.Resource;
@@ -53,5 +54,16 @@ public class CustomerController {
     @GetMapping("/{id}")
     public Customer findbyId(@PathVariable("id") Long id){
         return customerService.findUserById(id);
+    }
+
+    @Resource
+    private CustomerRepository customerRepository;
+
+    /**
+     * 名字查用户
+     */
+    @GetMapping("/name")
+    public List<Customer> findByName(String name){
+        return customerRepository.findByName(name);
     }
 }
