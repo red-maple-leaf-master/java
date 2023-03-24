@@ -1,0 +1,48 @@
+# 插入用户
+POST http://localhost:2333/customer
+Content-Type: application/json
+
+{
+  "name": "admin",
+  "password": "admin",
+  "age": "12",
+  "email": "jkkj@gmain.com",
+  "createTime": "",
+  "createBy": "",
+  "updateTime": "",
+  "updateBy": ""
+}
+###
+# 删除 用户
+DELETE http://localhost:2333/customer/3
+Content-Type: application/json
+
+###
+# 修改用户
+PUT http://localhost:2333/customer/
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "admin",
+  "password": "admin",
+  "objectVersion": 0,
+  "age": "1211",
+  "email": "jkkj@gmain.com",
+  "createTime": "2023-03-24 15:45:43",
+  "createBy": "我是用户名",
+  "updateTime": "2023-03-24 15:45:43",
+  "updateBy": ""
+}
+
+###
+# 查询全部用户
+GET http://localhost:2333/customer
+Content-Type: application/json
+
+###
+# 根据id查询用户
+GET http://localhost:2333/customer/3
+Content-Type: application/json
+
+

@@ -1,5 +1,0 @@
-# curl -i http://httpbin.org/ip
-GET http://httpbin.org/ip
-
-###
-
