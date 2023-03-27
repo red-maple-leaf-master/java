@@ -7,8 +7,11 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: none #  update 自动更新   none  不变化
+      ddl-auto: update #  update 自动更新   none  不变化
     show-sql: true  #日志中显示sql语句
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
   application:
     name: spring-data-jpa-demo
 server:

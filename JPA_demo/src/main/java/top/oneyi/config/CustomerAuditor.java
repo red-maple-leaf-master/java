@@ -13,6 +13,7 @@ public class CustomerAuditor implements AuditorAware<String> {
      */
     @Override
     public Optional<String> getCurrentAuditor() {
+
         return Optional.of("我是用户名");
     }
 }
