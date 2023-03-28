@@ -63,10 +63,6 @@ public class JPATest {
             if(customer.getAge() != null){
                 predicates.add(builder.greaterThanOrEqualTo(root.get("age"),customer.getAge()));
             }
-
-
-
-
             return  query.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
         };
     }
