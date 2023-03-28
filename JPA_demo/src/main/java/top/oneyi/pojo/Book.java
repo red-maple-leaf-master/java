@@ -35,6 +35,9 @@ public class Book {
      */
     private String bookAuthor;
 
+    @ManyToMany(mappedBy = "bookList")
+    private List<Order> orderList;
+
     /**
      * 创建时间
      */

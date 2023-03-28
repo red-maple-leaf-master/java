@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -43,6 +44,9 @@ public class Order {
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="customer_id")
     private Customer customer;
+
+    @ManyToMany
+    private List<Book> bookList;
 
     /**
      * 创建时间
