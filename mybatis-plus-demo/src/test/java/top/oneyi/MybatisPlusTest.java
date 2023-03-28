@@ -11,12 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.mapper.UserMapper;
 import top.oneyi.pojo.User;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
 @SpringBootTest(classes = MybatisPlusDemo.class)//加载 SpringBoot 启动类
 public class MybatisPlusTest {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Test
@@ -25,15 +26,7 @@ public class MybatisPlusTest {
         userMapper.selectList(null).forEach(System.out::println);
     }
 
-    @Test
-    public void testInsert() {
-        User user = new User(null, "六分你", 23, "lisi@qteoc.com");
-        int rows = userMapper.insert(user);
-        System.out.println("受影响的行数" + rows);
-        Long id = user.getId();
-        System.out.println("生成的id为:" + id);  // 1626489795328679938
 
-    }
 
     @Test
     public void testDeleteById() {
