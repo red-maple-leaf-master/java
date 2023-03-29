@@ -41,6 +41,8 @@ public class Order {
      * 和用户多对一
      *  设置为 级联 保存   级联刷新
      * optional=false 可选属性  false 代表该字段不能为空
+     *
+     *  cascade=CascadeType.ALL, 级联保存、更新、删除、刷新; fetch=FetchType.LAZY延迟加载。
      */
 //    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REMOVE},optional=false)
     @ManyToOne
@@ -50,7 +52,7 @@ public class Order {
      * JoinTable注解指定中间表名字   指定其中的 关联的字段名称
      */
     @ManyToMany
-    @JoinTable(name="book_order",joinColumns = @JoinColumn(name ="book_id"),inverseJoinColumns = @JoinColumn(name="order_id"))
+    @JoinTable(name="book_order",joinColumns = @JoinColumn(name ="order_id"),inverseJoinColumns = @JoinColumn(name="book_id"))
     private List<Book> bookList;
 
     /**

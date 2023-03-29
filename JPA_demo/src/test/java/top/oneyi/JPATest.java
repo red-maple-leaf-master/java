@@ -87,7 +87,7 @@ public class JPATest {
         String format = sdf.format(new Date());
         Order order = new Order();
         order.setBookName("平凡的世界");
-        List<Customer> admin1 = customerRepository.findByName("admin2");
+        List<Customer> admin1 = customerRepository.findByName("admin3");
         // 手动设置 用户
         order.setCustomer(admin1.get(0));
         order.setOrderNum(Long.valueOf(format + String.format("%04d", 1)));
@@ -101,7 +101,7 @@ public class JPATest {
 
     @Test
     public void deleteOrder(){
-        orderRepository.deleteById(8L);
+        orderRepository.deleteById(10L);
     }
 
     public String getNo(Class obs) {

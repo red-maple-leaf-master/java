@@ -54,11 +54,11 @@ public class Customer {
     private String email;
     /**
      * 订单的集合
-     * cascade=CascadeType.ALL, 级联保存、更新、删除、刷新; fetch=FetchType.LAZY延迟加载。
-     * 当删除用户，会级联删除该用户的所有书籍
+     *
+     *
      *  拥有mappedBy="customer"(customer 是在 order 中的 customer 属性) 注解的实体类为关系被维护端
      */
-    @OneToMany(mappedBy = "customer",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "customer")
     private List<Order> orderList;
 
     /**
