@@ -1,6 +1,7 @@
 package top.oneyi;
 
 
+import org.aspectj.weaver.ast.Or;
 import org.junit.Test;
 import org.junit.platform.commons.util.StringUtils;
 import org.junit.runner.RunWith;
@@ -75,7 +76,8 @@ public class JPATest {
         book.setBookAuthor("里程");
         book.setBookName("平凡的世界");
         book.setBookPrice("34");
-        List<Customer> admin1 = customerRepository.findByName("admin1");
+        List<Order> orders = orderRepository.findByBookName("平凡的世界");
+        book.setOrderList(orders);
         bookRepository.save(book);
     }
 
@@ -85,11 +87,21 @@ public class JPATest {
         String format = sdf.format(new Date());
         Order order = new Order();
         order.setBookName("平凡的世界");
-        List<Customer> admin1 = customerRepository.findByName("admin1");
+        List<Customer> admin1 = customerRepository.findByName("admin2");
+        // 手动设置 用户
         order.setCustomer(admin1.get(0));
         order.setOrderNum(Long.valueOf(format + String.format("%04d", 1)));
         order.setCustomerName(admin1.get(0).getName());
+        List<Book> all = bookRepository.findAll();
+        order.setBookList(all);
+
+
         orderRepository.save(order);
+    }
+
+    @Test
+    public void deleteOrder(){
+        orderRepository.deleteById(8L);
     }
 
     public String getNo(Class obs) {
