@@ -16,6 +16,8 @@
     </parent>
 
     <dependencies>
+
+
         <!--web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,7 +65,12 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
+<!--        AOP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>2.3.7.RELEASE</version>
+        </dependency>
 
 
         <!-- el beg 使用spring data jpa 必须引入 -->

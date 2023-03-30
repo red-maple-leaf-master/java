@@ -1,7 +1,6 @@
 package top.oneyi;
 
 
-import org.aspectj.weaver.ast.Or;
 import org.junit.Test;
 import org.junit.platform.commons.util.StringUtils;
 import org.junit.runner.RunWith;
@@ -15,8 +14,10 @@ import top.oneyi.repository.BookRepository;
 import top.oneyi.repository.CustomerRepository;
 import top.oneyi.pojo.Order;
 import top.oneyi.repository.OrderRepository;
+import top.oneyi.service.IPerson;
 
 
+import javax.annotation.Resource;
 import javax.persistence.criteria.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -124,4 +125,10 @@ public class JPATest {
 
     }
 
+    @Resource
+    private IPerson person;
+    @Test
+    public void test01(){
+        person.takeWash();
+    }
 }
