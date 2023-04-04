@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import top.oneyi.Api;
+import top.oneyi.serverApi.TestApi;
 
 
 import javax.annotation.Resource;
@@ -17,13 +17,14 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/demo")
 public class DemoController {
+
     @Resource
-    private Api api;
+    private TestApi api;
 
     @GetMapping("/list")
     public String list01(@RequestParam("str") String str){
         String list = api.list(str);
-
+        System.out.println("我调用了");
         return "收到数据===>("+list+")";
     }
 
