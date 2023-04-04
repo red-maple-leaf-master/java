@@ -1,2 +1,27 @@
 server:
   port: 1010
+spring:
+  application:
+    ## 指定服务名称
+    name: one-client
+  cloud:
+    nacos:
+      discovery:
+        # nacos的服务地址，nacos-server中IP地址:端口号
+        server-addr: 127.0.0.1:8848
+feign:
+  ## 开启压缩
+  compression:
+    request:
+      enabled: true
+      ## 开启压缩的阈值，单位字节，默认2048，即是2k，这里为了演示效果设置成10字节
+      min-request-size: 10
+      mime-types: text/xml,application/xml,application/json
+    response:
+      enabled: true
+  client:
+    config:
+      ## default 设置的全局超时时间，指定服务名称可以设置单个服务的超时时间
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
