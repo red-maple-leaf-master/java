@@ -51,4 +51,9 @@ Content-Type: application/json
 GET http://localhost:2333/customer/name?name=admin
 
 
+###
+
+GET http://localhost/40155/api/system/loanApplicationInfo/loanApplicationIist?Authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJzeXNfdXNlcjoxIiwicm5TdHIiOiJ2MHQzUDZkdThjdzBNWUhpU24xZ2g5Wm5HQ2pDeWtVayJ9.cRTLe_0-6eiJ9OmWoFdJiy2pDMnfvHVo3ntYpnOOx88
+
+
 
