@@ -24,7 +24,7 @@ public class DemoController {
     @GetMapping("/list")
     public String list01(@RequestParam("str") String str){
         String list = api.list(str);
-        System.out.println("我调用了服务端的接口");
+        System.out.println("client:我调用了服务端的接口");
         return "收到数据===>("+list+")";
     }
 

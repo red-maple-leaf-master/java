@@ -4,11 +4,11 @@ spring:
   application:
     ## 指定服务名称
     name: one-client
-  cloud:
-    nacos:
-      discovery:
-        # nacos的服务地址，nacos-server中IP地址:端口号
-        server-addr: 127.0.0.1:8848
+#  cloud:
+#    nacos:
+#      discovery:
+#        # nacos的服务地址，nacos-server中IP地址:端口号
+#        server-addr: 127.0.0.1:8848
 feign:
   ## 开启压缩
   compression:
