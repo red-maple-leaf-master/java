@@ -1,6 +1,6 @@
 package top.oneyi.common;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @Date: 2019/5/19 8:59
  * @Description:
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+
 
 public class responseServer<T> implements Serializable {
     private Long id;
