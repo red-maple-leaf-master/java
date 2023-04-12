@@ -2,7 +2,10 @@ package top.oneyi.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.handler.MappedInterceptor;
 
 import static org.springframework.web.bind.annotation.CrossOrigin.DEFAULT_ALLOWED_HEADERS;
 import static org.springframework.web.bind.annotation.CrossOrigin.DEFAULT_ORIGINS;
@@ -21,6 +24,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedHeaders(DEFAULT_ALLOWED_HEADERS)
                 .allowCredentials(true)
                 .maxAge(3600);
+    }
+
+    /**
+     * 注册自定义过滤器
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new WebHandler());
     }
 }
 
