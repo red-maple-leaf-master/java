@@ -8,7 +8,7 @@
     body{height:auto;font-family: "Microsoft YaHei";}
     button{font-family: "SimSun","Helvetica Neue",Helvetica,Arial;}
 </style>
-<body class="hold-transition box box-main">
+<body class="hold-transition box box-top.oneyi.demo.main">
 #set($treeId = "${className}?." + $treeCode)
 #set($treeName = "${className}?." + $treeName)
     <input id="treeId"   name="treeId"    type="hidden" th:value="${${treeId}}"/>

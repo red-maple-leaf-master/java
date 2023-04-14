@@ -8,11 +8,13 @@ import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.test.ActivitiRule;
+import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Maps;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.oneyi.demo.ActivitiUtil;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -205,5 +207,9 @@ public class ActivitiTest {
         System.out.println("processDefinition.getDeploymentId() = " + processDefinition.getDeploymentId());
 
     }
+
+
+
+
 }
 

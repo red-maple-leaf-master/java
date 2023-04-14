@@ -113,7 +113,7 @@
                     <jswarn>false</jswarn>
                     <nosuffix>true</nosuffix>
                     <linebreakpos>50000</linebreakpos>
-                    <sourceDirectory>src/main/resources/static</sourceDirectory>
+                    <sourceDirectory>src/top.oneyi.demo.main/resources/static</sourceDirectory>
                     <force>true</force>
                     <includes>
                         <include>**/*.js</include>
