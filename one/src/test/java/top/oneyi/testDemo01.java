@@ -1,7 +1,14 @@
 package top.oneyi;
 
+import com.alibaba.druid.DbType;
+import com.alibaba.druid.sql.SQLUtils;
+import com.alibaba.druid.sql.ast.SQLStatement;
+import com.alibaba.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
 import com.alibaba.excel.EasyExcel;
+
+
 import io.lettuce.core.output.KeyStreamingChannel;
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -515,6 +522,46 @@ public class testDemo01 {
         list.forEach(System.out::println);
 
 
+    }
+    public static String SQL_REGEX = "and |extractvalue|updatexml|exec |insert |select |delete |update |drop |count |chr |mid |master |truncate |char |declare |or |+|user()";
+
+    @Test
+    public void test07(){
+/*        String[] split = StringUtils.split(SQL_REGEX, "|");
+        System.out.println(Arrays.toString(split));
+        for (String s : split) {
+            int create_tbale = StringUtils.indexOfIgnoreCase("insert tbale and mid ", s);
+            System.out.println(create_tbale);
+        }*/
+        String sql = "CREATE TABLE `user` (\n" +
+                "  `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',\n" +
+                "  `user_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL COMMENT '用户账号',\n" +
+                "  `nick_name` varchar(30) CHARACTER SET utf8mb4 NOT NULL COMMENT '用户昵称',\n" +
+                "  `email` varchar(50) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '用户邮箱',\n" +
+                "  `phone_number` varchar(11) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '手机号码',\n" +
+                "  `sex` char(1) CHARACTER SET utf8mb4 DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',\n" +
+                "  `avatar` varchar(100) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '头像地址',\n" +
+                "  `password` varchar(100) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '密码',\n" +
+                "  `status` char(1) CHARACTER SET utf8mb4 DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',\n" +
+                "  `del_flag` char(1) CHARACTER SET utf8mb4 DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',\n" +
+                "  `create_by` varchar(64) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '创建者',\n" +
+                "  `create_time` datetime(4) DEFAULT NULL COMMENT '创建时间',\n" +
+                "  `update_by` varchar(64) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '更新者',\n" +
+                "  `update_time` datetime(4) DEFAULT NULL COMMENT '更新时间',\n" +
+                "  `remark` varchar(500) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '备注',\n" +
+                "  `dept_id` bigint(20) DEFAULT NULL COMMENT '部门id',\n" +
+                "  `role_id` bigint(20) DEFAULT NULL COMMENT '角色id',\n" +
+                "  `user_type` varchar(30) DEFAULT NULL COMMENT '用户类型',\n" +
+                "  `login_ip` varchar(255) DEFAULT NULL COMMENT '最后登录ip',\n" +
+                "  `login_date` varchar(30) DEFAULT NULL COMMENT '最后登录时间',\n" +
+                "  PRIMARY KEY (`user_id`) USING BTREE\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;";
+        List<SQLStatement> sqlStatements = SQLUtils.parseStatements(sql, DbType.mysql);
+        System.out.println("sqlStatements = " + sqlStatements);
+        SQLStatement sqlStatement = sqlStatements.get(0);
+       MySqlCreateTableStatement sqlCreateTableStatement =  (MySqlCreateTableStatement) sqlStatement;
+        String tableName = sqlCreateTableStatement.getTableName().replaceAll("`", "");
+        System.out.println("tableName = " + tableName);
     }
 
 

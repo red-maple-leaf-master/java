@@ -179,6 +179,7 @@ public class GenTableServiceImpl implements IGenTableService
             {
                 String tableName = table.getTableName();
                 GenUtils.initTable(table, operName);
+                // 将 代码生成的基础信息记录一下
                 int row = genTableMapper.insertGenTable(table);
                 if (row > 0)
                 {

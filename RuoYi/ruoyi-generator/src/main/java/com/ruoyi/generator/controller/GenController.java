@@ -130,6 +130,7 @@ public class GenController extends BaseController
     @ResponseBody
     public AjaxResult importTableSave(String tables)
     {
+        // 用逗号分隔tables 获取一个数组
         String[] tableNames = Convert.toStrArray(tables);
         // 查询表信息
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
@@ -199,14 +200,17 @@ public class GenController extends BaseController
     {
         try
         {
+            // 校验sql中是否存在异常 字符 (防止sql注入)
             SqlUtil.filterKeyword(sql);
             List<SQLStatement> sqlStatements = SQLUtils.parseStatements(sql, DbType.mysql);
             List<String> tableNames = new ArrayList<>();
             for (SQLStatement sqlStatement : sqlStatements)
             {
+
                 if (sqlStatement instanceof MySqlCreateTableStatement)
                 {
                     MySqlCreateTableStatement createTableStatement = (MySqlCreateTableStatement) sqlStatement;
+                    // 创建表
                     if (genTableService.createTable(createTableStatement.toString()))
                     {
                         String tableName = createTableStatement.getTableName().replaceAll("`", "");
