@@ -32,7 +32,7 @@ public class UrlController {
         map.put("place","博学谷");
         map.put("feeling","very well");
         //数据添加到model中
-        model.addAttribute("name","bigsai");//普通字符串
+        model.addAttribute("name","伊万1234");//普通字符串
         model.addAttribute("user",user);//储存javabean
         model.addAttribute("userList",userList);//储存List
         model.addAttribute("map",map);//储存Map
