@@ -86,6 +86,11 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.31</version>
         </dependency>
+        <!--  thymeleaf 依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 
         <!--        junit测试包-->
         <dependency>
