@@ -30,7 +30,7 @@ public class OrderController {
     private ProductApi productApi;
 
     //准备买1件商品
-    @GetMapping("/order/prod/{pid}")
+    @GetMapping("/order/prod01/{pid}")
     public Order order(@PathVariable("pid") Integer pid) {
 /*        // 动态获取端口号和主机号访问对应微服务
         ServiceInstance serviceInstance = discoveryClient.getInstances("service-product").get(0);

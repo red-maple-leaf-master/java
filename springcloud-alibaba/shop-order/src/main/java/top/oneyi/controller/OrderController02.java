@@ -27,7 +27,7 @@ public class OrderController02 {
     private ProductApi productApi;
 
 
-    @RequestMapping("/order/prod/{pid}")
+    @RequestMapping("/order/prod02/{pid}")
     public Order order(@PathVariable("pid") Integer pid) {
         log.info("接收到{}号商品的下单请求,接下来调用商品微服务查询此商品信息", pid);
 
