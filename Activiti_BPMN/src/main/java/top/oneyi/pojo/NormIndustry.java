@@ -3,6 +3,8 @@ package top.oneyi.pojo;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class NormIndustry {
     /**
@@ -25,5 +27,9 @@ public class NormIndustry {
      * 是否有子节点  1是 0 否
      */
     private Integer hasChild;
+    /**
+     * 子节点
+     */
+    private List<NormIndustry> normIndustryList;
 
 }

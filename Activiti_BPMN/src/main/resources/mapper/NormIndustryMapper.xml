@@ -5,4 +5,16 @@
     <select id="findAll" resultType="top.oneyi.pojo.NormIndustry">
         select * from norm_industry
     </select>
+    <select id="findByCode" resultType="top.oneyi.pojo.NormIndustry">
+        select * from norm_industry where code = #{code}
+    </select>
+    <select id="findByParentCode" resultType="top.oneyi.pojo.NormIndustry">
+        select * from norm_industry where parent_code = #{parentCode}
+    </select>
+    <select id="findByParentCodes" resultType="top.oneyi.pojo.NormIndustry">
+        select * from norm_industry where
+        <foreach collection="list" item="parentCode" open="(" close=")" separator=",">
+            parent_code = #{parentCode}
+        </foreach>
+     </select>
 </mapper>

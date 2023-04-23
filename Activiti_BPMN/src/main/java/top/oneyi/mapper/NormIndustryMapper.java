@@ -9,4 +9,10 @@ import java.util.List;
 public interface NormIndustryMapper {
 
     List<NormIndustry> findAll();
+
+    NormIndustry findByCode(String code);
+
+    List<NormIndustry> findByParentCode(String parentCode);
+
+    List<NormIndustry> findByParentCodes(List<String> parentCode);
 }
