@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: service-product
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: a8cde16e-6cf9-4143-af18-b8e7481482a3
+        file-extension: yaml
+  profiles:
+    active: dev # 环境标识
