@@ -30,6 +30,6 @@ public class NormIndustry {
     /**
      * 子节点
      */
-    private List<NormIndustry> normIndustryList;
+    private List<NormIndustry> childrenList;
 
 }
