@@ -3,6 +3,7 @@ package top.oneyi;
 import org.activiti.bpmn.model.*;
 import org.activiti.bpmn.model.Process;
 import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.impl.util.CollectionUtil;
@@ -104,7 +105,7 @@ public class ActivitiDome {
 //        ProcessInstance processInstance = this.startFlow("3", KEY);
 //        ProcessInstance processInstance = this.startFlow("4", KEY);
 //        ProcessInstance processInstance = this.startFlow("6", KEY);
-        ProcessInstance processInstance = this.startFlow("100", KEY);
+        ProcessInstance processInstance = this.startFlow("200", KEY);
     }
 
     @Resource
@@ -157,10 +158,20 @@ public class ActivitiDome {
      */
     @Test
     public void test() {
-        String businessKey = "6";
+        String businessKey = "100";
         ProcessInstance processInstance = activitiUtil.findProcessInstance(businessKey, KEY);
-        List<Comment> taskNodes = activitiUtil.findTaskNodes(businessKey, KEY);
-        for (Comment taskNode : taskNodes) {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        HistoryService historyService = processEngine.getHistoryService();
+        HistoricProcessInstance historicProcessInstance = historyService
+                .createHistoricProcessInstanceQuery()
+                .processInstanceBusinessKey("200")
+                .processDefinitionKey(KEY)
+                .singleResult();
+
+//        List<Comment> taskNodes = activitiUtil.findTaskNodes(businessKey, KEY);
+//        ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
+        List<Comment> comments = taskService.getProcessInstanceComments(historicProcessInstance.getId());//参数为是流程实例ID
+        for (Comment taskNode : comments) {
             System.out.println("taskNode.getFullMessage() = " + taskNode.getFullMessage());
             System.out.println("taskNode.getType() = " + taskNode.getType());
             System.out.println("taskNode.getTaskId() = " + taskNode.getTaskId());
@@ -197,7 +208,7 @@ public class ActivitiDome {
      */
     @Test
     public void doTask() {
-        ProcessInstance processInstance = activitiUtil.findProcessInstance("100", KEY);
+        ProcessInstance processInstance = activitiUtil.findProcessInstance("200", KEY);
         if (processInstance != null) {
 
             Task task = activitiUtil.findTask(processInstance.getProcessInstanceId());

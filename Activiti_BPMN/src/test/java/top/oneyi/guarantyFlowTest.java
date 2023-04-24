@@ -4,6 +4,8 @@ import org.activiti.engine.HistoryService;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -16,6 +18,7 @@ import top.oneyi.demo.ActivitiUtil;
 import top.oneyi.mapper.ActRuTaskMapper;
 import top.oneyi.pojo.Entry;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -32,7 +35,7 @@ public class guarantyFlowTest {
     @Autowired
     private TaskService taskService;
 
-    @Autowired
+    @Resource
     private ActRuTaskMapper actRuTaskMapper;
 
     @Test
@@ -251,5 +254,18 @@ public class guarantyFlowTest {
             System.out.println("======================================================");
         }
 
+    }
+
+    @Test
+    public void test02(){
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        HistoryService historyService = processEngine.getHistoryService();
+        HistoricProcessInstanceQuery financial = historyService.createHistoricProcessInstanceQuery().processInstanceName("financial").processInstanceBusinessKey("10");
+        HistoricProcessInstance historicProcessInstance = financial.singleResult();
+        System.out.println(historicProcessInstance);
+/*        System.out.println("historicProcessInstance.getBusinessKey() = " + historicProcessInstance.getBusinessKey());
+        System.out.println("historicProcessInstance.getName() = " + historicProcessInstance.getName());
+        System.out.println("historicProcessInstance.getProcessDefinitionKey() = " + historicProcessInstance.getProcessDefinitionKey());
+        System.out.println("historicProcessInstance.getProcessDefinitionName() = " + historicProcessInstance.getProcessDefinitionName());*/
     }
 }

@@ -21,19 +21,21 @@ public class NormIndustryTest {
 
     @Test
     public void getTreeData(){
-        List<NormIndustry> fater = normIndustryMapper.findByParentCode("0");
-        for (NormIndustry normIndustry : fater) {
-            List<NormIndustry> second = normIndustryMapper.findByParentCode(normIndustry.getCode());
-            for (NormIndustry normIndustry02 : second) {
-                List<NormIndustry> byParentCode = normIndustryMapper.findByParentCode(normIndustry02.getCode());
-                normIndustry02.setNormIndustryList(byParentCode);
+        List<NormIndustry> father = normIndustryMapper.findByParentCode("0");
+        for (NormIndustry firstNormIndustry : father) {
+            List<NormIndustry> second = normIndustryMapper.findByParentCode(firstNormIndustry.getCode());
+/*            for (NormIndustry secondNormIndustry : second) {
+                List<NormIndustry> thirdParentCode = normIndustryMapper.findByParentCode(secondNormIndustry.getCode());
+                secondNormIndustry.setNormIndustryList(thirdParentCode);
+            }*/
+            for (NormIndustry normIndustry : second) {
+                normIndustry.setHasChild(0);
             }
-            normIndustry.setNormIndustryList(second);
+            firstNormIndustry.setNormIndustryList(second);
         }
 
-        for (NormIndustry normIndustry : fater) {
-            System.out.println(normIndustry);
-        }
+        NormIndustry normIndustry = father.get(0);
+        System.out.println("normIndustry = " + normIndustry);
 
     }
 }

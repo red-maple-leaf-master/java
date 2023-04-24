@@ -64,7 +64,7 @@ public class ActivitiUtil {
     }
 
     /**
-     * 获取流程实例
+     * 获取当前流程实例
      *
      * @param businessKey
      * @param key
