@@ -9,4 +9,6 @@ import java.util.List;
 public interface UserMapper extends MyMapper<SysUser> {
 
     List<SysUser> findByIds(List<Long> assigneeList);
+
+    SysUser findById(Long UserId);
 }

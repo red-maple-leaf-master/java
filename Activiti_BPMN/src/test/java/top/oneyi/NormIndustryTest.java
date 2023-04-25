@@ -87,13 +87,13 @@ public class NormIndustryTest {
         nodeList.add(new TreeNode<>("221", "2", "商品管理2", 2));
         //配置
         TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
-// 自定义属性名 都要默认值的
+        // 自定义属性名 都要默认值的
         treeNodeConfig.setWeightKey("order");
         treeNodeConfig.setIdKey("rid");
-// 最大递归深度
+        // 最大递归深度
         treeNodeConfig.setDeep(3);
 
-//转换器
+        //转换器
         List<Tree<String>> treeNodes = TreeUtil.build(nodeList, "0", treeNodeConfig,
                 (treeNode, tree) -> {
                     tree.setId(treeNode.getId());

@@ -8,4 +8,7 @@
             #{id}
         </foreach>
     </select>
+    <select id="findById" resultType="top.oneyi.pojo.SysUser">
+          select * from sys_user where user_id = #{UserId}
+    </select>
 </mapper>
