@@ -17,5 +17,6 @@ public class Test {
         otherInfo.put("phone", "10086");
         otherInfo.put("nickName", "10086dd");
         System.out.println(student.toString());
+        System.out.println("✨ "+ name  +" ✨");
     }
 }
