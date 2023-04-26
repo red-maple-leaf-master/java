@@ -1,11 +1,17 @@
 package top.oneyi.util;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * 通过反射获取对象的工具类
@@ -70,5 +76,46 @@ public class ReflectUtils {
             value[i]=this.getFieldValueByName(fieldNames[i], o);
         }
         return value;
+    }
+
+    /**
+     * 根据map转换为对象
+     * @param obj
+     * @param aClass
+     * @return
+     * @throws IntrospectionException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
+    private Object mapToBean(Map<String, Object> obj, Class<?> aClass) throws IntrospectionException, InstantiationException, IllegalAccessException {
+        BeanInfo beanInfo = Introspector.getBeanInfo(aClass);
+        // 根据class文件创建对象
+        Object o = aClass.newInstance();
+        // 获取所有的类属性
+        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+        String pName;
+        for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
+            // 获取每个属性
+            pName = propertyDescriptor.getName();
+            // 比对属性
+            if (obj.containsKey(pName)) {
+                try {
+                    // 主要是id属性
+                    if (propertyDescriptor.getPropertyType().getName().equals("java.lang.Long")) {
+                        Object filed = obj.get(pName);
+                        if (filed != null) {
+                            propertyDescriptor.getWriteMethod().invoke(o, Long.parseLong(filed.toString()));
+                        }
+                    } else {
+                        // 其他属性
+                        propertyDescriptor.getWriteMethod().invoke(o, obj.get(pName));
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(pName).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        // 最后返回封装好的对象
+        return o;
     }
 }
