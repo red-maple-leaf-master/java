@@ -1,17 +1,18 @@
 package top.oneyi.util;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  * 通过反射获取对象的工具类
@@ -80,42 +81,107 @@ public class ReflectUtils {
 
     /**
      * 根据map转换为对象
-     * @param obj
-     * @param aClass
-     * @return
-     * @throws IntrospectionException
-     * @throws InstantiationException
-     * @throws IllegalAccessException
+     * @param map  需要转换的map
+     * @param aClass 转成成的类的class
+     * @return Object
      */
-    private Object mapToBean(Map<String, Object> obj, Class<?> aClass) throws IntrospectionException, InstantiationException, IllegalAccessException {
-        BeanInfo beanInfo = Introspector.getBeanInfo(aClass);
-        // 根据class文件创建对象
-        Object o = aClass.newInstance();
-        // 获取所有的类属性
-        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-        String pName;
-        for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
-            // 获取每个属性
-            pName = propertyDescriptor.getName();
-            // 比对属性
-            if (obj.containsKey(pName)) {
-                try {
-                    // 主要是id属性
-                    if (propertyDescriptor.getPropertyType().getName().equals("java.lang.Long")) {
-                        Object filed = obj.get(pName);
-                        if (filed != null) {
-                            propertyDescriptor.getWriteMethod().invoke(o, Long.parseLong(filed.toString()));
+    private Object mapToBean(Map<String, Object> map, Class<?> aClass){
+        Object object=null;
+        try {
+            BeanInfo beanInfo = Introspector.getBeanInfo(aClass);
+            // 根据class文件创建对象
+            object = aClass.newInstance();
+            // 获取所有的类属性
+            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+            String pName;
+            for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
+                // 获取每个属性
+                pName = propertyDescriptor.getName();
+                // 比对属性
+                if (map.containsKey(pName)) {
+                    try {
+                        // 主要是id属性
+                        if (propertyDescriptor.getPropertyType().getName().equals("java.lang.Long")) {
+                            Object filed = map.get(pName);
+                            if (filed != null) {
+                                propertyDescriptor.getWriteMethod().invoke(object, Long.parseLong(filed.toString()));
+                            }
+                        } else {
+                            // 其他属性
+                            propertyDescriptor.getWriteMethod().invoke(object, map.get(pName));
                         }
-                    } else {
-                        // 其他属性
-                        propertyDescriptor.getWriteMethod().invoke(o, obj.get(pName));
+                    } catch (Exception ex) {
+                        Logger.getLogger(pName).log(Level.SEVERE, null, ex);
                     }
-                } catch (Exception ex) {
-                    Logger.getLogger(pName).log(Level.SEVERE, null, ex);
                 }
             }
+        } catch (IntrospectionException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
         }
-        // 最后返回封装好的对象
-        return o;
+        return object;
+
+    }
+
+    /**
+     *  bean转map
+     * @param object 需要转换成map的对象
+     * @return map
+     */
+    private Map<String,String> beanToMap(Object object) {
+        if (object == null) {
+            System.out.println("很抱歉哦,你的对象不存在");
+            return null;
+        } else {
+            Map<String, String> map = new HashMap<>();
+            try {
+                BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass());
+                PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+                for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
+                    String key = propertyDescriptor.getName();
+                    if (key.compareToIgnoreCase("class") == 0) {
+                        continue;
+                    }
+                    Method getter = propertyDescriptor.getReadMethod();
+                    Object value = getter != null ? getter.invoke(object) : null;
+                    String v = null;
+                    if (value != null) {
+                        v = value.toString();
+                    }
+                    map.put(key, v);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return map;
+        }
+    }
+
+    /**
+     * map转换为字符串
+     * @param map
+     * @return
+     */
+    private JSONObject mapToJson(Map map){
+        JSONObject json = new JSONObject();
+        try{
+            Iterator<Map.Entry<String,String>> iterator = map.entrySet().iterator();
+            while(iterator.hasNext()){
+                Map.Entry<String, String> entry = iterator.next();
+                json.put(entry.getKey(), entry.getValue());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    /**
+     * json字符串转换为map
+     * @param str
+     * @return
+     */
+    public static Map<String, Long> jsonStringToMap(String str) {
+        Map<String, Long> map = (Map<String, Long>) JSON.parse(str);
+        return map;
     }
 }
