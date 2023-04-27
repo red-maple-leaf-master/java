@@ -96,6 +96,28 @@ public class CommonMethods {
 
         String output = output(json);
         System.out.println("output = " + output);
+        String resString = json.toString();
+        StringBuilder jsonForMatStr = new StringBuilder();
+        for(int index =0;index<resString.length();index++){
+            // 取出每一个字符
+            char c = resString.charAt(index);
+            switch (c) {
+                case '{':
+                case '[':
+                case ',':
+                    jsonForMatStr.append(c).append("\n").append("\t");
+                    break;
+                case '}':
+                case ']':
+                    jsonForMatStr.append("\n").append(c);
+                    break;
+                default:
+                    jsonForMatStr.append(c);
+                    break;
+            }
+        }
+        System.out.println(jsonForMatStr.toString());
+
     }
 
 

@@ -6,6 +6,8 @@ import cn.hutool.core.lang.tree.TreeNode;
 import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import jdk.nashorn.internal.parser.JSONParser;
 import netscape.javascript.JSObject;
 import org.activiti.engine.impl.util.json.JSONArray;
 import org.junit.Test;
@@ -41,10 +43,6 @@ public class NormIndustryTest {
             }
             firstNormIndustry.setChildrenList(second);
         }
-
-        NormIndustry normIndustry = father.get(0);
-        System.out.println("normIndustry = " + normIndustry);
-
     }
 
 
