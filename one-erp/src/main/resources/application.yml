@@ -7,8 +7,12 @@ spring:
     url: jdbc:mysql://localhost:3306/erp?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: root
     password: root
-  mybatis:
-    mapper-locations: classpath:mapper/*.xml  # xml文件路径
-    type-aliases-package: top.oneyi.pojo.po
-    configuration:
-      map-underscore-to-camel-case: true   # 开启驼峰
+  redis:
+    host: 127.0.0.1
+    port: 6379
+mybatis-plus:
+  mapper-locations: classpath:./mapper/*.xml
+
+file:
+  path: D:\oneFile
+
