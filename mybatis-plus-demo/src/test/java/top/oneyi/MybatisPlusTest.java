@@ -1,5 +1,10 @@
 package top.oneyi;
 
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
@@ -10,9 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.mapper.UserMapper;
 import top.oneyi.pojo.User;
+import top.oneyi.util.JsonUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
 @SpringBootTest(classes = MybatisPlusDemo.class)//加载 SpringBoot 启动类
@@ -26,7 +34,21 @@ public class MybatisPlusTest {
         userMapper.selectList(null).forEach(System.out::println);
     }
 
+    @Test
+    public void SelectList() {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        Page<User> page = new Page<>(1,5);
+        List<OrderItem> strings = new ArrayList<>();
+        strings.add(new OrderItem("age",false));
+        page.addOrder(strings);
+        IPage<User> all = userMapper.findAll(page,wrapper);
+        for (User user : all.getRecords()) {
+            System.out.println("user = " + user);
+        }
+        System.out.println("all.getTotal() = " + all.getTotal());
+        System.out.println("all.getPages() = " + all.getPages());
 
+    }
 
     @Test
     public void testDeleteById() {

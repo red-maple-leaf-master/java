@@ -14,14 +14,13 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
-import org.apache.catalina.mbeans.UserMBean;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.util.StringUtil;
 import top.oneyi.common.exception.ServiceException;
 import top.oneyi.mapper.ActBusinessStatusMapper;
-import top.oneyi.mapper.UserMapper;
+import top.oneyi.mapper.SysUserMapper;
 import top.oneyi.pojo.*;
 import top.oneyi.service.ActBusinessStatusService;
 
@@ -53,7 +52,7 @@ public class ProcessInstanceController {
 
     private final ActBusinessStatusService actBusinessStatusService;
     private final ActBusinessStatusMapper businessStatusMapper;
-    private final UserMapper userMapper;
+    private final SysUserMapper sysUserMapper;
 
     /**
      * 提交申请 启动实例
@@ -123,7 +122,7 @@ public class ProcessInstanceController {
         if (historyInfoList.size() > 0) {
             List<Long> assigneeList = historyInfoList.stream().map(e -> Long.valueOf(e.getAssignee())).collect(Collectors.toList());
             if (assigneeList.size() > 0) {
-                List<SysUser> sysUsers = userMapper.findByIds(assigneeList);
+                List<SysUser> sysUsers = sysUserMapper.findByIds(assigneeList);
                 historyInfoList.forEach(e -> {
                     sysUsers.stream().filter(u -> u.getUserId().toString().equals(e.getAssignee())).findFirst().ifPresent(u -> {
                         e.setNickName(u.getNickName());
@@ -162,7 +161,7 @@ public class ProcessInstanceController {
         for (ProcessInstance processInstance : processInstances) {
             ProcessInstRunningVo processInstRunningVo = new ProcessInstRunningVo();
             BeanUtils.copyProperties(processInstance, processInstRunningVo);
-            SysUser sysUser = userMapper.selectByPrimaryKey(processInstance.getStartUserId());
+            SysUser sysUser = sysUserMapper.selectByPrimaryKey(processInstance.getStartUserId());
             if (sysUser != null) {
                 processInstRunningVo.setStartUserNickName(sysUser.getNickName());
             }
@@ -178,7 +177,7 @@ public class ProcessInstanceController {
                         userIds.add(Long.valueOf(userId));
                     }
                     //办理人
-                    List<SysUser> sysUsers = userMapper.findByIds(userIds);
+                    List<SysUser> sysUsers = sysUserMapper.findByIds(userIds);
                     if (CollectionUtil.isNotEmpty(sysUsers)) {
                         nickNameList = sysUsers.stream().map(SysUser::getNickName).collect(Collectors.toList());
                         StringJoiner joiner = new StringJoiner(",");

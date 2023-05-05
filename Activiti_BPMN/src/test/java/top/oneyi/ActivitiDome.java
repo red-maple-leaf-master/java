@@ -23,7 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.demo.ActivitiUtil;
 import top.oneyi.mapper.ActBusinessStatusMapper;
-import top.oneyi.mapper.UserMapper;
+import top.oneyi.mapper.SysUserMapper;
 import top.oneyi.pojo.ActBusinessStatus;
 import top.oneyi.pojo.ActHistoryInfoVo;
 import top.oneyi.pojo.ActProcessNodeVo;
@@ -351,7 +351,7 @@ public class ActivitiDome {
     }
 
     @Autowired
-    private UserMapper userMapper;
+    private SysUserMapper sysUserMapper;
     @Autowired
     private ActBusinessStatusMapper actBusinessStatusMapper;
 
@@ -405,7 +405,7 @@ public class ActivitiDome {
         if (actHistoryInfoVoList.size() > 0) {
             List<Long> assigneeList = actHistoryInfoVoList.stream().map(e -> Long.valueOf(e.getAssignee())).collect(Collectors.toList());
             if (assigneeList.size() > 0) {
-                List<SysUser> sysUsers = userMapper.findByIds(assigneeList);
+                List<SysUser> sysUsers = sysUserMapper.findByIds(assigneeList);
                 actHistoryInfoVoList.forEach(e -> {
                     sysUsers.stream().filter(u -> u.getUserId().toString().equals(e.getAssignee())).findFirst().ifPresent(u -> {
                         e.setNickName(u.getNickName());
@@ -434,7 +434,7 @@ public class ActivitiDome {
         assigneeList.add(5L);
         assigneeList.add(6L);
         assigneeList.add(7L);
-        List<SysUser> byIds = userMapper.findByIds(assigneeList);
+        List<SysUser> byIds = sysUserMapper.findByIds(assigneeList);
         for (SysUser byId : byIds) {
             System.out.println("byId = " + byId);
         }

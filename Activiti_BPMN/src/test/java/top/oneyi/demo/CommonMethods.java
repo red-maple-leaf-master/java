@@ -1,9 +1,7 @@
 package top.oneyi.demo;
 
 import cn.hutool.core.map.MapUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.poi.ss.formula.functions.T;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -12,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.ActivtiSpringBootApplication;
-import top.oneyi.mapper.UserMapper;
-import top.oneyi.pojo.SysUser;
+import top.oneyi.mapper.SysUserMapper;
 
 import javax.annotation.Resource;
 import java.beans.BeanInfo;
@@ -21,7 +18,6 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
@@ -33,7 +29,7 @@ import java.util.logging.Logger;
 public class CommonMethods {
 
     @Resource
-    private UserMapper userMapper;
+    private SysUserMapper sysUserMapper;
 
     @Autowired
     private SqlSession sqlSession;

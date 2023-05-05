@@ -6,7 +6,7 @@ import top.oneyi.util.MyMapper;
 
 import java.util.List;
 
-public interface UserMapper extends MyMapper<SysUser> {
+public interface SysUserMapper extends MyMapper<SysUser> {
 
     List<SysUser> findByIds(List<Long> assigneeList);
 
