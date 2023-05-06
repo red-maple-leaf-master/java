@@ -3,6 +3,7 @@ package top.oneyi.demo.strategyPattern.test;
 import top.oneyi.demo.strategyPattern.api.Receipt;
 import top.oneyi.demo.strategyPattern.common.ReceiptStrategyContext;
 import top.oneyi.demo.strategyPattern.common.ReceiptStrategyFactory;
+import top.oneyi.demo.strategyPattern.entity.Mt8104ReceiptHandleStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,9 @@ public class test {
 
         ReceiptStrategyContext receiptStrategyContext = new ReceiptStrategyContext();
         for (Receipt receipt : receiptList) {
-            receiptStrategyContext.setIReceiptHandleStrategy(new ReceiptStrategyFactory().getIReciptHandleStrategyImpl(receipt.getMessage()));
+/*            receiptStrategyContext.setIReceiptHandleStrategy(new ReceiptStrategyFactory().getIReciptHandleStrategyImpl(receipt.getMessage()));
+            receiptStrategyContext.handleReceipt(receipt);*/
+            receiptStrategyContext.setIReceiptHandleStrategy(new Mt8104ReceiptHandleStrategy());
             receiptStrategyContext.handleReceipt(receipt);
         }
     }
