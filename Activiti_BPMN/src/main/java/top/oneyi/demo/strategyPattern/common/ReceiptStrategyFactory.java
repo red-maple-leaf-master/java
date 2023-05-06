@@ -1,8 +1,9 @@
 package top.oneyi.demo.strategyPattern.common;
 
 
-import org.apache.commons.codec.binary.StringUtils;
+
 import top.oneyi.demo.strategyPattern.api.IReceiptHandleStrategy;
+import top.oneyi.demo.strategyPattern.api.Receipt;
 import top.oneyi.demo.strategyPattern.entity.Mt1101ReceiptHandleStrategy;
 import top.oneyi.demo.strategyPattern.entity.Mt2101ReceiptHandleStrategy;
 import top.oneyi.demo.strategyPattern.entity.Mt8104ReceiptHandleStrategy;
@@ -22,10 +23,12 @@ public class ReceiptStrategyFactory {
 
     public ReceiptStrategyFactory() {
         receiptHandleStrategyMap = new HashMap<>();
-        receiptHandleStrategyMap.put("Mt110",new Mt1101ReceiptHandleStrategy());
+/*        receiptHandleStrategyMap.put("Mt110",new Mt1101ReceiptHandleStrategy());
         receiptHandleStrategyMap.put("Mt210",new Mt2101ReceiptHandleStrategy());
         receiptHandleStrategyMap.put("Mt810",new Mt8104ReceiptHandleStrategy());
-        receiptHandleStrategyMap.put("Mt999",new Mt9999ReceiptHandleStrategy());
+        receiptHandleStrategyMap.put("Mt999",new Mt9999ReceiptHandleStrategy());*/
+        receiptHandleStrategyMap.put("Mt001", receipt -> {  System.out.println("解析报文MT001:" + receipt.getMessage());});
+        receiptHandleStrategyMap.put("Mt002", receipt -> {  System.out.println("解析报文MT002:" + receipt.getMessage());});
     }
 
     public IReceiptHandleStrategy getIReciptHandleStrategyImpl(String type){

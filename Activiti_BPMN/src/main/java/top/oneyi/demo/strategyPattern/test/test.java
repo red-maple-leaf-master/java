@@ -15,10 +15,12 @@ public class test {
         receiptList.add(new Receipt("我是MT1101回执喔","Mt110"));
         receiptList.add(new Receipt("我是MT8104回执喔","MT8104"));
         receiptList.add(new Receipt("我是MT9999回执喔","MT9999"));
+        receiptList.add(new Receipt("我是MT001回执喔","Mt001"));
+        receiptList.add(new Receipt("我是MT002回执喔","Mt002"));
 
         ReceiptStrategyContext receiptStrategyContext = new ReceiptStrategyContext();
         for (Receipt receipt : receiptList) {
-/*            receiptStrategyContext.setIReceiptHandleStrategy(new ReceiptStrategyFactory().getIReciptHandleStrategyImpl(receipt.getMessage()));
+           /* receiptStrategyContext.setIReceiptHandleStrategy(new ReceiptStrategyFactory().getIReciptHandleStrategyImpl(receipt.getMessage()));
             receiptStrategyContext.handleReceipt(receipt);*/
             receiptStrategyContext.setIReceiptHandleStrategy(new Mt8104ReceiptHandleStrategy());
             receiptStrategyContext.handleReceipt(receipt);
