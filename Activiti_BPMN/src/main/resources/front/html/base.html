@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <el-button type="primary" @click="getKey">获取key</el-button>
+    <el-input type="textarea" v-model="key"></el-input>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script src="../js/axios.js"></script>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="../ui/lib-2.15.6/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="../ui/lib-2.15.6/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                key: ''
+            }
+        },
+        methods: {
+            async getKey() {
+                const {data: res} = await axios.post('http://localhost:8014/base')
+                console.log(res)
+                this.key=res
+            }
+        }
+    })
+</script>
+</body>
+</html>

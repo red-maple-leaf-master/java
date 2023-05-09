@@ -2,12 +2,26 @@ package top.oneyi.controller;
 
 import org.springframework.web.bind.annotation.*;
 import top.oneyi.pojo.dto.UserDto;
+import top.oneyi.util.RsaUtil;
 
 import javax.servlet.http.HttpSession;
 
 @RestController
 public class AxiosController {
 
+    @PostMapping("/base")
+    public String base(){
+        String publicKey = RsaUtil.getPublicKey();
+        System.out.println("publicKey = " + publicKey);
+        // 公钥
+        return publicKey;
+    }
+    @PostMapping("/baseurl")
+    public String base02(String key){
+        // 公钥
+        System.out.println(key);
+        return "接收公钥成功";
+    }
     @GetMapping("/api/a1")
     public String a1() {
         return "get request";

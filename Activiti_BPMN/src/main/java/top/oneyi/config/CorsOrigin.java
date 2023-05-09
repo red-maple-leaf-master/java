@@ -15,7 +15,8 @@ public class CorsOrigin implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 // 前端的地址
-                .allowedOrigins("http://localhost:1010")
+//                .allowedOrigins("http://localhost:63342")
+                .allowedOrigins("*")
                 .allowCredentials(true);
     }
 }
