@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+
+<!-- 参考博文 https://www.cnblogs.com/huanzi-qch/p/10913636.html-->
 <div id="app">
     <el-button type="primary" @click="getKey">获取key</el-button>
     <el-input type="textarea" v-model="key"></el-input>
@@ -17,6 +19,8 @@
 <link rel="stylesheet" href="../ui/lib-2.15.6/theme-chalk/index.css">
 <!-- 引入组件库 -->
 <script src="../ui/lib-2.15.6/index.js"></script>
+<script src="../utils/aes.js"></script>
+<script src="../utils/rsa.js"></script>
 <script>
     new Vue({
         el: '#app',
@@ -29,7 +33,20 @@
             async getKey() {
                 const {data: res} = await axios.post('http://localhost:8014/base')
                 console.log(res)
-                this.key=res
+                this.key = res
+                this.getKeys()
+            },
+            async getKeys() {
+                // 密钥对
+                let keyPair = rsaUtil.genKeyPair();
+                // 用后端的公钥加密前端的公钥
+                let enPublicKey = rsaUtil.encrypt(keyPair.publicKey, this.key)
+                let str = '你好啊   我是加密的数据';
+                let message = rsaUtil.encrypt(this.key, str)
+                const {data: res} = await axios.post('http://localhost:8014/baseurl',{
+                    msg:message
+                })
+                console.log(res)
             }
         }
     })
