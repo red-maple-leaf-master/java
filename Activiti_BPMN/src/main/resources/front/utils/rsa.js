@@ -43,3 +43,6 @@ var rsaUtil = {
         return decString;
     }
 };
+
+let keyPair = rsaUtil.genKeyPair();
+console.log(keyPair)
