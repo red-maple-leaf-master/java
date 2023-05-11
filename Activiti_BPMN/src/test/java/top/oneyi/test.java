@@ -12,16 +12,20 @@ import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.apache.catalina.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.demo.*;
+import top.oneyi.mapper.SysUserMapper;
 import top.oneyi.pojo.ActBusinessStatus;
 import top.oneyi.pojo.ActResult;
+import top.oneyi.pojo.SysUser;
 import top.oneyi.service.ActBusinessStatusService;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -38,6 +42,19 @@ public class test {
     private ManagementService managementService;
     @Autowired
     private HistoryService historyService;
+
+    @Resource
+    private top.oneyi.service.TaskService taskService01;
+
+    @Resource
+    private SysUserMapper sysUserMapper;
+
+    @Test
+    public void test01(){
+        SysUser byId = sysUserMapper.findById(10L);
+        byId.setNickName("大是大非地方");
+        sysUserMapper.updateByPrimaryKey(byId);
+    }
 
     @Test
     public void test() {

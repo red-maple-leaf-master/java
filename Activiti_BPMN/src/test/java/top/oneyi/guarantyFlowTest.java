@@ -9,7 +9,8 @@ import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,9 +25,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-@RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
-@SpringBootTest(classes = ActivtiSpringBootApplication.class)//加载 SpringBoot 启动类
+//@RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
+//@SpringBootTest(classes = ActivtiSpringBootApplication.class)//加载 SpringBoot 启动类
+@SpringBootTest
 public class guarantyFlowTest {
 
     @Autowired
@@ -35,7 +36,7 @@ public class guarantyFlowTest {
     @Autowired
     private TaskService taskService;
 
-    @Resource
+    @Autowired
     private ActRuTaskMapper actRuTaskMapper;
 
     @Test
@@ -65,7 +66,7 @@ public class guarantyFlowTest {
     /**
      * 完成任务
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void doTask() {
         Task task = activitiUtil.findTask("5d4e9230-bc96-11ed-b4ef-a036bc096aaf");
         taskService.addComment(task.getId(), task.getProcessInstanceId(), task.getName() + "-: 同意", "通过意见");
@@ -75,7 +76,7 @@ public class guarantyFlowTest {
     /**
      * 跳过任务
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void jumpTest() {
         String taskDefKey = "sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9";
         ProcessInstance processInstance = activitiUtil.findProcessInstance("businessKey-002", "financial");
@@ -85,7 +86,7 @@ public class guarantyFlowTest {
     /**
      * 根据负责人id 和业务key 查找指定任务
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void selectHistoryTask() {
         // 负责人id
         String assigne = "2";
@@ -104,7 +105,7 @@ public class guarantyFlowTest {
     /**
      * 该负责人需要经手和未经受的任务
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void selectHistoryTasks() {
         // 负责人id
         String assigne = "2";
@@ -188,7 +189,7 @@ public class guarantyFlowTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void newHistoryTask() {
         // 负责人id
         String assigne = "2";
@@ -232,7 +233,7 @@ public class guarantyFlowTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void test01() {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         HistoryService historyService = processEngine.getHistoryService();
@@ -256,7 +257,7 @@ public class guarantyFlowTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void test02(){
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         HistoryService historyService = processEngine.getHistoryService();

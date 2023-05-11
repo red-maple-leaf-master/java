@@ -38,4 +38,6 @@ mybatis:
   type-aliases-package: top.oneyi.pojo.po
   configuration:
     map-underscore-to-camel-case: true   # 开启驼峰
-
+logging:
+  level:
+    com.zoctan.api.mapper : debug
