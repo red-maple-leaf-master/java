@@ -51,14 +51,12 @@ public class DroolsAutoConfiguration {
     public KieContainer kieContainer() throws IOException {
         final KieRepository kieRepository = getKieServices().getRepository();
 
-        kieRepository.addKieModule(() -> kieRepository.getDefaultReleaseId());
+        kieRepository.addKieModule(kieRepository::getDefaultReleaseId);
 
         KieBuilder kieBuilder = getKieServices().newKieBuilder(kieFileSystem());
         kieBuilder.buildAll();
 
-        KieContainer kieContainer = getKieServices().newKieContainer(kieRepository.getDefaultReleaseId());
-
-        return kieContainer;
+        return getKieServices().newKieContainer(kieRepository.getDefaultReleaseId());
     }
 
     @Bean
