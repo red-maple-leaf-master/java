@@ -22,6 +22,12 @@
     </parent>
 
     <dependencies>
+
+        <!-- 生成元数据-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
         <!--guava-->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -298,6 +304,7 @@
             </releases>
         </repository>
     </repositories>
+
 
 </project>
 

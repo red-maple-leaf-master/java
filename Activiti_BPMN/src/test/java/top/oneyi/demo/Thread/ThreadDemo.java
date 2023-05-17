@@ -1,12 +1,18 @@
 package top.oneyi.demo.Thread;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import top.oneyi.ActivtiSpringBootApplication;
 import top.oneyi.controller.AxiosController;
 
 import java.util.HashMap;
@@ -15,12 +21,22 @@ import java.util.Map;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@Slf4j
+@RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
+@SpringBootTest(classes = ActivtiSpringBootApplication.class)//加载 SpringBoot 启动类
 public class ThreadDemo {
 
     // 创建资源
     private static final Object resourceA = new Object();
     private static final Object resourceB = new Object();
+
+    @Value("${com.didispace.from:}")
+    private String from;
+
+    @Test
+    public void test04(){
+        log.info("com.didispace.from : {}", from);
+    }
 
     @Test
     public void test01() throws InterruptedException {

@@ -1,22 +1,23 @@
 package top.oneyi.controller;
 
 import org.springframework.web.bind.annotation.*;
+import top.oneyi.pojo.Person;
 import top.oneyi.pojo.dto.UserDto;
 import top.oneyi.util.RsaUtil;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @RestController
+@RequestMapping
 public class AxiosController {
 
     private final static String publicKey =  RsaUtil.getPublicKey();
 
     @PostMapping("/base")
-    public String base(){
-//        String publicKey = RsaUtil.getPublicKey();
-        System.out.println("publicKey = " + publicKey);
-        // 公钥
-        return publicKey;
+    public String base(@Valid @RequestBody Person person){
+        System.out.println("person = " + person);
+        return "校验成功";
     }
     @PostMapping("/baseurl")
     public String base02(String msg) throws Exception {

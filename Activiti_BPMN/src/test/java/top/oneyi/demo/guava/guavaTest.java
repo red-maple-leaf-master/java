@@ -1,6 +1,12 @@
 package top.oneyi.demo.guava;
 
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.collect.*;
+
+import org.apache.logging.log4j.util.Strings;
+import org.assertj.core.util.Preconditions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.parameters.P;
 import top.oneyi.pojo.Person;
@@ -117,12 +123,43 @@ public class guavaTest {
     @Test
     public void test05() {
         ClassToInstanceMap<Object> instanceMap = MutableClassToInstanceMap.create();
-        Person person = new Person();
+        Person person = new Person(1L,"aa",14);
         person.setName("dfdfjlk");
         person.setAge(23);
 
         instanceMap.putInstance(Person.class, person);
         Person instance = instanceMap.getInstance(Person.class);
         System.out.println("instance = " + instance);
+    }
+
+    @Test
+    public void test06(){
+        System.out.println(Strings.isNotBlank(""));
+        System.out.println(Strings.isNotBlank(null));
+        System.out.println(Strings.isNotBlank(" "));
+        System.out.println(Strings.isNotBlank("hellf"));
+        System.out.println("================================");
+        System.out.println(isNotNUll(""));
+        System.out.println(isNotNUll(null));
+        System.out.println(isNotNUll(" "));
+        System.out.println(isNotNUll("hellf"));
+        System.out.println("================================");
+        Person person = new Person(1L,"aa",14);  //String name  ,Integer age
+        Person ps = new Person(2L,"bb",13);
+        Ordering<Person> byOrdering = Ordering.natural().nullsFirst().onResultOf(new Function<Person,String>(){
+            public String apply(Person person){
+                return String.valueOf(person.getAge());
+            }
+        });
+        byOrdering.compare(person, ps);
+        System.out.println(byOrdering.compare(person, ps)); //1      person的年龄比ps大 所以输出1
+
+        Person pp = null;
+        Person person1 = Preconditions.checkNotNull(pp);
+        System.out.println(person1);
+    }
+
+    public boolean isNotNUll(String s){
+        return s == null || s.trim().isEmpty();
     }
 }

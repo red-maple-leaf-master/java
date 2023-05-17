@@ -1,7 +1,5 @@
 server:
   port: 8014
-#server:
-#  port: ${random.int}
 
 spring:
   application:
@@ -43,3 +41,4 @@ mybatis:
 logging:
   level:
     com.zoctan.api.mapper : debug
+

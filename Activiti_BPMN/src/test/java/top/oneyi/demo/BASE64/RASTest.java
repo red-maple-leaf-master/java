@@ -36,7 +36,7 @@ public class RASTest {
     @Test
     public void test02(){
         //复杂对象
-        Person pserson = new Person();
+        Person pserson = new Person(1L,"aa",14);
         pserson.setAge(12);
         pserson.setName("张三");
         try {
