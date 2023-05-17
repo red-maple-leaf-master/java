@@ -1,6 +1,20 @@
 package top.oneyi.demo.Thread;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import top.oneyi.controller.AxiosController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class ThreadDemo {
 
@@ -74,8 +88,24 @@ public class ThreadDemo {
         System.out.println("main thread is over");
     }
 
-    @Test
-    public void test03(){
+    private MockMvc mvc;
 
+    @Before
+    public void setUp(){
+        mvc = MockMvcBuilders.standaloneSetup(new AxiosController()).build();
     }
+
+
+    @Test
+    public void test03() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/api/a1").accept(MediaType.APPLICATION_JSON))
+                //import static org.hamcrest.Matchers.equalTo;
+                //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+                //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+                // 要想 status 和 content 可以用 导入上面的依赖
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("get request")));
+    }
+
+
 }
