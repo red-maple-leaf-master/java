@@ -9,6 +9,7 @@ import top.oneyi.pojo.po.SysMenu;
 import top.oneyi.service.MenuService;
 import top.oneyi.util.JWTUtil;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @Autowired
+    @Resource
     private HttpServletRequest request;
     /**
      * 查询菜单

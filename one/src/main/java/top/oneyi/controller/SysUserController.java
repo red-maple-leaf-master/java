@@ -4,12 +4,15 @@ package top.oneyi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.oneyi.common.responseServer;
+import top.oneyi.pojo.po.OneUser;
 import top.oneyi.pojo.po.SysUser;
 import top.oneyi.service.SysUserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -39,5 +42,10 @@ public class SysUserController {
     @RequestMapping("/select")
     public List<SysUser> findAll(SysUser user){
         return sysUserService.findAll(user);
+    }
+
+    @PostMapping("/base")
+    public String one(@Valid @RequestBody OneUser oneUser){
+        return "成功返回";
     }
 }
