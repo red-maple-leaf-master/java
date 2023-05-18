@@ -54,11 +54,13 @@
 <!--            数据库中存在text类型的字段 需要添加在这里 否则 就会出现 以WithBLOBs后缀的实体-->
             <columnOverride column="fu_jian" javaType="java.lang.String" jdbcType="VARCHAR" />
         </table>
+
+
         <!-- ============================================================================= -->
-        <table tableName="md_goods" delimitIdentifiers="true">
-            <!--            false 生成的实体类为驼峰  ture 则是数据库字段什么样实体类就什么样-->
+<!--        <table tableName="md_goods" delimitIdentifiers="true">
+            &lt;!&ndash;            false 生成的实体类为驼峰  ture 则是数据库字段什么样实体类就什么样&ndash;&gt;
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>

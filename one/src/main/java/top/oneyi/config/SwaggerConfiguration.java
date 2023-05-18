@@ -27,7 +27,7 @@ public class SwaggerConfiguration {
     public Docket defaultApi2() {
         String groupName="2.X版本";
         Docket docket=new Docket(DocumentationType.SWAGGER_2)
-                .host("https://www.baidu.com")
+                .host("https://www.oneyi.top")
                 .apiInfo(apiInfo())
                 .groupName(groupName)
                 .select()
@@ -40,10 +40,10 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                //.title("swagger-bootstrap-ui-demo RESTful APIs")
-                .description("# swagger-bootstrap-ui-demo RESTful APIs")
-                .termsOfServiceUrl("http://www.xx.com/")
-                .contact("xx@qq.com")
+                .title("红枫叶主 的 RESTful APIs")
+                .description("# 红枫叶主 的 RESTful APIs")
+                .termsOfServiceUrl("http://www.oneyi.top/")
+                .contact("1362187574@qq.com")
                 .version("1.0")
                 .build();
     }
