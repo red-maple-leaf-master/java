@@ -18,3 +18,11 @@ spring:
     type-aliases-package: top.oneyi.pojo.po
     configuration:
       map-underscore-to-camel-case: true   # 开启驼峰
+knife4j:
+  # 开启增强配置
+  enable: true
+  setting:
+    enableSwaggerModels: true
+    swaggerModelName: 实体类
+  #开启生产环境屏蔽
+  production: false
