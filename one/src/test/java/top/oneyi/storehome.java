@@ -1,7 +1,11 @@
 package top.oneyi;
 
 import net.minidev.json.JSONUtil;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
+import top.oneyi.pojo.po.SysUser;
+import top.oneyi.util.MyCsvFileUtil;
 
 
 import java.io.*;
@@ -138,5 +142,33 @@ public class storehome {
             os.flush();
         }
     }
+
+    String fileName = "E:\\Desktop\\wan001.csv";
+    @Test
+    public void test07(){
+        List<SysUser> list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            SysUser user = new SysUser();
+            user.setId((long) i);
+            user.setIsShow(1);
+            user.setRealName("中湖");
+            user.setUserPassword("132465");
+            user.setUpdateTime(new Date());
+            user.setCreateTime(new Date());
+            list.add(user);
+        }
+       // 创建表格行标题
+        String tableNames = MyCsvFileUtil.buildCsvFileTableNames(list);
+        // 创建文件
+        MyCsvFileUtil.writeFile(fileName,tableNames);
+        // 写入数据
+//        String contentBody = MyCsvFileUtil.buildCsvFileBodyMap(list);
+        List<String> bodyList = MyCsvFileUtil.buildCsvFileBodyMapToList(list,tableNames);
+        // 调用方法生成
+//        MyCsvFileUtil.writeFile(fileName,contentBody);
+        MyCsvFileUtil.createXlsx(bodyList);
+    }
+
+
 
 }

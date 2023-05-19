@@ -7,31 +7,31 @@
 
     <context id="Tables" targetRuntime="MyBatis3">
 
-        <!-- 批量插入插件 -->
+<!--        &lt;!&ndash; 批量插入插件 &ndash;&gt;
         <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">
             <property name="allowMultiQueries" value="false"/>
         </plugin>
 
-        <!--重命名查询class名称-->
+        &lt;!&ndash;重命名查询class名称&ndash;&gt;
         <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" >
             <property name="searchString" value="Example$"/>
             <property name="replaceString" value="Criteria"/>
         </plugin>
 
-        <!-- 查询单条数据插件 -->
+        &lt;!&ndash; 查询单条数据插件 &ndash;&gt;
         <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
 
-        <!-- MySQL分页插件 -->
+        &lt;!&ndash; MySQL分页插件 &ndash;&gt;
         <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin">
-            <!-- 通过配置startPage影响Example中的page方法开始分页的页码，默认分页从0开始 -->
+            &lt;!&ndash; 通过配置startPage影响Example中的page方法开始分页的页码，默认分页从0开始 &ndash;&gt;
             <property name="startPage" value="1"/>
         </plugin>
 
-        <!-- 自定义注释插件 -->
+        &lt;!&ndash; 自定义注释插件 &ndash;&gt;
         <plugin type="com.itfsw.mybatis.generator.plugins.CommentPlugin">
-            <!-- 自定义模板路径 -->
+            &lt;!&ndash; 自定义模板路径 &ndash;&gt;
             <property name="template" value="src/main/resources/mybatis-generator-comment.ftl" />
-        </plugin>
+        </plugin>-->
 
         <!-- Lombok插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.LombokPlugin">
@@ -89,15 +89,15 @@
 
         <!-- 配置表信息 -->
         <!-- tableName为对应的数据库表 -->
-        <table tableName="student_info">
+        <table tableName="md_cus">
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>
 
-        <table tableName="class_info">
+<!--        <table tableName="class_info">
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-        </table>
+        </table>-->
 
     </context>
 </generatorConfiguration>

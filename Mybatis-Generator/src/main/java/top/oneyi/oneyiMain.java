@@ -1,13 +1,17 @@
 package top.oneyi;
 
+import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.Context;
+import org.mybatis.generator.config.ModelType;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class oneyiMain {
         public static void main(String[] args) throws Exception {
@@ -18,7 +22,6 @@ public class oneyiMain {
             InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("generator-configuration.xml");
             ConfigurationParser cp = new ConfigurationParser(warnings);
             Configuration config = cp.parseConfiguration(in);
-
             DefaultShellCallback callback = new DefaultShellCallback(override);
             //创建MBG
             MyBatisGenerator mbg = new MyBatisGenerator(config, callback, warnings);
