@@ -57,7 +57,8 @@ public class LoanApplicationTest {
         Authentication.setAuthenticatedUserId("0");
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(KEY, BusinessKey, map);
         String processInstanceId = processInstance.getProcessInstanceId();
-        ActBusinessStatus actBusinessStatus = businessStatusMapper.selectByPrimaryKey(BusinessKey);
+        ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
+
 
         actBusinessStatus.setProcessInstanceId(processInstanceId);
         actBusinessStatus.setUpdateTime(new Date());

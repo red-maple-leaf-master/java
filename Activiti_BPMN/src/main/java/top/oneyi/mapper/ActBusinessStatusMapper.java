@@ -20,4 +20,6 @@ public interface ActBusinessStatusMapper extends MyMapper<ActBusinessStatus>, Co
      ActBusinessStatus selectByProcessInstanceId(String processInstanceId);
 
      String selectByAssignee(String businessKey);
+
+     ActBusinessStatus selectById(String id);
 }
