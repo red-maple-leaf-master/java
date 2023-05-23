@@ -1,6 +1,7 @@
 package top.oneyi.pojo;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @created: 2021/10/16 15:36
  */
 @Data
+@ToString
 public class ActHistoryInfoVo implements Serializable {
 
     private static final long serialVersionUID=1L;
