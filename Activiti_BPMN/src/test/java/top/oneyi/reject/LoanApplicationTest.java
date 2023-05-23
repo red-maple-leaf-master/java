@@ -59,7 +59,6 @@ public class LoanApplicationTest {
         String processInstanceId = processInstance.getProcessInstanceId();
         ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
 
-
         actBusinessStatus.setProcessInstanceId(processInstanceId);
         actBusinessStatus.setUpdateTime(new Date());
         actBusinessStatus.setUpdateBy("管理员");
@@ -76,6 +75,31 @@ public class LoanApplicationTest {
 
 
     }
+
+    @Test
+    public void reFlow(){
+        ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
+        String processInstanceId = actBusinessStatus.getProcessInstanceId();
+        runtimeService.activateProcessInstanceById(processInstanceId);
+    }
+    /**
+     * 激活任务
+     * @param processId
+     */
+
+    public void activeTaskByProcessId(String processId){
+        runtimeService.activateProcessInstanceById(processId);
+    }
+
+    /**
+     * 挂起任务
+     * @param processId
+     */
+
+    public void suspendTaskByProcessId(String processId){
+        runtimeService.suspendProcessInstanceById(processId);
+    }
+
     /**
      * 审批==完成任务
      */
