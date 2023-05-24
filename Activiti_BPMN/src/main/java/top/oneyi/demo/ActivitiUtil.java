@@ -78,9 +78,6 @@ public class ActivitiUtil {
                 .processInstanceBusinessKey(businessKey)
                 .processDefinitionKey(key)
                 .list();
-        if(processInstance.size() > 1){
-            return null;
-        }
         if(processInstance.size() == 0){
             return null;
         }

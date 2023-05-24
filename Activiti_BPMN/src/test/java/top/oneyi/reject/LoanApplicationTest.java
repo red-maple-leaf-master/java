@@ -1,6 +1,7 @@
 package top.oneyi.reject;
 
 import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.impl.util.CollectionUtil;
@@ -19,6 +20,7 @@ import top.oneyi.pojo.ActHistoryInfoVo;
 import top.oneyi.pojo.SysUser;
 
 import javax.annotation.Resource;
+import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,7 +39,7 @@ public class LoanApplicationTest {
     private HistoryService historyService;
 
     private static final String KEY = "loanFlow";
-    private static final String BusinessKey = "1";
+    private static final String BusinessKey = "2";
 
     @Resource
     private ActBusinessStatusMapper businessStatusMapper;
@@ -59,28 +61,66 @@ public class LoanApplicationTest {
         String processInstanceId = processInstance.getProcessInstanceId();
         ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
 
-        actBusinessStatus.setProcessInstanceId(processInstanceId);
-        actBusinessStatus.setUpdateTime(new Date());
-        actBusinessStatus.setUpdateBy("管理员");
-        actBusinessStatus.setStatus("waiting");
         if(actBusinessStatus == null){
+            actBusinessStatus = new ActBusinessStatus();
             actBusinessStatus.setBusinessKey(BusinessKey);
             actBusinessStatus.setId(BusinessKey);
             actBusinessStatus.setCreateTime(new Date());
             actBusinessStatus.setCreateBy("管理员");
+            actBusinessStatus.setProcessInstanceId(processInstanceId);
+            actBusinessStatus.setUpdateTime(new Date());
+            actBusinessStatus.setUpdateBy("管理员");
+            actBusinessStatus.setStatus("waiting");
             businessStatusMapper.insert(actBusinessStatus);
         }else{
+            actBusinessStatus.setProcessInstanceId(processInstanceId);
+            actBusinessStatus.setUpdateTime(new Date());
+            actBusinessStatus.setUpdateBy("管理员");
+            actBusinessStatus.setStatus("waiting");
             businessStatusMapper.updateByPrimaryKey(actBusinessStatus);
         }
 
 
     }
+    /**
+     * 跳过任务
+     */
+    @Test
+    public void jumpTest() {
+        List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processDefinitionKey(KEY).processInstanceBusinessKey(BusinessKey).orderByTaskCreateTime().asc().list();
 
+        list.forEach(c->{
+            System.out.println("任务id = " + c.getTaskDefinitionKey());
+            System.out.println("创建时间 = " + c.getCreateTime());
+        });
+        // 跳到最初的创建者的位置
+        String taskDefKey = list.get(0).getTaskDefinitionKey();
+        ProcessInstance processInstance = activitiUtil.findProcessInstance(BusinessKey, KEY);
+        activitiUtil.jumpTask(processInstance, taskDefKey, BusinessKey);
+    }
+
+
+    @Test
+    public void queryProcessInstanceList(){
+        List<HistoricProcessInstance> list = historyService.createHistoricProcessInstanceQuery().processInstanceBusinessKey(BusinessKey).processDefinitionKey(KEY).orderByProcessInstanceStartTime().desc().list();
+        for (HistoricProcessInstance historicProcessInstance : list) {
+            System.out.println("historicProcessInstance = " + historicProcessInstance.getProcessDefinitionName());
+            System.out.println("historicProcessInstance = " + historicProcessInstance.getProcessDefinitionKey());
+            System.out.println("historicProcessInstance = " + historicProcessInstance.getBusinessKey());
+            System.out.println("historicProcessInstance = " + historicProcessInstance.getDeleteReason());
+        }
+    }
+
+    /**
+     * 重启任务
+     */
     @Test
     public void reFlow(){
         ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
         String processInstanceId = actBusinessStatus.getProcessInstanceId();
-        runtimeService.activateProcessInstanceById(processInstanceId);
+       this.activeTaskByProcessId(processInstanceId);
+       // 激活之后就去驳回到最初的任务
+        this.jumpTest();
     }
     /**
      * 激活任务
@@ -90,7 +130,15 @@ public class LoanApplicationTest {
     public void activeTaskByProcessId(String processId){
         runtimeService.activateProcessInstanceById(processId);
     }
-
+    /**
+     * 挂起任务
+     */
+    @Test
+    public void stopFlow(){
+        ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
+        String processInstanceId = actBusinessStatus.getProcessInstanceId();
+        this.suspendTaskByProcessId(processInstanceId);
+    }
     /**
      * 挂起任务
      * @param processId
