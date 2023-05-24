@@ -18,9 +18,10 @@ import java.io.IOException;
 
 
 /**
- * <p> 规则引擎自动配置类 </p>
- * @author ityml
- * @date 2019/9/10 11:20
+ * 配置Drools的服务类，方便在Rest接口中调用。 该类负责加载具体的drl规则文件，
+ * 不再需要kmodule.xml配置文件了。
+ * @author oneyi
+ * @date 2023/5/24
  */
 @Configuration
 public class DroolsAutoConfiguration {

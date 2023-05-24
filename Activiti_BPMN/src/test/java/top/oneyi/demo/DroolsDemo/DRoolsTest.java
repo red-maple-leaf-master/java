@@ -28,8 +28,8 @@ public class DRoolsTest {
         statefulKieSession = container.newKieSession();
         Person person = new Person();
 
-        person.setAge(12);
-        person.setName("Test");
+        person.setAge(30);
+        person.setName("bob");
 
         statefulKieSession.insert(person);
         statefulKieSession.fireAllRules();

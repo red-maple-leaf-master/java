@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.ActivtiSpringBootApplication;
 import top.oneyi.pojo.Order;
+import top.oneyi.pojo.Person;
 
 import javax.annotation.Resource;
 import java.text.DateFormat;
@@ -72,6 +73,18 @@ public class DroolsOrderTests  {
         kieSession.dispose();
     }
 
+    @Test
+    public void droolsPersonTest(){
+        KieSession kieSession = kieContainer.newKieSession();
+        Person person = new Person();
+
+        person.setAge(55);
+        person.setName("bob");
+
+        kieSession.insert(person);
+        kieSession.fireAllRules();
+        kieSession.dispose();
+    }
 
 
     private static void addScore(Order o){
