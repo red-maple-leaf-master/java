@@ -3,9 +3,11 @@ package top.oneyi;
 
 import cn.hutool.core.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.drools.core.base.RuleNameEndsWithAgendaFilter;
 import org.drools.core.util.StringUtils;
 import org.drools.template.ObjectDataCompiler;
 import org.junit.jupiter.api.Test;
+import org.kie.api.KieServices;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -13,9 +15,7 @@ import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.utils.KieHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.oneyi.pojo.BizDroolsRuleConfig;
-import top.oneyi.pojo.GuatanteeCost;
-import top.oneyi.pojo.Person;
+import top.oneyi.pojo.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -25,13 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@SpringBootTest
+//@SpringBootTest
 public class DroolsTest {
 
 
     @Resource
     private KieContainer kieContainer;
-
 
     @Test
     public void droolsPersonTest() {
@@ -114,5 +113,15 @@ public class DroolsTest {
 
     }
 
+    @Test
+    public void test02(){
+        KieSession kieSession = kieContainer.newKieSession();
+        GradingLevel gradingLevel = new GradingLevel();
+        gradingLevel.setScoreInterval("50");
+
+        kieSession.insert(gradingLevel);
+        kieSession.fireAllRules();
+        kieSession.dispose();
+    }
 
 }

@@ -1,10 +1,14 @@
 package top.oneyi.config;
 
+import org.drools.compiler.kie.builder.impl.InternalKieModule;
+import org.drools.compiler.kie.builder.impl.KieModuleKieProject;
+import org.drools.compiler.kie.builder.impl.KieProject;
 import org.kie.api.KieBase;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.KieRepository;
+import org.kie.api.builder.ReleaseId;
 import org.kie.api.runtime.KieContainer;
 import org.kie.internal.io.ResourceFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -50,7 +54,7 @@ public class DroolsAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(KieContainer.class)
     public KieContainer kieContainer() throws IOException {
-        final KieRepository kieRepository = getKieServices().getRepository();
+         final KieRepository kieRepository = getKieServices().getRepository();
 
         kieRepository.addKieModule(kieRepository::getDefaultReleaseId);
 
@@ -66,4 +70,7 @@ public class DroolsAutoConfiguration {
         return kieContainer().getKieBase();
     }
 
+
 }
+
+
