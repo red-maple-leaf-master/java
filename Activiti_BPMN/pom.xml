@@ -23,6 +23,7 @@
 
     <dependencies>
 
+
         <!-- 生成元数据-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

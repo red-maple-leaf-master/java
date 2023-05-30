@@ -13,5 +13,5 @@ public class GradingLevel {
     /**
      * 分值区间
      */
-    private String scoreInterval;
+    private Integer scoreInterval;
 }
