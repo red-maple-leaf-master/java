@@ -1,20 +1,18 @@
 package top.oneyi.flowable.controller;
 
-import org.flowable.engine.ProcessEngine;
-import org.flowable.engine.RepositoryService;
-import org.flowable.engine.RuntimeService;
-import org.flowable.engine.TaskService;
+import org.flowable.engine.*;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 
 
-
+import org.flowable.task.api.history.HistoricTaskInstance;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,6 +27,8 @@ public class FlowController {
     private RepositoryService repositoryService;
     @Resource
     private ProcessEngine processEngine;
+    @Resource
+    private HistoryService historyService;
 
 
     /**
@@ -91,9 +91,12 @@ public class FlowController {
      */
     @GetMapping("/historyTask")
     public String historyTask(String businessKey,String key){
+        List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceBusinessKey(businessKey).processDefinitionKey(key).list();
+        for (HistoricTaskInstance historicTaskInstance : list) {
 
+        }
 
-        return "不通过";
+        return "历史任务打印在控制台";
     }
 
 }
