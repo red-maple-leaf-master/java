@@ -60,9 +60,13 @@ public class FlowController {
      */
     @GetMapping("/startFlow")
     public String startFlow(String businessKey,String key){
+        Map<String,Object> map = new HashMap<>();
+        map.put("one","1");
+        map.put("two","2");
+        map.put("stree","3");
         // 设置启动人
         Authentication.setAuthenticatedUserId("admin");
-        runtimeService.startProcessInstanceByKey(key,businessKey);
+        runtimeService.startProcessInstanceById(key,businessKey,map);
         return "开启流程成功";
     }
     /**
@@ -149,7 +153,7 @@ public class FlowController {
         return "通过";
     }
     /**
-     * 通过
+     * 详细信息
      * @param businessKey
      * @return
      */
@@ -176,9 +180,12 @@ public class FlowController {
         }
         for (Task task1 : list) {
             //通过审核
+            taskService.setVariable(task1.getId(),"one","12315646");
+            taskService.setVariable(task1.getId(),"stree","333333");
+            taskService.setVariable(task1.getId(),"two","222222222");
+
             Map<String, Object> variables = taskService.getVariables(task1.getId());
             System.out.println("variables = " + variables);
-
 //            HashMap<String, Object> map = new HashMap<>();
 //            map.put("outcome", "通过");
 //            taskService.complete(task1.getId(),map);
