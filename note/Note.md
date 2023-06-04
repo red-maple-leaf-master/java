@@ -39,3 +39,10 @@ TestNG是Test Next Generation的缩写，它的灵感来自于JUnit和NUnit，�
 - 内嵌BeanShell。
 - 提供运行时和日志的JDK函数（不需要添加dependencies）。
 - 提供应用服务器测试依赖的方法。
+## flowable
+自动执行事件 serviceTask 
+主要属性  flowable:class= "全类名"
+该类需要实现 JavaDelegate 并实现方法 execute 来写自动执行的事件
+
+HistoryActivityInstanceQuery  查看活跃过的历史数据  每个节点的数据 (获取节点名称 流程处理事件的时间)
+
