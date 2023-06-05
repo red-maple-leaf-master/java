@@ -269,4 +269,19 @@ public class guarantyFlowTest {
         System.out.println("historicProcessInstance.getProcessDefinitionKey() = " + historicProcessInstance.getProcessDefinitionKey());
         System.out.println("historicProcessInstance.getProcessDefinitionName() = " + historicProcessInstance.getProcessDefinitionName());*/
     }
+
+    @Test
+    public void test03(){
+        //根据businessKey获得流程实例id
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+
+        HistoryService historyService = processEngine.getHistoryService();
+        List<HistoricProcessInstance> historicProcessInstanceList = historyService.createHistoricProcessInstanceQuery()
+                .processInstanceBusinessKey("1")
+                .processDefinitionKey("creditFlow")
+                .list();
+        for (HistoricProcessInstance historicProcessInstance : historicProcessInstanceList) {
+            System.out.println("historicProcessInstance = " + historicProcessInstance);
+        }
+    }
 }
