@@ -54,11 +54,13 @@ public class LoanManagementTest {
         List<Task> tasks = taskService.createTaskQuery()
                 .processInstanceBusinessKey(BusinessKey)
                 .processDefinitionKey(KEY)
-                .taskCandidateUser("1")
+//                .taskCandidateUser("1")
                 .list();
         for (Task task : tasks) {
             System.out.println("task.getAssignee() = " + task.getAssignee());
             System.out.println("task.getOwner() = " + task.getOwner());
+            System.out.println("task.getClaimTime() = " + task.getClaimTime());
+            System.out.println("task.getDueDate() = " + task.getDueDate());
         }
 
     }
@@ -94,6 +96,23 @@ public class LoanManagementTest {
             // 拾取对应的任务
             taskService.unclaim(task.getId());
             System.out.println("归还拾取成功");
+        }
+
+    }
+    /**
+     * 任务的委托
+     */
+    @Test
+    public void delegationTask(){
+        Task task = taskService.createTaskQuery()
+                .processInstanceBusinessKey(BusinessKey)
+                .processDefinitionKey(KEY)
+                .taskAssignee("我是委托人")
+                .singleResult();
+        if(task != null){
+            // 委托对应的任务
+            taskService.delegateTask(task.getId(),"1");
+            System.out.println("委托成功");
         }
 
     }
