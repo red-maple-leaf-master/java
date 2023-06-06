@@ -49,8 +49,8 @@ public class ActivitiDeployment {
 
         //3.进行部署
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("diagram/one.bpmn")
-                .addClasspathResource("diagram/one.png")
+                .addClasspathResource("diagram/userFlow.bpmn")
+//                .addClasspathResource("diagram/one.png")
                 .name( "测试" )
                 .deploy();
 
