@@ -16,12 +16,20 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <!--     docx4j   -->
+        <!--pio-tl-->
         <dependency>
+            <groupId>com.deepoove</groupId>
+            <artifactId>poi-tl</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+
+
+        <!--     docx4j   -->
+<!--        <dependency>
             <groupId>org.docx4j</groupId>
             <artifactId>docx4j</artifactId>
             <version>6.1.2</version>
-        </dependency>
+        </dependency>-->
         <!-- web依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
