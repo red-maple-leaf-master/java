@@ -1,4 +1,4 @@
-package oneyi.controller;
+package top.oneyi.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
