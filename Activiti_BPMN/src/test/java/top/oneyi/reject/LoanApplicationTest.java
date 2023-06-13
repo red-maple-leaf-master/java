@@ -38,7 +38,7 @@ public class LoanApplicationTest {
     @Autowired
     private HistoryService historyService;
 
-    private static final String KEY = "loanFlow";
+    private static final String KEY = "LendingProcess";
     private static final String BusinessKey = "2";
 
     @Resource
@@ -52,10 +52,10 @@ public class LoanApplicationTest {
     @Test
     public void startFlow() {
         Map<String, Object> map = new HashMap<>();
-        map.put("khjl", "1");
-        map.put("bmjl", "2");
-        map.put("zxfzr", "3");
-        map.put("zjl", "4");
+        map.put("khjl", "6");
+        map.put("bmjl", "7");
+        map.put("zxfzr", "8");
+        map.put("zjl", "9");
         Authentication.setAuthenticatedUserId("0");
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(KEY, BusinessKey, map);
         String processInstanceId = processInstance.getProcessInstanceId();

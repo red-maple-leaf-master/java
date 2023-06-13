@@ -20,8 +20,8 @@ public class InitTest {
 
         //3.进行部署
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("diagram/loadFlow.bpmn")
-                .name("贷款流程")
+                .addClasspathResource("diagram/LendingProcess.bpmn")
+                .name("放款流程")
                 .deploy();
 
         //4.输出部署的一些信息
