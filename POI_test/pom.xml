@@ -17,6 +17,13 @@
     </parent>
 
     <dependencies>
+        <!--Mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.48</version>
+            <scope>runtime</scope>
+        </dependency>
         <!-- web依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
