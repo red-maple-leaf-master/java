@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import top.oneyi.pojo.ContractParticularsVo;
 import top.oneyi.pojo.EnterpriseBaseInfo;
 import top.oneyi.pojo.EnterpriseInfo;
-import top.oneyi.utils.WordUtil;
+import top.oneyi.utils.freemarkerToWordUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +25,7 @@ public class TestController {
     @GetMapping("/getHtml")
     public String test() throws Exception {
         String file = "E:\\User.html";
-        WordUtil.generateWord(getWordData(), file);
+        freemarkerToWordUtil.generateWord(getWordData(), file);
 
         // 获取HTML文件流
         StringBuilder htmlSb = new StringBuilder();

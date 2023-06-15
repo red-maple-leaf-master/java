@@ -6,15 +6,12 @@ import freemarker.template.Template;
 import freemarker.template.Version;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import top.oneyi.pojo.ContractParticularsVo;
 import top.oneyi.pojo.EnterpriseBaseInfo;
 import top.oneyi.pojo.EnterpriseInfo;
-import top.oneyi.utils.WordUtil;
+import top.oneyi.utils.freemarkerToWordUtil;
 
-import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -35,7 +32,7 @@ public class tttt {
         // 设置FreeMarker生成Word文档所需要的模板的路径
 //        configuration.setDirectoryForTemplateLoading(new File("E:\\project\\java\\POI_test\\src\\main\\resources\\template\\"));
         // 设置相对路径
-        configuration.setTemplateLoader(new ClassTemplateLoader(WordUtil.class,"/template/"));
+        configuration.setTemplateLoader(new ClassTemplateLoader(freemarkerToWordUtil.class,"/template/"));
         Writer out = null;
 
         File file = new File(outputPath);

@@ -1,17 +1,15 @@
 package top.oneyi.freemarker;
 
 
-import com.sun.imageio.plugins.common.ImageUtil;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import top.oneyi.pojo.ContractParticularsVo;
 import top.oneyi.pojo.EnterpriseBaseInfo;
 import top.oneyi.pojo.EnterpriseInfo;
-import top.oneyi.utils.WordUtil;
+import top.oneyi.utils.freemarkerToWordUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,7 +30,7 @@ public class WordApplication {
         dataMap.put("age","12");
 //        WordUtil.generateWord(getWordData(), "E:\\User.doc");
 //        WordUtil.generateWord(getWordData(), "E:\\User.doc");
-        WordUtil.generateWord(getWordData(), "E:\\User.html");
+        freemarkerToWordUtil.generateWord(getWordData(), "E:\\User.html");
 //        WordUtil.generateWord(dataMap, "E:\\User.xml");
 
 

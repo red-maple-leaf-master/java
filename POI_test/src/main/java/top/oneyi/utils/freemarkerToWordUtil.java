@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Word文档工具类
  */
-public class WordUtil {
+public class freemarkerToWordUtil {
 
     /**
      * 使用FreeMarker自动生成Word文档
@@ -29,7 +29,7 @@ public class WordUtil {
         // 设置FreeMarker生成Word文档所需要的模板的路径
 //        configuration.setDirectoryForTemplateLoading(new File("E:\\Desktop\\java_project\\one\\java\\POI_test\\src\\main\\resources\\template\\"));
         // 设置相对路径
-        configuration.setTemplateLoader(new ClassTemplateLoader(WordUtil.class,"/template/"));
+        configuration.setTemplateLoader(new ClassTemplateLoader(freemarkerToWordUtil.class,"/template/"));
         // 设置FreeMarker生成Word文档所需要的模板
         Template t = configuration.getTemplate("redoneHTML.ftl", "UTF-8");
         // 创建一个Word文档的输出流
