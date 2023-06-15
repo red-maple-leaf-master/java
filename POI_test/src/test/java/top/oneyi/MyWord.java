@@ -1,5 +1,8 @@
 package top.oneyi;
 
+
+import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
+import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
 import org.apache.poi.xwpf.usermodel.PositionInParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -25,6 +28,7 @@ public class MyWord {
 
     private final static String sourceFile = "toptest.docx";
     private final static String targetFile = "target.docx";
+    private final static String targetPDFFile = "target.pdf";
 
     @Test
     public void test01() {
@@ -54,9 +58,9 @@ public class MyWord {
                 if (in != null) {
                     in.close();
                 }
-                if (document != null) {
+/*                if (document != null) {
                     document.close();
-                }
+                }*/
                 if (out != null) {
                     out.close();
                 }
@@ -79,5 +83,53 @@ public class MyWord {
        str= str.replace("${name}","张三");
         System.out.println("str = " + str);
 
+    }
+
+    /*@Test
+    public void test03() throws IOException {
+        FileInputStream fileInputStream = null;
+        FileOutputStream  fileOutputStream=null;
+        try {
+            // 读取docx文件
+            fileInputStream = new FileInputStream(PATH + targetFile);
+            XWPFDocument xwpfDocument = new XWPFDocument(fileInputStream);
+            PdfOptions pdfOptions = PdfOptions.create();
+            // 输出路径
+            fileOutputStream = new FileOutputStream(PATH + targetPDFFile);
+            // 调用转换
+            PdfConverter.getInstance().convert(xwpfDocument,fileOutputStream,pdfOptions);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            fileInputStream.close();
+            fileOutputStream.close();
+        }
+    }*/
+
+    @Test
+    public void test03(){
+        wordToPdf(PATH+targetFile,PATH+targetPDFFile);
+    }
+
+    /**
+     * word转pdf
+     * @param wordPath word的路径
+     * @param pdfPath pdf的路径
+     */
+    public static boolean wordToPdf(String wordPath, String pdfPath){
+        boolean result = false;
+        try {
+            XWPFDocument document=new XWPFDocument(new FileInputStream(new File(wordPath)));
+            File outFile=new File(pdfPath);
+            outFile.getParentFile().mkdirs();
+            OutputStream out=new FileOutputStream(outFile);
+            PdfOptions options= PdfOptions.create();
+            PdfConverter.getInstance().convert(document,out,options);
+            result = true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

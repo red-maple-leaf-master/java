@@ -1,6 +1,6 @@
 package top.oneyi;
 
-import org.apache.commons.lang3.text.WordUtils;
+
 import org.junit.jupiter.api.Test;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,6 +15,6 @@ public class WordToHTML {
     @Test
     public void test() throws IOException, ParserConfigurationException, TransformerException {
 //        DocToHtml.docToHtml(PATH,filename);
-        String path = WordUtils.class.getClassLoader().getResource("template-docx.zip").getPath();
+//        String path = WordUtils.class.getClassLoader().getResource("template-docx.zip").getPath();
     }
 }

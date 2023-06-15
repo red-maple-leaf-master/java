@@ -16,6 +16,10 @@
         <relativePath/>
     </parent>
 
+    <properties>
+     <poi.version>3.10.1</poi.version>
+    </properties>
+
     <dependencies>
 
         <!-- freemarker-->
@@ -42,53 +46,44 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- word转word 成功 start-->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.17</version>
+        <!-- Word转PDF操作依赖 -->
+<!--        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.poi.xwpf.converter.pdf-gae</artifactId>
+            <version>2.0.2</version>
+        </dependency>-->
+                <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.poi.xwpf.converter.pdf-gae</artifactId>
+            <version>2.0.1</version>
         </dependency>
-
         <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-scratchpad</artifactId>
-            <version>3.17</version>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>org.apache.poi.xwpf.converter.pdf</artifactId>
+            <version>1.0.4</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.17</version>
+            <version>${poi.version}</version>
+        </dependency>
+       <!-- <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
         </dependency>
         <dependency>
-            <groupId>fr.opensagres.xdocreport</groupId>
-            <artifactId>xdocreport</artifactId>
-            <version>2.0.1</version>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>${poi.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml-schemas</artifactId>
-            <version>3.17</version>
+            <version>${poi.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>ooxml-schemas</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.8.0-beta2</version>
-        </dependency>
-        <!--  word转word 成功 end  -->
-
+-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
