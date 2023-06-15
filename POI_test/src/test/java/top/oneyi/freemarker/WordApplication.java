@@ -31,7 +31,8 @@ public class WordApplication {
         dataMap.put("name","小明");
         dataMap.put("age","12");
 //        WordUtil.generateWord(getWordData(), "E:\\User.doc");
-        WordUtil.generateWord(getWordData(), "E:\\User.xml");
+//        WordUtil.generateWord(getWordData(), "E:\\User.doc");
+        WordUtil.generateWord(getWordData(), "E:\\User.html");
 //        WordUtil.generateWord(dataMap, "E:\\User.xml");
 
 

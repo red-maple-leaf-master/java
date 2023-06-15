@@ -24,7 +24,7 @@
             style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">住</span><span
             style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">所地</span><span
             style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">：</span><span
-            style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">$enterpriseBaseInfo.legalPersonAddress}</span></p>
+            style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">${enterpriseBaseInfo.legalPersonAddress}</span></p>
     <p style="text-indent:0.0pt;margin-top:7.8pt;margin-bottom:7.8pt;white-space:pre-wrap;"><span
             style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">联系方式：</span><span
             style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">${enterpriseBaseInfo.legalPersonPhone}</span></p>
@@ -96,11 +96,11 @@
             style="font-family:'仿宋';white-space:pre-wrap;">金额为</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">（小写）</span><span
             style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;"> </span><span
-            style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">$loanAmount}</span><span
+            style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${loanAmount}</span><span
             style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;"> </span><span
             style="font-family:'仿宋';white-space:pre-wrap;">,</span><span style="font-family:'仿宋';white-space:pre-wrap;">（大写）</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">人民币</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">${capitalLoanAmount}</span><span
+            style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${capitalLoanAmount}</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">。</span></p>
     <p style="text-indent:24.1pt;margin-top:7.8pt;margin-bottom:7.8pt;white-space:pre-wrap;"><span
             style="font-family:'仿宋';font-weight:bold;white-space:pre-wrap;">三</span><span
@@ -112,9 +112,7 @@
             style="font-family:'仿宋';white-space:pre-wrap;">期限为</span><span
             style="font-family:'仿宋';white-space:pre-wrap;"> </span><span
             style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${timeLimit}</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">/</span><span style="font-family:'仿宋';white-space:pre-wrap;">$</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">{</span><span style="font-family:'仿宋';white-space:pre-wrap;">termType</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">}</span><span style="font-family:'仿宋';white-space:pre-wrap;">，自乙方付款之日起连续计算</span><span
+            style="font-family:'仿宋';white-space:pre-wrap;">/</span><span style="font-family:'仿宋';white-space:pre-wrap;">${termType}</span><span style="font-family:'仿宋';white-space:pre-wrap;">，自乙方付款之日起连续计算</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">。</span></p>
     <p style="text-indent:24.0pt;margin-top:7.8pt;margin-bottom:7.8pt;white-space:pre-wrap;"><span
             style="font-family:'仿宋';white-space:pre-wrap;">甲方提前还款的，</span><span
@@ -253,11 +251,11 @@
             style="font-family:'仿宋';white-space:pre-wrap;">1</span><span style="font-family:'仿宋';white-space:pre-wrap;">、</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">将全部融资款直接划转至</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">如下账户：户名：</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">${<enterpriseInfo.accountName}</span><span
+            style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${enterpriseInfo.accountName}</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">，账号：</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">${enterpriseInfo.bankAccount}</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">,</span><span style="font-family:'仿宋';white-space:pre-wrap;">开户行：</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">${enterpriseInfo.depositBank}</span><span
+            style="font-family:'仿宋';white-space:pre-wrap;">,</span><span style="font-family:'仿宋';;white-space:pre-wrap;">开户行：</span><span
+            style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${enterpriseInfo.depositBank}</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">。未经乙方书面同意，甲方</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">或款项实际</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">收取方</span><span
@@ -268,7 +266,7 @@
             style="font-family:'仿宋';white-space:pre-wrap;">如下账户：户名：</span><span
             style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${enterpriseInfo.accountName}</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">，账号：</span><span
-            style="font-family:'仿宋';white-space:pre-wrap;">${enterpriseInfo.bankAccount}</span><span
+            style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${enterpriseInfo.bankAccount}</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">,</span><span style="font-family:'仿宋';white-space:pre-wrap;">开户行：</span><span
             style="font-family:'仿宋';text-decoration:underline;white-space:pre-wrap;">${enterpriseInfo.depositBank}</span><span
             style="font-family:'仿宋';white-space:pre-wrap;">。</span><span style="font-family:'仿宋';white-space:pre-wrap;">甲方</span><span
