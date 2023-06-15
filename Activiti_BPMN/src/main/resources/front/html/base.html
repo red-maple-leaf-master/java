@@ -10,7 +10,12 @@
 <!-- 参考博文 https://www.cnblogs.com/huanzi-qch/p/10913636.html-->
 <div id="app">
     <el-button type="primary" @click="getKey">获取key</el-button>
-    <el-input type="textarea" v-model="key"></el-input>
+<!--    <el-input type="textarea" v-model="key"></el-input>-->
+
+
+    <div id="showHtml">
+
+    </div>
 </div>
 
 
@@ -34,10 +39,10 @@
         },
         methods: {
             async getKey() {
-                const {data: res} = await axios.post('http://localhost:8014/base')
-                console.log(res)
-                this.key = res
-                this.getKeys()
+                const {data: res} = await axios.get('http://localhost:8080/getHtml');
+                console.log(res);
+                // 将数据追加到div中显示
+                $("#showHtml").append(response.data);
             },
             async getKeys() {
                 // 密钥对
