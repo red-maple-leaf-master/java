@@ -27,7 +27,12 @@ public class WordApplication {
          * 自动生成Word文档
          * 注意：生成的文档的后缀名需要为doc，而不能为docx，否则生成的Word文档会出错
          */
-        WordUtil.generateWord(getWordData(), "E:\\User.doc");
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("name","小明");
+        dataMap.put("age","12");
+//        WordUtil.generateWord(getWordData(), "E:\\User.doc");
+        WordUtil.generateWord(getWordData(), "E:\\User.xml");
+//        WordUtil.generateWord(dataMap, "E:\\User.xml");
 
 
     }
