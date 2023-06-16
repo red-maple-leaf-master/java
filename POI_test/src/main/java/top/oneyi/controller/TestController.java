@@ -1,5 +1,6 @@
 package top.oneyi.controller;
 
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -118,4 +119,66 @@ public class TestController {
 
         return visitPath;
     }
+
+
+
+      /*  @RequestMapping("/getPdf")
+        public void get(HttpServletResponse response){
+            response.reset();
+            response.setContentType("application/pdf");
+            String filename = System.currentTimeMillis()+".pdf";
+            response.addHeader("Content-Disposition", "inline; filename=" + URLUtil.encode(filename, CharsetUtil.CHARSET_UTF_8));
+            VelocityContext context = new VelocityContext();
+            try(ServletOutputStream outputStream = response.getOutputStream()){
+                PdfUtil.pdfFile(context, "redoneHTML.html", outputStream);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    *//**
+     * 获取生成Word文档所需要的数据
+     *//*
+    private static VelocityContext getWordToPDFData(VelocityContext context) {
+        *//*
+         * 创建一个Map对象，将Word文档需要的数据都保存到该Map对象中
+         *//*
+        Map<String, String> dataMap = new HashMap<>();
+
+        EnterpriseBaseInfo enterpriseBaseInfo = new EnterpriseBaseInfo();
+        enterpriseBaseInfo.setEnterpriseName("测试甲方企业");
+        enterpriseBaseInfo.setLegalPersonName("张三");
+        enterpriseBaseInfo.setLegalPersonAddress("上海明哲路");
+        enterpriseBaseInfo.setLegalPersonPhone("15562023564");
+        context.put("enterpriseBaseInfo.enterpriseName",enterpriseBaseInfo.getEnterpriseName());
+        context.put("enterpriseBaseInfo.legalPersonName",enterpriseBaseInfo.getLegalPersonName());
+        context.put("enterpriseBaseInfo.legalPersonAddress",enterpriseBaseInfo.getLegalPersonAddress());
+        context.put("enterpriseBaseInfo.legalPersonPhone",enterpriseBaseInfo.getLegalPersonPhone());
+
+        EnterpriseInfo enterpriseInfo = new EnterpriseInfo();
+        enterpriseInfo.setEnterpriseName("测试乙方企业");
+        enterpriseInfo.setEnterpriseLegalPerson("李四");
+        enterpriseInfo.setDomicile("广东山策路");
+        enterpriseInfo.setContact("15562356532");
+        enterpriseInfo.setAccountName("测试乙方开户名称");
+        enterpriseInfo.setBankAccount("132146546546");
+        enterpriseInfo.setDepositBank("测试乙方开户行");
+
+        context.put("enterpriseInfo.enterpriseName",enterpriseInfo.getEnterpriseName());
+        context.put("enterpriseInfo.enterpriseLegalPerson",enterpriseInfo.getEnterpriseLegalPerson());
+        context.put("enterpriseInfo.domicile",enterpriseInfo.getDomicile());
+        context.put("enterpriseInfo.contact",enterpriseInfo.getContact());
+        context.put("enterpriseInfo.accountName",enterpriseInfo.getAccountName());
+        context.put("enterpriseInfo.bankAccount",enterpriseInfo.getBankAccount());
+        context.put("enterpriseInfo.depositBank",enterpriseInfo.getDepositBank());
+
+
+        context.put("loanAmount", "12342");
+        context.put("capitalLoanAmount", "一二三四");
+        context.put("timeLimit", "12");
+        context.put("termType", "月");
+        context.put("procedureInterestRate", "0.02");
+        context.put("partyBankAccount", "账号");
+        return context;
+    }*/
+
 }

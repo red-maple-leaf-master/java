@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 @SpringBootTest
 public class MyWord {
 
-    private final static String PATH = "E:\\project\\java\\POI_test\\src\\main\\resources\\template\\";
+    private final static String PATH = "E:\\Desktop\\java_project\\one\\java\\POI_test\\src\\main\\resources\\template\\";
 
     private final static String sourceFile = "toptest.docx";
     private final static String targetFile = "target.docx";

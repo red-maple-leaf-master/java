@@ -30,7 +30,7 @@ public class WordApplication {
         dataMap.put("age","12");
 //        WordUtil.generateWord(getWordData(), "E:\\User.doc");
 //        WordUtil.generateWord(getWordData(), "E:\\User.doc");
-        freemarkerToWordUtil.generateWord(getWordData(), "E:\\User.html");
+        freemarkerToWordUtil.generateWord(dataMap, "E:\\User.doc");
 //        WordUtil.generateWord(dataMap, "E:\\User.xml");
 
 
