@@ -28,12 +28,12 @@ public class PdfUtils {
      */
     private static void fillData(AcroFields fields, Map<String, String> data) throws IOException, DocumentException {
         List<String> keys = new ArrayList<String>();
-        BaseFont baseFont = BaseFont.createFont("E:\\project\\java\\freemarkerToPDF\\src\\main\\resources\\fonts\\STFANGSO.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+        BaseFont baseFont = BaseFont.createFont("E:\\Desktop\\java_project\\one\\java\\freemarkerToPDF\\src\\main\\resources\\fonts\\STFANGSO.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         Font font = new Font();
         font.setStyle(1);
 
 
-        BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+//        BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
 //        Font font = new Font(bf, 12, Font.BOLD);
 //Font font = FontFactory.getFont(FontFactory.COURIER, 20, Font.BOLD, BaseColor.RED);
 
@@ -109,7 +109,7 @@ public class PdfUtils {
 //            BaseFont bf = BaseFont.createFont("C:/WINDOWS/Fonts/simfang.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 //            fontList.add(bf);
 //            fontList.add(font);
-            BaseFont baseFont = BaseFont.createFont("E:\\project\\java\\freemarkerToPDF\\src\\main\\resources\\fonts\\STFANGSO.TTF,1", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            BaseFont baseFont = BaseFont.createFont("E:\\Desktop\\java_project\\one\\java\\freemarkerToPDF\\src\\main\\resources\\fonts\\STFANGSO.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             Font font = new Font();
             font.setStyle(1);
 
@@ -173,8 +173,8 @@ public class PdfUtils {
     public static void main(String[] args) {
 
 
-        String source = "C:\\Users\\13621\\Desktop\\contractTemplate.pdf";
-        String target = "C:\\Users\\13621\\Desktop\\ttt.pdf";
+        String source = "E:\\Desktop\\java_project\\one\\java\\freemarkerToPDF\\src\\main\\resources\\templates\\contractTemplate.pdf";
+        String target = "E:\\Desktop\\java_project\\one\\java\\freemarkerToPDF\\src\\main\\resources\\templates\\ttt.pdf";
 
 
         generatePDF(source, target, getWordToPDFData());
@@ -184,7 +184,7 @@ public class PdfUtils {
     /**
      * 获取生成Word文档所需要的数据
      */
-    private static Map<String, String> getWordToPDFData() {
+    public static Map<String, String> getWordToPDFData() {
 
         Map<String, String> dataMap = new HashMap<>();
 
