@@ -20,6 +20,7 @@ public class itextCreateDemo {
 
     private final static String PATH = "E:\\Desktop\\YCT.pdf";
 
+    @Test
     public void test01() throws IOException, DocumentException {
         // 1.新建document对象
         Document document = new Document(PageSize.A4, 90, 90, 72, 72);
@@ -43,10 +44,13 @@ public class itextCreateDemo {
         Font fangFont02 = new Font(bf, 12);
 
         Phrase phrase02 = new Phrase();
-        setUnderLine(phrase02, "融资期限为", false, fangFont02);
+        setUnderLine(phrase02, "融资期限为45465", false, fangFont02);
         setUnderLine(phrase02, "timeLimit", true, fangFont02);
         setUnderLine(phrase02, "termType", true, fangFont02);
         setFontStyle(document, phrase02);
+
+        // 5.关闭文档
+        document.close();
     }
 
     @Test
@@ -121,7 +125,7 @@ public class itextCreateDemo {
         Phrase phrase02 = new Phrase();
         setUnderLine(phrase02, "融资期限为", false, fangFont02);
         setUnderLine(phrase02, wordToPDFData.get("timeLimit"), true, fangFont02);
-        setUnderLine(phrase02, wordToPDFData.get("termType"), true, fangFont02);
+        setUnderLine(phrase02, wordToPDFData.get("termType"), false, fangFont02);
         setFontStyle(document, phrase02);
 
         setFontStyle("甲方提前还款的，按实际融资期限计算。", document, fangFont02);
@@ -408,7 +412,7 @@ public class itextCreateDemo {
             chunk.setUnderline(0.2f, -1);
             phrase.add(chunk);
         } else {
-            Chunk chunk = new Chunk(text);
+            Chunk chunk = new Chunk(text, font);
             phrase.add(chunk);
         }
 
