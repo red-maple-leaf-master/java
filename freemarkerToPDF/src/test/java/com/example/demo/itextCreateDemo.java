@@ -401,10 +401,10 @@ public class itextCreateDemo {
     /**
      * 设置下划线
      */
-    public void setUnderLine(Phrase phrase, String text, boolean flag,Font font) {
+    public void setUnderLine(Phrase phrase, String text, boolean flag, Font font) {
 
         if (flag) {
-            Chunk chunk = new Chunk("  " + text + "  ",font);
+            Chunk chunk = new Chunk("  " + text + "  ", font);
             chunk.setUnderline(0.2f, -1);
             phrase.add(chunk);
         } else {
