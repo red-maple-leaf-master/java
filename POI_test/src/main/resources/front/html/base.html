@@ -35,10 +35,9 @@
             async getKey() {
                 const {data: res} = await axios.get('http://localhost:8080/test/getHtml');
                 console.log(res);
-                // 将数据追加到div中显示
-                this.htmldata = res;
-                // window.location.href = 'about:blank';
-                document.write(res);
+                const {data: res01} = await axios.get('http://localhost:8080/test/getMap');
+                console.log(res01);
+
             }
         }
     })

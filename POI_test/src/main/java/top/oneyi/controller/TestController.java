@@ -1,11 +1,13 @@
 package top.oneyi.controller;
 
 
+import cn.hutool.core.lang.Pair;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import top.oneyi.entity.User;
 import top.oneyi.pojo.ContractParticularsVo;
 import top.oneyi.pojo.EnterpriseBaseInfo;
 import top.oneyi.pojo.EnterpriseInfo;
@@ -24,27 +26,24 @@ public class TestController {
 
     @CrossOrigin(value = "http://localhost:8080")
     @GetMapping("/getHtml")
-    public String test() throws Exception {
-        String file = "E:\\User.html";
-        freemarkerToWordUtil.generateWord(getWordData(), file);
+    public Pair<String, User> test() {
+        User user = new User();
+        user.setAge("12");
+        user.setAge("数据来看");
 
-        // 获取HTML文件流
-        StringBuilder htmlSb = new StringBuilder();
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    new FileInputStream(file), StandardCharsets.UTF_8));
-            while (br.ready()) {
-                htmlSb.append(br.readLine());
-            }
-            br.close();
-            // 删除临时文件
-            //file.delete();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // HTML文件字符串
-        // 返回经过清洁的html文本
-        return htmlSb.toString();
+        Pair<String,User> pair = new Pair<>("我不是map",user);
+        return pair;
+    }
+    @CrossOrigin(value = "http://localhost:8080")
+    @GetMapping("/getMap")
+    public Map<String, User> test01() {
+        User user = new User();
+        user.setAge("12");
+        user.setAge("数据来看");
+
+        Map<String,User> pair = new HashMap<>();
+        pair.put("我不是map",user);
+        return pair;
     }
     /**
      * 获取生成Word文档所需要的数据
