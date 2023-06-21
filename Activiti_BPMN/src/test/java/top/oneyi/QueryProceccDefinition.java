@@ -2,14 +2,15 @@ package top.oneyi;
 
 
 
-import cn.hutool.http.HttpUtil;
+import cn.hutool.core.lang.Pair;
+
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.task.Task;
-import org.apache.commons.lang3.tuple.Pair;
+
 import org.junit.Test;
 
 import javax.xml.ws.Response;
@@ -227,5 +228,11 @@ public class QueryProceccDefinition {
         }
     }
 
+    @Test
+    public void test03(){
+        Pair<Boolean,String> pair = new Pair<>(true,"历史");
+        System.out.println(pair.getKey());
+        System.out.println(pair.getValue());
+    }
 
 }
