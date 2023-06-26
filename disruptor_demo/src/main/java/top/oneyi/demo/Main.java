@@ -109,7 +109,7 @@ public class Main {
 //        EventHandlerGroup<Order> eventHandlerGroup = disruptor.handleEventsWith(new OrderHandler(),new OrderHandler2());
 //        eventHandlerGroup.then(new OrderHandler3());
 
-        EventHandlerGroup<Order> eventHandlerGroup = disruptor.handleEventsWithWorkerPool(new OrderHandler(),new OrderHandler2(),new OrderHandler3());
+        EventHandlerGroup<Order> eventHandlerGroup = disruptor.handleEventsWith(new OrderHandler(),new OrderHandler2(),new OrderHandler3());
 //        eventHandlerGroup.then(new OrderHandler3());
 
         disruptor.start();
