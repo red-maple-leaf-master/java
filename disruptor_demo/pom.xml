@@ -24,13 +24,27 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
-            <version>4.1.8</version>
+            <version>3.8.5</version>
         </dependency>
-
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web</artifactId>
-            <version>4.1.8</version>
+            <version>3.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-amqp-client</artifactId>
+            <version>3.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-mqtt</artifactId>
+            <version>3.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-rpc-all</artifactId>
+            <version>5.6.3</version>
         </dependency>
         <!--Web-->
         <dependency>
@@ -59,6 +73,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
             <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
