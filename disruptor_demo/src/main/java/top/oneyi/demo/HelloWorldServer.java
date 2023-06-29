@@ -20,10 +20,14 @@ public class HelloWorldServer {
         EventBus eb = vertx.eventBus();*/
         EventBus eb = EventBusAlone.getInstance();
         // 注册处理器
-        System.out.println("注册处理器");
+/*        System.out.println("注册处理器");
         eb.consumer("news.uk.sport", message -> {
             System.out.println("I have received a message: " + message.body());
-        });
+        });*/
 
+        while (0 == 0){
+
+            eb.send("news.uk.sport", "Yay! Someone kicked a ball");
+        }
     }
 }
