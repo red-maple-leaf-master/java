@@ -5,8 +5,10 @@ import io.vertx.ext.web.Router;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 @Component
 public abstract class BaseVerticle extends AbstractVerticle {
-    @Autowired
+    @Resource
     public Router router;
 }

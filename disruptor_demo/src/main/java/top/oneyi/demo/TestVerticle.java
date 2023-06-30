@@ -1,12 +1,18 @@
 package top.oneyi.demo;
 
-import com.alibaba.fastjson.JSONObject;
+
 import io.vertx.ext.web.RoutingContext;
 import org.springframework.stereotype.Component;
-import top.oneyi.pojo.ResultDTO;
+import top.oneyi.config.GatewayConn;
 
-@Component
+import javax.annotation.Resource;
+
+
+//@Component
 public class TestVerticle extends BaseVerticle {
+
+    @Resource
+    private GatewayConn gatewayConn;
 
     @Override
     public void start() throws Exception {
@@ -15,7 +21,8 @@ public class TestVerticle extends BaseVerticle {
     }
 
     private void getTest(RoutingContext ctx) {
-        ctx.response().end(JSONObject.toJSONString(ResultDTO.ok()));
+        gatewayConn.sendMsg("我是李四");
+        gatewayConn.sendMsg(ctx.get("name"));
     }
 
     private void err(RoutingContext ctx) {
