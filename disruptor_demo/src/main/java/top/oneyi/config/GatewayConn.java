@@ -32,6 +32,7 @@ public class GatewayConn {
         try{
             // 对象  序列化 字节数组
             data=new BodyCodec().serialize(name);
+
         } catch (Exception e) {
             log.error("encode error for ordercmd:{}",name);
             return;

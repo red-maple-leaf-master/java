@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import top.oneyi.thirdpart.codec.BodyCodec;
 
 
 import javax.validation.constraints.NotNull;
@@ -60,10 +61,9 @@ public class ConnectionConfig {
 
                     if (msgBuffer != null && msgBuffer.length() > 0 && socket != null) {
                         // 发送到server
-                        log.info("拿到数据===> {} <=====",new String(msgBuffer.getBytes()));
                         socket.write(msgBuffer);
                     }
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     System.out.println("msg send fail, continue ");
                     e.printStackTrace();
                 }

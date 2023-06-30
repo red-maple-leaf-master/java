@@ -21,7 +21,6 @@ public class OrderController {
 
 	@GetMapping("/test01")
     public String test01(String name) {
-        gatewayConn.sendMsg("我是李四");
         gatewayConn.sendMsg(name);
         return "发送成功";
     }

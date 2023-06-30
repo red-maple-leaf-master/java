@@ -1,7 +1,7 @@
 package top.oneyi.thirdpart.codec;
 
 import com.alipay.remoting.serialization.SerializerManager;
-
+import top.oneyi.thirdpart.checksum.ByteCheckSum;
 
 
 public class BodyCodec implements IBodyCodec {
@@ -18,18 +18,14 @@ public class BodyCodec implements IBodyCodec {
     }
 
 
-/*    public static void main(String[] args) throws Exception {
-        String a = "test";
-        String b = "test1";
-        String c = "test";
-        byte ca = new ByteCheckSum().getChecksum(a.getBytes());
-        byte cb = new ByteCheckSum().getChecksum(b.getBytes());
-        byte cc = new ByteCheckSum().getChecksum(c.getBytes());
-        System.out.println(ca);
-        System.out.println(cb);
-        System.out.println(cc);
+    public static void main(String[] args) throws Exception {
+        String a = "李四";
+        BodyCodec bodyCodec = new BodyCodec();
+        byte[] serialize = bodyCodec.serialize(a);
+        String deserialize = bodyCodec.deserialize(serialize, String.class);
+        System.out.println("deserialize = " + deserialize);
 
 
-    }*/
+    }
 
 }

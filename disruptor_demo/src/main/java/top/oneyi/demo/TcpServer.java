@@ -68,6 +68,7 @@ public class TcpServer {
                         msgType = buffer.getShort(9);
                         status = buffer.getByte(11);
                         packetNo = buffer.getShort(12);
+                        // 动态修改长度
                         parser.fixedSizeMode(bodyLength);
                     }else{
                         byte[] bodyBytes = buffer.getBytes();
