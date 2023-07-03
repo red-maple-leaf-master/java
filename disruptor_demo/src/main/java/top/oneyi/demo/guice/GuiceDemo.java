@@ -75,11 +75,13 @@ public class GuiceDemo {
         }
 
         @Provides
+        @Message("message")
         public static String message() {
             return "vlts.cn";
         }
 
         @Provides
+        @Name("age")
         public static String name() {
             return "lisi";
         }
