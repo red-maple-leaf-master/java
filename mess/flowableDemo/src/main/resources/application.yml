@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/flowable?useSSL=false&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+flowable:
+  async-executor-activate: false
+pinda:
+  swagger:
+    enabled: true #是否启用swagger
+    title: test模块
+    base-package: top.oneyi.flowable.controller
+

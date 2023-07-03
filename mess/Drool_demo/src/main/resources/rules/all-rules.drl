@@ -1,0 +1,14 @@
+package Person
+
+import top.oneyi.pojo.Person
+import top.oneyi.pojo.GradingLevel
+
+dialect  "mvel"
+
+rule "age"
+    when
+        $person : Person(age<16 || age>50)
+    then
+        System.out.print("这个人的年龄不符合要求！（基于规则文件）");
+end
+

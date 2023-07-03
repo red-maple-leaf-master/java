@@ -1,0 +1,7 @@
+package top.oneyi.thirdpart.checksum;
+
+public interface ICheckSum {
+
+    byte getChecksum(byte[] data);
+
+}

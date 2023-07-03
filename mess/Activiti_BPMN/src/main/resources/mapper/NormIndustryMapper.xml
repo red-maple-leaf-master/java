@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.oneyi.mapper.NormIndustryMapper">
+
+    <select id="findAll" resultType="top.oneyi.pojo.NormIndustry">
+        select * from norm_industry
+    </select>
+    <select id="findByCode" resultType="top.oneyi.pojo.NormIndustry">
+        select * from norm_industry where code = #{code}
+    </select>
+    <select id="findByParentCode" resultType="top.oneyi.pojo.NormIndustry">
+        select * from norm_industry where parent_code = #{parentCode}
+    </select>
+    <select id="findByParentCodes" resultType="top.oneyi.pojo.NormIndustry">
+        select * from norm_industry where
+        <foreach collection="list" item="parentCode" open="(" close=")" separator=",">
+            parent_code = #{parentCode}
+        </foreach>
+     </select>
+
+    <resultMap id="baseResultMap" type="top.oneyi.pojo.NormIndustry">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="parent_code" property="parentCode" />
+        <result column="has_child" property="hasChild" />
+       <collection property="normIndustryList" ofType="top.oneyi.pojo.NormIndustry">
+           <id column="id" property="id" />
+           <result column="code" property="code" />
+           <result column="name" property="name" />
+           <result column="parent_code" property="parentCode" />
+           <result column="has_child" property="hasChild" />
+       </collection>
+    </resultMap>
+    <select id="findByCodeToList" resultMap="baseResultMap">
+            select m1.*,m2.*
+            from norm_industry m1 , norm_industry m2
+            where m1.code= m2.parent_code
+    </select>
+
+    <resultMap id="baseMap" type="top.oneyi.pojo.NormIndustry">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="parent_code" property="parentCode" />
+        <result column="has_child" property="hasChild" />
+        <collection property="normIndustryList" select="getAllByParentCode" column="code" />
+
+    </resultMap>
+    <select id="getAllFater" resultMap="baseMap">
+         select * from norm_industry where parent_code =  0
+    </select>
+
+    <select id="getAllByParentCode" resultMap="baseMap">
+         select * from norm_industry where parent_code =  #{code}
+    </select>
+
+</mapper>
