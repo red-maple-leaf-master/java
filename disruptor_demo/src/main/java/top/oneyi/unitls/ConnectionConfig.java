@@ -1,4 +1,4 @@
-package top.oneyi.config;
+package top.oneyi.unitls;
 
 
 import io.vertx.core.AsyncResult;
@@ -7,11 +7,8 @@ import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.net.NetSocket;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
-import top.oneyi.thirdpart.codec.BodyCodec;
 
 
 import javax.validation.constraints.NotNull;
@@ -22,7 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RequiredArgsConstructor
-
 public class ConnectionConfig {
     /**
      * 连接ip

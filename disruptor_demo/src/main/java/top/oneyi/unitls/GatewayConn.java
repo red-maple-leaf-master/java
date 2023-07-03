@@ -1,6 +1,8 @@
-package top.oneyi.config;
+package top.oneyi.unitls;
 
-import io.vertx.core.buffer.Buffer;
+import com.alipay.sofa.rpc.config.ProviderConfig;
+import com.alipay.sofa.rpc.config.ServerConfig;
+
 import javax.annotation.PostConstruct;
 
 
@@ -9,8 +11,8 @@ import org.springframework.stereotype.Component;
 import top.oneyi.thirdpart.bean.CommonMsg;
 import top.oneyi.thirdpart.checksum.ByteCheckSum;
 import top.oneyi.thirdpart.codec.BodyCodec;
-import top.oneyi.thirdpart.codec.IBodyCodec;
 import top.oneyi.thirdpart.codec.MsgCodec;
+import top.oneyi.thirdpart.fetchserv.IFetchService;
 import top.oneyi.thirdpart.uuid.GudyUuid;
 
 @Slf4j
@@ -21,11 +23,35 @@ public class GatewayConn {
 
     @PostConstruct
     private void init(){
+        // 初始化网关连接
         connectionConfig = new ConnectionConfig("127.0.0.1", 1010);
         connectionConfig.start();
         log.info("初始化客户端成功");
-    }
 
+        //TODO 2.排队机交互
+        initFetchServ();
+    }
+    // 和排队机交互
+    private void initFetchServ() {
+
+        int port = 8080;
+
+        ServerConfig rpcConfig = new ServerConfig()
+                .setPort(port)
+                .setProtocol("bolt"); // 通信协议
+
+        ProviderConfig<IFetchService> providerConfig = new ProviderConfig<IFetchService>()
+                .setInterfaceId(IFetchService.class.getName())
+                .setRef(
+                        ()-> CmdContainer.getInstance().getAll()
+                )
+                .setServer(rpcConfig);
+
+        providerConfig.export();
+
+        log.info("gateway startup fetchServ success at port:{}",port);
+
+    }
 
     public void sendMsg(String name){
         byte[] data = null;

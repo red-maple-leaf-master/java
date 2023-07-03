@@ -1,11 +1,11 @@
-package top.oneyi.demo;
+package top.oneyi.handler;
 
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import top.oneyi.unitls.CmdContainer;
 import top.oneyi.thirdpart.bean.CommonMsg;
 import top.oneyi.thirdpart.codec.IBodyCodec;
-import top.oneyi.thirdpart.order.OrderCmd;
 
 
 @Log4j2
@@ -27,6 +27,11 @@ public class MsgHandler implements IMsgHandler {
             }*/
             log.info("recv  orderCmd cmd:{}",orderCmd);
 
+            if(!CmdContainer.getInstance().cache(orderCmd)){
+                //插入失败  打印日志  最好的打印一些业务信息 来排错 队列的长度
+                log.error("gateway queue insert fail,queue length:{},order:{}",
+                        CmdContainer.getInstance().size(),orderCmd);
+            }
 
 
         } catch (Exception e) {

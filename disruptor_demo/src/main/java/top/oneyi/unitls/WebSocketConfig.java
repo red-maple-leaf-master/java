@@ -1,4 +1,4 @@
-package top.oneyi.config;
+package top.oneyi.unitls;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

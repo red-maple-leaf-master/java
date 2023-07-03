@@ -1,18 +1,21 @@
-package top.oneyi.demo;
+package top.oneyi.unitls;
 
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
-import io.vertx.core.net.NetClient;
 import io.vertx.core.net.NetServer;
 import io.vertx.core.net.NetSocket;
 import io.vertx.core.parsetools.RecordParser;
 import lombok.extern.slf4j.Slf4j;
+import top.oneyi.handler.IMsgHandler;
+import top.oneyi.handler.MsgHandler;
 import top.oneyi.thirdpart.bean.CommonMsg;
 import top.oneyi.thirdpart.checksum.ByteCheckSum;
 import top.oneyi.thirdpart.codec.BodyCodec;
 
-
+/**
+ * 网关服务  监听端口 接收服务
+ */
 @Slf4j
 public class TcpServer {
     // 开启服务  监听端口
@@ -21,6 +24,7 @@ public class TcpServer {
         NetServer netServer = vertx.createNetServer();
         netServer.connectHandler(new ConnHandler());
         int port = 1010;
+
         netServer.listen(port, res -> {
             if (res.succeeded()) {
                 log.info("开始服务,监听端口, {}", port);

@@ -1,11 +1,9 @@
 package top.oneyi;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import top.oneyi.config.ConnectionConfig;
-import top.oneyi.demo.TcpServer;
+import top.oneyi.unitls.TcpServer;
 import top.oneyi.thirdpart.uuid.GudyUuid;
 
 import javax.annotation.PostConstruct;

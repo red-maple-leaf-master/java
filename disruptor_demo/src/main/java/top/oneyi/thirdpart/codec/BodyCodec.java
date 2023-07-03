@@ -18,7 +18,7 @@ public class BodyCodec implements IBodyCodec {
     }
 
 
-    public static void main(String[] args) throws Exception {
+/*    public static void main(String[] args) throws Exception {
         String a = "李四";
         BodyCodec bodyCodec = new BodyCodec();
         byte[] serialize = bodyCodec.serialize(a);
@@ -26,6 +26,6 @@ public class BodyCodec implements IBodyCodec {
         System.out.println("deserialize = " + deserialize);
 
 
-    }
+    }*/
 
 }

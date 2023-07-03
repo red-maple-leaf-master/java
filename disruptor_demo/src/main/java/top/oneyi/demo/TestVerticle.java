@@ -2,8 +2,7 @@ package top.oneyi.demo;
 
 
 import io.vertx.ext.web.RoutingContext;
-import org.springframework.stereotype.Component;
-import top.oneyi.config.GatewayConn;
+import top.oneyi.unitls.GatewayConn;
 
 import javax.annotation.Resource;
 
