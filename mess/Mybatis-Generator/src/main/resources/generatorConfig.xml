@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="Tables" targetRuntime="MyBatis3">
+
+<!--        &lt;!&ndash; 批量插入插件 &ndash;&gt;
+        <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">
+            <property name="allowMultiQueries" value="false"/>
+        </plugin>
+
+        &lt;!&ndash;重命名查询class名称&ndash;&gt;
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" >
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+
+        &lt;!&ndash; 查询单条数据插件 &ndash;&gt;
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
+
+        &lt;!&ndash; MySQL分页插件 &ndash;&gt;
+        <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin">
+            &lt;!&ndash; 通过配置startPage影响Example中的page方法开始分页的页码，默认分页从0开始 &ndash;&gt;
+            <property name="startPage" value="1"/>
+        </plugin>
+
+        &lt;!&ndash; 自定义注释插件 &ndash;&gt;
+        <plugin type="com.itfsw.mybatis.generator.plugins.CommentPlugin">
+            &lt;!&ndash; 自定义模板路径 &ndash;&gt;
+            <property name="template" value="src/main/resources/mybatis-generator-comment.ftl" />
+        </plugin>-->
+
+        <!-- Lombok插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LombokPlugin">
+            <!-- @Builder 必须在 Lombok 版本 >= 1.18.2 的情况下 -->
+            <property name="@Builder" value="false"/>
+            <!-- @NoArgsConstructor 和 @AllArgsConstructor 使用规则和Lombok一致 -->
+            <property name="@AllArgsConstructor" value="false"/>
+            <property name="@NoArgsConstructor" value="false"/>
+        </plugin>
+
+        <!-- xml重新生成时覆盖 -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
+        <!-- 注释 -->
+        <commentGenerator>
+            <property name="javaFileEncoding" value="UTF-8"/>
+        </commentGenerator>
+
+        <!-- JDBC连接 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/oneyi?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT%2B8"
+                userId="root"
+                password="root">
+            <!-- 针对mysql数据库 -->
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+
+        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+         NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- domain领域模型  其中targetPackage需要根据你自己创建的目录进行改动 -->
+        <javaModelGenerator targetPackage="com.chiaki.mybatisgeneratordemo.domain" targetProject="src/main/java">
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
+
+        <!-- mapper xml文件 -->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- Mapper接口 -->
+        <javaClientGenerator targetPackage="com.chiaki.mybatisgeneratordemo.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 配置表信息 -->
+        <!-- tableName为对应的数据库表 -->
+        <table tableName="md_cus">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>
+
+<!--        <table tableName="class_info">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>-->
+
+    </context>
+</generatorConfiguration>
