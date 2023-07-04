@@ -1,8 +1,0 @@
-server:
-  port: 7788
-pinda:
-  swagger:
-    enabled: true #是否启用swagger
-    title: test模块
-    base-package: top.oneyi.api.controller
-
