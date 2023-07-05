@@ -22,7 +22,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("start insert fill ....");
+//        log.info("start insert fill ....");
         //三个参数：字段名，字段值，元对象参数
         this.setFieldValByName("createTime",new Date(),metaObject);
         this.setFieldValByName("updateTime",new Date(),metaObject);
@@ -34,7 +34,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.info("start update fill ....");
+//        log.info("start update fill ....");
         this.setFieldValByName("updateTime",new Date(),metaObject);
     }
 }
