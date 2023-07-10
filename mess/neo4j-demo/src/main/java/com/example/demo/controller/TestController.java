@@ -66,22 +66,38 @@ public class TestController {
         relationShipRepository.saveAll(relationShips);
     }
 
+    /**
+     * 根据id 查找节点的关系
+     * @param id
+     * @return
+     */
     @GetMapping("get")
     public RelationShip get(Long id){
         Optional<RelationShip> byId = relationShipRepository.findById(id);
         return byId.orElse(null);
     }
 
+    /**
+     * 删除关系
+     * @param id
+     */
     @GetMapping("deleteRelationShip")
     public void deleteRelationShip(Long id){
         relationShipRepository.deleteById(id);
     }
 
+    /**
+     * 删除节点
+     * @param id
+     */
     @GetMapping("deleteDept")
     public void deleteDept(Long id){
         deptRepository.deleteById(id);
     }
 
+    /**
+     * 删除所有的节点
+     */
     @GetMapping("deleteAll")
     public void deleteAll(){
         deptRepository.deleteAll();
