@@ -14,13 +14,14 @@ import java.util.Map;
 public interface ActRuTaskMapper {
     /**
      * 根据角色权限名查询任务
+     *
      * @param userRole
      * @return
      */
     List<String> selectByassignee(String userRole);
 
 
-/*    @Select("select t.NAME_,t.ASSIGNEE_,t.OWNER_,c.MESSAGE_,c.TYPE_,t.START_TIME_ from act_hi_taskinst as t " +
-            "left join act_hi_comment as c on t.ID_ = c.TASK_ID_")*/
-    public List<Map<String,String>> list();
+    /*    @Select("select t.NAME_,t.ASSIGNEE_,t.OWNER_,c.MESSAGE_,c.TYPE_,t.START_TIME_ from act_hi_taskinst as t " +
+                "left join act_hi_comment as c on t.ID_ = c.TASK_ID_")*/
+    public List<Map<String, String>> list();
 }

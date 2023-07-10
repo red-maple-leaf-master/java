@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FlowAbleApplication {
     public static void main(String[] args) {
-        SpringApplication.run(FlowAbleApplication.class,args);
+        SpringApplication.run(FlowAbleApplication.class, args);
     }
 }

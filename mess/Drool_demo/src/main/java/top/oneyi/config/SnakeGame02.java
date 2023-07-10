@@ -149,7 +149,7 @@ public class SnakeGame02 extends JPanel implements ActionListener {
             inGame = false;
         }
 
-        if(!inGame) {
+        if (!inGame) {
             timer.stop();
         }
     }

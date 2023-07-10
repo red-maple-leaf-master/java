@@ -8,7 +8,7 @@ import top.oneyi.pojo.Order;
 import java.util.List;
 
 
-public interface OrderRepository extends JpaRepository<Order,Long>, JpaSpecificationExecutor<Order> {
+public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecificationExecutor<Order> {
 
 
     List<Order> findByBookName(String bookName);

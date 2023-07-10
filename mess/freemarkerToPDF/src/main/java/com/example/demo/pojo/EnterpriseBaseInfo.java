@@ -12,9 +12,9 @@ import lombok.Data;
  */
 @Data
 
-public class EnterpriseBaseInfo{
+public class EnterpriseBaseInfo {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 主键id

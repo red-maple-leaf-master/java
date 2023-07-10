@@ -94,7 +94,7 @@ public class CommonMethods {
         System.out.println("output = " + output);
         String resString = json.toString();
         StringBuilder jsonForMatStr = new StringBuilder();
-        for(int index =0;index<resString.length();index++){
+        for (int index = 0; index < resString.length(); index++) {
             // 取出每一个字符
             char c = resString.charAt(index);
             switch (c) {
@@ -121,12 +121,12 @@ public class CommonMethods {
         String resString = jsonObject.toString();
         StringBuilder jsonForMatStr = new StringBuilder();
         int level = 0;
-        for(int index=0;index<resString.length();index++) {//将字符串中的字符逐个按行输出
+        for (int index = 0; index < resString.length(); index++) {//将字符串中的字符逐个按行输出
             //获取s中的每个字符
             char c = resString.charAt(index);
 
             //level大于0并且jsonForMatStr中的最后一个字符为\n,jsonForMatStr加入\t
-            if (level > 0  && '\n' == jsonForMatStr.charAt(jsonForMatStr.length() - 1)) {
+            if (level > 0 && '\n' == jsonForMatStr.charAt(jsonForMatStr.length() - 1)) {
                 jsonForMatStr.append(getLevelStr(level));
             }
             //遇到"{"和"["要增加空格和换行，遇到"}"和"]"要减少空格，以对应，遇到","要换行
@@ -153,6 +153,7 @@ public class CommonMethods {
         }
         return jsonForMatStr.toString();
     }
+
     /**
      * @param level
      * @return
@@ -169,15 +170,15 @@ public class CommonMethods {
     }
 
 
-    private JSONObject mapToJson(Map map){
+    private JSONObject mapToJson(Map map) {
         JSONObject json = new JSONObject();
-        try{
-            Iterator<Map.Entry<String,String>> iterator = map.entrySet().iterator();
-            while(iterator.hasNext()){
+        try {
+            Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+            while (iterator.hasNext()) {
                 Map.Entry<String, String> entry = iterator.next();
                 json.put(entry.getKey(), entry.getValue());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return json;

@@ -14,7 +14,6 @@ public class BankCardReplace implements ReplaceRule {
     private final int shortBankCard = 10;
 
     /**
-     *
      * @param source 原文本
      * @param weight 原文本在PDF中的宽度
      * @return
@@ -27,8 +26,6 @@ public class BankCardReplace implements ReplaceRule {
         }
         return DesensitizedUtils.bankCard(source);
     }
-
-
 
 
     public static void main(String[] args) {

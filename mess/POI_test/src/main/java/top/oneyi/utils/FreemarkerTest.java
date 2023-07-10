@@ -1,7 +1,6 @@
 package top.oneyi.utils;
 
 
-
 import top.oneyi.pojo.ContractParticularsVo;
 import top.oneyi.pojo.EnterpriseBaseInfo;
 import top.oneyi.pojo.EnterpriseInfo;
@@ -13,7 +12,8 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 public class FreemarkerTest {
-    private static String document="document.ftl";
+    private static String document = "document.ftl";
+
     //outputStream 输出流可以自己定义 浏览器或者文件输出流
     public static void createDocx(Map dataMap, OutputStream outputStream) {
         ZipOutputStream zipout = null;
@@ -57,10 +57,10 @@ public class FreemarkerTest {
             }
 
         } catch (Exception e) {
-            System.out.println("word导出失败:"+e.getStackTrace());
+            System.out.println("word导出失败:" + e.getStackTrace());
             //logger.error();
-        }finally {
-            if(zipout!=null){
+        } finally {
+            if (zipout != null) {
                 try {
                     zipout.close();
                 } catch (IOException e) {
@@ -68,7 +68,7 @@ public class FreemarkerTest {
 
                 }
             }
-            if(outputStream!=null){
+            if (outputStream != null) {
                 try {
                     outputStream.close();
                 } catch (IOException e) {
@@ -77,11 +77,12 @@ public class FreemarkerTest {
             }
         }
     }
-    public static void main(String arg[]){
+
+    public static void main(String arg[]) {
         //指定输出docx路径
-        File outFile = new File("E:\\Desktop\\one\\test.docx") ;
+        File outFile = new File("E:\\Desktop\\one\\test.docx");
         try {
-            createDocx(getWordData(),new FileOutputStream(outFile));
+            createDocx(getWordData(), new FileOutputStream(outFile));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

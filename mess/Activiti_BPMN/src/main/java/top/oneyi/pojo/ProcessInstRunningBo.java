@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Data
 public class ProcessInstRunningBo extends PageEntity implements Serializable {
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 流程名称

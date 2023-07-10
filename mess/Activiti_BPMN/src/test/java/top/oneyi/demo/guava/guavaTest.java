@@ -123,7 +123,7 @@ public class guavaTest {
     @Test
     public void test05() {
         ClassToInstanceMap<Object> instanceMap = MutableClassToInstanceMap.create();
-        Person person = new Person(1L,"aa",14);
+        Person person = new Person(1L, "aa", 14);
         person.setName("dfdfjlk");
         person.setAge(23);
 
@@ -133,7 +133,7 @@ public class guavaTest {
     }
 
     @Test
-    public void test06(){
+    public void test06() {
         System.out.println(Strings.isNotBlank(""));
         System.out.println(Strings.isNotBlank(null));
         System.out.println(Strings.isNotBlank(" "));
@@ -144,10 +144,10 @@ public class guavaTest {
         System.out.println(isNotNUll(" "));
         System.out.println(isNotNUll("hellf"));
         System.out.println("================================");
-        Person person = new Person(1L,"aa",14);  //String name  ,Integer age
-        Person ps = new Person(2L,"bb",13);
-        Ordering<Person> byOrdering = Ordering.natural().nullsFirst().onResultOf(new Function<Person,String>(){
-            public String apply(Person person){
+        Person person = new Person(1L, "aa", 14);  //String name  ,Integer age
+        Person ps = new Person(2L, "bb", 13);
+        Ordering<Person> byOrdering = Ordering.natural().nullsFirst().onResultOf(new Function<Person, String>() {
+            public String apply(Person person) {
                 return String.valueOf(person.getAge());
             }
         });
@@ -159,7 +159,7 @@ public class guavaTest {
         System.out.println(person1);
     }
 
-    public boolean isNotNUll(String s){
+    public boolean isNotNUll(String s) {
         return s == null || s.trim().isEmpty();
     }
 }

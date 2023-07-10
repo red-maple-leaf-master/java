@@ -3,11 +3,12 @@ package top.oneyi.demo.CompleteFuture;
 import java.util.concurrent.CompletableFuture;
 
 /**
- *whenComplete主要用于注入任务完成时的回调通知逻辑。
+ * whenComplete主要用于注入任务完成时的回调通知逻辑。
  * 这个解决了传统future在任务完成时，无法主动发起通知的问题。
  * 前置任务会将计算结果或者抛出的异常作为入参传递给回调通知函数
- *
+ * <p>
  * 还有一个 handle 跟这个类似 不过 handle 有返回值
+ *
  * @author oneyi
  * @date 2023/2/6
  */

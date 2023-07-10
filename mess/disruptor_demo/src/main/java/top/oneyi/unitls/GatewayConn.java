@@ -22,7 +22,7 @@ public class GatewayConn {
     private ConnectionConfig connectionConfig;
 
     @PostConstruct
-    private void init(){
+    private void init() {
         // 初始化网关连接
         connectionConfig = new ConnectionConfig("127.0.0.1", 1010);
         connectionConfig.start();
@@ -31,6 +31,7 @@ public class GatewayConn {
         //TODO 2.排队机交互
         initFetchServ();
     }
+
     // 和排队机交互
     private void initFetchServ() {
 
@@ -43,24 +44,24 @@ public class GatewayConn {
         ProviderConfig<IFetchService> providerConfig = new ProviderConfig<IFetchService>()
                 .setInterfaceId(IFetchService.class.getName())
                 .setRef(
-                        ()-> CmdContainer.getInstance().getAll()
+                        () -> CmdContainer.getInstance().getAll()
                 )
                 .setServer(rpcConfig);
 
         providerConfig.export();
 
-        log.info("gateway startup fetchServ success at port:{}",port);
+        log.info("gateway startup fetchServ success at port:{}", port);
 
     }
 
-    public void sendMsg(String name){
+    public void sendMsg(String name) {
         byte[] data = null;
-        try{
+        try {
             // 对象  序列化 字节数组
-            data=new BodyCodec().serialize(name);
+            data = new BodyCodec().serialize(name);
 
         } catch (Exception e) {
-            log.error("encode error for ordercmd:{}",name);
+            log.error("encode error for ordercmd:{}", name);
             return;
         }
         int length = data.length;

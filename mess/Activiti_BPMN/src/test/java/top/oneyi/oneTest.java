@@ -32,7 +32,7 @@ public class oneTest {
     // 业务id
     private final static String businessId = "34354543245";
     // 流程实例key
-    private final static String key="financial";
+    private final static String key = "financial";
     @Autowired
     private ActRuTaskMapper actRuTaskMapper;
 
@@ -49,6 +49,7 @@ public class oneTest {
         System.out.println("流程部署id：" + deployment.getId());
         System.out.println("流程部署名称：" + deployment.getName());
     }
+
     /**
      * 创建流程实例
      */
@@ -59,7 +60,7 @@ public class oneTest {
         map.put("bmjl", "2");
         map.put("zxfzr", "3");
         map.put("zjl", "4");
-        map.put("businessId","5");
+        map.put("businessId", "5");
         // 开启实例
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key, "5", map);
         System.out.println("processInstance.getBusinessKey() = " + processInstance.getBusinessKey());
@@ -81,7 +82,7 @@ public class oneTest {
      * 查询任务
      */
     @Test
-    public void queryTask(){
+    public void queryTask() {
         List<Task> list = taskService.createTaskQuery().list();
         for (Task task : list) {
             System.out.println("task = " + task);
@@ -101,9 +102,9 @@ public class oneTest {
      * 根据当前角色查询任务
      */
     @Test
-    public void queryByUserTask(){
+    public void queryByUserTask() {
         // 假设角色为 khjl 客户经理
-        String userRole ="khjl";
+        String userRole = "khjl";
         List<String> list = actRuTaskMapper.selectByassignee(userRole);
         for (String task : list) {
             System.out.println("task = " + task);
@@ -115,7 +116,7 @@ public class oneTest {
      * 完成指定任务业务id
      */
     @Test
-    public void doTask(){
+    public void doTask() {
         Task task = taskService.createTaskQuery()
                 .processInstanceBusinessKey("1")
                 .processDefinitionKey(key)
@@ -133,14 +134,14 @@ public class oneTest {
      * 获取流程实例的状态
      */
     @Test
-    public void test02(){
+    public void test02() {
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
                 .processDefinitionKey(key)
                 .processInstanceBusinessKey("4546546546465")
                 .singleResult();
-        if(processInstance != null){
+        if (processInstance != null) {
             System.out.println("流程实例未结束");
-        }else{
+        } else {
             System.out.println("流程实例结束了");
         }
 
@@ -148,9 +149,9 @@ public class oneTest {
                 .processDefinitionKey(key)
                 .processInstanceBusinessKey("7897987987979898").list();
         System.out.println("list = " + list);
-        if(list == null){
+        if (list == null) {
             System.out.println("list为空");
-        }else if(list.size()>0) {
+        } else if (list.size() > 0) {
             System.out.println("list有数值");
         }
     }

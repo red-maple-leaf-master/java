@@ -11,12 +11,13 @@ import java.util.Map;
 
 /**
  * 日期工具类(使用了ThreadLocal获取SimpleDateFormat,其他方法可以直接拷贝common-lang)
+ *
  * @author Niu Li
  * @date 2016/11/19
  */
 public class DateUtil {
     // 存储ThreadLocal对象的map
-    private static Map<String,ThreadLocal<SimpleDateFormat>> sdfMap = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
+    private static Map<String, ThreadLocal<SimpleDateFormat>> sdfMap = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
 
     private static Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
@@ -29,20 +30,21 @@ public class DateUtil {
 
     /**
      * 根据map中的key得到对应线程的sdf实例
+     *
      * @param pattern map中的key
      * @return 该实例
      */
-    private static SimpleDateFormat getSdf(final String pattern){
+    private static SimpleDateFormat getSdf(final String pattern) {
         // 获取 Threadlocal 对象
         ThreadLocal<SimpleDateFormat> sdfThread = sdfMap.get(pattern);
-        if (sdfThread == null){
+        if (sdfThread == null) {
             //双重检验,防止sdfMap被多次put进去值,和双重锁单例原因是一样的
-            synchronized (DateUtil.class){
+            synchronized (DateUtil.class) {
                 sdfThread = sdfMap.get(pattern);
-                if (sdfThread == null){
+                if (sdfThread == null) {
                     logger.debug("put new sdf of pattern " + pattern + " to map");
                     System.out.println("put new sdf of pattern " + pattern + " to map");
-                    sdfThread = new ThreadLocal<SimpleDateFormat>(){
+                    sdfThread = new ThreadLocal<SimpleDateFormat>() {
                         @Override
                         protected SimpleDateFormat initialValue() {
                             logger.debug("thread: " + Thread.currentThread() + " init pattern: " + pattern);
@@ -50,51 +52,55 @@ public class DateUtil {
                             return new SimpleDateFormat(pattern);
                         }
                     };
-                    sdfMap.put(pattern,sdfThread);
+                    sdfMap.put(pattern, sdfThread);
                 }
             }
         }
         return sdfThread.get();
     }
+
     public static void main(String[] args) {
 
-        DateUtil.formatDate(new Date(),MDHMSS);
-        new Thread(()->{
-            DateUtil.formatDate(new Date(),MDHMSS);
+        DateUtil.formatDate(new Date(), MDHMSS);
+        new Thread(() -> {
+            DateUtil.formatDate(new Date(), MDHMSS);
         }).start();
-        new Thread(()->{
-            DateUtil.formatDate(new Date(),MDHMSS);
+        new Thread(() -> {
+            DateUtil.formatDate(new Date(), MDHMSS);
         }).start();
     }
 
     /**
      * 按照指定pattern解析日期
-     * @param date 要解析的date
+     *
+     * @param date    要解析的date
      * @param pattern 指定格式
      * @return 解析后date实例
      */
-    public static Date parseDate(String date, String pattern){
-        if(date == null) {
+    public static Date parseDate(String date, String pattern) {
+        if (date == null) {
             throw new IllegalArgumentException("The date must not be null");
         }
         try {
-            return  getSdf(pattern).parse(date);
+            return getSdf(pattern).parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
-            logger.error("解析的格式不支持:"+pattern);
+            logger.error("解析的格式不支持:" + pattern);
         }
         return null;
     }
+
     /**
      * 按照指定pattern格式化日期
-     * @param date 要格式化的date
+     *
+     * @param date    要格式化的date
      * @param pattern 指定格式
      * @return 解析后格式
      */
-    public static String formatDate(Date date,String pattern){
-        if (date == null){
+    public static String formatDate(Date date, String pattern) {
+        if (date == null) {
             throw new IllegalArgumentException("The date must not be null");
-        }else {
+        } else {
             return getSdf(pattern).format(date);
         }
     }

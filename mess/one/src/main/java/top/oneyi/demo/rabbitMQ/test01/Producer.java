@@ -1,8 +1,10 @@
 package top.oneyi.demo.rabbitMQ.test01;
 
 import com.rabbitmq.client.*;
+
 /**
  * 生产者
+ *
  * @author oneyi
  * @date 2023/2/15
  */

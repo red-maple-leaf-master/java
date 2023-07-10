@@ -31,10 +31,9 @@ public class SwaggerAutoConfiguration {
     }
 
 
-
     // 用户接口组
 //    @Bean
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 // groupName : 接口文档组名字
                 .apiInfo(apiInfo()).groupName("用户接口组")
@@ -44,6 +43,7 @@ public class SwaggerAutoConfiguration {
                 .build();
         return docket;
     }
+
     // 菜单接口组
 //    @Bean
     public Docket createRestApi2() {
@@ -55,7 +55,6 @@ public class SwaggerAutoConfiguration {
                 .build();
         return docket;
     }
-
 
 
     //构建 api文档的详细信息

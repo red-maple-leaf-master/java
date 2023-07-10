@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import top.oneyi.pojo.Book;
 
 
-public interface BookRepository extends JpaRepository<Book,Long> {
+public interface BookRepository extends JpaRepository<Book, Long> {
 }

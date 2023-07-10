@@ -7,6 +7,7 @@ import top.oneyi.util.RabbitMqUtils;
 
 /**
  * 消费者 C2代码 消费死信队列的消息
+ *
  * @author oneyi
  * @date 2023/2/16
  */

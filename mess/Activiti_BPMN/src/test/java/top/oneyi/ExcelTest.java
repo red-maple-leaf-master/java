@@ -351,9 +351,9 @@ public class ExcelTest {
 
     public String longestCommonPrefix(String[] strs) {
         String str = new String("0");
-        for(int i=0;i<strs.length;i++){
-            while(strs[i].indexOf(str) != 0){//indexOf  找出字符串第一次出现的索引  如果找不到 返回 -1
-                str = str.substring(0,str.length() -1);// 找不到 就切去后面的一个字符  一直切到 能在字符串中找到这个前缀
+        for (int i = 0; i < strs.length; i++) {
+            while (strs[i].indexOf(str) != 0) {//indexOf  找出字符串第一次出现的索引  如果找不到 返回 -1
+                str = str.substring(0, str.length() - 1);// 找不到 就切去后面的一个字符  一直切到 能在字符串中找到这个前缀
             }
         }
         return str;
@@ -367,9 +367,9 @@ public class ExcelTest {
             if (target == nums[r] + nums[l]) {
                 return new int[]{r, l};
             }
-            if(r == nums.length -1){
+            if (r == nums.length - 1) {
                 l++;
-                r=l;
+                r = l;
             }
             r++;
         }

@@ -19,12 +19,12 @@ public class MyHttpServer {
 
         HttpServer httpServer = vertx.createHttpServer(options);
 
-        httpServer.requestHandler(request  -> {
+        httpServer.requestHandler(request -> {
             // 获取响应对象
             HttpServerResponse response = request.response();
 
             // 设置响应头
-            response.putHeader("Content-type","text/html;charset=utf-8");
+            response.putHeader("Content-type", "text/html;charset=utf-8");
 
             // 响应数据
             response.end("Hello World");

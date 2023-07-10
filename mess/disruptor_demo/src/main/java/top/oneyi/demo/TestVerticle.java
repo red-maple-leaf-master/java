@@ -25,6 +25,6 @@ public class TestVerticle extends BaseVerticle {
     }
 
     private void err(RoutingContext ctx) {
-        int a = 1/0;
+        int a = 1 / 0;
     }
 }

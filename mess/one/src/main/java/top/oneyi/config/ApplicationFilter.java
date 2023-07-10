@@ -18,7 +18,7 @@ public class ApplicationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("过滤器处理");
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 
     @Override

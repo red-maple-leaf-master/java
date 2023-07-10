@@ -13,7 +13,7 @@ import java.util.Map;
 public class FreeMarkUtils {
     private static Logger logger = LoggerFactory.getLogger(FreeMarkUtils.class);
 
-    public static Configuration getConfiguration(){
+    public static Configuration getConfiguration() {
         //创建配置实例
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
         //设置编码
@@ -24,8 +24,9 @@ public class FreeMarkUtils {
 
     /**
      * 获取模板字符串输入流
-     * @param dataMap   参数
-     * @param templateName  模板名称
+     *
+     * @param dataMap      参数
+     * @param templateName 模板名称
      * @return
      */
     public static ByteArrayInputStream getFreemarkerContentInputStream(Map dataMap, String templateName) {

@@ -20,7 +20,7 @@ public class CustomerController {
      * 新增用户
      */
     @PostMapping("")
-    public Customer addUser(@RequestBody Customer customer){
+    public Customer addUser(@RequestBody Customer customer) {
         return customerService.insertUser(customer);
     }
 
@@ -28,7 +28,7 @@ public class CustomerController {
      * 删除用户
      */
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") Long id){
+    public void deleteUser(@PathVariable("id") Long id) {
         customerService.deleteUser(id);
     }
 
@@ -36,7 +36,7 @@ public class CustomerController {
      * 修改用户
      */
     @PutMapping("")
-    public Customer updateUser(@RequestBody Customer customer){
+    public Customer updateUser(@RequestBody Customer customer) {
         return customerService.updateUser(customer);
     }
 
@@ -44,7 +44,7 @@ public class CustomerController {
      * 全查用户
      */
     @GetMapping("")
-    public List<Customer> findAll(){
+    public List<Customer> findAll() {
         return customerService.findAllUser();
     }
 
@@ -52,7 +52,7 @@ public class CustomerController {
      * id查用户
      */
     @GetMapping("/{id}")
-    public Customer findbyId(@PathVariable("id") Long id){
+    public Customer findbyId(@PathVariable("id") Long id) {
         return customerService.findUserById(id);
     }
 
@@ -63,7 +63,7 @@ public class CustomerController {
      * 名字查用户
      */
     @GetMapping("/name")
-    public List<Customer> findByName(String name){
+    public List<Customer> findByName(String name) {
         return customerRepository.findByName(name);
     }
 }

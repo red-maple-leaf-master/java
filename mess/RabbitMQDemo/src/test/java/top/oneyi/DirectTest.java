@@ -10,36 +10,61 @@ import top.one.util.ConnectionUtil;
 */
 /**
  * 路由模式
- *  根据key向指定的队列发送消息
+ * 根据key向指定的队列发送消息
+ *
  * @author oneyi
  * @date 2023/2/14
+ * <p>
+ * 路由交换机
+ * <p>
+ * 队列1
+ * <p>
+ * 队列2
+ * <p>
+ * 生产者
+ * <p>
+ * 消费者 1
+ * <p>
+ * 消费者 2
+ * <p>
+ * 路由交换机
+ * <p>
+ * 队列1
+ * <p>
+ * 队列2
+ * <p>
+ * 生产者
+ * <p>
+ * 消费者 1
+ * <p>
+ * 消费者 2
  *//*
 
 
 public class DirectTest {
     */
 /**
-     * 路由交换机
-     *//*
+ * 路由交换机
+ *//*
 
     private final static String EXCHANGE_NAME = "test_exchange_direct";
     */
 /**
-     *  队列1
-     *//*
+ *  队列1
+ *//*
 
     private  final static String QUEUE_NAME_1 = "test_queue_direct_1";
     */
 /**
-     * 队列2
-     *//*
+ * 队列2
+ *//*
 
     private  final static String QUEUE_NAME_2 = "test_queue_direct_2";
 
     */
 /**
-     * 生产者
-     *//*
+ * 生产者
+ *//*
 
     @Test
     public void direct() throws Exception {
@@ -59,8 +84,8 @@ public class DirectTest {
 
     */
 /**
-     * 消费者 1
-     *//*
+ * 消费者 1
+ *//*
 
     @Test
     public void direct_queue_1() throws Exception {
@@ -89,8 +114,8 @@ public class DirectTest {
     }
     */
 /**
-     * 消费者 2
-     *//*
+ * 消费者 2
+ *//*
 
     @Test
     public void direct_queue_2() throws Exception {

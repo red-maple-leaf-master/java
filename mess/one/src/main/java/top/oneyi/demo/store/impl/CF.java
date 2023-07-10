@@ -7,6 +7,6 @@ import java.util.Map;
 public class CF implements GameApi {
     @Override
     public void sendGift(String id, String gameName, Map<String, Object> maps) {
-        System.out.println("id为"+id+"的玩家"+gameName+"获得了"+"火麒麟");
+        System.out.println("id为" + id + "的玩家" + gameName + "获得了" + "火麒麟");
     }
 }

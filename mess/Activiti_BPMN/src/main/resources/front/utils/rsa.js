@@ -36,7 +36,7 @@ var rsaUtil = {
     decrypt: function (ciphertext, privateKey) {
         privateKey && rsaUtil.thisKeyPair.setPrivateKey(privateKey);
         let decString = rsaUtil.thisKeyPair.decrypt(ciphertext);
-        if(decString.charAt(0) === "{" || decString.charAt(0) === "[" ){
+        if (decString.charAt(0) === "{" || decString.charAt(0) === "[") {
             //JSON.parse
             decString = JSON.parse(decString);
         }

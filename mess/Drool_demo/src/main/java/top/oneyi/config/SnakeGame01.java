@@ -59,6 +59,7 @@ public class SnakeGame01 extends JPanel implements ActionListener, KeyListener {
         snake.add(new Point(DOT_SIZE, 0));
         snake.add(new Point(DOT_SIZE * 2, 0));
     }
+
     private void initFood() {
         int x = random.nextInt((WIDTH / DOT_SIZE - 1)) * DOT_SIZE;
         int y = random.nextInt((HEIGHT / DOT_SIZE - 1)) * DOT_SIZE;
@@ -172,10 +173,12 @@ public class SnakeGame01 extends JPanel implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Snake Game");

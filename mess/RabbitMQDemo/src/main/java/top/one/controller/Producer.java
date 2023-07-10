@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 @RestController
 @RequestMapping("/confirm")
 @Slf4j
-public class Producer{
+public class Producer {
     public static final String CONFIRM_EXCHANGE_NAME = "confirm.exchange";
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -39,7 +39,7 @@ public class Producer{
     }
 
     @GetMapping("sendMessage/{message}")
-    public void sendMessage(@PathVariable String message){
+    public void sendMessage(@PathVariable String message) {
         //指定消息 id 为 1
         CorrelationData correlationData1 = new CorrelationData("1");
         String routingKey = "key1";

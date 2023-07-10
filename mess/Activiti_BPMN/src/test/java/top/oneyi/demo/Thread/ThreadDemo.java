@@ -21,6 +21,7 @@ import java.util.Map;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @Slf4j
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
 @SpringBootTest(classes = ActivtiSpringBootApplication.class)//加载 SpringBoot 启动类
@@ -34,7 +35,7 @@ public class ThreadDemo {
     private String from;
 
     @Test
-    public void test04(){
+    public void test04() {
         log.info("com.didispace.from : {}", from);
     }
 
@@ -107,7 +108,7 @@ public class ThreadDemo {
     private MockMvc mvc;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(new AxiosController()).build();
     }
 

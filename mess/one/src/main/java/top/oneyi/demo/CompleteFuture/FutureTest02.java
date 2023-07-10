@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 /**
  * 使用CompletableFuture 实现异步调用
+ *
  * @author oneyi
  * @date 2023/2/6
  */
@@ -39,6 +40,6 @@ public class FutureTest02 {
         String mdOrder = stringCompletableFuture.get();
         System.out.println("mdOrder = " + mdOrder);
         long end = System.currentTimeMillis();
-        System.out.println("一共耗时" +  (end - start) );
+        System.out.println("一共耗时" + (end - start));
     }
 }

@@ -44,7 +44,4 @@ public class CommonMsg implements Serializable {
     private long timestamp;
 
 
-
-
-
 }

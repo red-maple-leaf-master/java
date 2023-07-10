@@ -1,8 +1,6 @@
 package top.oneyi.mapper;
 
 
-
-
 import org.apache.ibatis.annotations.Mapper;
 import top.oneyi.common.CommonMapper;
 import top.oneyi.pojo.ActBusinessStatus;
@@ -17,9 +15,9 @@ import top.oneyi.util.MyMapper;
 @Mapper
 public interface ActBusinessStatusMapper extends MyMapper<ActBusinessStatus>, CommonMapper<ActBusinessStatus> {
 
-     ActBusinessStatus selectByProcessInstanceId(String processInstanceId);
+    ActBusinessStatus selectByProcessInstanceId(String processInstanceId);
 
-     String selectByAssignee(String businessKey);
+    String selectByAssignee(String businessKey);
 
-     ActBusinessStatus selectById(String id);
+    ActBusinessStatus selectById(String id);
 }

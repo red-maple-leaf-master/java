@@ -5,7 +5,6 @@ import io.vertx.core.VertxOptions;
 import io.vertx.core.eventbus.EventBus;
 
 
-
 public class HelloWorldServer {
     public static void main(String[] args) {
       /*  System.out.print("Hello ");
@@ -25,7 +24,7 @@ public class HelloWorldServer {
             System.out.println("I have received a message: " + message.body());
         });*/
 
-        while (0 == 0){
+        while (0 == 0) {
 
             eb.send("news.uk.sport", "Yay! Someone kicked a ball");
         }

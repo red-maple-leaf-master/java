@@ -31,15 +31,16 @@
     <thead>
     <tr>
         <#list titleList as title>
-        <th>${title}</th>
-    </#list>
+            <th>${title}</th>
+        </#list>
     </tr>
     </thead>
     <#list dataList as dl>
-    <tr>
-        <#list dl as d><td>${d}</td></#list>
-    </tr>
-</#list>
+        <tr>
+            <#list dl as d>
+                <td>${d}</td></#list>
+        </tr>
+    </#list>
 
 </table>
 </body>

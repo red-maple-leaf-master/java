@@ -1,8 +1,10 @@
 package top.oneyi.demo.CompleteFuture;
 
 import java.util.concurrent.CompletableFuture;
+
 /**
- *  thenApply
+ * thenApply
+ *
  * @author oneyi
  * @date 2023/2/6
  */
@@ -34,16 +36,16 @@ public class FutureTest03 {
             System.out.println(s);
             return "我是中间处理流程处理的信息为" + s ;
         });*/
- // 259   异步  是另一个新的线程进行的操作,不在是原来的线程
+        // 259   异步  是另一个新的线程进行的操作,不在是原来的线程
         CompletableFuture<String> objectCompletableFuture = uCompletableFuture.thenApplyAsync((s) -> {
             System.out.println(s);
-            return "我是中间处理流程处理的信息为" + s ;
+            return "我是中间处理流程处理的信息为" + s;
         });
         long end = System.currentTimeMillis();
 
         System.out.println("voidCompletableFuture.join() = " + voidCompletableFuture.join());
         System.out.println("uCompletableFuture.join() = " + uCompletableFuture.join());
         System.out.println("objectCompletableFuture.join() = " + objectCompletableFuture.join());
-        System.out.println("一共耗时为: "+(end - start));
+        System.out.println("一共耗时为: " + (end - start));
     }
 }

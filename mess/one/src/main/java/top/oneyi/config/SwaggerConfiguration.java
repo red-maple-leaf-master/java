@@ -25,8 +25,8 @@ public class SwaggerConfiguration {
 
     @Bean(value = "defaultApi2")
     public Docket defaultApi2() {
-        String groupName="2.X版本";
-        Docket docket=new Docket(DocumentationType.SWAGGER_2)
+        String groupName = "2.X版本";
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .host("https://www.oneyi.top")
                 .apiInfo(apiInfo())
                 .groupName(groupName)

@@ -28,7 +28,7 @@ public class Consumer {
             channel.basicQos(1);
             System.out.println(message);
             // 1 消息标记tag 2 false代表只应答接收到的那个传递的消息 true为应答所有消息包括传递过来的消息
-            channel.basicAck(delivery.getEnvelope().getDeliveryTag(),false);
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         };
 
         CancelCallback cancelCallback = (consumerTag) -> {

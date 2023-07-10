@@ -103,7 +103,7 @@ class DemoApplicationTests {
 */
 
         try {
-            String fontDir ="E:\\project\\java\\freemarkerToPDF\\src\\main\\resources\\fonts";
+            String fontDir = "E:\\project\\java\\freemarkerToPDF\\src\\main\\resources\\fonts";
             //添加字体库 begin
             File f = new File(fontDir);
             if (f.isDirectory()) {
@@ -185,7 +185,7 @@ class DemoApplicationTests {
     }
 
     @Test
-    public  void test01() throws Exception {
+    public void test01() throws Exception {
         //		这里是选择某个模板
         String templateName = "201";
         Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -196,8 +196,8 @@ class DemoApplicationTests {
         paramMap.put("KHWD", "123");
         paramMap.put("CSKSRQ", "2016年10月31日00时00分");
         paramMap.put("KSRQ", "2017-03-14");
-        paramMap.put("YE","94444.95");
-        paramMap.put("KHZH","271**********07279975");
+        paramMap.put("YE", "94444.95");
+        paramMap.put("KHZH", "271**********07279975");
         paramMap.put("AH", "(2015)****字第0***0号");
         paramMap.put("CKH", "(2017)法YH****9控字第*号");
         paramMap.put("YDJAH", "(2015)***执字第00020号");
@@ -212,8 +212,8 @@ class DemoApplicationTests {
         paramMap.put("CKWH", "(2015)*****字第0**20-1**0号裁定书");
         paramMap.put("SKSE", "100");
         paramMap.put("CSJSRQ", "2016年10月31日 00时00分");
-        paramMap.put("questionMainOrder","ygc");
-        paramMap.put("standardScore","sunny");
+        paramMap.put("questionMainOrder", "ygc");
+        paramMap.put("standardScore", "sunny");
         //调用具体的实现方法
         contractHandler(templateName, paramMap);
     }

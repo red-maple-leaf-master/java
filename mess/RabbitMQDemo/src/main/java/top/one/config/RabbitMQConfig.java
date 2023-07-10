@@ -20,12 +20,13 @@ import org.springframework.messaging.handler.annotation.support.MessageHandlerMe
 
 /**
  * rabbitMQ队列和交换机绑定的配置类
+ *
  * @author oneyi
  * @date 2023/2/14
  */
 
 @Configuration
-public class RabbitMQConfig  {
+public class RabbitMQConfig {
 
     //交换机名称
     public static final String ITEM_TOPIC_EXCHANGE = "item_topic_exchange";
@@ -35,53 +36,59 @@ public class RabbitMQConfig  {
 
     /**
      * 声明交换机
+     *
      * @return
      */
     @Bean("itemTopicExchange")
-    public Exchange topticExchange(){
+    public Exchange topticExchange() {
         return ExchangeBuilder.topicExchange(ITEM_TOPIC_EXCHANGE).durable(true).build();
     }
 
     /**
      * 声明队列
+     *
      * @return
      */
     @Bean("itemQueueA")
-    public Queue itemQueueA(){
+    public Queue itemQueueA() {
         // 默认队列持久化 durable 为true是持久化
         return QueueBuilder.durable(ITEM_QUEUEA).build();
     }
 
     /**
      * 声明队列
+     *
      * @return
      */
     @Bean("itemQueueB")
-    public Queue itemQueueB(){
+    public Queue itemQueueB() {
         // 默认队列持久化 durable 为true是持久化
         return QueueBuilder.durable(ITEM_QUEUEB).build();
     }
 
     /**
      * 绑定队列A和交换机
+     *
      * @param queue
      * @param exchange
      * @return
      */
     @Bean
     public Binding itemQueueExchangeA(@Qualifier("itemQueueA") Queue queue,
-                                     @Qualifier("itemTopicExchange") Exchange exchange){
+                                      @Qualifier("itemTopicExchange") Exchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("item.#").noargs();
     }
+
     /**
      * 绑定队列B和交换机
+     *
      * @param queue
      * @param exchange
      * @return
      */
     @Bean
     public Binding itemQueueExchangeB(@Qualifier("itemQueueB") Queue queue,
-                                      @Qualifier("itemTopicExchange") Exchange exchange){
+                                      @Qualifier("itemTopicExchange") Exchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("item.#").noargs();
     }
 }

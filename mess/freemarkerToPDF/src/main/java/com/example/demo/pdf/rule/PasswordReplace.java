@@ -4,11 +4,10 @@ package com.example.demo.pdf.rule;
 import com.example.demo.pdf.util.DesensitizedUtils;
 
 /**
- *
  * 密码替换规则
  *
  * @author cunchang
- *  @date 2020/9/3 上午12:30
+ * @date 2020/9/3 上午12:30
  */
 public class PasswordReplace implements ReplaceRule {
 

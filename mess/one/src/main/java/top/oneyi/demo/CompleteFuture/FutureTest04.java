@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * thenApply / thenAccept / thenRun互相依赖 流式处理
  * thenAccept / thenRun
+ *
  * @author oneyi
  * @date 2023/2/6
  */

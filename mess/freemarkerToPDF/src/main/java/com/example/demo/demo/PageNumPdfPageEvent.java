@@ -10,7 +10,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 
-public class PageNumPdfPageEvent  extends PdfPageEventHelper{
+public class PageNumPdfPageEvent extends PdfPageEventHelper {
 
     @Override
     public void onEndPage(PdfWriter writer, Document document) {
@@ -22,7 +22,7 @@ public class PageNumPdfPageEvent  extends PdfPageEventHelper{
             pdfContent.saveState();
             pdfContent.beginText();
 
-            int footerFontSize = 11 ;
+            int footerFontSize = 11;
 
             // 解决页码中文无法显示 或者 显示为乱码的问题
             // 但是必须引入jar包 itext-asian-5.2.0.jar
@@ -36,9 +36,9 @@ public class PageNumPdfPageEvent  extends PdfPageEventHelper{
             Phrase phrase = new Phrase(footerNum, fontDetail);
 
             // 页码的 横轴 坐标 居中
-            float x = ( document.left() + document.right() ) / 2 ;
+            float x = (document.left() + document.right()) / 2;
             // 页码的 纵轴 坐标
-            float y = document.bottom(-10) ;
+            float y = document.bottom(-10);
             // 添加文本内容，进行展示页码
             ColumnText.showTextAligned(pdfContent, Element.ALIGN_CENTER, phrase, x, y, 0);
 

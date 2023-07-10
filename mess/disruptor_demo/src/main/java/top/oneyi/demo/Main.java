@@ -93,6 +93,7 @@ public class Main {
 
     /**
      * 一个生产者 对应  多个消费者
+     *
      * @throws InterruptedException
      */
     public static void test03() throws InterruptedException {
@@ -103,7 +104,7 @@ public class Main {
         int RINGBUFFER_SIZE = 1024;
 
         //创建disruptor
-        Disruptor<Order> disruptor = new Disruptor<Order>(orderFactory,RINGBUFFER_SIZE,Executors.defaultThreadFactory());
+        Disruptor<Order> disruptor = new Disruptor<Order>(orderFactory, RINGBUFFER_SIZE, Executors.defaultThreadFactory());
 
         //设置事件处理器 即消费者
 //        EventHandlerGroup<Order> eventHandlerGroup = disruptor.handleEventsWith(new OrderHandler(),new OrderHandler2());
@@ -119,7 +120,7 @@ public class Main {
         RingBuffer<Order> ringBuffer = disruptor.getRingBuffer();
 
         //-------------生产数据
-        for(int i = 0 ; i < 3 ; i++){
+        for (int i = 0; i < 3; i++) {
 
             long sequence = ringBuffer.next();
 

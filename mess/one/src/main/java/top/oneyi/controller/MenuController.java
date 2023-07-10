@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * 菜单
+ *
  * @author oneyi
  * @date 2022/12/13
  */
@@ -27,8 +28,10 @@ public class MenuController {
 
     @Resource
     private HttpServletRequest request;
+
     /**
      * 查询菜单
+     *
      * @return
      */
     @GetMapping("/userMenu")

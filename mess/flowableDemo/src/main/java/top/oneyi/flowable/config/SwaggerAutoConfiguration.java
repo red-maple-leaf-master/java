@@ -43,7 +43,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
     @Bean
     @ConditionalOnMissingBean
     // 接口文档不分组则list为1个，分组则为多个
-    public List<Docket> createRestApi(){
+    public List<Docket> createRestApi() {
         // 强转为可配置的bean工厂
         ConfigurableBeanFactory configurableBeanFactory = (ConfigurableBeanFactory) beanFactory;
         List<Docket> docketList = new LinkedList<>();
@@ -56,7 +56,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
             return docketList;
         }
         // 分组创建，遍历
-        for (String groupName : swaggerProperties.getDocket().keySet()){
+        for (String groupName : swaggerProperties.getDocket().keySet()) {
             SwaggerProperties.DocketInfo docketInfo = swaggerProperties.getDocket().get(groupName);
             ApiInfo apiInfo = new ApiInfoBuilder()
                     //页面标题
@@ -93,7 +93,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                     .select()
                     //为当前包路径
                     .apis(RequestHandlerSelectors.basePackage(docketInfo.getBasePackage()))
-                    .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)),Predicates.or(basePath)))
+                    .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))
                     .build();
             // 注册为单例对象，通过bean工厂来进行管理，使用title作为key，value为docket接口文档对象
             configurableBeanFactory.registerSingleton(groupName, docket);
@@ -145,7 +145,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                 .groupName(swaggerProperties.getGroup())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getBasePackage()))
-                .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)),Predicates.or(basePath)))
+                .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))
                 .build();
     }
 

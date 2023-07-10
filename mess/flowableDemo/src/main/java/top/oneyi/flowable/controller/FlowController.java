@@ -40,13 +40,14 @@ public class FlowController {
 
     /**
      * 部署
+     *
      * @return
      */
     @GetMapping("/deploy")
-    public String deploy(){
+    public String deploy() {
         Deployment deployment = repositoryService.createDeployment()
                 .addClasspathResource("flowable/eon.bpmn20.xml")
-                .name( "请假流程" )
+                .name("请假流程")
                 .deploy();
         return "部署成功";
     }
@@ -54,29 +55,32 @@ public class FlowController {
 
     /**
      * 开启流程
+     *
      * @param businessKey
      * @param key
      * @return
      */
     @GetMapping("/startFlow")
-    public String startFlow(String businessKey,String key){
-        Map<String,Object> map = new HashMap<>();
-        map.put("one","1");
-        map.put("two","2");
-        map.put("stree","3");
+    public String startFlow(String businessKey, String key) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("one", "1");
+        map.put("two", "2");
+        map.put("stree", "3");
         // 设置启动人
         Authentication.setAuthenticatedUserId("admin");
-        runtimeService.startProcessInstanceById(key,businessKey,map);
+        runtimeService.startProcessInstanceById(key, businessKey, map);
         return "开启流程成功";
     }
+
     /**
      * 查看正在运行的流程实例
+     *
      * @param businessKey
      * @param key
      * @return
      */
     @GetMapping("/processInstanceList")
-    public List<ProcessInstRunningVo> processInstanceList(String businessKey,String key){
+    public List<ProcessInstRunningVo> processInstanceList(String businessKey, String key) {
         List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery()
                 .processDefinitionKey(key) // 暂时只看指定流程定义的流程实例
 //                .processInstanceBusinessKey(businessKey)
@@ -84,7 +88,7 @@ public class FlowController {
         List<ProcessInstRunningVo> vos = new ArrayList<>();
         for (ProcessInstance processInstance : processInstances) {
             ProcessInstRunningVo runningVo = new ProcessInstRunningVo();
-            BeanUtils.copyProperties(processInstance,runningVo);
+            BeanUtils.copyProperties(processInstance, runningVo);
             // 设置流程定义名称
             runningVo.setName(processInstance.getProcessDefinitionName());
             // 设置流程实例状态
@@ -133,32 +137,35 @@ public class FlowController {
 
     /**
      * 通过
+     *
      * @param businessKey
      * @return
      */
     @GetMapping("/pass")
-    public String pass(String businessKey,String key){
+    public String pass(String businessKey, String key) {
 //        Task task = taskService.createTaskQuery().processInstanceBusinessKey(businessKey).processDefinitionKey(key).singleResult();
         List<Task> list = taskService.createTaskQuery().processInstanceBusinessKey(businessKey).processDefinitionKey(key).list();
-        if(list.size() == 0){
+        if (list.size() == 0) {
             return "流程实例已结束";
         }
         for (Task task1 : list) {
             //通过审核
             HashMap<String, Object> map = new HashMap<>();
             map.put("outcome", "通过");
-            taskService.complete(task1.getId(),map);
+            taskService.complete(task1.getId(), map);
         }
 
         return "通过";
     }
+
     /**
      * 详细信息
+     *
      * @param businessKey
      * @return
      */
     @GetMapping("/passInfo")
-    public String passInfo(String businessKey,String key){
+    public String passInfo(String businessKey, String key) {
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
                 .processDefinitionKey(key) // 暂时只看指定流程定义的流程实例
                 .processInstanceBusinessKey(businessKey)
@@ -175,14 +182,14 @@ public class FlowController {
 
 //        Task task = taskService.createTaskQuery().processInstanceBusinessKey(businessKey).processDefinitionKey(key).singleResult();
         List<Task> list = taskService.createTaskQuery().processInstanceBusinessKey(businessKey).processDefinitionKey(key).list();
-        if(list.size() == 0){
+        if (list.size() == 0) {
             return "流程实例已结束";
         }
         for (Task task1 : list) {
             //通过审核
-            taskService.setVariable(task1.getId(),"one","12315646");
-            taskService.setVariable(task1.getId(),"stree","333333");
-            taskService.setVariable(task1.getId(),"two","222222222");
+            taskService.setVariable(task1.getId(), "one", "12315646");
+            taskService.setVariable(task1.getId(), "stree", "333333");
+            taskService.setVariable(task1.getId(), "two", "222222222");
 
             Map<String, Object> variables = taskService.getVariables(task1.getId());
             System.out.println("variables = " + variables);
@@ -193,14 +200,16 @@ public class FlowController {
 
         return "通过";
     }
+
     /**
      * 驳回
+     *
      * @param businessKey
      * @param message
      * @return
      */
     @GetMapping("/reject")
-    public String reject(String businessKey,String key,String message){
+    public String reject(String businessKey, String key, String message) {
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .processDefinitionKey(key).singleResult();
@@ -208,20 +217,21 @@ public class FlowController {
         //通过审核
         HashMap<String, Object> map = new HashMap<>();
         map.put("outcome", "驳回");
-        taskService.addComment(task.getId(),processInstance.getId(),message);
-        taskService.complete(task.getId(),map);
+        taskService.addComment(task.getId(), processInstance.getId(), message);
+        taskService.complete(task.getId(), map);
         return "不通过";
     }
 
 
     /**
      * 历史任务
+     *
      * @param businessKey
      * @param key
      * @return
      */
     @GetMapping("/historyTask")
-    public List<HistoryTask> historyTask(String businessKey,String key){
+    public List<HistoryTask> historyTask(String businessKey, String key) {
         List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceBusinessKey(businessKey).processDefinitionKey(key).list();
 
         List<HistoryTask> tasks = new ArrayList<>();

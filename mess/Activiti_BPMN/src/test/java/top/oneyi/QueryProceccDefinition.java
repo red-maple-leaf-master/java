@@ -1,7 +1,6 @@
 package top.oneyi;
 
 
-
 import cn.hutool.core.lang.Pair;
 
 import org.activiti.engine.ProcessEngine;
@@ -53,7 +52,7 @@ public class QueryProceccDefinition {
      * @return
      * @throws Exception
      */
-    public int[] sort(int[] sourceArray){
+    public int[] sort(int[] sourceArray) {
         // 对 arr 进行拷贝，不改变参数内容
         int[] arr = Arrays.copyOf(sourceArray, sourceArray.length);
 
@@ -229,8 +228,8 @@ public class QueryProceccDefinition {
     }
 
     @Test
-    public void test03(){
-        Pair<Boolean,String> pair = new Pair<>(true,"历史");
+    public void test03() {
+        Pair<Boolean, String> pair = new Pair<>(true, "历史");
         System.out.println(pair.getKey());
         System.out.println(pair.getValue());
     }

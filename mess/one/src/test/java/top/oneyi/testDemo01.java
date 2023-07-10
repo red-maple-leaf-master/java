@@ -53,7 +53,7 @@ public class testDemo01 {
         sysUserMapper.updateByPrimaryKey(admin);
         System.out.println("admin = " + admin);*/
 
-       List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         String s = list.get(11);
         System.out.println("s = " + s);
     }
@@ -67,8 +67,8 @@ public class testDemo01 {
 
         // 创建输入流  03版本使用 xls后缀(65536行)    07版本就是表格行数没有要求,后缀变为xlsx
         // 07版本 XSSFWorkbook  大文件使用这个,但是慢   SXSSFWorkbook 为升级版 需要清理临时文件 ((SXSSFWorkbook)workbook).dispose();
-        FileOutputStream fos = new FileOutputStream(PATH +"\\poi03.xls");
-       // List<WmOmNoticeI> wmOmNoticeIS = wmOmNoticeIMapper.selectAll();
+        FileOutputStream fos = new FileOutputStream(PATH + "\\poi03.xls");
+        // List<WmOmNoticeI> wmOmNoticeIS = wmOmNoticeIMapper.selectAll();
         // 创建工作簿
         Workbook workbook = new HSSFWorkbook();
         // 创建工作表
@@ -303,6 +303,7 @@ public class testDemo01 {
 
     /**
      * 设置格式
+     *
      * @param cell3
      * @param workbook
      */
@@ -333,7 +334,7 @@ public class testDemo01 {
     }*/
 
     @Test
-    public void test(){
+    public void test() {
         // 创建工作簿
         Workbook workbook = new HSSFWorkbook();
         // 创建工作表
@@ -351,9 +352,9 @@ public class testDemo01 {
 
 
     @Test
-    public void test02(){
-     DemoData demoData = new DemoData();
-     Supplier<DemoData> d1 = DemoData::new;
+    public void test02() {
+        DemoData demoData = new DemoData();
+        Supplier<DemoData> d1 = DemoData::new;
         DemoData demoData1 = d1.get();
         System.out.println("d1.get() = " + d1.get());
         System.out.println("d1.get() = " + d1.get());
@@ -372,8 +373,8 @@ public class testDemo01 {
      * 该接口有一个accept方法需要传递一个参数,还有一个默认方法
      */
     @Test
-    public void test03(){
-        Consumer<String> stringConsumer = new Consumer<String>(){
+    public void test03() {
+        Consumer<String> stringConsumer = new Consumer<String>() {
 
             /**
              * Performs this operation on the given argument.
@@ -383,7 +384,7 @@ public class testDemo01 {
             @Override
             public void accept(String s) {
                 // 这里可以对传递进来的参数 进行操作
-               // s="我是改写的参数";
+                // s="我是改写的参数";
                 System.out.println(s);
             }
         };
@@ -393,25 +394,25 @@ public class testDemo01 {
         // Stream流的forEach使用的就是 Consumer类型的参数  Consumer<? super T> action
         Stream<String> stream = Stream.of("aaa", "bbb", "ddd", "ccc", "fff");
         // 这就意味着我们可以使用 Consumer接口来对于stream流的数据进行过滤或者操作
-       // stream.forEach(stringConsumer);
+        // stream.forEach(stringConsumer);
         // 例子  有个要点,就是stream流只能被消费一次,即每次创建的steam流只能被用一次,所以上面的那个需要注释掉或者再次创建一个steam流
         System.out.println("==============================");
         stream.forEach(new Consumer<String>() {
             @Override
             public void accept(String s) {
                 // 对传递的字符串进行操作
-                if(s.equals("aaa")){
-                    s="我是aaa";
+                if (s.equals("aaa")) {
+                    s = "我是aaa";
 
                 }
                 System.out.println(s);
             }
         });
         System.out.println("==============================");
-        Stream<String> stream02= Stream.of("aaa", "bbb", "ddd", "ccc", "fff");
+        Stream<String> stream02 = Stream.of("aaa", "bbb", "ddd", "ccc", "fff");
         // stream02.forEach(System.out::print);
         // 使用lambda表达式输出,这就是我们常用的那种,本质就是传递一个实现Consumer接口,重写其中的accept方法
-       // Consumer<String> consumer1 = (s) -> { System.out.println(s); };
+        // Consumer<String> consumer1 = (s) -> { System.out.println(s); };
         stream02.forEach(s -> {
             System.out.println(s);
         });
@@ -440,7 +441,7 @@ public class testDemo01 {
         Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6);
         // 获得一个Optional对象   发现Optianal对象也有一个get方法
         Optional<Integer> first = stream.filter(a -> a > 3).findFirst();
-        if(first.isPresent()){ // isPresent方法是判断该对象是否为空
+        if (first.isPresent()) { // isPresent方法是判断该对象是否为空
             Integer integer = first.get();
             System.out.println(integer);
         }
@@ -448,7 +449,7 @@ public class testDemo01 {
         // 但是 Optional对象并没有实现Supplier接口,他的有一些方法需要 Supplier 类型的参数
         // orElseGet()方法 如果Supplier类型的参数返回的与 Optional对象(值为4)不一致就返回Optional对象中的数值,
         // 如果 Optional对象是null就返回Supplier类型的参数返回的值(值为 1)  直接点开orElseGet()方法也能清晰的看到该方法写了一个三元运算式
-      Integer integer =   first.orElseGet(new Supplier<Integer>() {
+        Integer integer = first.orElseGet(new Supplier<Integer>() {
             @Override
             public Integer get() {
                 return 1;
@@ -473,7 +474,7 @@ public class testDemo01 {
      * Predicate接口 只有一个test方法需要重写 其他都是默认方法
      */
     @Test
-    public void test05(){
+    public void test05() {
         Predicate<Integer> predicate = new Predicate<Integer>() {
             @Override
             public boolean test(Integer integer) {
@@ -484,7 +485,7 @@ public class testDemo01 {
         System.out.println(test);
         System.out.println("=============================");
         // lambda表达式
-        predicate =  (t) -> t > 5;
+        predicate = (t) -> t > 5;
         System.out.println(predicate.test(3));
         System.out.println("=============================");
         // Stream流中的filter参数类型就是 Predicate  大于 5的都会输出
@@ -499,9 +500,9 @@ public class testDemo01 {
      * 数据转换成另一种形式的输出数据。
      */
     @Test
-    public void test06(){
+    public void test06() {
         //泛型的第一个参数是转换前的类型，第二个是转化后的类型
-        Function<String,Integer> fn = new Function<String,Integer>(){
+        Function<String, Integer> fn = new Function<String, Integer>() {
             @Override
             public Integer apply(String s) {
                 return s.length();
@@ -511,11 +512,11 @@ public class testDemo01 {
         Stream<String> stream = Stream.of("aaa", "bbbbb", "ccccccv");
         stream.map(fn).forEach(System.out::println);
         System.out.println("=============================");
-        Stream<String> stream2= Stream.of("aaa", "bbbbb", "ccccccv");
+        Stream<String> stream2 = Stream.of("aaa", "bbbbb", "ccccccv");
         List<Integer> list = stream2.map(s -> {
-            if(s.length() > 4){
+            if (s.length() > 4) {
                 return s.length();
-            }else{
+            } else {
                 return 0;
             }
         }).collect(Collectors.toList());
@@ -523,10 +524,11 @@ public class testDemo01 {
 
 
     }
+
     public static String SQL_REGEX = "and |extractvalue|updatexml|exec |insert |select |delete |update |drop |count |chr |mid |master |truncate |char |declare |or |+|user()";
 
     @Test
-    public void test07(){
+    public void test07() {
 /*        String[] split = StringUtils.split(SQL_REGEX, "|");
         System.out.println(Arrays.toString(split));
         for (String s : split) {
@@ -559,7 +561,7 @@ public class testDemo01 {
         List<SQLStatement> sqlStatements = SQLUtils.parseStatements(sql, DbType.mysql);
         System.out.println("sqlStatements = " + sqlStatements);
         SQLStatement sqlStatement = sqlStatements.get(0);
-       MySqlCreateTableStatement sqlCreateTableStatement =  (MySqlCreateTableStatement) sqlStatement;
+        MySqlCreateTableStatement sqlCreateTableStatement = (MySqlCreateTableStatement) sqlStatement;
         String tableName = sqlCreateTableStatement.getTableName().replaceAll("`", "");
         System.out.println("tableName = " + tableName);
     }

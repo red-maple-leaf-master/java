@@ -8,7 +8,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-/**权限
+/**
+ * 权限
+ *
  * @author xjh
  */
 @Data
@@ -21,23 +23,23 @@ public class SysPermission {
     private Long id;
 
     /**
-     *菜单代码
+     * 菜单代码
      */
     @NotNull
     private String menuCode;
     /**
-     *菜单名
+     * 菜单名
      */
     @NotNull
     private String menuName;
     /**
-     *权限代码
+     * 权限代码
      */
     @NotNull
     private String permissionCode;
 
     /**
-     *权限名称
+     * 权限名称
      */
     @NotNull
     private String permissionName;
@@ -57,7 +59,7 @@ public class SysPermission {
     private Integer state;
 
     /**
-     *备注
+     * 备注
      */
 
     private String remarks;

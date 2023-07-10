@@ -55,14 +55,14 @@ public class ActivitiTest {
         RuntimeService runtimeService = processEngine.getRuntimeService();
 //        3、根据流程定义Id启动流程
 //      runtimeService.startProcessInstanceByKey("wan");
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("common", "6");
         map.put("khjl", "6");
         map.put("bmjl", "7");
         map.put("zxfzr", "8");
         map.put("zjl", "9");
         // 启动流程实例 添加业务id
-        ProcessInstance processInstance =    runtimeService.startProcessInstanceByKey("financial","1234",map);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("financial", "1234", map);
 //        输出内容
         System.out.println("流程定义id：" + processInstance.getProcessDefinitionId());
         System.out.println("流程实例id：" + processInstance.getId());
@@ -131,11 +131,11 @@ public class ActivitiTest {
                 .processInstanceBusinessKey("1234")
 //                .taskAssignee("lisi")  //要查询的负责人
                 .singleResult();
-        taskService.addComment(task.getId(), processInstance.getProcessInstanceId(),task.getName()+":审批不通过","内容不合格  写的什么玩意");
+        taskService.addComment(task.getId(), processInstance.getProcessInstanceId(), task.getName() + ":审批不通过", "内容不合格  写的什么玩意");
 //        taskService.complete(task.getId());
         ActivitiUtil util = new ActivitiUtil();
         // 跳到指定的节点
-        util.jumpTask(processInstance,"sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9","1234");
+        util.jumpTask(processInstance, "sid-108998A1-BFC1-4B72-91E6-6D1B484E75B9", "1234");
 
 
         // 根据businessKey获得流程实例id
@@ -196,7 +196,7 @@ public class ActivitiTest {
 
 
     @Test
-    public void test02(){
+    public void test02() {
         ProcessDefinition processDefinition = activitiRule.getRepositoryService().createProcessDefinitionQuery().singleResult();
         RuntimeService runtimeService = activitiRule.getRuntimeService();
         Map<String, Object> variables = new HashMap<>();
@@ -207,8 +207,6 @@ public class ActivitiTest {
         System.out.println("processDefinition.getDeploymentId() = " + processDefinition.getDeploymentId());
 
     }
-
-
 
 
 }

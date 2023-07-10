@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 /**
  * velocity 测试
+ *
  * @author oneyi
  * @date 2023/4/23
  */
@@ -43,10 +44,11 @@ public class VelocityTest {
         // 6,释放资源
         fw.close();
     }
+
     private static String macAddressStr = null;
     private static String computerName = System.getenv().get("COMPUTERNAME");
-    private static final String[] windowsCommand = { "ipconfig", "/all" };
-    private static final String[] linuxCommand = { "/sbin/ifconfig", "-a" };
+    private static final String[] windowsCommand = {"ipconfig", "/all"};
+    private static final String[] linuxCommand = {"/sbin/ifconfig", "-a"};
     private static final Pattern macPattern = Pattern.compile(".*((:?[0-9a-f]{2}[-:]){5}[0-9a-f]{2}).*", Pattern.CASE_INSENSITIVE);
 
     public static List<String> getMacAddressLIst() throws IOException {
@@ -65,7 +67,7 @@ public class VelocityTest {
         final Process process = Runtime.getRuntime().exec(command);
 
         BufferedReader bufReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        for (String line = null; (line = bufReader.readLine()) != null;) {
+        for (String line = null; (line = bufReader.readLine()) != null; ) {
             Matcher matcher = macPattern.matcher(line);
             if (matcher.matches()) {
                 macAddressList.add(matcher.group(1));
@@ -89,7 +91,7 @@ public class VelocityTest {
             StringBuffer sb = new StringBuffer(); // 存放多个网卡地址用，目前只取一个非0000000000E0隧道的值
             try {
                 List<String> macList = getMacAddressLIst();
-                for (Iterator<String> iter = macList.iterator(); iter.hasNext();) {
+                for (Iterator<String> iter = macList.iterator(); iter.hasNext(); ) {
                     String amac = iter.next();
                     if (!amac.equals("0000000000E0")) {
                         sb.append(amac);
@@ -106,6 +108,7 @@ public class VelocityTest {
 
         return macAddressStr;
     }
+
     /**
      * 获取电脑唯一标识
      *
@@ -122,6 +125,7 @@ public class VelocityTest {
         }
         return computerName;
     }
+
     /**
      * 获取客户端IP地址
      *

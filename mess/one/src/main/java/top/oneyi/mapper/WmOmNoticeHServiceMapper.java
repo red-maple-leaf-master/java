@@ -47,6 +47,7 @@ public interface WmOmNoticeHServiceMapper extends MyMapper<WmOmNoticeH> {
 
     /**
      * 根据 omNoticeId 查询
+     *
      * @param omNoticeId
      * @return
      */

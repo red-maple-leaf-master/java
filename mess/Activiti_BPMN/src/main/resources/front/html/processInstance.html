@@ -5,7 +5,6 @@
     <title>流程定义列表</title>
 
 
-
 </head>
 <body>
 
@@ -60,19 +59,19 @@
 
             getData() {
                 axios.get('http://localhost:40155/system/baseInfo/queryIndustryType'
-                    ).then(res => {
+                ).then(res => {
                     let list = res.data.data.industryType
-                    const selector = (arr) =>{
+                    const selector = (arr) => {
                         const res = [];
-                        for(let index in arr ){
+                        for (let index in arr) {
                             const i = arr[index]
                             const obj = {
                                 label: i.name,
                                 value: i.id
                             }
-                            if(i.hasChild === 1){
+                            if (i.hasChild === 1) {
                                 const child = selector(i.normIndustryList)
-                                obj.children=child;
+                                obj.children = child;
                             }
                             res.push(obj);
 
@@ -80,7 +79,7 @@
                         return res;
                     }
                     let dispose = selector(list)
-                    console.log('处理好的数据',dispose)
+                    console.log('处理好的数据', dispose)
                     this.options = dispose;
                 })
             },

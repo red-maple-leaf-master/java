@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
  * exceptionally 异常返回 exceptionally 方法指定某个任务执行异常时执行的回调方法，
  * 会将抛出异常作为参数传递到回调方法中，如果该任务正常执行，则exceptionally方法返
  * 回的CompletionStage的result就是该任务正常执行的结果。
+ *
  * @author oneyi
  * @date 2023/2/6
  */
@@ -14,10 +15,10 @@ public class FutureTest05 {
     public static void main(String[] args) {
         CompletableFuture<String> scf = CompletableFuture.supplyAsync(() -> {
             System.out.println("正常的运行程序");
-            try{
+            try {
                 // 处理之后后面还是正常运行, exceptionally 方法失效
-                throw  new RuntimeException("运行时异常");
-            }catch (Exception e){
+                throw new RuntimeException("运行时异常");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "成功运行";

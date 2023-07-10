@@ -15,7 +15,7 @@ public class DressAction {
      * 前置通知
      */
     @Before("execution(* top.oneyi.service.IPerson.*(..))")
-    public void undress(){
+    public void undress() {
         System.out.println("我是前置通知");
     }
 
@@ -23,11 +23,12 @@ public class DressAction {
      * 后置通知
      */
     @After("execution(* top.oneyi.service.IPerson.*(..))")
-    public void wearDress(){
+    public void wearDress() {
         System.out.println("我是后置通知");
     }
+
     @AfterReturning(pointcut = "@annotation(updateDate)")
-    public void update(JoinPoint joinPoint, UpdateDate updateDate){
+    public void update(JoinPoint joinPoint, UpdateDate updateDate) {
         System.out.println("当前时间为:" + new Date());
     }
 }

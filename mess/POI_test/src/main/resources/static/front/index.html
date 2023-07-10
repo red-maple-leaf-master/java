@@ -10,7 +10,7 @@
     <button type="submit">提交</button>
 </form>
 <br/>
-<img id="testImg" src=""  alt="图片" />
+<img id="testImg" src="" alt="图片"/>
 
 </body>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
@@ -18,10 +18,10 @@
 <script>
 
     /* 文件改变时触发文件上传 */
-    $('#upload').change(function(){
+    $('#upload').change(function () {
         // 设置ajax参数
         var options = {
-            url : "localhost:8080/test/saveFile",
+            url: "localhost:8080/test/saveFile",
             type: "Get",
             success: function (data) {
                 // 设置图片地址

@@ -13,6 +13,18 @@ import top.one.util.ConnectionUtil;
  *
  * @author oneyi
  * @date 2023/2/13
+ * <p>
+ * 消费者 1
+ * <p>
+ * 消费者2
+ * <p>
+ * 生产者
+ * <p>
+ * 消费者 1
+ * <p>
+ * 消费者2
+ * <p>
+ * 生产者
  *//*
 
 
@@ -24,8 +36,8 @@ public class DemoTest {
 
     */
 /**
-     * 消费者 1
-     *//*
+ * 消费者 1
+ *//*
 
     @Test
     public void test() throws Exception {
@@ -50,8 +62,8 @@ public class DemoTest {
 
     */
 /**
-     * 消费者2
-     *//*
+ * 消费者2
+ *//*
 
     @Test
     public void test01() throws Exception {
@@ -76,8 +88,8 @@ public class DemoTest {
 
     */
 /**
-     * 生产者
-     *//*
+ * 生产者
+ *//*
 
     @Test
     public void test02() throws Exception {

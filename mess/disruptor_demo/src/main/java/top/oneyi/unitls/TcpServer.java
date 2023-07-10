@@ -64,7 +64,7 @@ public class TcpServer {
 
                 @Override
                 public void handle(Buffer buffer) {
-                    if(bodyLength==-1){
+                    if (bodyLength == -1) {
                         bodyLength = buffer.getInt(0);
                         checksum = buffer.getByte(4);
                         msgSrc = buffer.getShort(5);
@@ -74,17 +74,17 @@ public class TcpServer {
                         packetNo = buffer.getShort(12);
                         // 动态修改长度
                         parser.fixedSizeMode(bodyLength);
-                    }else{
+                    } else {
                         byte[] bodyBytes = buffer.getBytes();
                         CommonMsg msg;
-                        if(checksum != new ByteCheckSum().getChecksum(bodyBytes)){
+                        if (checksum != new ByteCheckSum().getChecksum(bodyBytes)) {
                             // 校验和不通过  报错
-                            log.error("checksum fail, Illegal byte body exist from client:{}",socket.remoteAddress());
+                            log.error("checksum fail, Illegal byte body exist from client:{}", socket.remoteAddress());
                             return;
-                        }else if(msgDst != 1001){
-                            log.error("recv error msgDst dst:{} from client:{}",msgDst,socket.remoteAddress());
+                        } else if (msgDst != 1001) {
+                            log.error("recv error msgDst dst:{} from client:{}", msgDst, socket.remoteAddress());
                             return;
-                        }else{
+                        } else {
                             msg = new CommonMsg();
                             msg.setBody(bodyBytes);
                             msg.setChecksum(checksum);

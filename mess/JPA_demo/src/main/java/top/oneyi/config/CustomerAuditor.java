@@ -8,7 +8,8 @@ import java.util.Optional;
 @Configuration
 public class CustomerAuditor implements AuditorAware<String> {
     /**
-     *  获取当前创建或修改的用户
+     * 获取当前创建或修改的用户
+     *
      * @return
      */
     @Override

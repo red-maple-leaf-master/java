@@ -131,7 +131,7 @@ public class guarantyTest {
         System.out.println(" 业务流程ID　" + processInstanceId1);
         Map<String, Object> variables = taskService.getVariables(task.getId());
         System.out.println("variables = " + variables);
-        taskService.addComment(taskId,processInstanceId1,task.getName()+"-通过","给予通过");
+        taskService.addComment(taskId, processInstanceId1, task.getName() + "-通过", "给予通过");
         taskService.complete(task.getId());
 
 //        taskService.setOwner(task.getId(),"中心负责人");
@@ -141,7 +141,7 @@ public class guarantyTest {
      * 获取历史审批信息
      */
     @Test
-    public void selectHistory(){
+    public void selectHistory() {
         String id = "123";
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         RuntimeService runtimeService = processEngine.getRuntimeService();
@@ -342,13 +342,11 @@ public class guarantyTest {
 
         List<ProcessDefinition> definitionList = query.list();
         for (ProcessDefinition processDefinition : definitionList) {
-            if(!processDefinition.getId().equals(id)){
+            if (!processDefinition.getId().equals(id)) {
                 Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(processDefinition.getDeploymentId()).singleResult();
 
             }
         }
-
-
 
 
     }

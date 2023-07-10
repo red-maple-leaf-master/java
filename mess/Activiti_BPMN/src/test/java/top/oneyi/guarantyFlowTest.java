@@ -25,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 //@RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
 //@SpringBootTest(classes = ActivtiSpringBootApplication.class)//加载 SpringBoot 启动类
 @SpringBootTest
@@ -246,7 +247,7 @@ public class guarantyFlowTest {
                 .finished()
                 .list();
         list = list.stream().filter(s -> "2".equals(s.getAssignee())).collect(Collectors.toList());
-        System.out.println("一共"+ list.size()+"条任务历史数据");
+        System.out.println("一共" + list.size() + "条任务历史数据");
         for (HistoricTaskInstance historicTaskInstance : list) {
             System.out.println("historicTaskInstance.getAssignee() = " + historicTaskInstance.getAssignee());
             System.out.println("historicTaskInstance.getProcessInstanceId() = " + historicTaskInstance.getProcessInstanceId());
@@ -258,7 +259,7 @@ public class guarantyFlowTest {
     }
 
     @org.junit.jupiter.api.Test
-    public void test02(){
+    public void test02() {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         HistoryService historyService = processEngine.getHistoryService();
         HistoricProcessInstanceQuery financial = historyService.createHistoricProcessInstanceQuery().processInstanceName("financial").processInstanceBusinessKey("10");
@@ -271,7 +272,7 @@ public class guarantyFlowTest {
     }
 
     @Test
-    public void test03(){
+    public void test03() {
         //根据businessKey获得流程实例id
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 

@@ -9,6 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("top.oneyi.mapper")
 public class MybatisGenerator {
     public static void main(String[] args) {
-        SpringApplication.run(MybatisGenerator.class,args);
+        SpringApplication.run(MybatisGenerator.class, args);
     }
 }

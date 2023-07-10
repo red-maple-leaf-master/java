@@ -17,7 +17,7 @@ import java.util.List;
 public class MenuController {
     @GetMapping("/getMenus")
     @ApiOperation(value = "查询所有菜单", notes = "查询所有菜单信息")
-    public List<Menu> getMenus(){
+    public List<Menu> getMenus() {
         Menu menu = new Menu();
         menu.setId(100);
         menu.setName("itcast");
@@ -28,19 +28,19 @@ public class MenuController {
 
     @PostMapping("/save")
     @ApiOperation(value = "新增菜单", notes = "新增菜单信息")
-    public String save(@RequestBody Menu menu){
+    public String save(@RequestBody Menu menu) {
         return "OK";
     }
 
     @PutMapping("/update")
     @ApiOperation(value = "修改菜单", notes = "修改菜单信息")
-    public String update(@RequestBody Menu menu){
+    public String update(@RequestBody Menu menu) {
         return "OK";
     }
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除菜单", notes = "删除菜单信息")
-    public String delete(int id){
+    public String delete(int id) {
         return "OK";
     }
 

@@ -38,6 +38,7 @@ public class NoticeWebsocket {
 
     /**
      * 连接成功后调用的方法
+     *
      * @param session
      * @param userId
      */
@@ -48,9 +49,9 @@ public class NoticeWebsocket {
         clients.put(this.sid, session);
 
         Set<String> clientSet = conns.get(userId);
-        if (clientSet==null){
+        if (clientSet == null) {
             clientSet = new HashSet<>();
-            conns.put(userId,clientSet);
+            conns.put(userId, clientSet);
         }
         clientSet.add(this.sid);
         log.info(this.sid + "连接开启！");
@@ -67,13 +68,14 @@ public class NoticeWebsocket {
 
     /**
      * 判断是否连接的方法
+     *
      * @return
      */
     public static boolean isServerClose() {
         if (NoticeWebsocket.clients.values().size() == 0) {
             log.info("已断开");
             return true;
-        }else {
+        } else {
             log.info("已连接");
             return false;
         }
@@ -81,9 +83,10 @@ public class NoticeWebsocket {
 
     /**
      * 发送给所有用户
+     *
      * @param noticeType
      */
-    public static void sendMessage(String noticeType){
+    public static void sendMessage(String noticeType) {
         NoticeWebsocketResp noticeWebsocketResp = new NoticeWebsocketResp();
         noticeWebsocketResp.setNoticeType(noticeType);
         sendMessage(noticeWebsocketResp);
@@ -92,9 +95,10 @@ public class NoticeWebsocket {
 
     /**
      * 发送给所有用户
+     *
      * @param noticeWebsocketResp
      */
-    public static void sendMessage(NoticeWebsocketResp noticeWebsocketResp){
+    public static void sendMessage(NoticeWebsocketResp noticeWebsocketResp) {
         String message = JSONObject.toJSONString(noticeWebsocketResp);
         for (Session session1 : NoticeWebsocket.clients.values()) {
             try {
@@ -107,7 +111,7 @@ public class NoticeWebsocket {
 
     /**
      * 根据用户id发送给某一个用户
-     * **/
+     **/
     public static void sendMessageByUserId(String userId, NoticeWebsocketResp noticeWebsocketResp) {
         if (!StringUtils.isEmpty(userId)) {
             String message = JSONObject.toJSONString(noticeWebsocketResp);
@@ -131,16 +135,18 @@ public class NoticeWebsocket {
 
     /**
      * 收到客户端消息后调用的方法
+     *
      * @param message
      * @param session
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        log.info("收到来自窗口"+this.userId+"的信息:"+message);
+        log.info("收到来自窗口" + this.userId + "的信息:" + message);
     }
 
     /**
      * 发生错误时的回调函数
+     *
      * @param error
      */
     @OnError

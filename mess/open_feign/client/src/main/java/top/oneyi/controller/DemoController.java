@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 
 /**
  * 服务消费方
+ *
  * @author oneyi
  * @date 2023/4/4
  */
@@ -22,11 +23,11 @@ public class DemoController {
     private TestApi api;
 
     @GetMapping("/list")
-    public String list01(@RequestParam("str") String str,Integer i){
+    public String list01(@RequestParam("str") String str, Integer i) {
         String list = api.list(str);
         String list01 = api.list01(Integer.valueOf(i));
         System.out.println("client:我调用了服务端的接口");
-        return "收到数据===>("+list+ list01+")";
+        return "收到数据===>(" + list + list01 + ")";
     }
 
 }

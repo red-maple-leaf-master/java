@@ -25,9 +25,10 @@ public class EmitLog {
             channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
             Scanner scanner = new Scanner(System.in);
             System.out.println("请输入信息:");
-            while (scanner.hasNext()){
-                 String message = scanner.nextLine();
-                 channel.basicPublish(EXCHANGE_NAME,"",null,message.getBytes());;
+            while (scanner.hasNext()) {
+                String message = scanner.nextLine();
+                channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
+                ;
                 System.out.println("生产者发出消息:" + message);
 
             }

@@ -17,7 +17,7 @@ public class test02 {
         RheaKVStore rheaKVStore = KVStoreUtils.getRheaKVStore();
 
 
-        String key ="test";
+        String key = "test";
 
         byte[] bytes = rheaKVStore.bGet(key.getBytes());
         System.out.println(new String(bytes));

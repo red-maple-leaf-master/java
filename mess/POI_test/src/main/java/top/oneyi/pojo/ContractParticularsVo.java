@@ -1,7 +1,6 @@
 package top.oneyi.pojo;
 
 
-
 import lombok.Data;
 
 /**
@@ -12,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class ContractParticularsVo   {
+public class ContractParticularsVo {
     /**
      *
      */

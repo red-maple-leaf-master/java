@@ -1,8 +1,10 @@
 package top.oneyi.pojo;
 
 import lombok.Data;
+
 /**
- *  生成配置类
+ * 生成配置类
+ *
  * @author oneyi
  * @date 2023/5/19
  */

@@ -16,21 +16,21 @@
         <foreach collection="list" item="parentCode" open="(" close=")" separator=",">
             parent_code = #{parentCode}
         </foreach>
-     </select>
+    </select>
 
     <resultMap id="baseResultMap" type="top.oneyi.pojo.NormIndustry">
-        <id column="id" property="id" />
-        <result column="code" property="code" />
-        <result column="name" property="name" />
-        <result column="parent_code" property="parentCode" />
-        <result column="has_child" property="hasChild" />
-       <collection property="normIndustryList" ofType="top.oneyi.pojo.NormIndustry">
-           <id column="id" property="id" />
-           <result column="code" property="code" />
-           <result column="name" property="name" />
-           <result column="parent_code" property="parentCode" />
-           <result column="has_child" property="hasChild" />
-       </collection>
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="parent_code" property="parentCode"/>
+        <result column="has_child" property="hasChild"/>
+        <collection property="normIndustryList" ofType="top.oneyi.pojo.NormIndustry">
+            <id column="id" property="id"/>
+            <result column="code" property="code"/>
+            <result column="name" property="name"/>
+            <result column="parent_code" property="parentCode"/>
+            <result column="has_child" property="hasChild"/>
+        </collection>
     </resultMap>
     <select id="findByCodeToList" resultMap="baseResultMap">
             select m1.*,m2.*
@@ -39,12 +39,12 @@
     </select>
 
     <resultMap id="baseMap" type="top.oneyi.pojo.NormIndustry">
-        <id column="id" property="id" />
-        <result column="code" property="code" />
-        <result column="name" property="name" />
-        <result column="parent_code" property="parentCode" />
-        <result column="has_child" property="hasChild" />
-        <collection property="normIndustryList" select="getAllByParentCode" column="code" />
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="parent_code" property="parentCode"/>
+        <result column="has_child" property="hasChild"/>
+        <collection property="normIndustryList" select="getAllByParentCode" column="code"/>
 
     </resultMap>
     <select id="getAllFater" resultMap="baseMap">

@@ -5,7 +5,8 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- *  获取mq的连接
+ * 获取mq的连接
+ *
  * @author oneyi
  * @date 2023/2/13
  */

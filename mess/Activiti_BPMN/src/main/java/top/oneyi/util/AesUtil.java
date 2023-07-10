@@ -35,7 +35,7 @@ public class AesUtil {
      */
     public static String key;
 
-    private static final BouncyCastleProvider BOUNCY_CASTLE_PROVIDER =  new BouncyCastleProvider();
+    private static final BouncyCastleProvider BOUNCY_CASTLE_PROVIDER = new BouncyCastleProvider();
 
     static {
         key = getKey();
@@ -79,7 +79,7 @@ public class AesUtil {
      */
     public static String encrypt(String content, String encryptKey) throws Exception {
         //设置Cipher对象
-        Cipher cipher = Cipher.getInstance(ALGORITHMS,BOUNCY_CASTLE_PROVIDER);
+        Cipher cipher = Cipher.getInstance(ALGORITHMS, BOUNCY_CASTLE_PROVIDER);
         cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(encryptKey.getBytes(), KEY_ALGORITHM));
 
         //调用doFinal
@@ -101,7 +101,7 @@ public class AesUtil {
         byte[] decodeBase64 = Base64.decodeBase64(encryptStr);
 
         //设置Cipher对象
-        Cipher cipher = Cipher.getInstance(ALGORITHMS,BOUNCY_CASTLE_PROVIDER);
+        Cipher cipher = Cipher.getInstance(ALGORITHMS, BOUNCY_CASTLE_PROVIDER);
         cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(decryptKey.getBytes(), KEY_ALGORITHM));
 
         //调用doFinal解密

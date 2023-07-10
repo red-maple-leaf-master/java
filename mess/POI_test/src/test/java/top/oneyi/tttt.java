@@ -24,7 +24,7 @@ public class tttt {
 
 
     @Test
-    public void createHtml( ) {
+    public void createHtml() {
         String outputPath = "E:\\ssd\\gyl\\temp\\out0001.html";
         Configuration configuration = new Configuration(new Version("2.3.28"));
         configuration.setDefaultEncoding("UTF-8");
@@ -32,7 +32,7 @@ public class tttt {
         // 设置FreeMarker生成Word文档所需要的模板的路径
 //        configuration.setDirectoryForTemplateLoading(new File("E:\\project\\java\\POI_test\\src\\main\\resources\\template\\"));
         // 设置相对路径
-        configuration.setTemplateLoader(new ClassTemplateLoader(freemarkerToWordUtil.class,"/template/"));
+        configuration.setTemplateLoader(new ClassTemplateLoader(freemarkerToWordUtil.class, "/template/"));
         Writer out = null;
 
         File file = new File(outputPath);
@@ -43,26 +43,27 @@ public class tttt {
             configuration.setDefaultEncoding(StandardCharsets.UTF_8.name());
             Template template = configuration.getTemplate("redoneHTML.ftl");
             out = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-;
-            template.process(getWordData(),out);
-            log.info("生成静态html,路径：{}",outputPath);
+            ;
+            template.process(getWordData(), out);
+            log.info("生成静态html,路径：{}", outputPath);
 
         } catch (Exception e) {
-            log.error("生成html静态文件失败",e);
+            log.error("生成html静态文件失败", e);
 
-        }finally {
+        } finally {
             if (out != null) {
                 try {
                     out.flush();
                     out.close();
                 } catch (IOException e) {
-                    log.error("流关闭失败",e);
+                    log.error("流关闭失败", e);
                 }
             }
 
         }
 
     }
+
     /**
      * 获取生成Word文档所需要的数据
      */

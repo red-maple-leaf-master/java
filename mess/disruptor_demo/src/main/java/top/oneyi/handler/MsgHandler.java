@@ -20,22 +20,22 @@ public class MsgHandler implements IMsgHandler {
 
         try {
             // 序列化得到 oerderCmd 对象
-            orderCmd=bodyCodec.deserialize(msg.getBody(),String.class);
+            orderCmd = bodyCodec.deserialize(msg.getBody(), String.class);
             // 比较敏感 需要使用debug日志  最好在加一个判断
                /*if(log.isDebugEnabled()){
                 log.debug("");
             }*/
-            log.info("recv  orderCmd cmd:{}",orderCmd);
+            log.info("recv  orderCmd cmd:{}", orderCmd);
 
-            if(!CmdContainer.getInstance().cache(orderCmd)){
+            if (!CmdContainer.getInstance().cache(orderCmd)) {
                 //插入失败  打印日志  最好的打印一些业务信息 来排错 队列的长度
                 log.error("gateway queue insert fail,queue length:{},order:{}",
-                        CmdContainer.getInstance().size(),orderCmd);
+                        CmdContainer.getInstance().size(), orderCmd);
             }
 
 
         } catch (Exception e) {
-            log.error("decode order cmd error",e);
+            log.error("decode order cmd error", e);
             e.printStackTrace();
         }
     }

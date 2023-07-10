@@ -4,13 +4,14 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
 /*
-*Author:zhangxin_an
-*Description:
-*Data:Created in 22:52 2018/4/9
-*/
+ *Author:zhangxin_an
+ *Description:
+ *Data:Created in 22:52 2018/4/9
+ */
 public class PasswordHelp {
     /**
      * 密码明文加密
+     *
      * @param userName
      * @param password
      * @return
@@ -21,7 +22,6 @@ public class PasswordHelp {
         int hashIterations = 1024;//加密1024次
         return new SimpleHash(hashAlgorithmName, password, salt, hashIterations).toString();
     }
-    
 
 
 }

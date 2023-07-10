@@ -36,6 +36,7 @@ public class ReceiveLogsDirect01 {
             FileUtils.writeStringToFile(file, message, "UTF-8", true);
             System.out.println("错误日志生成成功!");
         };
-        channel.basicConsume(queueName,true,callback, consumerTag-> {});
+        channel.basicConsume(queueName, true, callback, consumerTag -> {
+        });
     }
 }

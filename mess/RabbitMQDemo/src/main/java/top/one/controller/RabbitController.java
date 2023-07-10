@@ -24,14 +24,15 @@ public class RabbitController {
 
     /**
      * 消息生产者
+     *
      * @param msg
      * @param key
      * @return
      */
     @GetMapping("/sendMsg")
-    public String sendMsg(String msg,String key) throws InterruptedException {
+    public String sendMsg(String msg, String key) throws InterruptedException {
         // 参数1 交换机名称  参数2 路由key  参数 3 消息本体
-        rabbitTemplate.convertAndSend(RabbitMQConfig.ITEM_TOPIC_EXCHANGE,key,msg);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.ITEM_TOPIC_EXCHANGE, key, msg);
         Thread.sleep(2000);
         return "发送成功";
     }

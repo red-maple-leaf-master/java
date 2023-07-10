@@ -45,7 +45,7 @@ public class PositionRenderListener extends ResultRenderListener {
     @Override
     public void renderText(TextRenderInfo textInfo) {
         String text = textInfo.getText();
-        System.out.println("listener text:"+text);
+        System.out.println("listener text:" + text);
         if (keyFlag) {
             // bound 块内容
             Rectangle2D.Float bound = textInfo.getBaseline().getBoundingRectange();

@@ -7,7 +7,7 @@ import top.oneyi.util.AesUtil;
 public class AESTest {
 
     @Test
-    public void test(){
+    public void test() {
         //16位
         String key = "MIGfMA0GCSqGSIb3";
 
@@ -28,12 +28,12 @@ public class AESTest {
     }
 
     @Test
-    public void test01(){
+    public void test01() {
         //16位
         String key = "MIGfMA0GCSqGSIb3";
 
         //复杂对象
-        Person pserson = new Person(1L,"aa",14);
+        Person pserson = new Person(1L, "aa", 14);
         pserson.setAge(12);
         pserson.setName("张三");
         try {

@@ -4,6 +4,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,11 +22,11 @@ public class ScheduleTestRabbitMqSender {
 
         Map<String, Object> mapB = new HashMap<>();
         mapB.put("message", "mapB的数据，map格式");
-		
-		//发送string类型数据
-        rabbitTemplate.convertAndSend("item_topic_exchange","item.A", mapA.toString());
+
+        //发送string类型数据
+        rabbitTemplate.convertAndSend("item_topic_exchange", "item.A", mapA.toString());
         //发送map类型数据
-        rabbitTemplate.convertAndSend("item_topic_exchange","item.B", mapB.toString());
+        rabbitTemplate.convertAndSend("item_topic_exchange", "item.B", mapB.toString());
         System.out.println("数据发送成功！！！");
     }
 }

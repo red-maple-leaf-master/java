@@ -37,10 +37,10 @@ public class ServerVertice extends AbstractVerticle {
             });
         });
         // 建立server监听
-        server.listen(8080,res ->{
-            if(res.succeeded()){
+        server.listen(8080, res -> {
+            if (res.succeeded()) {
                 System.out.println("连接成功");
-            }else{
+            } else {
                 System.out.println("连接失败");
             }
         });

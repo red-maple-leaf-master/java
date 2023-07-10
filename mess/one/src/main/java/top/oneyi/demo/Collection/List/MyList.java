@@ -23,5 +23,5 @@ public interface MyList<T> extends MyCollection<T> {
 
     Object get(int i);
 
-    Object set(int i,T t);
+    Object set(int i, T t);
 }

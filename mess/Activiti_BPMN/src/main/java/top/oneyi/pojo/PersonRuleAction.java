@@ -5,12 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-
 /**
  * 触发Person相关的规则后的处理类
  *
  * @author yuwen
- *
  */
 public class PersonRuleAction {
     private static Logger LOG = LoggerFactory.getLogger(PersonRuleAction.class);

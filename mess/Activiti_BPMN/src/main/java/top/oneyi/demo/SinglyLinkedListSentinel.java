@@ -10,11 +10,11 @@ public class SinglyLinkedListSentinel {
         /**
          * 节点值
          */
-        private  final int value;
+        private final int value;
         /**
          * 下一个节点
          */
-        private  Node next;
+        private Node next;
 
         public Node(int value, Node next) {
             this.value = value;
@@ -22,27 +22,28 @@ public class SinglyLinkedListSentinel {
         }
 
     }
+
     /**
      * 查找到最后一个元素
      *
      * @return
      */
     private Node findLast() {
-        if(this.head == null){
+        if (this.head == null) {
             return null;
         }
-        Node cur=this.head;
+        Node cur = this.head;
         while (cur.next != null) {
             cur = cur.next;
         }
         return cur;
     }
 
-    private Node findNode(int index){
+    private Node findNode(int index) {
         // 从头节点遍历一定的次数
-        int i=0;
+        int i = 0;
         Node curr = this.head;
-        while(i < index){
+        while (i < index) {
             curr = curr.next;
             i++;
         }
@@ -76,9 +77,11 @@ public class SinglyLinkedListSentinel {
         }
         throw illegalIndex(index);
     }
+
     private IllegalArgumentException illegalIndex(int index) {
         return new IllegalArgumentException(String.format("index [%d] 不合法%n", index));
     }
+
     public void remove(int index) {
         /*
         改动前

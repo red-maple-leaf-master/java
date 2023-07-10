@@ -17,9 +17,9 @@ public class test {
 
         RheaKVStore rheaKVStore = KVStoreUtils.getRheaKVStore();
         // 写数据
-        String key ="test";
+        String key = "test";
         String value = " hello world";
-        rheaKVStore.bPut(key.getBytes(),value.getBytes());
+        rheaKVStore.bPut(key.getBytes(), value.getBytes());
 
     }
 }

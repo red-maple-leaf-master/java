@@ -14,6 +14,6 @@ public class JDKInvocationHandler implements InvocationHandler {
 
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
-        return factoryApi.class.getMethod(method.getName(),ClassLoaderUtils.getClazzByArgs(args)).invoke(cacheAdapter, args);
+        return factoryApi.class.getMethod(method.getName(), ClassLoaderUtils.getClazzByArgs(args)).invoke(cacheAdapter, args);
     }
 }

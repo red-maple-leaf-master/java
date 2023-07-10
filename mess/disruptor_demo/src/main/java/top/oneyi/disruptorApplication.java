@@ -16,8 +16,8 @@ public class disruptorApplication {
      * 初始化 uuid生成类  填入的数字位 机房  id 和 机柜id
      */
     @PostConstruct
-    private void init(){
-        GudyUuid.getInstance().init(0,0);
+    private void init() {
+        GudyUuid.getInstance().init(0, 0);
     }
 
 

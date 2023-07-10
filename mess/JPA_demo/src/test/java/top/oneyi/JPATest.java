@@ -53,19 +53,19 @@ public class JPATest {
         return (root, query, builder) -> {
             // for params
             List<Predicate> predicates = new ArrayList<>();
-            if(customer.getId() != null){
+            if (customer.getId() != null) {
                 // 精准匹配
-                predicates.add(builder.equal(root.get("id"),customer.getId()));
+                predicates.add(builder.equal(root.get("id"), customer.getId()));
             }
             // 模糊查询 + or条件
-            if(!StringUtils.isBlank(customer.getName())){
-                predicates.add(builder.like(root.get("name"),"%"+customer.getName()+"%"));
+            if (!StringUtils.isBlank(customer.getName())) {
+                predicates.add(builder.like(root.get("name"), "%" + customer.getName() + "%"));
             }
 
-            if(customer.getAge() != null){
-                predicates.add(builder.greaterThanOrEqualTo(root.get("age"),customer.getAge()));
+            if (customer.getAge() != null) {
+                predicates.add(builder.greaterThanOrEqualTo(root.get("age"), customer.getAge()));
             }
-            return  query.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
+            return query.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
         };
     }
 
@@ -101,7 +101,7 @@ public class JPATest {
     }
 
     @Test
-    public void deleteOrder(){
+    public void deleteOrder() {
         orderRepository.deleteById(10L);
     }
 
@@ -127,8 +127,9 @@ public class JPATest {
 
     @Resource
     private IPerson person;
+
     @Test
-    public void test01(){
+    public void test01() {
         person.takeWash();
     }
 }

@@ -23,9 +23,9 @@ public class Node01 {
 
     public static void main(String[] args) {
         String ip = "127.0.0.1";
-        int port=8891;
+        int port = 8891;
 
-        String dataPath="d:/server01/";
+        String dataPath = "d:/server01/";
 
         String serverList = "127.0.0.1:8891,127.0.0.1:8892,127.0.0.1:8893,127.0.0.1:8894,127.0.0.1:8895";
 
@@ -34,7 +34,7 @@ public class Node01 {
                 .withStorageType(StorageType.Memory)// 俩种 方式 Memory 和 RocksDB  前者性能快  后者性能慢
                 .withMemoryDBOptions(MemoryDBOptionsConfigured.newConfigured().config())
                 .withRaftDataPath(dataPath)  // 相关日志输出目录
-                .withServerAddress(new Endpoint(ip,port))  // 当前节点的ip和端口
+                .withServerAddress(new Endpoint(ip, port))  // 当前节点的ip和端口
                 .config();
         // 管理多个集群  一个集群中有多个 实例 最后一定只有一个集群
         final PlacementDriverOptions pdOpts = PlacementDriverOptionsConfigured

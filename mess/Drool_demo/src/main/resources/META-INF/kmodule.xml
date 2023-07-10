@@ -14,13 +14,12 @@
     </kbase>
 
 
-
-<!--    <kbase name="myKbase2" packages="rules" default="true">
-        &lt;!&ndash;
-            name:指定ksession名称，可以任意，但是需要唯一
-            default:指定当前session是否为默认
-        &ndash;&gt;
-        <ksession name="ksession-rule2" default="true"/>
-    </kbase>
-    -->
+    <!--    <kbase name="myKbase2" packages="rules" default="true">
+            &lt;!&ndash;
+                name:指定ksession名称，可以任意，但是需要唯一
+                default:指定当前session是否为默认
+            &ndash;&gt;
+            <ksession name="ksession-rule2" default="true"/>
+        </kbase>
+        -->
 </kmodule>

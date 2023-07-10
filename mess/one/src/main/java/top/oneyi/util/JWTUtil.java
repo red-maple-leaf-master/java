@@ -13,9 +13,9 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- *author:zhangxin_an
- *Description:
- *Data:Created in 22:21 2018/4/10
+ * author:zhangxin_an
+ * Description:
+ * Data:Created in 22:21 2018/4/10
  */
 public class JWTUtil {
 
@@ -32,7 +32,7 @@ public class JWTUtil {
      * @return 是否正确
      */
     public static boolean verify(String token, String secret) {
-       try {
+        try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
                     .withIssuer(ISSUER)
@@ -90,7 +90,6 @@ public class JWTUtil {
 
 
     /**
-     *
      * @param username 用户名
      * @param secret   用户的密码
      * @return 加密的token

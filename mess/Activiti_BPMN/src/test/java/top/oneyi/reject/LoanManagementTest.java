@@ -29,6 +29,7 @@ public class LoanManagementTest {
 
     private static final String KEY = "userFlow";
     private static final String BusinessKey = "1";
+
     /**
      * 启动流程
      */
@@ -50,7 +51,7 @@ public class LoanManagementTest {
      * 查看可以拾取的任务
      */
     @Test
-    public void queryTasks(){
+    public void queryTasks() {
         List<Task> tasks = taskService.createTaskQuery()
                 .processInstanceBusinessKey(BusinessKey)
                 .processDefinitionKey(KEY)
@@ -69,49 +70,51 @@ public class LoanManagementTest {
      * 任务的交接
      */
     @Test
-    public void queryTask(){
-    Task task = taskService.createTaskQuery()
-                .processInstanceBusinessKey(BusinessKey)
-                .processDefinitionKey(KEY)
-                .taskAssignee("1")
-                .singleResult();
-        if(task != null){
-            // 任务的交接
-            taskService.setAssignee(task.getId(),"王五");
-            System.out.println("任务交接给了王五");
-        }
-
-    }
-    /**
-     * 任务的归还
-     */
-    @Test
-    public void outTask(){
+    public void queryTask() {
         Task task = taskService.createTaskQuery()
                 .processInstanceBusinessKey(BusinessKey)
                 .processDefinitionKey(KEY)
                 .taskAssignee("1")
                 .singleResult();
-        if(task != null){
+        if (task != null) {
+            // 任务的交接
+            taskService.setAssignee(task.getId(), "王五");
+            System.out.println("任务交接给了王五");
+        }
+
+    }
+
+    /**
+     * 任务的归还
+     */
+    @Test
+    public void outTask() {
+        Task task = taskService.createTaskQuery()
+                .processInstanceBusinessKey(BusinessKey)
+                .processDefinitionKey(KEY)
+                .taskAssignee("1")
+                .singleResult();
+        if (task != null) {
             // 拾取对应的任务
             taskService.unclaim(task.getId());
             System.out.println("归还拾取成功");
         }
 
     }
+
     /**
      * 任务的委托
      */
     @Test
-    public void delegationTask(){
+    public void delegationTask() {
         Task task = taskService.createTaskQuery()
                 .processInstanceBusinessKey(BusinessKey)
                 .processDefinitionKey(KEY)
                 .taskAssignee("我是委托人")
                 .singleResult();
-        if(task != null){
+        if (task != null) {
             // 委托对应的任务
-            taskService.delegateTask(task.getId(),"1");
+            taskService.delegateTask(task.getId(), "1");
             System.out.println("委托成功");
         }
 

@@ -22,8 +22,8 @@ public class TestController {
                 "attachment;filename=" + new String("out.docx".getBytes(StandardCharsets.UTF_8),
                         StandardCharsets.ISO_8859_1));
         ServletOutputStream outputStream = response.getOutputStream();
-        int len=0;
-        while((len=fileInputStream.read())!=-1){
+        int len = 0;
+        while ((len = fileInputStream.read()) != -1) {
             outputStream.write(len);
         }
         System.out.println("controller被调用");

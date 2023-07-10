@@ -50,7 +50,7 @@
         </if>
     </select>
     <select id="selectWmOmNoticeHBydatagriditem" resultType="top.oneyi.pojo.po.WmOmNoticeH">
-        select * from wm_om_notice_h  where 1=1
+        select * from wm_om_notice_h where 1=1
         <if test="omNoticeId!=null and omNoticeId!='' ">
             and om_Notice_Id like '%${omNoticeId}%'
         </if>
@@ -110,13 +110,15 @@
     <select id="getOne" resultType="top.oneyi.pojo.po.WmOmNoticeH">
         select * from wm_om_notice_h where id =#{id}
     </select>
-<!--   根据 omNoticeId 查询-->
+    <!--   根据 omNoticeId 查询-->
     <select id="findByOmNoticeId" resultType="top.oneyi.pojo.po.WmOmNoticeH">
-        select * from wm_om_notice_h where  om_notice_id = #{omNoticeId}
+        select * from wm_om_notice_h where om_notice_id = #{omNoticeId}
     </select>
     <select id="find" resultType="java.util.Map">
-        SELECT wq.create_date as pro_data,wq.jh_status,wq.fh_status,wq.base_unit,mg.shl_dan_wei ,wq.om_beizhu, mg.goods_code, mg.goods_id,mg.shp_ming_cheng,cast(sum(wq.base_goodscount) as signed) as goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj , (mg.zhl_kg/mg.chl_shl)  as   tin_zhl
+        SELECT wq.create_date as pro_data,wq.jh_status,wq.fh_status,wq.base_unit,mg.shl_dan_wei ,wq.om_beizhu,
+        mg.goods_code, mg.goods_id,mg.shp_ming_cheng,cast(sum(wq.base_goodscount) as signed) as
+        goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj , (mg.zhl_kg/mg.chl_shl) as tin_zhl
         FROM wm_om_notice_i wq,mv_goods mg where wq.om_notice_id = #{omNoticeId}
-        and  wq.goods_id = mg.goods_code group by wq.om_notice_id, mg.goods_code,wq.create_date
+        and wq.goods_id = mg.goods_code group by wq.om_notice_id, mg.goods_code,wq.create_date
     </select>
 </mapper>

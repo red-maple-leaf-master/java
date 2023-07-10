@@ -4,8 +4,10 @@ import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 import top.oneyi.pojo.Person;
 import top.oneyi.util.RsaUtil;
+
 /**
  * 非对称加密
+ *
  * @author oneyi
  * @date 2023/5/9
  */
@@ -13,7 +15,7 @@ public class RASTest {
 
 
     @Test
-    public void test01(){
+    public void test01() {
         //字符串
         String str = "huanzi.qch@qq.com:欢子";
         try {
@@ -34,9 +36,9 @@ public class RASTest {
     }
 
     @Test
-    public void test02(){
+    public void test02() {
         //复杂对象
-        Person pserson = new Person(1L,"aa",14);
+        Person pserson = new Person(1L, "aa", 14);
         pserson.setAge(12);
         pserson.setName("张三");
         try {

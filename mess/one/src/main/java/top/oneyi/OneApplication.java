@@ -11,15 +11,16 @@ import top.oneyi.config.ApplicationFilter;
 @SpringBootApplication
 public class OneApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OneApplication.class,args);
+        SpringApplication.run(OneApplication.class, args);
     }
 
     /**
      * 注册过滤器
+     *
      * @return
      */
     @Bean
-    public FilterRegistrationBean<ApplicationFilter> registrationBean(){
+    public FilterRegistrationBean<ApplicationFilter> registrationBean() {
         FilterRegistrationBean<ApplicationFilter> filterRegistrationBean = new FilterRegistrationBean<>(new ApplicationFilter());
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;

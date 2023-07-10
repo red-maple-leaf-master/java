@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,8 @@
     <link th:href="@{/css/zen-checkbox.css}" rel="stylesheet"/>
 </head>
 <body class="load-indicator">
-    <div class="container t-small-margin">
-      <div class="t-big-margin">
+<div class="container t-small-margin">
+    <div class="t-big-margin">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#tabSecond">秒</a></li>
             <li><a data-toggle="tab" href="#tabMinute">分</a></li>
@@ -1125,8 +1125,8 @@
             <button type="button" class="btn btn-warning" id="checkCron">Cron表达式验证</button>
         </div>
         <br/>
-      </div>
     </div>
+</div>
 </div>
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -1134,39 +1134,39 @@
 <script th:src="@{/ruoyi/js/ry-ui.js?v=4.7.6}"></script>
 <script th:src="@{/js/cron.js}"></script>
 <script th:inline="javascript">
-var prefix = [[@{/}]] + "monitor/job";
+    var prefix = [[@{/}]] + "monitor/job";
 
 // 查询最近10次运行时间
-$('#runBtn').click(function() {
-    var cronExpression = $("#cron").val();
-    $.get(prefix + "/queryCronExpression", { "cronExpression": cronExpression }, function(result) {
-    	if (result.code == web_status.SUCCESS) {
-    		if (result.data.length > 0) {
-        		var time = "表达式<font color='red'>[" + cronExpression + "]</font>最近10次运行时间<br/>";
-                for (var i = 0; i < result.data.length; i++) {
-                	time += i + 1 +"、" + result.data[i] + "<br/>"
+        $('#runBtn').click(function () {
+            var cronExpression = $("#cron").val();
+            $.get(prefix + "/queryCronExpression", {"cronExpression": cronExpression}, function (result) {
+                if (result.code == web_status.SUCCESS) {
+                    if (result.data.length > 0) {
+                        var time = "表达式<font color='red'>[" + cronExpression + "]</font>最近10次运行时间<br/>";
+                        for (var i = 0; i < result.data.length; i++) {
+                            time += i + 1 + "、" + result.data[i] + "<br/>"
+                        }
+                        $.modal.alertSuccess(time);
+                    } else {
+                        $.modal.alertError("表达式有误，未查询出结果");
+                    }
+                } else {
+                    $.modal.alertError(result.msg);
                 }
-                $.modal.alertSuccess(time);
-        	} else {
-                $.modal.alertError("表达式有误，未查询出结果");
-            }
-        } else {
-            $.modal.alertError(result.msg);
-        }
-    });
-});
+            });
+        });
 
-// Cron表达式验证
-$('#checkCron').click(function() {
-    var cronExpression = $("#cron").val();
-    $.post(prefix + "/checkCronExpressionIsValid", { "cronExpression": cronExpression }, function(result) {
-        if (result) {
-            $.modal.msgSuccess("恭喜你，格式正确");
-        } else {
-            $.modal.msgError("很遗憾，格式错误");
-        }
+    // Cron表达式验证
+    $('#checkCron').click(function () {
+        var cronExpression = $("#cron").val();
+        $.post(prefix + "/checkCronExpressionIsValid", {"cronExpression": cronExpression}, function (result) {
+            if (result) {
+                $.modal.msgSuccess("恭喜你，格式正确");
+            } else {
+                $.modal.msgError("很遗憾，格式错误");
+            }
+        });
     });
-});
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@ public class BodyCodec implements IBodyCodec {
 
     @Override
     public <T> T deserialize(byte[] bytes, Class<T> clazz) throws Exception {
-        return SerializerManager.getSerializer(SerializerManager.Hessian2).deserialize(bytes,clazz.getName());
+        return SerializerManager.getSerializer(SerializerManager.Hessian2).deserialize(bytes, clazz.getName());
     }
 
 

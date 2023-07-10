@@ -47,12 +47,12 @@
         </dependency>
 
         <!--        rabbitMQ-->
-<!--        <dependency>
-            <groupId>com.rabbitmq</groupId>
-            <artifactId>amqp-client</artifactId>
-            <version>3.4.1</version>
-        </dependency>-->
-<!-- springboot整合 rabbitMQ-->
+        <!--        <dependency>
+                    <groupId>com.rabbitmq</groupId>
+                    <artifactId>amqp-client</artifactId>
+                    <version>3.4.1</version>
+                </dependency>-->
+        <!-- springboot整合 rabbitMQ-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>

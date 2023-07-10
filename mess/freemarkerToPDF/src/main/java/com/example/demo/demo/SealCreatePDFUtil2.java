@@ -64,8 +64,49 @@ public class SealCreatePDFUtil2 {
  
             */
 /**
-             * 如果实参传入了，图片和坐标值，则添加图片
-             *//*
+ * 如果实参传入了，图片和坐标值，则添加图片
+ * <p>
+ * InputStream 转 byte[]
+ *
+ * @param input
+ * @return 根据内容长度设置字体大小，
+ * 本方法适合 《短》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《中》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《长》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * InputStream 转 byte[]
+ * @param input
+ * @return 根据内容长度设置字体大小，
+ * 本方法适合 《短》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《中》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《长》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ *//*
 
             byte[] bytes = toByteArray(imgInputStream);
             if(bytes != null && img_X_position > 0 && img_Y_position > 0){
@@ -110,10 +151,10 @@ public class SealCreatePDFUtil2 {
  
     */
 /**
-     * InputStream 转 byte[]
-     * @param input
-     * @return
-     *//*
+ * InputStream 转 byte[]
+ * @param input
+ * @return
+ *//*
 
     public static byte[] toByteArray(InputStream input){
         if(input == null){
@@ -138,12 +179,12 @@ public class SealCreatePDFUtil2 {
  
     */
 /**
-     * 根据内容长度设置字体大小，
-     * 本方法适合 《短》 的文本域
-     * @param iLength
-     * @param key
-     * @param acroFields
-     *//*
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《短》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ *//*
 
     public static void setFontSizeByLength_1(int iLength,String key,AcroFields acroFields){
         if(iLength > 0 && iLength < 5){
@@ -160,12 +201,12 @@ public class SealCreatePDFUtil2 {
  
     */
 /**
-     * 根据内容长度设置字体大小，
-     * 本方法适合 《中》 的文本域
-     * @param iLength
-     * @param key
-     * @param acroFields
-     *//*
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《中》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ *//*
 
     public static void setFontSizeByLength_2(int iLength,String key,AcroFields acroFields){
         if(iLength > 0 && iLength < 15){
@@ -182,12 +223,12 @@ public class SealCreatePDFUtil2 {
  
     */
 /**
-     * 根据内容长度设置字体大小，
-     * 本方法适合 《长》 的文本域
-     * @param iLength
-     * @param key
-     * @param acroFields
-     *//*
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《长》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ *//*
 
     public static void setFontSizeByLength_3(int iLength,String key,AcroFields acroFields){
         if(iLength > 0 && iLength < 20){

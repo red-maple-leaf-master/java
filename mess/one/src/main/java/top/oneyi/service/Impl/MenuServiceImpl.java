@@ -24,7 +24,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public List<SysMenu> queryAllSysMenu(Long userId) {
-        List<Long> menuList= menuMapper.queryAllMenuId(userId);
+        List<Long> menuList = menuMapper.queryAllMenuId(userId);
         return getAllSysMenuList(menuList);
     }
 
@@ -38,12 +38,12 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<SysMenu> queryListParentId(Long parentId, List<Long> menuIdList) {
         List<SysMenu> sysMenuList = menuMapper.queryListParentId(parentId);
-        if(menuIdList == null){
+        if (menuIdList == null) {
             return sysMenuList;
         }
         List<SysMenu> userMenuList = new ArrayList<>();
-        for(SysMenu sysMenu : sysMenuList){
-            if(menuIdList.contains(sysMenu.getId())){
+        for (SysMenu sysMenu : sysMenuList) {
+            if (menuIdList.contains(sysMenu.getId())) {
                 userMenuList.add(sysMenu);
             }
         }
@@ -53,22 +53,23 @@ public class MenuServiceImpl implements MenuService {
     /**
      * 获取所有菜单列表
      */
-    private List<SysMenu> getAllSysMenuList(List<Long> menuIdList){
+    private List<SysMenu> getAllSysMenuList(List<Long> menuIdList) {
         //查询根菜单列表
         List<SysMenu> sysMenuList = queryListParentId(0L, menuIdList);
         //递归获取子菜单
         getSysMenuTreeList(sysMenuList, menuIdList);
         return sysMenuList;
     }
+
     /**
      * 递归
      */
-    private List<SysMenu> getSysMenuTreeList(List<SysMenu> sysMenuList, List<Long> menuIdList){
+    private List<SysMenu> getSysMenuTreeList(List<SysMenu> sysMenuList, List<Long> menuIdList) {
         List<SysMenu> subMenuList = new ArrayList<>();
 
-        for(SysMenu sysMenu : sysMenuList){
+        for (SysMenu sysMenu : sysMenuList) {
             //目录
-            if(sysMenu.getType() == Constant.MenuType.CATALOG.getValue()){
+            if (sysMenu.getType() == Constant.MenuType.CATALOG.getValue()) {
                 sysMenu.setList(getSysMenuTreeList(queryListParentId(sysMenu.getId(), menuIdList), menuIdList));
             }
             subMenuList.add(sysMenu);

@@ -35,18 +35,18 @@ public class FutureTest {
         });
         executorService.submit(objectFutureTask01);
 
-        while(objectFutureTask.isDone()){
+        while (objectFutureTask.isDone()) {
             // 轮询获取结果
             // 获取每个线程返回的信息  get方法是阻塞方法 线程获取结果以前会一致阻塞 导致异步失败,  里面可以填写超时时间,超过时间返回null
             Object o = objectFutureTask.get();
             Object o1 = objectFutureTask01.get();
-            System.out.println( o  + " === "+o1);
+            System.out.println(o + " === " + o1);
         }
 
         long l3 = System.currentTimeMillis();
         // 关闭线程池
         executorService.shutdown();
-        System.out.println("总共耗时"+ (l3 - l2));
+        System.out.println("总共耗时" + (l3 - l2));
 
     }
 }

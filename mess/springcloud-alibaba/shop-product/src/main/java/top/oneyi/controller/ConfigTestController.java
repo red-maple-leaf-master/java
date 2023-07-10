@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope  // 需要动态获取配置的类上加上这个注解
 public class ConfigTestController {
 
-    
+
     @Value("${activitySwitch.val:false}")
     private Boolean activitySwitch;
 

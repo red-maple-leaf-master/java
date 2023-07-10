@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
-/**用户
- *
+/**
+ * 用户
  */
 @Data
 @AllArgsConstructor
@@ -68,5 +68,5 @@ public class SysUser {
      */
     private String url;
 
-    private List<SysRole>  newParts;
+    private List<SysRole> newParts;
 }

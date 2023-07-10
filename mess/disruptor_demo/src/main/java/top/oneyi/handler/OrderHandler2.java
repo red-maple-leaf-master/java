@@ -4,7 +4,7 @@ import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.WorkHandler;
 import top.oneyi.pojo.Order;
 
-public class OrderHandler2  implements EventHandler<Order>, WorkHandler<Order> {
+public class OrderHandler2 implements EventHandler<Order>, WorkHandler<Order> {
     @Override
     public void onEvent(Order order, long l, boolean b) throws Exception {
 

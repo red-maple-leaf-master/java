@@ -3,11 +3,12 @@ package top.oneyi.demo.CompleteFuture;
 import java.util.concurrent.CompletableFuture;
 
 /**
- *  thenCombine
- *  thenCombine最大的不同是连接任务可以是一个独立的CompletableFuture
- *（或者是任意实现了CompletionStage的类型），从而允许前后连接的两个
- *  任务可以并行执行（后置任务不需要等待前置任务执行完成），最后当两个
- *  任务均完成时，再将其结果同时传递给下游处理任务，从而得到最终结果。
+ * thenCombine
+ * thenCombine最大的不同是连接任务可以是一个独立的CompletableFuture
+ * （或者是任意实现了CompletionStage的类型），从而允许前后连接的两个
+ * 任务可以并行执行（后置任务不需要等待前置任务执行完成），最后当两个
+ * 任务均完成时，再将其结果同时传递给下游处理任务，从而得到最终结果。
+ *
  * @author oneyi
  * @date 2023/2/6
  */
@@ -31,7 +32,7 @@ public class FutureTest07 {
         // 这俩个方法跟 thenCombine 类似
         // thenAcceptBoth 有参数 无返回值 俩个参数分别为 俩个任务的返回值
         CompletableFuture future04 = future01.thenAcceptBoth(future02, (r1, r2) -> {
-            System.out.println("第一个参数为"+ r1+ "第二参数为"+ r2);
+            System.out.println("第一个参数为" + r1 + "第二参数为" + r2);
 
 
         });

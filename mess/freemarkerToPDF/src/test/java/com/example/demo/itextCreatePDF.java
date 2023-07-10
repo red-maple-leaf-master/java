@@ -39,16 +39,16 @@ public class itextCreatePDF {
         // Create a PdfFont
         BaseFont baseFont = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
         /* 使用中文字体 */
-        BaseFont bf = BaseFont.createFont("C:/WINDOWS/Fonts/simfang.ttf", BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
+        BaseFont bf = BaseFont.createFont("C:/WINDOWS/Fonts/simfang.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
         Font font = new Font(baseFont);
         Font font01 = new Font(bf);
 
         // 4.添加一个内容段落
-        document.add(new Paragraph("Hello World!",font));
-        document.add(new Paragraph("我是中文",font));
-        document.add(new Paragraph("我是中文",font01));
-        document.add(new Paragraph("我是中文",font01));
+        document.add(new Paragraph("Hello World!", font));
+        document.add(new Paragraph("我是中文", font));
+        document.add(new Paragraph("我是中文", font01));
+        document.add(new Paragraph("我是中文", font01));
 
 
         // 5.关闭文档

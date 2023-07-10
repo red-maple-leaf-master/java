@@ -16,7 +16,7 @@ public class CreatePDF {
     /**
      * 字体样式
      */
-    private Map<String,Font> font;
+    private Map<String, Font> font;
     /**
      * pdf主体
      */
@@ -46,14 +46,11 @@ public class CreatePDF {
      */
     private float yPosition;
 
-    public CreatePDF(){
+    public CreatePDF() {
         // 1.新建document对象
-         this.document = new Document(PageSize.A4, 90, 90, 72, 72);
+        this.document = new Document(PageSize.A4, 90, 90, 72, 72);
 
     }
-
-
-
 
 
     /**

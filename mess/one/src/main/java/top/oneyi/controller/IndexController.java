@@ -14,17 +14,17 @@ import java.util.Map;
 @RestController
 public class IndexController {
 
-    @ApiImplicitParam(name = "name",value = "姓名",required = true)
+    @ApiImplicitParam(name = "name", value = "姓名", required = true)
     @ApiOperation(value = "向客人问好")
     @GetMapping("/sayHi")
-    public ResponseEntity<String> sayHi(@RequestParam(value = "name")String name){
-        return ResponseEntity.ok("Hi:"+name);
+    public ResponseEntity<String> sayHi(@RequestParam(value = "name") String name) {
+        return ResponseEntity.ok("Hi:" + name);
     }
 
-    @ApiImplicitParam(name = "map",value = "键值对",required = true)
+    @ApiImplicitParam(name = "map", value = "键值对", required = true)
     @ApiOperation(value = "传递参数map")
     @GetMapping("/sayMap")
-    public ResponseEntity<String> maphi(Map map){
-        return ResponseEntity.ok("Hi:"+map);
+    public ResponseEntity<String> maphi(Map map) {
+        return ResponseEntity.ok("Hi:" + map);
     }
 }

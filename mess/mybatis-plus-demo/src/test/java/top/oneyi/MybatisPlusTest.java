@@ -42,7 +42,7 @@ public class MybatisPlusTest {
                             .outputDir("D://mybatis_plus"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
-                     builder.parent("com.oneyi") // 设置父包名
+                    builder.parent("com.oneyi") // 设置父包名
                             .moduleName("mybatisplus") // 设置父包模块名
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D://mybatis_plus"));
                     // 设置mapperXml生成路径
@@ -55,9 +55,6 @@ public class MybatisPlusTest {
                 .execute();
 
     }
-
-
-
 
 
 }

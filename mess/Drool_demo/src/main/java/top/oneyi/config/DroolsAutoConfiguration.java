@@ -24,6 +24,7 @@ import java.io.IOException;
 /**
  * 配置Drools的服务类，方便在Rest接口中调用。 该类负责加载具体的drl规则文件，
  * 不再需要kmodule.xml配置文件了。
+ *
  * @author oneyi
  * @date 2023/5/24
  */
@@ -54,7 +55,7 @@ public class DroolsAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(KieContainer.class)
     public KieContainer kieContainer() throws IOException {
-         final KieRepository kieRepository = getKieServices().getRepository();
+        final KieRepository kieRepository = getKieServices().getRepository();
 
         kieRepository.addKieModule(kieRepository::getDefaultReleaseId);
 

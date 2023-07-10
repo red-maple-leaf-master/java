@@ -55,7 +55,6 @@ public enum CmdType {
     }
 
 
-
     public static CmdType of(short type) {
         //柜台只能处理三种
         switch (type) {

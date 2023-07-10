@@ -1,0 +1,13 @@
+
+#spring:
+#  data:
+#    Neo4j:
+#      uri: bolt://116.62.155.98:7687
+#      username: neo4j
+#      password: RedOneForMaster
+spring:
+  data:
+    Neo4j:
+      uri: bolt://127.0.0.1:7687
+      username: redone
+      password: redone

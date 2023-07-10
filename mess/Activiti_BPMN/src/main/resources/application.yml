@@ -13,7 +13,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
     # 监控统计拦截的filters，如果启用log4j记得添加依赖
-#    filters: stat,wall
+  #    filters: stat,wall
   # activiti
   activiti:
     #每次应用启动不检查Activiti数据表是否存在及版本号是否匹配，提升应用启动速度
@@ -40,5 +40,5 @@ mybatis:
     map-underscore-to-camel-case: true   # 开启驼峰
 logging:
   level:
-    com.zoctan.api.mapper : debug
+    com.zoctan.api.mapper: debug
 

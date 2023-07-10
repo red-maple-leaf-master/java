@@ -4,8 +4,6 @@ package top.oneyi.pojo;
 import lombok.Data;
 
 
-
-
 /**
  * 【请填写功能名称】对象 enterprise_base_info
  *
@@ -14,9 +12,9 @@ import lombok.Data;
  */
 @Data
 
-public class EnterpriseBaseInfo{
+public class EnterpriseBaseInfo {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 主键id

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 // 参考博文: https://zhuanlan.zhihu.com/p/150676300
 @SpringBootTest
 public class MyWord {
@@ -48,12 +49,12 @@ public class MyWord {
             replaceMap.put("sex", "男");
             replaceMap.put("address", "北京朝阳");
             replaceMap.put("tel", "15560205386");
-            WordUtil.changeText(document,replaceMap);
+            WordUtil.changeText(document, replaceMap);
 
             document.write(out);
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (in != null) {
                     in.close();
@@ -72,15 +73,15 @@ public class MyWord {
     }
 
     @Test
-    public void test02(){
+    public void test02() {
         String str = "jkljsdjfl${name}dfdsf";
-        String value="张三";
+        String value = "张三";
         int end = str.lastIndexOf("}");
         int start = str.indexOf("${");
         System.out.println(start);
         System.out.println(end);
 
-       str= str.replace("${name}","张三");
+        str = str.replace("${name}", "张三");
         System.out.println("str = " + str);
 
     }
@@ -107,27 +108,27 @@ public class MyWord {
     }*/
 
     @Test
-    public void test03(){
-        wordToPdf(PATH+targetFile,PATH+targetPDFFile);
+    public void test03() {
+        wordToPdf(PATH + targetFile, PATH + targetPDFFile);
     }
 
     /**
      * word转pdf
+     *
      * @param wordPath word的路径
-     * @param pdfPath pdf的路径
+     * @param pdfPath  pdf的路径
      */
-    public static boolean wordToPdf(String wordPath, String pdfPath){
+    public static boolean wordToPdf(String wordPath, String pdfPath) {
         boolean result = false;
         try {
-            XWPFDocument document=new XWPFDocument(new FileInputStream(new File(wordPath)));
-            File outFile=new File(pdfPath);
+            XWPFDocument document = new XWPFDocument(new FileInputStream(new File(wordPath)));
+            File outFile = new File(pdfPath);
             outFile.getParentFile().mkdirs();
-            OutputStream out=new FileOutputStream(outFile);
-            PdfOptions options= PdfOptions.create();
-            PdfConverter.getInstance().convert(document,out,options);
+            OutputStream out = new FileOutputStream(outFile);
+            PdfOptions options = PdfOptions.create();
+            PdfConverter.getInstance().convert(document, out, options);
             result = true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

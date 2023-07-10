@@ -16,7 +16,8 @@ public class MybatisTest {
     }
 
 }
- interface Subject {
+
+interface Subject {
     String sayHello();
 }
 

@@ -23,7 +23,6 @@ public class TestService {
         strArrays.remove(new ElectricityData("1", "10"));
 
 
-
         List<ElectricityData> list01 = new ArrayList<>(Arrays.asList(arr01));
         List<ElectricityData> list02 = new ArrayList<>(Arrays.asList(arr02));
 
@@ -31,7 +30,7 @@ public class TestService {
         list01.addAll(list02);
         System.out.println("list01 = " + list01);
         // 循环次数  和集合长度一致
-        int count=0;
+        int count = 0;
         // 创建返回值 map
         Map<String, Integer> maps = new HashMap<>();
         for (ElectricityData electricityData : list01) {

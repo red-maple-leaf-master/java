@@ -7,11 +7,12 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.boot.test.context.SpringBootTest;
 import top.oneyi.pojo.Order;
+
 @Slf4j
 @SpringBootTest
 public class DroolsTest01 {
     @Test
-    public void test1(){
+    public void test1() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieClasspathContainer = kieServices.getKieClasspathContainer();
         //会话对象，用于和规则引擎交互

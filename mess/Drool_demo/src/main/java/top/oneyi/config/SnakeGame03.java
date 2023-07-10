@@ -160,10 +160,12 @@ public class SnakeGame03 extends JPanel implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Snake Game");

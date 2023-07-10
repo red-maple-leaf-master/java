@@ -27,7 +27,7 @@ public class ParseHtmlTable {
         String htmlStr = FileUtils.readFileToString(new File(htmlPath));
         //  E:\project\java\freemarkerToPDF\src\main\resources\fonts
         String path = "C:\\Windows\\Fonts";
-        parseHtmlTable.html2pdf(htmlStr,pdfName ,path);
+        parseHtmlTable.html2pdf(htmlStr, pdfName, path);
     }
 
 
@@ -56,7 +56,7 @@ public class ParseHtmlTable {
             renderer.finishPDF();
             byte[] buff = os.toByteArray();
             //保存到磁盘上
-            FileUtil.byte2File(buff,pdfDestPath,pdfName);
+            FileUtil.byte2File(buff, pdfDestPath, pdfName);
         } catch (Exception e) {
             e.printStackTrace();
         }

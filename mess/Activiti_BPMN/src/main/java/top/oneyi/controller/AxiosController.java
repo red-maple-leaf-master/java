@@ -12,13 +12,14 @@ import javax.validation.Valid;
 @RequestMapping
 public class AxiosController {
 
-    private final static String publicKey =  RsaUtil.getPublicKey();
+    private final static String publicKey = RsaUtil.getPublicKey();
 
     @PostMapping("/base")
-    public String base(@Valid @RequestBody Person person){
+    public String base(@Valid @RequestBody Person person) {
         System.out.println("person = " + person);
         return "校验成功";
     }
+
     @PostMapping("/baseurl")
     public String base02(String msg) throws Exception {
         // 前端发过来的加密数据
@@ -27,6 +28,7 @@ public class AxiosController {
         System.out.println(new String(bytes));
         return "接收公钥成功";
     }
+
     @GetMapping("/api/a1")
     public String a1() {
         return "get request";

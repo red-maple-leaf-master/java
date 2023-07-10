@@ -13,11 +13,11 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients//开启Fegin
 public class OrderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OrderApplication.class,args);
+        SpringApplication.run(OrderApplication.class, args);
     }
 
     @Bean
-    RestTemplate restTemplate(){
+    RestTemplate restTemplate() {
         return new RestTemplate();
     }
 }

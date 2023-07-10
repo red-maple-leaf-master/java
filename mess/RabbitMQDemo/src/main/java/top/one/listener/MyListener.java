@@ -15,22 +15,23 @@ import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 
 /**
  * 监听某个队列的消息
+ *
  * @author oneyi
  * @date 2023/2/14
  */
 
 @Component
-@RabbitListener(queues = {"item_queueA","item_queueB"})
+@RabbitListener(queues = {"item_queueA", "item_queueB"})
 public class MyListener {
 
 
     @RabbitHandler
-    public void myListener(String message){
-        System.out.println("收到的消息为: "+message);
+    public void myListener(String message) {
+        System.out.println("收到的消息为: " + message);
     }
 
     @RabbitHandler
-    public void myListener(Map message){
-        System.out.println("收到的消息为: "+message);
+    public void myListener(Map message) {
+        System.out.println("收到的消息为: " + message);
     }
 }

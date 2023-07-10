@@ -1,15 +1,15 @@
 package top.oneyi.utils;
- 
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerFontProvider;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
- 
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
- 
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,20 +20,20 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
- 
+
 /**
  * Created by lujianing on 2017/5/7.
  */
 public class JavaToPdfHtmlFreeMarker {
- 
+
     private static final String DEST = "target/HelloWorld_CN_HTML_FREEMARKER.pdf";
     private static final String HTML = "E:\\Desktop\\java_project\\one\\java\\POI_test\\src\\main\\resources\\one\\redoneHTML.html";
     private static final String FONT = "simhei.ttf";
- 
+
     private static Configuration freemarkerCfg = null;
- 
+
     static {
-        freemarkerCfg =new Configuration();
+        freemarkerCfg = new Configuration();
         //freemarker的模板目录
         try {
             freemarkerCfg.setDirectoryForTemplateLoading(new File("E:\\Desktop\\java_project\\one\\java\\POI_test\\src\\main\\resources\\one\\redoneHTML.ftl"));
@@ -41,17 +41,17 @@ public class JavaToPdfHtmlFreeMarker {
             e.printStackTrace();
         }
     }
- 
- 
+
+
     public static void main(String[] args) throws IOException, DocumentException {
-        Map<String,Object> data = new HashMap();
-        data.put("name","鲁家宁");
-        String content = JavaToPdfHtmlFreeMarker.freeMarkerRender(data,HTML);
-        JavaToPdfHtmlFreeMarker.createPdf(content,DEST);
+        Map<String, Object> data = new HashMap();
+        data.put("name", "鲁家宁");
+        String content = JavaToPdfHtmlFreeMarker.freeMarkerRender(data, HTML);
+        JavaToPdfHtmlFreeMarker.createPdf(content, DEST);
     }
- 
- 
-    public static void createPdf(String content,String dest) throws IOException, DocumentException {
+
+
+    public static void createPdf(String content, String dest) throws IOException, DocumentException {
         // step 1
         Document document = new Document();
         // step 2
@@ -65,9 +65,9 @@ public class JavaToPdfHtmlFreeMarker {
                 new ByteArrayInputStream(content.getBytes()), null, StandardCharsets.UTF_8, fontImp);
         // step 5
         document.close();
- 
+
     }
- 
+
     /**
      * freemarker渲染html
      */

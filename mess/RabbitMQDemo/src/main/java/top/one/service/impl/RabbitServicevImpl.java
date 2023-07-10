@@ -8,5 +8,4 @@ import top.one.service.RabbitService;
 public class RabbitServicevImpl implements RabbitService {
 
 
-
 }

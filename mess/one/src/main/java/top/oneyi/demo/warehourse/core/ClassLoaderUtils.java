@@ -19,15 +19,15 @@ public class ClassLoaderUtils {
                 parameterTypes[i] = Map.class;
                 continue;
             }
-            if (args[i] instanceof Long){
+            if (args[i] instanceof Long) {
                 parameterTypes[i] = long.class;
                 continue;
             }
-            if (args[i] instanceof Double){
+            if (args[i] instanceof Double) {
                 parameterTypes[i] = double.class;
                 continue;
             }
-            if (args[i] instanceof TimeUnit){
+            if (args[i] instanceof TimeUnit) {
                 parameterTypes[i] = TimeUnit.class;
                 continue;
             }

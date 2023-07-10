@@ -15,11 +15,11 @@ public class OrderController {
 
     @GetMapping("/test")
     public String test() {
-    	NoticeWebsocket.sendMessage("你好，WebSocket");
+        NoticeWebsocket.sendMessage("你好，WebSocket");
         return "发送成功";
     }
 
-	@GetMapping("/test01")
+    @GetMapping("/test01")
     public String test01(String name) {
         gatewayConn.sendMsg(name);
         return "发送成功";

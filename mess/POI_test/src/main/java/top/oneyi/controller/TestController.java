@@ -23,7 +23,6 @@ import java.util.Map;
 public class TestController {
 
 
-
     @CrossOrigin(value = "http://localhost:8080")
     @GetMapping("/getHtml")
     public Pair<String, User> test() {
@@ -31,9 +30,10 @@ public class TestController {
         user.setAge("12");
         user.setAge("数据来看");
 
-        Pair<String,User> pair = new Pair<>("我不是map",user);
+        Pair<String, User> pair = new Pair<>("我不是map", user);
         return pair;
     }
+
     @CrossOrigin(value = "http://localhost:8080")
     @GetMapping("/getMap")
     public Map<String, User> test01() {
@@ -41,10 +41,11 @@ public class TestController {
         user.setAge("12");
         user.setAge("数据来看");
 
-        Map<String,User> pair = new HashMap<>();
-        pair.put("我不是map",user);
+        Map<String, User> pair = new HashMap<>();
+        pair.put("我不是map", user);
         return pair;
     }
+
     /**
      * 获取生成Word文档所需要的数据
      */
@@ -78,8 +79,10 @@ public class TestController {
         dataMap.put("partyBankAccount", "账号");
         return dataMap;
     }
+
     /**
      * 接收文件
+     *
      * @param file
      */
     @GetMapping("/addFile")
@@ -93,21 +96,23 @@ public class TestController {
         //   transferTo是复制file文件到指定位置(比如D盘下的某个位置),不然程序执行完,文件就会消失,程序运行时,临时存储在temp这个文件夹中
         // 俩个参数 File file ; Path path
     }
+
     /**
      * 保存图片文件到本地
+     *
      * @param file
      */
     @GetMapping("/saveFile")
-    public String  save(MultipartFile file) throws IOException {
+    public String save(MultipartFile file) throws IOException {
 //        String files = ClassUtils.getDefaultClassLoader().getResource("files").getPath();
         String files = TestController.class.getClassLoader().getResource("static").getPath();
         String filename = file.getOriginalFilename();
-        String url_path = files + File.separator + "files"+ File.separator +filename;
+        String url_path = files + File.separator + "files" + File.separator + filename;
         // 访问路径=静态资源路径+文件目录路径
         String visitPath = "static/files/" + filename;
         System.out.println("url_path = " + url_path);
         File saveFile = new File(url_path);
-        if (!saveFile.exists()){
+        if (!saveFile.exists()) {
             saveFile.mkdirs();
         }
         try {
@@ -139,8 +144,8 @@ public class TestController {
      *//*
     private static VelocityContext getWordToPDFData(VelocityContext context) {
         *//*
-         * 创建一个Map对象，将Word文档需要的数据都保存到该Map对象中
-         *//*
+     * 创建一个Map对象，将Word文档需要的数据都保存到该Map对象中
+     *//*
         Map<String, String> dataMap = new HashMap<>();
 
         EnterpriseBaseInfo enterpriseBaseInfo = new EnterpriseBaseInfo();

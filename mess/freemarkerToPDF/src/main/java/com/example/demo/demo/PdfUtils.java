@@ -8,22 +8,23 @@ import com.itextpdf.text.pdf.*;
 
 public class PdfUtils {
     public static void main(String[] args) {
-        String sourcePath="E:\\Desktop\\YCT.pdf";
-        String toPath="E:\\Desktop\\YCT01.pdf";
-        addPageNum(sourcePath,toPath);
+        String sourcePath = "E:\\Desktop\\YCT.pdf";
+        String toPath = "E:\\Desktop\\YCT01.pdf";
+        addPageNum(sourcePath, toPath);
     }
 
     /**
      * 添加页码的方法
+     *
      * @param orgPdfPath
      * @param outputPdfPath
      * @return
      */
-    public static String addPageNum (String orgPdfPath, String outputPdfPath) {
+    public static String addPageNum(String orgPdfPath, String outputPdfPath) {
 
         try (
                 // 输出文件 流
-                FileOutputStream fos = new FileOutputStream(outputPdfPath) ;){
+                FileOutputStream fos = new FileOutputStream(outputPdfPath);) {
 
             // 新建文档，默认A4大小
             Document document = new Document(PageSize.A4);
@@ -55,7 +56,7 @@ public class PdfUtils {
             e.printStackTrace();
         }
 
-        return outputPdfPath ;
+        return outputPdfPath;
     }
 }
 

@@ -1,7 +1,6 @@
 package top.oneyi.freemarker;
 
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import top.oneyi.pojo.ContractParticularsVo;
@@ -26,8 +25,8 @@ public class WordApplication {
          * 注意：生成的文档的后缀名需要为doc，而不能为docx，否则生成的Word文档会出错
          */
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("name","小明");
-        dataMap.put("age","12");
+        dataMap.put("name", "小明");
+        dataMap.put("age", "12");
 //        WordUtil.generateWord(getWordData(), "E:\\User.doc");
 //        WordUtil.generateWord(getWordData(), "E:\\User.doc");
         freemarkerToWordUtil.generateWord(dataMap, "E:\\User.doc");

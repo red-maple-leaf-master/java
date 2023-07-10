@@ -98,7 +98,7 @@ public final class StringJoiner {
             } else {
                 int initialLength = value.length();
                 String result = value.append(suffix).toString();
-              //  重置值为预追加initialLength
+                //  重置值为预追加initialLength
                 // //重新设置value的长度，将value还原到还未添加后缀的状态,也就是说去掉刚添加的后缀，保证下一次add正确性
                 value.setLength(initialLength);
                 return result;
@@ -157,6 +157,7 @@ public final class StringJoiner {
 
     /**
      * 返回当前StringJoiner的长度
+     *
      * @return
      */
     public int length() {

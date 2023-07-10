@@ -2,6 +2,7 @@ package top.oneyi.demo.Collection;
 
 /**
  * 集合的顶层接口
+ *
  * @param <T>
  */
 public interface MyCollection<T> {
@@ -15,7 +16,6 @@ public interface MyCollection<T> {
     boolean add(T t);
 
     boolean remove(T t);
-
 
 
 }

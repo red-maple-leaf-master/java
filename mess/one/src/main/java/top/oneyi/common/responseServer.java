@@ -1,7 +1,6 @@
 package top.oneyi.common;
 
 
-
 import java.io.Serializable;
 
 /**
@@ -66,7 +65,7 @@ public class responseServer<T> implements Serializable {
         return url;
     }
 
-    private responseServer(int code, String descp, String token, Long id,String userName) {
+    private responseServer(int code, String descp, String token, Long id, String userName) {
         this.id = id;
         this.code = code;
         this.descp = descp;
@@ -74,7 +73,7 @@ public class responseServer<T> implements Serializable {
         this.userName = userName;
     }
 
-    private responseServer(int code, String descp, String token, Long id,String userName,String realName) {
+    private responseServer(int code, String descp, String token, Long id, String userName, String realName) {
         this.id = id;
         this.code = code;
         this.descp = descp;
@@ -83,7 +82,7 @@ public class responseServer<T> implements Serializable {
         this.realName = realName;
     }
 
-    private responseServer(int code, String descp, String token, Long id,String userName,String realName,String url) {
+    private responseServer(int code, String descp, String token, Long id, String userName, String realName, String url) {
         this.id = id;
         this.code = code;
         this.descp = descp;
@@ -93,12 +92,12 @@ public class responseServer<T> implements Serializable {
         this.url = url;
     }
 
-    public static <T> responseServer<T> createByCodeMessage(int code, String descp, String token, Long id,String userName,String realName) {
-        return new responseServer<>(code, descp, token, id ,userName,realName);
+    public static <T> responseServer<T> createByCodeMessage(int code, String descp, String token, Long id, String userName, String realName) {
+        return new responseServer<>(code, descp, token, id, userName, realName);
     }
 
-    public static <T> responseServer<T> createByCodeMessageN(int code, String descp, String token, Long id,String userName,String realName,String url) {
-        return new responseServer<>(code, descp, token, id ,userName,realName,url);
+    public static <T> responseServer<T> createByCodeMessageN(int code, String descp, String token, Long id, String userName, String realName, String url) {
+        return new responseServer<>(code, descp, token, id, userName, realName, url);
     }
 
 }

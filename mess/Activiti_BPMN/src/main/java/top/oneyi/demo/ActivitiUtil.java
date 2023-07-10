@@ -78,7 +78,7 @@ public class ActivitiUtil {
                 .processInstanceBusinessKey(businessKey)
                 .processDefinitionKey(key)
                 .list();
-        if(processInstance.size() == 0){
+        if (processInstance.size() == 0) {
             return null;
         }
         return processInstance.get(0);
@@ -99,15 +99,15 @@ public class ActivitiUtil {
         TaskService taskService = processEngine.getTaskService();
         RuntimeService runtimeService = processEngine.getRuntimeService();
         // 业务key判空
-        if(StringUtils.isBlank(businessKey)){
+        if (StringUtils.isBlank(businessKey)) {
             // 抛出异常 或者返回错误代码给前端
             throw new Exception("业务key为null");
         }
         // 判断该业务是否已经开启流程实例
         ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
-        if(processInstance != null){
+        if (processInstance != null) {
             // 返回该业务 key 已经绑定了流程实例
-            throw new Exception(businessKey+"已经绑定了流程实例");
+            throw new Exception(businessKey + "已经绑定了流程实例");
         }
         //在流程实例中设置必要参数
         // 设置启动人
@@ -129,8 +129,8 @@ public class ActivitiUtil {
         // 设置流程定义名称
         runtimeService.setProcessInstanceName(pi.getProcessInstanceId(), pi.getProcessDefinitionName());
         // 设置流程发起人
-        taskService.setAssignee(taskList.get(0).getId(),"5");
-        taskService.setVariable(taskList.get(0).getId(),"processInstanceId", pi.getProcessInstanceId());
+        taskService.setAssignee(taskList.get(0).getId(), "5");
+        taskService.setVariable(taskList.get(0).getId(), "processInstanceId", pi.getProcessInstanceId());
         // 插入业务状态
         ActBusinessStatus actBusinessStatus = new ActBusinessStatus();
         actBusinessStatus.setId(businessKey);
@@ -184,7 +184,7 @@ public class ActivitiUtil {
      * @param processInstanceId
      * @return
      */
-    public List<HistoricTaskInstance> assignHistoryTasks(String processInstanceId,String assignee) {
+    public List<HistoricTaskInstance> assignHistoryTasks(String processInstanceId, String assignee) {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         HistoryService historyService = processEngine.getHistoryService();
         List<HistoricTaskInstance> list = historyService
@@ -238,6 +238,7 @@ public class ActivitiUtil {
         return list.stream().filter(s -> assinge.equals(s.getAssignee())).collect(Collectors.toList());
 
     }
+
     /**
      * 根据流程定义key 和 任务审批人来查找 该审批人的历史任务
      *
@@ -260,17 +261,17 @@ public class ActivitiUtil {
 
     /**
      * 删除流程定义
+     *
      * @param businessKey
      * @param key
      */
-    public void deleteProcessInstance(String businessKey, String key){
+    public void deleteProcessInstance(String businessKey, String key) {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         RepositoryService repositoryService = processEngine.getRepositoryService();
         // 通过 key  和业务id删除
         ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
         repositoryService.deleteDeployment(processInstance.getId());
     }
-
 
 
     /**
@@ -280,16 +281,13 @@ public class ActivitiUtil {
      * @param key
      * @return
      */
-    public List<Comment> findTaskNodes(String businessKey, String key){
+    public List<Comment> findTaskNodes(String businessKey, String key) {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         TaskService taskService = processEngine.getTaskService();
         ProcessInstance processInstance = this.findProcessInstance(businessKey, key);
         List<Comment> comments = taskService.getProcessInstanceComments(processInstance.getProcessInstanceId());//参数为是流程实例ID
         return comments;
     }
-
-
-
 
 
 }

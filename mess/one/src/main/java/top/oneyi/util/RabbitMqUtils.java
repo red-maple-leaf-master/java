@@ -3,8 +3,10 @@ package top.oneyi.util;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+
 /**
  * rabbitMQ 工具类
+ *
  * @author oneyi
  * @date 2023/2/15
  */

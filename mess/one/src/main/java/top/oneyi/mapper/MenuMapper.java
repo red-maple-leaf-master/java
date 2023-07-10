@@ -7,12 +7,17 @@ import java.util.List;
 
 @Repository
 public interface MenuMapper {
-    /**查询用户的所有菜单ID
+    /**
+     * 查询用户的所有菜单ID
+     *
      * @param userId
      * @return
      */
     List<Long> queryAllMenuId(Long userId);
-    /**根据父级菜单查询子菜单
+
+    /**
+     * 根据父级菜单查询子菜单
+     *
      * @param parentId
      * @return
      */

@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 
 /**
- *流程定义设置视图对象 act_process_def_Setting
+ * 流程定义设置视图对象 act_process_def_Setting
  *
  * @author gssong
  * @date 2022-08-28

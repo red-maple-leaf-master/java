@@ -1,6 +1,8 @@
 package top.oneyi.demo.builder;
+
 /**
- *  Java链式调用
+ * Java链式调用
+ *
  * @author oneyi
  * @date 2022/12/23
  */
@@ -9,39 +11,41 @@ public class MyFactory {
 
     private final String name;
 
-    private  final Integer age;
+    private final Integer age;
 
-    private MyFactory(Builer builer){
-        this.name=builer.name;
-        this.age=builer.age;
+    private MyFactory(Builer builer) {
+        this.name = builer.name;
+        this.age = builer.age;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public Integer getAge(){
+    public Integer getAge() {
         return this.age;
     }
 
 
-    public static class Builer{
+    public static class Builer {
         private String name;
 
         private Integer age;
-        public Builer name(String name){
-            this.name=name;
+
+        public Builer name(String name) {
+            this.name = name;
             return this;
         }
 
-        public Builer age(Integer age){
-            this.age=age;
+        public Builer age(Integer age) {
+            this.age = age;
             return this;
         }
-//        非线程安全 做权限校验
-        public MyFactory build(){
+
+        //        非线程安全 做权限校验
+        public MyFactory build() {
             MyFactory myFactory = new MyFactory(this);
-            if(myFactory.age  < 0 || myFactory.age > 255){
+            if (myFactory.age < 0 || myFactory.age > 255) {
                 throw new IllegalStateException("age out of range " + myFactory.age);
             }
             return myFactory;

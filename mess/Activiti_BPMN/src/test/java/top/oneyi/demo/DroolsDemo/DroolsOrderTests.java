@@ -26,12 +26,13 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
 @SpringBootTest(classes = ActivtiSpringBootApplication.class)//加载 SpringBoot 启动类
-public class DroolsOrderTests  {
+public class DroolsOrderTests {
     @Resource
     private KieContainer kieContainer;
 
     /**
      * 未用规则引擎
+     *
      * @throws Exception
      */
     @Test
@@ -57,13 +58,14 @@ public class DroolsOrderTests  {
 
     /**
      * 使用规则引擎
+     *
      * @throws Exception
      */
     @Test
     public void droolsOrderTest() throws Exception {
         KieSession kieSession = kieContainer.newKieSession();
         List<Order> orderList = getInitData();
-        for (Order order: orderList) {
+        for (Order order : orderList) {
             // 1-规则引擎处理逻辑
             kieSession.insert(order);
             kieSession.fireAllRules();
@@ -74,7 +76,7 @@ public class DroolsOrderTests  {
     }
 
     @Test
-    public void droolsPersonTest(){
+    public void droolsPersonTest() {
         KieSession kieSession = kieContainer.newKieSession();
         Person person = new Person();
 
@@ -87,7 +89,7 @@ public class DroolsOrderTests  {
     }
 
 
-    private static void addScore(Order o){
+    private static void addScore(Order o) {
         System.out.println("用户" + o.getUser() + "享受额外增加积分: " + o.getScore());
     }
 

@@ -110,7 +110,7 @@ public class leetCode {
         int target = 23;
         Arrays.sort(arr);
         for (int i : arr) {
-            System.out.print(i+" ");
+            System.out.print(i + " ");
         }
         int l = 0;
         int r = arr.length - 1;
@@ -124,7 +124,7 @@ public class leetCode {
                 r = half;
             }
             if (arr[half] < target) {
-                l = half+1;
+                l = half + 1;
             }
 
         }
@@ -133,12 +133,11 @@ public class leetCode {
 
 
     @Test
-    public void test01(){
+    public void test01() {
 
     }
 
     /**
-     *
      * @param nums1
      * @param m
      * @param nums2
@@ -146,26 +145,25 @@ public class leetCode {
      */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        int l=0;
-        int r=0;
-        int [] sorted = new int[m + n];
-        int  cur;
-        while(l < m || r < n){
-            if(l == m){
-                cur=nums2[r++];
-            }else if(r == n){
-                cur=nums1[l++];
-            }else if(nums1[l] < nums2[r]){
-                cur=nums1[l++];
-            }else{
-                cur=nums2[r++];
+        int l = 0;
+        int r = 0;
+        int[] sorted = new int[m + n];
+        int cur;
+        while (l < m || r < n) {
+            if (l == m) {
+                cur = nums2[r++];
+            } else if (r == n) {
+                cur = nums1[l++];
+            } else if (nums1[l] < nums2[r]) {
+                cur = nums1[l++];
+            } else {
+                cur = nums2[r++];
             }
-            sorted[l + r - 1]=cur;
+            sorted[l + r - 1] = cur;
         }
         for (int i = 0; i != m + n; ++i) {
             nums1[i] = sorted[i];
         }
-
 
 
     }

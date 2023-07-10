@@ -13,56 +13,57 @@ public class MyStream<T> implements Stream<T> {
     /**
      * 流的下一项求值函数
      */
-    private NextItemEvalProcess  nextItemEvalProcess;
+    private NextItemEvalProcess nextItemEvalProcess;
 
     /**
      * 是否是流的结尾
      */
     private boolean isEnd;
 
-    public static class Builder<T>{
+    public static class Builder<T> {
         private MyStream<T> target;
 
-        public Builder(){
-            this.target=new MyStream<>();
+        public Builder() {
+            this.target = new MyStream<>();
         }
 
-        public Builder<T> head(T head){
-            target.head=head;
+        public Builder<T> head(T head) {
+            target.head = head;
             return this;
         }
 
-        public Builder<T> isEnd(boolean isEnd){
-            target.isEnd=isEnd;
+        public Builder<T> isEnd(boolean isEnd) {
+            target.isEnd = isEnd;
             return this;
         }
 
-        public Builder<T> nextItemEvalProcess(NextItemEvalProcess nextItemEvalProcess){
-            target.nextItemEvalProcess=nextItemEvalProcess;
+        public Builder<T> nextItemEvalProcess(NextItemEvalProcess nextItemEvalProcess) {
+            target.nextItemEvalProcess = nextItemEvalProcess;
             return this;
         }
 
-        public MyStream<T> build(){
+        public MyStream<T> build() {
             return target;
         }
     }
 
     /**
      * 当前流强制求值
+     *
      * @return
      */
-    private MyStream eval(){
+    private MyStream eval() {
         return this.nextItemEvalProcess.eval();
     }
 
     /**
      * 当前流为空
+     *
      * @return
      */
-    public boolean isEmptyStream(){
+    public boolean isEmptyStream() {
         return this.isEnd;
     }
-
 
 
     /**
@@ -75,7 +76,7 @@ public class MyStream<T> implements Stream<T> {
     public <R> MyStream<R> map(Function<R, T> mapper) {
         NextItemEvalProcess lastNextItemEvalProcess = this.nextItemEvalProcess;
         this.nextItemEvalProcess = new NextItemEvalProcess(
-                ()->{
+                () -> {
                     MyStream myStream = lastNextItemEvalProcess.eval();
                     return map(mapper, myStream);
                 }
@@ -89,9 +90,9 @@ public class MyStream<T> implements Stream<T> {
 
     /**
      * 递归函数 配合API.map
-     * */
-    private static <R,T> MyStream<R> map(Function<R, T> mapper, MyStream<T> myStream){
-        if(myStream.isEmptyStream()){
+     */
+    private static <R, T> MyStream<R> map(Function<R, T> mapper, MyStream<T> myStream) {
+        if (myStream.isEmptyStream()) {
             return Stream.makeEmptyStream();
         }
 
@@ -99,7 +100,7 @@ public class MyStream<T> implements Stream<T> {
 
         return new MyStream.Builder<R>()
                 .head(head)
-                .nextItemEvalProcess(new NextItemEvalProcess(()->map(mapper, myStream.eval())))
+                .nextItemEvalProcess(new NextItemEvalProcess(() -> map(mapper, myStream.eval())))
                 .build();
     }
 

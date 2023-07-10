@@ -114,7 +114,7 @@ public class DroolsTest {
     }
 
     @Test
-    public void test02(){
+    public void test02() {
         KieSession kieSession = kieContainer.newKieSession();
         GradingLevel gradingLevel = new GradingLevel();
         gradingLevel.setScoreInterval(50);

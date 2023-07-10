@@ -1,7 +1,6 @@
 package top.oneyi.pojo;
 
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -20,7 +19,7 @@ import java.util.Map;
  * @date 2021-10-10
  */
 @Data
-public class ActBusinessStatus{
+public class ActBusinessStatus {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -31,7 +30,7 @@ public class ActBusinessStatus{
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
@@ -44,7 +43,7 @@ public class ActBusinessStatus{
     /**
      * 更新时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 

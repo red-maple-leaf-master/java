@@ -18,7 +18,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <dependencies>
-<!--     guice DI自动注入   -->
+        <!--     guice DI自动注入   -->
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
@@ -79,7 +79,7 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.76</version>
         </dependency>
-<!--        webstocket -->
+        <!--        webstocket -->
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

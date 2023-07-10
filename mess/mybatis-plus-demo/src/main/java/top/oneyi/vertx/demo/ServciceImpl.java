@@ -5,7 +5,7 @@ import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 
-public class ServciceImpl implements Service{
+public class ServciceImpl implements Service {
     /**
      * 测试接口方法
      *

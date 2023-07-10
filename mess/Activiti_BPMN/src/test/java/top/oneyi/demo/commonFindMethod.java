@@ -9,14 +9,14 @@ public class commonFindMethod implements InvocationHandler {
     private Object invokeProxy;
 
     private Object proxy(ClassLoader loader,
-                       Class<?>[] interfaces,
-                       InvocationHandler h) {
-       return invokeProxy = Proxy.newProxyInstance(loader, interfaces, h);
+                         Class<?>[] interfaces,
+                         InvocationHandler h) {
+        return invokeProxy = Proxy.newProxyInstance(loader, interfaces, h);
     }
 
     public void findById(ClassLoader loader,
                          Class<?>[] interfaces,
-                         InvocationHandler h,Class<?> inter) throws IllegalAccessException, InstantiationException {
+                         InvocationHandler h, Class<?> inter) throws IllegalAccessException, InstantiationException {
         Object o = inter.newInstance();
         Object proxy = proxy(loader, interfaces, h);
     }

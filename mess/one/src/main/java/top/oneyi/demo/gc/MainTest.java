@@ -16,9 +16,9 @@ public class MainTest {
                 new MyThreadFactory("product"),
                 new MyRejectedPolicy());
 
-        while (true){
+        while (true) {
             TimeUnit.SECONDS.sleep(1);
-            new Thread(()->{
+            new Thread(() -> {
                 ArrayList<Future<Integer>> futureList = new ArrayList<>();
                 //从数据库获取产品信息
                 int productNum = 5;
@@ -83,6 +83,7 @@ public class MainTest {
             return t;
         }
     }
+
     /**
      * 自定义的拒绝策略
      */

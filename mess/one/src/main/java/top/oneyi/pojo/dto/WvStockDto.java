@@ -14,57 +14,85 @@ import java.util.Date;
  */
 @Data
 public class WvStockDto implements Serializable {
- /**id*/
- private String id;
+    /**
+     * id
+     */
+    private String id;
 
- /**创建人名称*/
- private String createName;
- /**创建人登录名称*/
- private String createBy;
- /**创建日期*/
- private java.util.Date createTime;
+    /**
+     * 创建人名称
+     */
+    private String createName;
+    /**
+     * 创建人登录名称
+     */
+    private String createBy;
+    /**
+     * 创建日期
+     */
+    private java.util.Date createTime;
 
- /**库存类型*/
- private String kuctype;
- /**储位*/
- private String kuWeiBianMa;
- /**托盘*/
- private String binId;
- /**货主*/
- private String cusCode;
- /**货主名称*/
- private String zhongWenQch;
- /**商品编码*/
- private String goodsId;
- private String goodsCode;
- /**商品数量*/
- private Long goodsQua;
- /**商品名称*/
- private String shpMingCheng;
+    /**
+     * 库存类型
+     */
+    private String kuctype;
+    /**
+     * 储位
+     */
+    private String kuWeiBianMa;
+    /**
+     * 托盘
+     */
+    private String binId;
+    /**
+     * 货主
+     */
+    private String cusCode;
+    /**
+     * 货主名称
+     */
+    private String zhongWenQch;
+    /**
+     * 商品编码
+     */
+    private String goodsId;
+    private String goodsCode;
+    /**
+     * 商品数量
+     */
+    private Long goodsQua;
+    /**
+     * 商品名称
+     */
+    private String shpMingCheng;
 
- /**保质期*/
- private String bzhiQi;
- //允收天数
- private String yushoutianshu;
+    /**
+     * 保质期
+     */
+    private String bzhiQi;
+    //允收天数
+    private String yushoutianshu;
 
- /**单位*/
- private String goodsUnit;
+    /**
+     * 单位
+     */
+    private String goodsUnit;
 
- private String sttSta;
+    private String sttSta;
 
- private String moveSta;
+    private String moveSta;
 
- /*移动日期*/
- @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
- private String lastMove[];
-   //最后移动时间范围
+    /*移动日期*/
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    private String lastMove[];
+    //最后移动时间范围
     private String lastMoveBegin;
     private String lastMoveEnd;
- //@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private String goodsProData[];
- //@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private String goodsProDataBegin;
- //@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private String goodsProDataEnd;
     //商品数量范围
     private Long goodsQuaBegin;

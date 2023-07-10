@@ -22,7 +22,7 @@ public class AClothClassVo {
     private String desc;
     // 子目录列表
     private List<AClothClassVo> treeNode;
- 
+
     public static void main(String[] args) {
         // 构建数据
         List<AClothClassVo> lists = CollUtil.newArrayList();
@@ -35,15 +35,15 @@ public class AClothClassVo {
         lists.add(new AClothClassVo(7, "二级目录7", 2, 1, "父目录01的子类7", null));
         lists.add(new AClothClassVo(8, "二级目录8", 2, 1, "父目录01的子类8", null));
         lists.add(new AClothClassVo(9, "三级目录9", 4, 1, null, null));
- 
+
         TreeNodeConfig config = new TreeNodeConfig();
- 
+
         // 树形数据中id的属性名,写成id1方便区分,实际上写AClothClassVo实体类的id属性名
         config.setIdKey("id1");
- 
+
         // 展示目录深度,数据中一共四级目录
         config.setDeep(2);
- 
+
         /**
          * 入参
          * tree:  最终要返回的数据
@@ -55,12 +55,12 @@ public class AClothClassVo {
          *   String: ID类型
          *
          */
- 
+
         List<Tree<String>> list = TreeUtil.build(lists, "0", config, (node, tree) -> {
             tree.setId(node.getId().toString());
             tree.setName(node.getName());
             tree.setParentId(node.getPid().toString());
- 
+
             // 额外的值
             tree.put("status", node.getStatus());
             tree.put("desc", node.getDesc());

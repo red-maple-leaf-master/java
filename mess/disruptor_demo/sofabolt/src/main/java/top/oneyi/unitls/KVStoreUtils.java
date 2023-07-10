@@ -13,14 +13,14 @@ import java.util.List;
 
 public class KVStoreUtils {
 
-    public static RheaKVStore getRheaKVStore(){
+    public static RheaKVStore getRheaKVStore() {
         String serverList = "127.0.0.1:8891,127.0.0.1:8892,127.0.0.1:8893,127.0.0.1:8894,127.0.0.1:8895";
         // 访问KVStore的客户端
         final RheaKVStore rheaKVStore = new DefaultRheaKVStore();
 
         final List<RegionRouteTableOptions> routeTableOptionsList = MultiRegionRouteTableOptionsConfigured
                 .newConfigured()
-                .withInitialServerList(-1L,serverList)
+                .withInitialServerList(-1L, serverList)
                 .config();
 
 

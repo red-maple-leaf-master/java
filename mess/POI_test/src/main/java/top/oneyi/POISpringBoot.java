@@ -13,7 +13,6 @@ public class POISpringBoot extends WebMvcConfigurerAdapter {
     }
 
 
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

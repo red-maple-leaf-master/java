@@ -7,8 +7,6 @@ import freemarker.template.Configuration;
  * @作者：zhongjy
  * @时间：2019年7月15日 下午12:25:59
  * 说明：/report/是springboot项目下freemarker的模板路径
- *
- *
  */
 public class FreemarkerConfiguration {
 

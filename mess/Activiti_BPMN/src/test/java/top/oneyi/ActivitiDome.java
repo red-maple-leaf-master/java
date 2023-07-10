@@ -247,14 +247,11 @@ public class ActivitiDome {
     public void test02() {
 
 
-
-
         ProcessInstance processInstance = activitiUtil.findProcessInstance("100", KEY);
         List<HistoricTaskInstance> list1 = historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstance.getProcessInstanceId())
                 .orderByHistoricTaskInstanceEndTime().desc().list();
         // 目标节点
         HistoricTaskInstance actTaskNode = list1.get(0);
-
 
 
         List<Task> list = taskService.createTaskQuery().processInstanceId(processInstance.getProcessInstanceId()).list();
@@ -277,14 +274,14 @@ public class ActivitiDome {
             // 8. 存储所有目标出口
             List<SequenceFlow> targetSequenceFlow = new ArrayList<>();
             for (SequenceFlow incomingFlow : incomingFlows) {
-               // 找到入口连线的源头(获取目标节点的父节点)
+                // 找到入口连线的源头(获取目标节点的父节点)
                 FlowNode source = (FlowNode) incomingFlow.getSourceFlowElement();
                 // 创建出口连线集合
                 List<SequenceFlow> sequenceFlows;
-                if( source instanceof ParallelGateway){
+                if (source instanceof ParallelGateway) {
                     // 并行网关: 获取目标节点的父节点(并行网关) 的所有出口
                     sequenceFlows = source.getOutgoingFlows();
-                }else{
+                } else {
                     // 其他类型父节点,则获取目标节点的入口连续
                     sequenceFlows = targetFlowNode.getIncomingFlows();
                 }
@@ -294,7 +291,7 @@ public class ActivitiDome {
             flowNode.setOutgoingFlows(targetSequenceFlow);
             // 10. 完成当前任务，流程就会流向目标节点创建新目标任务
             // 当前任务，完成当前任务
-            taskService.addComment(task.getId(), task.getProcessInstanceId(),"申请人撤销申请");
+            taskService.addComment(task.getId(), task.getProcessInstanceId(), "申请人撤销申请");
             taskService.setAssignee(task.getId(), "1002我是撤回申请人");
             // 完成任务，就会进行驳回到目标节点，产生目标节点的任务数据
             taskService.complete(task.getId());
@@ -305,12 +302,12 @@ public class ActivitiDome {
     }
 
     @Test
-    public void queryTest(){
+    public void queryTest() {
         ProcessInstance processInstance = activitiUtil.findProcessInstance("100", KEY);
         String processInstId = processInstance.getProcessInstanceId();
         List<Task> newTaskList = taskService.createTaskQuery()
                 .processInstanceId(processInstId).list().stream()
-                .filter(e-> org.apache.commons.lang3.StringUtils.isBlank(e.getParentTaskId())).collect(Collectors.toList());
+                .filter(e -> org.apache.commons.lang3.StringUtils.isBlank(e.getParentTaskId())).collect(Collectors.toList());
         for (Task task : newTaskList) {
             System.out.println("task.getName() = " + task.getName());
             System.out.println("task.getProcessDefinitionId() = " + task.getProcessDefinitionId());
@@ -371,9 +368,9 @@ public class ActivitiDome {
         // 根据结束事件排序
         list.stream().sorted(Comparator.comparing(HistoricTaskInstance::getEndTime, Comparator.nullsFirst(Date::compareTo))).collect(Collectors.toList());
         String taskId = "";
-        if(list.size() > 0){
+        if (list.size() > 0) {
             HistoricTaskInstance historicTaskInstance = list.get(0);
-            taskId=historicTaskInstance.getTaskDefinitionKey();
+            taskId = historicTaskInstance.getTaskDefinitionKey();
         }
 
         // 创建历史流程视图集合
@@ -387,7 +384,7 @@ public class ActivitiDome {
             if (actHistoryInfoVo.getEndTime() != null) {
                 actHistoryInfoVo.setStatus(historicTaskInstance.getDeleteReason() != null ? "驳回" : "审批通过");
             }
-            if(historicTaskInstance.getTaskDefinitionKey().equals(taskId)){
+            if (historicTaskInstance.getTaskDefinitionKey().equals(taskId)) {
                 actHistoryInfoVo.setStatus("已提交");
             }
             List<Comment> taskComments = taskService.getTaskComments(historicTaskInstance.getId());

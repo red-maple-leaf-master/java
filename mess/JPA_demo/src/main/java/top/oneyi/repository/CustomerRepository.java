@@ -9,10 +9,11 @@ import top.oneyi.pojo.Customer;
 import java.util.List;
 
 
-public interface CustomerRepository extends JpaRepository<Customer,Long>, JpaSpecificationExecutor<Customer> {
+public interface CustomerRepository extends JpaRepository<Customer, Long>, JpaSpecificationExecutor<Customer> {
 
     /**
      * nativeQuery 属性为 true 时 是原生sql 为false 则是 实体类    ?1 是占位符  代表第一个参数
+     *
      * @param name
      * @return
      */

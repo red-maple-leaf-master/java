@@ -12,7 +12,7 @@ public class ListDemo {
         myList.add("我是第四个元素");
         myList.remove(2);
         for (int i = 0; i < myList.size(); i++) {
-            System.out.println( myList.get(i));
+            System.out.println(myList.get(i));
         }
     }
 }

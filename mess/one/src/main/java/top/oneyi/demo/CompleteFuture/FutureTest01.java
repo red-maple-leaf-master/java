@@ -1,7 +1,6 @@
 package top.oneyi.demo.CompleteFuture;
 
 
-
 import java.util.concurrent.*;
 
 public class FutureTest01 {
@@ -10,7 +9,7 @@ public class FutureTest01 {
         long l2 = System.currentTimeMillis();
         MyThread myThread = new MyThread();
         MyThread myThread02 = new MyThread();
-        String str ="我是结果";
+        String str = "我是结果";
 
         FutureTask<Object> objectFutureTask = new FutureTask<>(myThread, str);
         executorService.submit(objectFutureTask);
@@ -24,16 +23,16 @@ public class FutureTest01 {
         long l3 = System.currentTimeMillis();
         // 关闭线程池
         executorService.shutdown();
-        System.out.println("总共耗时"+ (l3 - l2));
+        System.out.println("总共耗时" + (l3 - l2));
 
     }
 }
 
-class MyThread implements Runnable{
+class MyThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("开启线程"+Thread.currentThread().getName());
+        System.out.println("开启线程" + Thread.currentThread().getName());
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {

@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 public class ProcessDefinitionVo implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 流程定义id

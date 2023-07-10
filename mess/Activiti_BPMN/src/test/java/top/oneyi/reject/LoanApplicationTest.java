@@ -46,6 +46,7 @@ public class LoanApplicationTest {
 
     @Autowired
     private ActivitiUtil activitiUtil;
+
     /**
      * 启动流程
      */
@@ -61,7 +62,7 @@ public class LoanApplicationTest {
         String processInstanceId = processInstance.getProcessInstanceId();
         ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
 
-        if(actBusinessStatus == null){
+        if (actBusinessStatus == null) {
             actBusinessStatus = new ActBusinessStatus();
             actBusinessStatus.setBusinessKey(BusinessKey);
             actBusinessStatus.setId(BusinessKey);
@@ -72,7 +73,7 @@ public class LoanApplicationTest {
             actBusinessStatus.setUpdateBy("管理员");
             actBusinessStatus.setStatus("waiting");
             businessStatusMapper.insert(actBusinessStatus);
-        }else{
+        } else {
             actBusinessStatus.setProcessInstanceId(processInstanceId);
             actBusinessStatus.setUpdateTime(new Date());
             actBusinessStatus.setUpdateBy("管理员");
@@ -82,6 +83,7 @@ public class LoanApplicationTest {
 
 
     }
+
     /**
      * 跳过任务
      */
@@ -89,7 +91,7 @@ public class LoanApplicationTest {
     public void jumpTest() {
         List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processDefinitionKey(KEY).processInstanceBusinessKey(BusinessKey).orderByTaskCreateTime().asc().list();
 
-        list.forEach(c->{
+        list.forEach(c -> {
             System.out.println("任务id = " + c.getTaskDefinitionKey());
             System.out.println("创建时间 = " + c.getCreateTime());
         });
@@ -101,7 +103,7 @@ public class LoanApplicationTest {
 
 
     @Test
-    public void queryProcessInstanceList(){
+    public void queryProcessInstanceList() {
         List<HistoricProcessInstance> list = historyService.createHistoricProcessInstanceQuery().processInstanceBusinessKey(BusinessKey).processDefinitionKey(KEY).orderByProcessInstanceStartTime().desc().list();
         for (HistoricProcessInstance historicProcessInstance : list) {
             System.out.println("historicProcessInstance = " + historicProcessInstance.getProcessDefinitionName());
@@ -115,36 +117,41 @@ public class LoanApplicationTest {
      * 重启任务
      */
     @Test
-    public void reFlow(){
+    public void reFlow() {
         ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
         String processInstanceId = actBusinessStatus.getProcessInstanceId();
-       this.activeTaskByProcessId(processInstanceId);
-       // 激活之后就去驳回到最初的任务
+        this.activeTaskByProcessId(processInstanceId);
+        // 激活之后就去驳回到最初的任务
         this.jumpTest();
     }
+
     /**
      * 激活任务
+     *
      * @param processId
      */
 
-    public void activeTaskByProcessId(String processId){
+    public void activeTaskByProcessId(String processId) {
         runtimeService.activateProcessInstanceById(processId);
     }
+
     /**
      * 挂起任务
      */
     @Test
-    public void stopFlow(){
+    public void stopFlow() {
         ActBusinessStatus actBusinessStatus = businessStatusMapper.selectById(BusinessKey);
         String processInstanceId = actBusinessStatus.getProcessInstanceId();
         this.suspendTaskByProcessId(processInstanceId);
     }
+
     /**
      * 挂起任务
+     *
      * @param processId
      */
 
-    public void suspendTaskByProcessId(String processId){
+    public void suspendTaskByProcessId(String processId) {
         runtimeService.suspendProcessInstanceById(processId);
     }
 
@@ -167,7 +174,7 @@ public class LoanApplicationTest {
      * 根据审批人获取任务集合
      */
     @Test
-    public void queryTask(){
+    public void queryTask() {
         List<Task> list = taskService.createTaskQuery()
                 .processDefinitionKey(KEY)
 //                .processInstanceBusinessKey(BusinessKey)
@@ -184,11 +191,12 @@ public class LoanApplicationTest {
 
 
     }
+
     /**
      * 根据业务key获取任务集合
      */
     @Test
-    public void queryBusinessTasks(){
+    public void queryBusinessTasks() {
         List<Task> list = taskService.createTaskQuery()
                 .processDefinitionKey(KEY)
                 .processInstanceBusinessKey(BusinessKey)
@@ -205,6 +213,7 @@ public class LoanApplicationTest {
 
 
     }
+
     /**
      * 查询审批历史  返回视图
      */
@@ -219,9 +228,9 @@ public class LoanApplicationTest {
         // 根据结束事件排序
         list.stream().sorted(Comparator.comparing(HistoricTaskInstance::getEndTime, Comparator.nullsFirst(Date::compareTo))).collect(Collectors.toList());
         String taskId = "";
-        if(list.size() > 0){
+        if (list.size() > 0) {
             HistoricTaskInstance historicTaskInstance = list.get(0);
-            taskId=historicTaskInstance.getTaskDefinitionKey();
+            taskId = historicTaskInstance.getTaskDefinitionKey();
         }
 
         // 创建历史流程视图集合
@@ -235,7 +244,7 @@ public class LoanApplicationTest {
             if (actHistoryInfoVo.getEndTime() != null) {
                 actHistoryInfoVo.setStatus(historicTaskInstance.getDeleteReason() != null ? "驳回" : "审批通过");
             }
-            if(historicTaskInstance.getTaskDefinitionKey().equals(taskId)){
+            if (historicTaskInstance.getTaskDefinitionKey().equals(taskId)) {
                 actHistoryInfoVo.setStatus("已提交");
             }
             List<Comment> taskComments = taskService.getTaskComments(historicTaskInstance.getId());
@@ -279,7 +288,7 @@ public class LoanApplicationTest {
 
 
     @Test
-    public void queryProcessInstance(){
+    public void queryProcessInstance() {
         ProcessInstance processInstance = activitiUtil.findProcessInstance(BusinessKey, KEY);
         System.out.println("processInstance = " + processInstance);
     }

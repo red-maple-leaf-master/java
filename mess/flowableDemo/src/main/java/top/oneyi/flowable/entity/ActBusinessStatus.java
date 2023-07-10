@@ -12,9 +12,9 @@ import java.util.Date;
  * @date 2021-10-10
  */
 @Data
-public class ActBusinessStatus  {
+public class ActBusinessStatus {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * ID

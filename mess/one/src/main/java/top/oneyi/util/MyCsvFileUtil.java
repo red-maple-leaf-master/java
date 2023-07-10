@@ -1,7 +1,6 @@
 package top.oneyi.util;
 
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -77,6 +76,7 @@ public class MyCsvFileUtil {
 
     /**
      * 构建文件名称
+     *
      * @param dataList
      * @return
      */
@@ -86,6 +86,7 @@ public class MyCsvFileUtil {
 
     /**
      * 构建excel 标题行名
+     *
      * @param dataList
      * @return
      */
@@ -100,6 +101,7 @@ public class MyCsvFileUtil {
 
     /**
      * 构建excel内容
+     *
      * @param dataLists
      * @return
      */
@@ -124,7 +126,8 @@ public class MyCsvFileUtil {
         }
         return lineBuilder.toString();
     }
-    public static  List<String> buildCsvFileBodyMapToList(List dataLists,String tableNames) {
+
+    public static List<String> buildCsvFileBodyMapToList(List dataLists, String tableNames) {
         //不管你传什么玩意，我都给你反射一手，搞成Map
         List<Map<String, Object>> mapList = new ArrayList<>();
         for (Object o : dataLists) {
@@ -147,34 +150,36 @@ public class MyCsvFileUtil {
         }
         return list;
     }
+
     /**
      * 类转map
+     *
      * @param entity
      * @param <T>
      * @return
      */
-    public static<T> Map<String, Object> toMap(T entity){
+    public static <T> Map<String, Object> toMap(T entity) {
         Class<? extends Object> bean = entity.getClass();
         Field[] fields = bean.getDeclaredFields();
         Map<String, Object> map = new HashMap<>(fields.length);
-        for(Field field:fields){
+        for (Field field : fields) {
             try {
-                if(!"serialVersionUID".equals(field.getName())){
-                    String methodName = "get"+field.getName().substring(0, 1).toUpperCase()+field.getName().substring(1);
+                if (!"serialVersionUID".equals(field.getName())) {
+                    String methodName = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
                     Method method = bean.getDeclaredMethod(methodName);
                     Object fieldValue = method.invoke(entity);
-                    map.put(field.getName(),fieldValue);
+                    map.put(field.getName(), fieldValue);
                 }
             } catch (Exception e) {
-                log.warn("toMap() Exception={}",e.getMessage());
+                log.warn("toMap() Exception={}", e.getMessage());
             }
         }
         return map;
     }
 
-    public static void createXlsx(List<String> list){
-        try{
-           String fileName = "E:\\Desktop\\wan002.xls";
+    public static void createXlsx(List<String> list) {
+        try {
+            String fileName = "E:\\Desktop\\wan002.xls";
             // 创建工作薄
             HSSFWorkbook workbook = new HSSFWorkbook();
             //创建输出流
@@ -205,13 +210,14 @@ public class MyCsvFileUtil {
             }
             workbook.write(fileOutputStream);
             fileOutputStream.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-    public static void createXlsx(List list,String tableNames){
-        try{
+
+    public static void createXlsx(List list, String tableNames) {
+        try {
             String fileName = "E:\\Desktop\\wan002.xls";
             // 创建工作薄
             HSSFWorkbook workbook = new HSSFWorkbook();
@@ -219,22 +225,22 @@ public class MyCsvFileUtil {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(fileName));
             HSSFSheet sheet = workbook.createSheet("Sheet1");
             String[] split = tableNames.split(CSV_DELIMITER);
-            int count=0;
+            int count = 0;
             for (String s : split) {
                 HSSFRow row = sheet.createRow(0);
                 HSSFCell cell = row.createCell(count++);
                 cell.setCellValue(s);
             }
-            int i=0;
+            int i = 0;
             for (Object o : list) {
                 HSSFRow row = sheet.createRow(i++);
                 Map<String, Object> stringObjectMap = toMap(o);
                 Set<Map.Entry<String, Object>> entries = stringObjectMap.entrySet();
-                int j=0;
+                int j = 0;
                 for (Map.Entry<String, Object> entry : entries) {
                     HSSFCell cell = row.createCell(j++);
                     Object value = entry.getValue();
-                    if(value != null){
+                    if (value != null) {
                         cell.setCellValue(value.toString());
                     }
                 }
@@ -242,7 +248,7 @@ public class MyCsvFileUtil {
 
             workbook.write(fileOutputStream);
             fileOutputStream.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -46,9 +46,9 @@ public class storehome {
                     break;
                 }
                 //防止数组越界
-                    if(w == split.length){
-                        break;
-                    }
+                if (w == split.length) {
+                    break;
+                }
             }
         }
         System.out.println("一共循环了 ==" + count + "次");
@@ -67,17 +67,17 @@ public class storehome {
     }
 
     @Test
-    public void test02(){
-        String pallcode="12,14,13,15,16,18,17";
-        String pallcode02="14,15";
+    public void test02() {
+        String pallcode = "12,14,13,15,16,18,17";
+        String pallcode02 = "14,15";
 
         ArrayList<String> strings = new ArrayList<>(Arrays.asList(pallcode.split(",")));
         ArrayList<String> strings02 = new ArrayList<>(Arrays.asList(pallcode02.split(",")));
         Iterator<String> iterator = strings.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             String next = iterator.next();
             for (String s : strings02) {
-                if(s.equals(next)){
+                if (s.equals(next)) {
                     iterator.remove();
                 }
             }
@@ -93,11 +93,12 @@ public class storehome {
         System.out.println("s = " + s);
     }
 
-    private static  List<String> transferArrayToList(String str){
+    private static List<String> transferArrayToList(String str) {
         return new ArrayList<>(Arrays.asList(str.split(",")));
     }
+
     @Test
-    public void test03(){
+    public void test03() {
         StringJoiner sj = new StringJoiner(":", "[", "]");
         sj.add("George").add("Sally").add("Fred");
         String desiredString = sj.toString();
@@ -111,18 +112,19 @@ public class storehome {
 
 
     @Test
-    public void test04(){
-        int n=100;
+    public void test04() {
+        int n = 100;
         double pow = Math.pow(2, n);
-        for (int i=0;i< pow;i++){
-            System.out.println("我执行了"+ i+"次");
+        for (int i = 0; i < pow; i++) {
+            System.out.println("我执行了" + i + "次");
         }
     }
+
     @Test
-    public void test05(){
+    public void test05() {
 
         String nums = "202302280012";
-       int  num = (Integer.parseInt(nums) + 1);
+        int num = (Integer.parseInt(nums) + 1);
         System.out.println("num = " + num);
         nums = String.valueOf(num);
         System.out.println("nums111111111111 = " + nums);
@@ -133,19 +135,20 @@ public class storehome {
     @Test
     public void test06() throws IOException {
         String path = "E:\\Desktop\\身份证人像.jpg";
-       String downPath = "E:\\Desktop\\one\\java\\one\\1.jpg";
+        String downPath = "E:\\Desktop\\one\\java\\one\\1.jpg";
         FileOutputStream os = new FileOutputStream(new File(downPath));
         FileInputStream is = new FileInputStream(new File(path));
         byte[] len = new byte[1024 * 8];
-        while((is.read(len) != -1)){
+        while ((is.read(len) != -1)) {
             os.write(len);
             os.flush();
         }
     }
 
     String fileName = "E:\\Desktop\\wan001.csv";
+
     @Test
-    public void test07(){
+    public void test07() {
         List<SysUser> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             SysUser user = new SysUser();
@@ -157,18 +160,17 @@ public class storehome {
             user.setCreateTime(new Date());
             list.add(user);
         }
-       // 创建表格行标题
+        // 创建表格行标题
         String tableNames = MyCsvFileUtil.buildCsvFileTableNames(list);
         // 创建文件
-        MyCsvFileUtil.writeFile(fileName,tableNames);
+        MyCsvFileUtil.writeFile(fileName, tableNames);
         // 写入数据
 //        String contentBody = MyCsvFileUtil.buildCsvFileBodyMap(list);
-        List<String> bodyList = MyCsvFileUtil.buildCsvFileBodyMapToList(list,tableNames);
+        List<String> bodyList = MyCsvFileUtil.buildCsvFileBodyMapToList(list, tableNames);
         // 调用方法生成
 //        MyCsvFileUtil.writeFile(fileName,contentBody);
         MyCsvFileUtil.createXlsx(bodyList);
     }
-
 
 
 }

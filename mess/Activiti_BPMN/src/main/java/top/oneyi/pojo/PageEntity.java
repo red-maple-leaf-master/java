@@ -22,6 +22,7 @@ public class PageEntity {
 
     /**
      * 页码
+     *
      * @return
      */
     public Integer getFirstResult() {

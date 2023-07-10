@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class FutureTest10 {
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
-        List<String> list  = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         CompletableFuture<List<String>> w1 = CompletableFuture.supplyAsync(() -> {
             list.add("1");
             System.out.println("第一个任务完成");
@@ -48,7 +48,7 @@ public class FutureTest10 {
         System.out.println("list = " + list);
         long end = System.currentTimeMillis();
 
-        System.out.println("一共耗时"+(end - start));
+        System.out.println("一共耗时" + (end - start));
 
         System.out.println("=========================================================");
 
@@ -91,7 +91,7 @@ public class FutureTest10 {
 
         long end1 = System.currentTimeMillis();
 
-        System.out.println("一共耗时"+(end1 - start));
+        System.out.println("一共耗时" + (end1 - start));
 
     }
 }

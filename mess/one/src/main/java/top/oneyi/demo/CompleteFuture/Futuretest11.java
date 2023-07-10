@@ -46,7 +46,7 @@ public class Futuretest11 {
                 StringBuilder str1 = new StringBuilder();
                 try {
                     Thread.sleep(300);
-                    str1=str;
+                    str1 = str;
                     str1.append("我最快1");
 
                 } catch (Exception e) {
@@ -61,7 +61,7 @@ public class Futuretest11 {
             public StringBuilder get() {
                 StringBuilder str2 = new StringBuilder();
                 try {
-                    str2=str;
+                    str2 = str;
                     Thread.sleep(200);
                     str2.append("我最快2");
 
@@ -118,7 +118,7 @@ public class Futuretest11 {
             @Override
             public void accept(Integer t, Integer u) {
                 System.out.println("f1=" + t + ";f2=" + u + ";");
-                System.out.println(t+u);
+                System.out.println(t + u);
             }
         });
         System.out.println("f1.join() = " + f1.join());

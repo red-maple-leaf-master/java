@@ -50,7 +50,7 @@ public class test {
     private SysUserMapper sysUserMapper;
 
     @Test
-    public void test01(){
+    public void test01() {
         SysUser byId = sysUserMapper.findById(10L);
         byId.setNickName("大是大非地方");
         sysUserMapper.updateByPrimaryKey(byId);
@@ -318,7 +318,7 @@ public class test {
     @Test
     public void test11() {
         List<String> list = new ArrayList<>();
-        List<String> list2=null ;
+        List<String> list2 = null;
         list.add("1");
         list.add("2");
         list.add("3");
@@ -333,7 +333,7 @@ public class test {
 
 
     @Test
-    public void test12(){
+    public void test12() {
         ProcessInstance processInstance = runtimeService
                 .createProcessInstanceQuery()
                 .processInstanceId("74791a6c-bf17-11ed-a002-a036bc096aaf")

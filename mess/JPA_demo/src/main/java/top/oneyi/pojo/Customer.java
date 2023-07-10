@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * 用户类
- *
- *  注解 @EntityListeners(AuditingEntityListener.class) 主要是维护 创建时间和更新时间
+ * <p>
+ * 注解 @EntityListeners(AuditingEntityListener.class) 主要是维护 创建时间和更新时间
  */
 @Data
 @Entity
@@ -28,7 +28,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
-     *  用户名
+     * 用户名
      */
     private String name;
     /**
@@ -36,16 +36,16 @@ public class Customer {
      */
     private String customerNumber;
     /**
-     *  用户密码
+     * 用户密码
      */
     private String password;
     /**
-     *  版本控制  更新的需要传递过去
+     * 版本控制  更新的需要传递过去
      */
     @Version
     private Long objectVersion;
     /**
-     *  用户年龄
+     * 用户年龄
      */
     private String age;
     /**
@@ -54,9 +54,9 @@ public class Customer {
     private String email;
     /**
      * 订单的集合
-     *
-     *
-     *  拥有mappedBy="customer"(customer 是在 order 中的 customer 属性) 注解的实体类为关系被维护端
+     * <p>
+     * <p>
+     * 拥有mappedBy="customer"(customer 是在 order 中的 customer 属性) 注解的实体类为关系被维护端
      */
     @OneToMany(mappedBy = "customer")
     private List<Order> orderList;

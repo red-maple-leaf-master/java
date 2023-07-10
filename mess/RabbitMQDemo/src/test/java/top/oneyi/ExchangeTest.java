@@ -13,28 +13,50 @@ import top.one.util.ConnectionUtil;
  *
  * @author oneyi
  * @date 2023/2/14
+ * <p>
+ * 叫环节名称
+ * <p>
+ * 队列名称
+ * <p>
+ * 生产者
+ * 需要注意的是叫环节没有存储消息的能力,消息只能存在队列中
+ * <p>
+ * 消费者 1
+ * <p>
+ * 消费者2
+ * <p>
+ * 叫环节名称
+ * <p>
+ * 队列名称
+ * <p>
+ * 生产者
+ * 需要注意的是叫环节没有存储消息的能力,消息只能存在队列中
+ * <p>
+ * 消费者 1
+ * <p>
+ * 消费者2
  *//*
 
 
 public class ExchangeTest {
     */
 /**
-     * 叫环节名称
-     *//*
+ * 叫环节名称
+ *//*
 
     private final static String EXCHANGE_NAME = "test_exchange_fanout";
     */
 /**
-     * 队列名称
-     *//*
+ * 队列名称
+ *//*
 
     private final static String QUEUE_NAME = "test_queue_work1";
 
     */
 /**
-     * 生产者
-     * 需要注意的是叫环节没有存储消息的能力,消息只能存在队列中
-     *//*
+ * 生产者
+ * 需要注意的是叫环节没有存储消息的能力,消息只能存在队列中
+ *//*
 
     @Test
     public void test01() throws Exception {
@@ -54,8 +76,8 @@ public class ExchangeTest {
 
     */
 /**
-     * 消费者 1
-     *//*
+ * 消费者 1
+ *//*
 
     @Test
     public void test02() throws Exception {
@@ -84,8 +106,8 @@ public class ExchangeTest {
 
     */
 /**
-     * 消费者2
-     *//*
+ * 消费者2
+ *//*
 
     @Test
     public void test03() throws Exception {

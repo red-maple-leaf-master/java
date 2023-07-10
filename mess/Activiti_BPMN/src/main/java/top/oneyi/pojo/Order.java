@@ -17,12 +17,12 @@ public class Order {
     private int price;
 
     /**
-     *下单人
+     * 下单人
      */
     private String user;
 
     /**
-     *积分
+     * 积分
      */
     private int score;
 

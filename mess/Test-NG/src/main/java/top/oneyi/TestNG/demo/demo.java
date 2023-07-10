@@ -10,12 +10,12 @@ public class demo {
         System.out.println("我是前置方法");
     }
 
-    @Test(groups = { "fast","ww"})
+    @Test(groups = {"fast", "ww"})
     public void aFastTest() {
         System.out.println("Fast test");
     }
 
-    @Test(groups = { "slow","ww" })
+    @Test(groups = {"slow", "ww"})
     public void aSlowTest() {
         System.out.println("Slow test");
     }

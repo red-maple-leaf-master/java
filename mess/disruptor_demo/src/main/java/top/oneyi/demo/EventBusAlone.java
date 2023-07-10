@@ -8,13 +8,13 @@ public class EventBusAlone {
 
     private static EventBus eb;
 
-    private EventBusAlone(){
+    private EventBusAlone() {
 
     }
 
     public static synchronized EventBus getInstance() {
         if (eb == null) {
-            synchronized (EventBusAlone.class){
+            synchronized (EventBusAlone.class) {
                 eb = Vertx.vertx().eventBus();
             }
         }

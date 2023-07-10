@@ -9,7 +9,9 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
-/**角色
+/**
+ * 角色
+ *
  * @author xjh
  */
 @Data
@@ -22,7 +24,7 @@ public class SysRole {
     private Long id;
 
     /**
-     *角色名
+     * 角色名
      */
     @NotNull
     private String roleName;

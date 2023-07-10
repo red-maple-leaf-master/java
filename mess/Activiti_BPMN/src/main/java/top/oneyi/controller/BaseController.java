@@ -10,6 +10,7 @@ import java.util.List;
 public abstract class BaseController<T extends BasePojo> {
     /**
      * 新增或修改
+     *
      * @param t
      * @return
      */
@@ -17,6 +18,7 @@ public abstract class BaseController<T extends BasePojo> {
 
     /**
      * 批量新增或者修改
+     *
      * @param list
      * @return
      */

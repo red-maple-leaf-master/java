@@ -9,7 +9,7 @@ public class OrderHandler implements EventHandler<Order>, WorkHandler<Order> {
     @Override
     public void onEvent(Order order, long l, boolean b) throws Exception {
 
-        System.out.println(Thread.currentThread().getName() + " 消费者处理中:" + l+ "我是一号消费者");
+        System.out.println(Thread.currentThread().getName() + " 消费者处理中:" + l + "我是一号消费者");
         order.setInfo("info" + order.getId());
         order.setPrice(Math.random());
         Thread.sleep(1000);

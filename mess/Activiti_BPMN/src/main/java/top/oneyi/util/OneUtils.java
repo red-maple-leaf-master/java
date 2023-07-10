@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 public class OneUtils {
 
 
-    public List<String> findByProcessIds(CommonMapper mapper,List<String> processIds){
+    public List<String> findByProcessIds(CommonMapper mapper, List<String> processIds) {
         List<ActBusinessStatus> list = new ArrayList<>();
         for (String processId : processIds) {
             ActBusinessStatus actBusinessStatus = mapper.selectByProcessInstanceId(processId);
             list.add(actBusinessStatus);
         }
-        List<String> ids= list.stream().map(ActBusinessStatus::getId).collect(Collectors.toList());
+        List<String> ids = list.stream().map(ActBusinessStatus::getId).collect(Collectors.toList());
         return ids;
     }
 }

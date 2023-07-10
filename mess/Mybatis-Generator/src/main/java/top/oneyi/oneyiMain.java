@@ -14,22 +14,22 @@ import java.util.List;
 import java.util.Properties;
 
 public class oneyiMain {
-        public static void main(String[] args) throws Exception {
-            //MBG执行过程中的警告信息
-            List<String> warnings = new ArrayList<String>();
-            //生成代码重复时，是否覆盖源代码
-            boolean override = true;
-            InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("generator-configuration.xml");
-            ConfigurationParser cp = new ConfigurationParser(warnings);
-            Configuration config = cp.parseConfiguration(in);
-            DefaultShellCallback callback = new DefaultShellCallback(override);
-            //创建MBG
-            MyBatisGenerator mbg = new MyBatisGenerator(config, callback, warnings);
-            mbg.generate(null);
-            //输出警告信息
-            for (String warn : warnings) {
-                System.out.println(warn);
-            }
+    public static void main(String[] args) throws Exception {
+        //MBG执行过程中的警告信息
+        List<String> warnings = new ArrayList<String>();
+        //生成代码重复时，是否覆盖源代码
+        boolean override = true;
+        InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("generator-configuration.xml");
+        ConfigurationParser cp = new ConfigurationParser(warnings);
+        Configuration config = cp.parseConfiguration(in);
+        DefaultShellCallback callback = new DefaultShellCallback(override);
+        //创建MBG
+        MyBatisGenerator mbg = new MyBatisGenerator(config, callback, warnings);
+        mbg.generate(null);
+        //输出警告信息
+        for (String warn : warnings) {
+            System.out.println(warn);
+        }
 
     }
 

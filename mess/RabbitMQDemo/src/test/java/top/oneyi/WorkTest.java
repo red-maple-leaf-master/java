@@ -13,8 +13,23 @@ import top.one.util.ConnectionUtil;
 /**
  * work 模式 能者多劳
  * 测试结果 消费者 1 消费的消息比消费者2 消费的消息多
+ *
  * @author oneyi
  * @date 2023/2/13
+ * <p>
+ * 消费者1
+ * @throws Exception
+ * <p>
+ * 消费者2
+ * <p>
+ * 生产者
+ * <p>
+ * 消费者1
+ * @throws Exception
+ * <p>
+ * 消费者2
+ * <p>
+ * 生产者
  *//*
 
 
@@ -24,9 +39,9 @@ public class WorkTest {
 
     */
 /**
-     * 消费者1
-     * @throws Exception
-     *//*
+ * 消费者1
+ * @throws Exception
+ *//*
 
     @Test
     public void test01() throws Exception {
@@ -60,8 +75,8 @@ public class WorkTest {
 
     */
 /**
-     * 消费者2
-     *//*
+ * 消费者2
+ *//*
 
     @Test
     public void test02() throws Exception {
@@ -91,8 +106,8 @@ public class WorkTest {
 
     */
 /**
-     * 生产者
-     *//*
+ * 生产者
+ *//*
 
     @Test
     public void test03() throws Exception {

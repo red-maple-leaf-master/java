@@ -10,18 +10,20 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 /**
  * Swagger配置
+ *
  * @author oneyi
  * @date 2023/2/16
  */
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig{
+public class SwaggerConfig {
 
     @Bean
-    public Docket webApiConfig(){
+    public Docket webApiConfig() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("webApi")
                 .apiInfo(webApiInfo())
@@ -29,7 +31,7 @@ public class SwaggerConfig{
                 .build();
     }
 
-    private ApiInfo webApiInfo(){
+    private ApiInfo webApiInfo() {
         return new ApiInfoBuilder()
                 .title("rabbitMQ 接口文档")
                 .description("本文档描述了 rabbitMQ 微服务接口定义")

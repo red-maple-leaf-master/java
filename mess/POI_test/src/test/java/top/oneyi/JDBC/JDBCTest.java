@@ -6,15 +6,15 @@ import java.sql.*;
 
 public class JDBCTest {
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         Connection conn = null;
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/blog?useSSL=false";
             String username = "root";
             String password = "root";
-             conn = DriverManager.getConnection(url, username, password);
-        }catch (Exception e){
+            conn = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return conn;
@@ -26,7 +26,7 @@ public class JDBCTest {
         String sql = "select * from account";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-        while (resultSet.next()){
+        while (resultSet.next()) {
             //6.2 获取数据  getXxx()
             int id = resultSet.getInt("id");
             String name = resultSet.getString("name");

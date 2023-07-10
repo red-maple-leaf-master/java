@@ -1,8 +1,10 @@
 package top.oneyi.demo.rabbitMQ.test01;
 
 import com.rabbitmq.client.*;
+
 /**
  * 消费者
+ *
  * @author oneyi
  * @date 2023/2/15
  */
@@ -23,7 +25,7 @@ public class Consumer {
             String message = new String(delivery.getBody());
             System.out.println(message);
             // 1 消息标记tag 2 false代表只应答接收到的那个传递的消息 true为应答所有消息包括传递过来的消息
-            channel.basicAck(delivery.getEnvelope().getDeliveryTag(),false);
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         };
         //取消消费的一个回调接口 如在消费的时候队列被删除掉了
         CancelCallback cancelCallback = (consumerTag) -> {

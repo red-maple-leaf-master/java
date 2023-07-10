@@ -8,7 +8,7 @@ import java.io.*;
 public class test {
 
     @Test
-    public void test01(){
+    public void test01() {
         String file = "E:\\Desktop\\java_project\\one\\java\\API_doc\\src\\main\\resources\\template\\temp.html";
         // 获取HTML文件流
         StringBuffer htmlSb = new StringBuffer();
@@ -29,6 +29,6 @@ public class test {
         // HTML文件字符串
         String htmlStr = htmlSb.toString();
         // 返回经过清洁的html文本
-        System.out.println( htmlStr);
+        System.out.println(htmlStr);
     }
 }

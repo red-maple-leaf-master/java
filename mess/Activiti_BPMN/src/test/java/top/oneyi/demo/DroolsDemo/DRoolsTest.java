@@ -18,9 +18,9 @@ public class DRoolsTest {
     private KieSession statefulKieSession = null;
 
     @Test
-    public void test01(){
+    public void test01() {
         KieServices kieServices = KieServices.Factory.get();
-        if(kieServices == null){
+        if (kieServices == null) {
             System.out.println("未读取到规则");
             return;
         }
@@ -38,13 +38,13 @@ public class DRoolsTest {
 
 
     @Test
-    public void test02(){
+    public void test02() {
         String str = "2023-05-14T16:00:00.000Z";
 
     }
 
     @Test
-    public void test03(){
+    public void test03() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieClasspathContainer = kieServices.getKieClasspathContainer();
         //会话对象，用于和规则引擎交互

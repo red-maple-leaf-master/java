@@ -27,16 +27,16 @@ public class ActivitiDeployment {
     /**
      * 方式一
      * 分别将 bpmn 文件和 png 图片文件部署
-     *
-     *
-     *  -- activiti表有哪些？
-     *  -- 部署信息
+     * <p>
+     * <p>
+     * -- activiti表有哪些？
+     * -- 部署信息
      * select * from act_re_deployment ;
-     *
+     * <p>
      * -- 流程定义的一些信息
      * select * from act_re_procdef;
-     *
-     *  -- 流程定义的bpmn文件及png文件
+     * <p>
+     * -- 流程定义的bpmn文件及png文件
      * select * from act_ge_bytearray;
      */
     @Test
@@ -51,16 +51,16 @@ public class ActivitiDeployment {
         Deployment deployment = repositoryService.createDeployment()
                 .addClasspathResource("diagram/userFlow.bpmn")
 //                .addClasspathResource("diagram/one.png")
-                .name( "测试" )
+                .name("测试")
                 .deploy();
 
         //4.输出部署的一些信息
-        System.out.println( deployment.getName() );
-        System.out.println( deployment.getId() );
+        System.out.println(deployment.getName());
+        System.out.println(deployment.getId());
     }
 
     @Test
-    public void test(){
+    public void test() {
         //1.创建ProcessEngine对象
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         Deployment deployment = processEngine.getRepositoryService()//与流程定义和部署对象相关的Service
@@ -89,17 +89,17 @@ public class ActivitiDeployment {
         InputStream is = ActivitiDeployment.class.getClassLoader().getResourceAsStream("diagram/holidayBPMN.zip");
 
         //将 inputstream流转化为ZipInputStream流
-        ZipInputStream zipInputStream = new ZipInputStream( is );
+        ZipInputStream zipInputStream = new ZipInputStream(is);
 
         //3.进行部署
         Deployment deployment = repositoryService.createDeployment()
-                .addZipInputStream( zipInputStream )
-                .name( "请假申请单流程" )
+                .addZipInputStream(zipInputStream)
+                .name("请假申请单流程")
                 .deploy();
 
         //4.输出部署的一些信息
-        System.out.println( deployment.getName() );
-        System.out.println( deployment.getId() );
+        System.out.println(deployment.getName());
+        System.out.println(deployment.getId());
     }
 
 }

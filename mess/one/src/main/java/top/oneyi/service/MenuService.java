@@ -7,11 +7,15 @@ import java.util.List;
 public interface MenuService {
     /**
      * 查询菜单
+     *
      * @param userId
      * @return
      */
     List<SysMenu> queryAllSysMenu(Long userId);
-    /**查询父菜单
+
+    /**
+     * 查询父菜单
+     *
      * @param parentId
      * @param menuIdList
      * @return
