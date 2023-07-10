@@ -52,8 +52,17 @@ public class TestController {
         RelationShip relationShip5 = RelationShip.builder().parent(dept2).child(dept21).build();
         RelationShip relationShip6 = RelationShip.builder().parent(dept2).child(dept22).build();
         RelationShip relationShip7 = RelationShip.builder().parent(dept2).child(dept23).build();
-        List<RelationShip> relationShips = new ArrayList<>(Arrays.asList(relationShip1,relationShip2,relationShip3,relationShip4,relationShip5
-                ,relationShip6,relationShip7));
+
+        List<RelationShip> relationShips = new ArrayList<>(
+                Arrays.asList(
+                        relationShip1,
+                        relationShip2,
+                        relationShip3,
+                        relationShip4,
+                        relationShip5,
+                        relationShip6,
+                        relationShip7));
+
         relationShipRepository.saveAll(relationShips);
     }
 
