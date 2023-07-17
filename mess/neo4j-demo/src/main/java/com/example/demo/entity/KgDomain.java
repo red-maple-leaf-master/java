@@ -28,7 +28,7 @@ public class KgDomain {
     private String createUser;
     private String modifyUser;
     /**
-     *  创建类型
+     *  创建类型  0 手动创建  1 三元组导入  2 excel 导入 3 er图构建
      */
     private Integer type;
     private Integer commend;

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 
 import cn.hutool.core.util.IdUtil;
+import com.example.demo.entity.GraphQuery;
 import com.example.demo.entity.KgDomain;
 import com.example.demo.service.KGGraphService;
 import com.example.demo.service.KGManagerService;
@@ -10,9 +11,12 @@ import com.example.demo.utils.R;
 import com.example.demo.utils.ReturnStatus;
 import com.example.demo.utils.StringUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -24,6 +28,24 @@ public class KGBuilderController extends BaseController{
     private final KGManagerService kgManagerService;
 
     private  final KGGraphService kgGraphService;
+
+    /**
+     * 搜索框查询相关节点和关系
+     *
+     * @param query 查询条件
+     * @return 返回查询结果
+     */
+    @PostMapping(value = "/queryGraphResult")
+    public R queryGraphResult(@RequestBody GraphQuery query) {
+        try {
+            HashMap<String, Object> graphData = kgGraphService.queryGraphResult(query);
+            return R.success(graphData);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.error(e.getMessage());
+        }
+
+    }
 
     /**
      * 创建领域标签
