@@ -1,13 +1,15 @@
-
-#spring:
-#  data:
-#    Neo4j:
-#      uri: bolt://116.62.155.98:7687
-#      username: neo4j
-#      password: RedOneForMaster
 spring:
   data:
     Neo4j:
       uri: bolt://127.0.0.1:7687
       username: redone
       password: redone
+  datasource:
+    url: jdbc:mysql://localhost:3306/kg?useSSL=false&serverTimezone=UTC
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+mybatis:
+  typeAliasesPackage: com.example.demo.entity
+  mapperLocations: classpath*:/mapper/*.xml

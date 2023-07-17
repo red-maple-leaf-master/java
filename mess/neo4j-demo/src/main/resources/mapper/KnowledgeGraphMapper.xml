@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.KnowledgeGraphMapper">
+
+    <sql id="BaseColumnList">
+		id, `name`,`label`, nodeCount, shipCount,status,createUser,commend,createTime
+	</sql>
+    <!--    保存图谱名字信息-->
+    <insert id="saveDomain">
+        INSERT INTO kg_domain(name, label,createUser,nodeCount, shipCount,status,type,commend,createTime,modifyTime)
+		VALUES (#{name},#{label},#{createUser},#{nodeCount},#{shipCount},1,#{type},#{commend},now(),now())
+    </insert>
+
+    <!--    根据图谱名字查找-->
+    <select id="getDomainByName" resultType="com.example.demo.entity.KgDomain">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM kg_domain WHERE status=1 and name =#{domainName}
+    </select>
+</mapper>
