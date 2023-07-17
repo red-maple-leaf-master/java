@@ -4,15 +4,17 @@ import com.example.demo.entity.KgDomain;
 import com.example.demo.mapper.KnowledgeGraphMapper;
 import com.example.demo.utils.DateUtil;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class KGManagerServiceimpl implements KGManagerService {
 
-    private final KnowledgeGraphMapper knowledgeGraphMapper;
+    @Resource
+    private  KnowledgeGraphMapper knowledgeGraphMapper;
 
     /**
      * 根据图谱名字查找

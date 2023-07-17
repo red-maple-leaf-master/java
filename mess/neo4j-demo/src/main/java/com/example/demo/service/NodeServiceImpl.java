@@ -4,14 +4,17 @@ import com.example.demo.entity.Node;
 import com.example.demo.repository.NodeRepository;
 import lombok.AllArgsConstructor;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class NodeServiceImpl implements NodeService {
-    private final NodeRepository nodeRepository;
+
+    @Resource
+    private  NodeRepository nodeRepository;
  
     @Override
     public Node save(Node node) {

@@ -1,13 +1,17 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.GraphQuery;
+import com.example.demo.utils.Ne04jUtils;
 import com.example.demo.utils.Neo4jUtil;
 import com.example.demo.utils.StringUtil;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Repository
 public class KgRepository implements KGGraphRepository {
 
     /**
@@ -81,14 +85,15 @@ public class KgRepository implements KGGraphRepository {
                     } else {
                         String nodecql = String.format("MATCH (n:`%s`) %s RETURN distinct(n) limit %s", domain,
                                 nodeOnly, query.getPageSize());
-                        List<HashMap<String, Object>> nodeItem = Neo4jUtil.getGraphNode(nodecql);
+                        List<Map<String, Object>> nodeItem = Ne04jUtils.getGraphNode(nodecql);
+
                         nr.put("node", nodeItem);
                         nr.put("relationship", new ArrayList<HashMap<String, Object>>());
                     }
                 } else {
                     String nodeSql = String.format("MATCH (n:`%s`) %s RETURN distinct(n) limit %s", domain, cqWhere,
                             query.getPageSize());
-                    List<HashMap<String, Object>> graphNode = Neo4jUtil.getGraphNode(nodeSql);
+                    List<Map<String, Object>> graphNode = Ne04jUtils.getGraphNode(nodeSql);
                     nr.put("node", graphNode);
                     String domainSql = String.format("MATCH (n:`%s`)<-[r]-> (m) %s RETURN distinct(r) limit %s", domain,
                             cqWhere, query.getPageSize());// m是否加领域

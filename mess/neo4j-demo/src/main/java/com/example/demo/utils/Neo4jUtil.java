@@ -19,8 +19,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-@Lazy(false)
 public class Neo4jUtil implements AutoCloseable {
+
 
     private static Driver neo4jDriver;
 

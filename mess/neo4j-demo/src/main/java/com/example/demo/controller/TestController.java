@@ -4,14 +4,14 @@ import com.example.demo.entity.Dept;
 import com.example.demo.entity.RelationShip;
 import com.example.demo.repository.DeptRepository;
 import com.example.demo.repository.RelationShipRepository;
+
+import org.neo4j.ogm.model.Result;
+import org.neo4j.ogm.session.Session;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class TestController {
@@ -20,6 +20,25 @@ public class TestController {
     private DeptRepository deptRepository;
     @Resource
     private RelationShipRepository relationShipRepository;
+
+
+    @Resource
+    private Session session;
+
+    /**
+     * 查询图谱所有节点
+     * @return
+     */
+    @GetMapping("test")
+    public List<Map<String, Object>> test() {
+        String sql = "MATCH (n:`地图_y_Oy3G`)  RETURN distinct(n) limit 500";
+        Result result = session.query(sql, new HashMap<>());
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (Map<String, Object> next : result) {
+            list.add(next);
+        }
+        return list;
+    }
 
     /**
      * CEO

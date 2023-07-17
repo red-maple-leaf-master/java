@@ -3,10 +3,10 @@ package com.example.demo.repository;
 import com.example.demo.entity.GraphQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 
-@Component
 public interface KGGraphRepository {
 
     /**
