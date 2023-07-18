@@ -3,6 +3,7 @@ package com.example.demo.utils;
 import org.neo4j.driver.Record;
 import org.neo4j.driver.Value;
 import org.neo4j.driver.types.Node;
+import org.neo4j.driver.types.Relationship;
 import org.neo4j.driver.util.Pair;
 import org.neo4j.ogm.model.Result;
 import org.neo4j.ogm.session.Session;
@@ -11,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,4 +44,26 @@ public class Ne04jUtils {
         }
         return ents;
     }
+
+
+    /**
+     * 返回关系，不保留节点内容
+     *
+     * @param cypherSql
+     * @return
+     */
+    public static List<HashMap<String, Object>> getGraphRelationShip(String cypherSql) {
+        List<HashMap<String, Object>> ents = new ArrayList<HashMap<String, Object>>();
+
+            Result result = session.query(cypherSql, new HashMap<>());
+                    for (Map<String, Object> next : result) {
+                        for (Map.Entry<String, Object> stringObjectEntry : next.entrySet()) {
+                            System.out.println("stringObjectEntry.getKey() = " + stringObjectEntry.getKey());
+                            System.out.println("stringObjectEntry.getValue() = " + stringObjectEntry.getValue());
+                        }
+                    }
+        return ents;
+    }
+
+
 }

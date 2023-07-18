@@ -21,7 +21,7 @@ public class GraphQuery{
 	 */
 	private String[] relation;
 	/**
-	 *
+	 * 0 模糊查找  1 精确查找
 	 */
 	private int matchType;
 

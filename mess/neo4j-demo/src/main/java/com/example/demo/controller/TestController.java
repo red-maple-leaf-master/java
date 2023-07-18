@@ -1,10 +1,16 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import com.example.demo.entity.Dept;
 import com.example.demo.entity.RelationShip;
 import com.example.demo.repository.DeptRepository;
 import com.example.demo.repository.RelationShipRepository;
 
+import com.example.demo.utils.JsonUtils;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.apache.commons.beanutils.BeanMap;
 import org.neo4j.ogm.model.Result;
 import org.neo4j.ogm.session.Session;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +35,7 @@ public class TestController {
      * 查询图谱所有节点
      * @return
      */
-    @GetMapping("test")
+    @GetMapping("/test")
     public List<Map<String, Object>> test() {
         String sql = "MATCH (n:`地图_y_Oy3G`)  RETURN distinct(n) limit 500";
         Result result = session.query(sql, new HashMap<>());
@@ -40,6 +46,51 @@ public class TestController {
         return list;
     }
 
+    /**
+     * 查询图谱所有关系
+     * @return
+     */
+    @GetMapping("/test01")
+    public List<Object> test01() {
+        String cypherSql = "MATCH (n:`地图_y_Oy3G`)<-[r]-> (m)  RETURN distinct(r) limit 500";
+        List<Object> list = new ArrayList<>();
+        Result result = session.query(cypherSql, new HashMap<>());
+        for (Map<String, Object> next : result) {
+            Object object = next.get("r");
+            list.add(object);
+
+
+            String s = JSON.toJSONString(object);
+            JSONObject jsonObject = JSON.parseObject(s);
+//            System.out.println("jsonObject.get(\"id\") = " + jsonObject.get("id"));
+//            System.out.println("jsonObject.get(\"propertyList\") = " + jsonObject.get("propertyList"));
+//            String propertyList = jsonObject.getString("propertyList");
+//            JSONArray objects = JSON.parseArray(propertyList);
+//            System.out.println("objects = " + objects.getString(0));
+//            JSONObject js = JSON.parseObject(objects.getString(0));
+//            System.out.println("js.getString(\"value\") = " + js.getString("value"));
+            // 使用工具类 来获取json的值
+            Object name = JsonUtils.getValueByKey(jsonObject, "value");
+            System.out.println("name = " + name);
+            System.out.println(JsonUtils.getValueByKey(jsonObject, "id"));
+            System.out.println(JsonUtils.getValueByKey(jsonObject, "startNode"));
+            System.out.println(JsonUtils.getValueByKey(jsonObject, "endNode"));
+
+
+        }
+        return list;
+    }
+
+    public List<Object> objToList(Object obj) {
+        List<Object> list = new ArrayList<Object>();
+        if (obj instanceof ArrayList<?>) {
+            for (Object o : (List<?>) obj) {
+                list.add(o);
+            }
+            return list;
+        }
+        return null;
+    }
     /**
      * CEO
      *    -设计部
