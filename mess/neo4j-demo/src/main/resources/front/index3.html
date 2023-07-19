@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>事件流</h3>
+<p>事件流是事件在执行时的底层机制，主要体现在父子盒子之间事件的执行上。</p>
+<div class="outer">
+    <div class="inner">
+        <div class="child"></div>
+    </div>
+</div>
+<script>
+    // 获取嵌套的3个节点
+    const outer = document.querySelector('.outer');
+    const inner = document.querySelector('.inner');
+    const child = document.querySelector('.child');
+
+    // html 元素添加事件
+    document.documentElement.addEventListener('click', function () {
+        console.log('html...')
+    })
+
+    // body 元素添加事件
+    document.body.addEventListener('click', function () {
+        console.log('body...')
+    })
+
+    // 外层的盒子添加事件
+    outer.addEventListener('click', function () {
+        console.log('outer...')
+    })
+
+    // 中间的盒子添加事件
+    outer.addEventListener('click', function () {
+        console.log('inner...')
+    })
+
+    // 内层的盒子添加事件
+    outer.addEventListener('click', function () {
+        console.log('child...')
+    })
+</script>
+</body>
+</html>
