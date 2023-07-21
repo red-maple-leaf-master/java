@@ -40,14 +40,14 @@
 
     // 获取盒子的dom对象
     const box = document.querySelector('.box');
-    box.addEventListener('mouseenter',function(){
+    box.addEventListener('mouseenter', function () {
         this.innerText = "鼠标移入了...."
         // 修改光标的风格
         this.style.cursor = 'move';
 
     })
 
-    box.addEventListener('mouseleave',function(){
+    box.addEventListener('mouseleave', function () {
         this.innerText = "鼠标移出了...."
     })
 </script>

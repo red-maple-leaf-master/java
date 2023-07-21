@@ -55,13 +55,13 @@ public class Ne04jUtils {
     public static List<HashMap<String, Object>> getGraphRelationShip(String cypherSql) {
         List<HashMap<String, Object>> ents = new ArrayList<HashMap<String, Object>>();
 
-            Result result = session.query(cypherSql, new HashMap<>());
-                    for (Map<String, Object> next : result) {
-                        for (Map.Entry<String, Object> stringObjectEntry : next.entrySet()) {
-                            System.out.println("stringObjectEntry.getKey() = " + stringObjectEntry.getKey());
-                            System.out.println("stringObjectEntry.getValue() = " + stringObjectEntry.getValue());
-                        }
-                    }
+        Result result = session.query(cypherSql, new HashMap<>());
+        for (Map<String, Object> next : result) {
+            for (Map.Entry<String, Object> stringObjectEntry : next.entrySet()) {
+                System.out.println("stringObjectEntry.getKey() = " + stringObjectEntry.getKey());
+                System.out.println("stringObjectEntry.getValue() = " + stringObjectEntry.getValue());
+            }
+        }
         return ents;
     }
 

@@ -14,8 +14,8 @@ import java.util.List;
 public class NodeServiceImpl implements NodeService {
 
     @Resource
-    private  NodeRepository nodeRepository;
- 
+    private NodeRepository nodeRepository;
+
     @Override
     public Node save(Node node) {
         return nodeRepository.save(node);

@@ -13,10 +13,10 @@ public class Node {
     @Id
     @GeneratedValue
     private Long id;
- 
+
     @Property(name = "name")
     private String name;
- 
+
     @Property(name = "title")
     private String title;
 }

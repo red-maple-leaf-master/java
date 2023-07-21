@@ -23,14 +23,14 @@ class DemoApplicationTests {
      */
     @Test
     void contextLoads() {
-        Node  node = new Node();
+        Node node = new Node();
         node.setName("钢铁侠");
         node.setTitle("凡人之躯堪比神明");
         nodeService.save(node);
     }
 
     @Test
-    void selectAll(){
+    void selectAll() {
 //        List<Node> all = nodeService.getAll();
         Ne04jUtils.getGraphNode("MATCH (n:`地图_y_Oy3G`)  RETURN distinct(n) limit 500");
 

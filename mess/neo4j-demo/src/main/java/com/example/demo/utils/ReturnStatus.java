@@ -14,14 +14,14 @@ public enum ReturnStatus {
     ValidateFailure("参数验证错误", 400),
     SessionTimeout("会话超时", 401),
     LoginFailure("登录失败", 402),
-    NoRight("权限不足",403),
-    InvalidCSRF("无效的保护令牌",404),
-    NoIntentResult("意图识别没有结果",405),
-    MoreFieldIntentResult("意图命中多个字段",408),
-    RequestMissingBodyError("缺少请求体!",1004),
-    ParameterMissingError("确少必要请求参数!",1003),
-    ParameterError("请求参数有误!",1002),
-    NotFountResource("没有找到相关资源!",1001),
+    NoRight("权限不足", 403),
+    InvalidCSRF("无效的保护令牌", 404),
+    NoIntentResult("意图识别没有结果", 405),
+    MoreFieldIntentResult("意图命中多个字段", 408),
+    RequestMissingBodyError("缺少请求体!", 1004),
+    ParameterMissingError("确少必要请求参数!", 1003),
+    ParameterError("请求参数有误!", 1002),
+    NotFountResource("没有找到相关资源!", 1001),
     Error("服务器错误", 500);
 
 
@@ -33,6 +33,7 @@ public enum ReturnStatus {
         this.name = name;
         this.value = value;
     }
+
     @Override
     public String toString() {
         return value.toString();

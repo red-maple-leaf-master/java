@@ -10,6 +10,7 @@ import java.util.List;
 public interface KnowledgeGraphMapper {
     /**
      * 根据图谱名字查找
+     *
      * @param domainName
      * @return
      */
@@ -17,6 +18,7 @@ public interface KnowledgeGraphMapper {
 
     /**
      * 保存图谱名字信息
+     *
      * @param domain
      */
     void saveDomain(KgDomain domain);

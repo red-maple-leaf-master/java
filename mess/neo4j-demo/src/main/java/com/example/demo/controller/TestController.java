@@ -33,6 +33,7 @@ public class TestController {
 
     /**
      * 查询图谱所有节点
+     *
      * @return
      */
     @GetMapping("/test")
@@ -48,6 +49,7 @@ public class TestController {
 
     /**
      * 查询图谱所有关系
+     *
      * @return
      */
     @GetMapping("/test01")
@@ -91,18 +93,19 @@ public class TestController {
         }
         return null;
     }
+
     /**
      * CEO
-     *    -设计部
-     *        - 设计1组
-     *        - 设计2组
-     *    -技术部
-     *        - 前端技术部
-     *        - 后端技术部
-     *        - 测试技术部
+     * -设计部
+     * - 设计1组
+     * - 设计2组
+     * -技术部
+     * - 前端技术部
+     * - 后端技术部
+     * - 测试技术部
      */
     @GetMapping("create")
-    public void create(){
+    public void create() {
         Dept CEO = Dept.builder().deptName("CEO").build();
         Dept dept1 = Dept.builder().deptName("设计部").build();
         Dept dept11 = Dept.builder().deptName("设计1组").build();
@@ -112,7 +115,7 @@ public class TestController {
         Dept dept21 = Dept.builder().deptName("前端技术部").build();
         Dept dept22 = Dept.builder().deptName("后端技术部").build();
         Dept dept23 = Dept.builder().deptName("测试技术部").build();
-        List<Dept> depts = new ArrayList<>(Arrays.asList(CEO,dept1,dept11,dept12,dept2,dept21,dept22,dept23));
+        List<Dept> depts = new ArrayList<>(Arrays.asList(CEO, dept1, dept11, dept12, dept2, dept21, dept22, dept23));
         deptRepository.saveAll(depts);
 
         RelationShip relationShip1 = RelationShip.builder().parent(CEO).child(dept1).build();
@@ -138,30 +141,33 @@ public class TestController {
 
     /**
      * 根据id 查找节点的关系
+     *
      * @param id
      * @return
      */
     @GetMapping("get")
-    public RelationShip get(Long id){
+    public RelationShip get(Long id) {
         Optional<RelationShip> byId = relationShipRepository.findById(id);
         return byId.orElse(null);
     }
 
     /**
      * 删除关系
+     *
      * @param id
      */
     @GetMapping("deleteRelationShip")
-    public void deleteRelationShip(Long id){
+    public void deleteRelationShip(Long id) {
         relationShipRepository.deleteById(id);
     }
 
     /**
      * 删除节点
+     *
      * @param id
      */
     @GetMapping("deleteDept")
-    public void deleteDept(Long id){
+    public void deleteDept(Long id) {
         deptRepository.deleteById(id);
     }
 
@@ -169,7 +175,7 @@ public class TestController {
      * 删除所有的节点
      */
     @GetMapping("deleteAll")
-    public void deleteAll(){
+    public void deleteAll() {
         deptRepository.deleteAll();
         relationShipRepository.deleteAll();
     }

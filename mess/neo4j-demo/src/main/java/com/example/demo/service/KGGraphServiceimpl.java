@@ -11,13 +11,14 @@ import java.util.HashMap;
 
 @Service
 
-public class KGGraphServiceimpl implements  KGGraphService{
+public class KGGraphServiceimpl implements KGGraphService {
 
     @Resource
     private KgRepository kgRepository;
 
     /**
      * 创建图谱主节点,给节点上默认属性
+     *
      * @param label 唯一标识
      */
     @Override

@@ -1,6 +1,6 @@
 /*
 package com.example.demo.demo;
- 
+
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -9,7 +9,7 @@ import com.itextpdf.text.pdf.*;
 
 import org.apache.commons.lang3.StringUtils;
 
- 
+
 import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class SealCreatePDFUtil2 {
-    
+
     private static Logger logger = Logger.getLogger("bane");
- 
+
     // 利用模板生成pdf
     public static void createPdf(InputStream templateInputStream,OutputStream newPdfOutputStream,InputStream imgInputStream,Map<String, String> parametersMap,float img_X_position,float img_Y_position) {
         PdfReader pdfReader;
@@ -30,17 +30,17 @@ public class SealCreatePDFUtil2 {
             byteArrayOutputStream = new ByteArrayOutputStream();
             pdfStamper = new PdfStamper(pdfReader, byteArrayOutputStream);
             AcroFields acroFields = pdfStamper.getAcroFields();
- 
+
             // 根据填充内容长度设置字体大小
             if(MapUtils.isNotEmpty(parametersMap)){
                 BaseFont baseFont = BaseFont.createFont( "STSong-Light", "UniGB-UCS2-H",BaseFont.NOT_EMBEDDED);
- 
+
                 //  循环参数map
                 for(String key:parametersMap.keySet()){
-                    acroFields.setField(key,parametersMap.get(key));// 将map中的参数设置到pdf中。 
+                    acroFields.setField(key,parametersMap.get(key));// 将map中的参数设置到pdf中。
                     acroFields.setFieldProperty(key,"textfont",baseFont,null); // 为每一个表单域 设置字体
                 }
-                
+
                 for(String key:parametersMap.keySet()){
                     if(StringUtils.isNoneBlank(key,parametersMap.get(key))){
                         int ilen = parametersMap.get(key).toString().length();
@@ -49,7 +49,7 @@ public class SealCreatePDFUtil2 {
                         || StringUtils.equalsIgnoreCase("syzn_xjzdz",key) // 生育子女现居住地址
                         ){
                             setFontSizeByLength_1(ilen,key,acroFields);
-                        }else if(StringUtils.equalsIgnoreCase("bz",key) 
+                        }else if(StringUtils.equalsIgnoreCase("bz",key)
                                 || StringUtils.equalsIgnoreCase("hjdz",key)// 户籍地址
                                 || StringUtils.equalsIgnoreCase("jtzz",key)// 家庭住址
                         ){
@@ -60,14 +60,34 @@ public class SealCreatePDFUtil2 {
                     }
                 }
             }
-            
- 
+
+
             */
 /**
  * 如果实参传入了，图片和坐标值，则添加图片
  * <p>
  * InputStream 转 byte[]
  *
+ * @param input
+ * @return 根据内容长度设置字体大小，
+ * 本方法适合 《短》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《中》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * 根据内容长度设置字体大小，
+ * 本方法适合 《长》 的文本域
+ * @param iLength
+ * @param key
+ * @param acroFields
+ * <p>
+ * InputStream 转 byte[]
  * @param input
  * @return 根据内容长度设置字体大小，
  * 本方法适合 《短》 的文本域
@@ -116,7 +136,7 @@ public class SealCreatePDFUtil2 {
                 image.scaleAbsolute(80,120);// 指定图片的宽高
                 underContent.addImage(image);
             }
-            
+
             pdfStamper.setFormFlattening(true);// 如果为false那么生成的PDF文件还能编辑，一定要设为true
             pdfStamper.close();
             Document document = new Document();
@@ -131,24 +151,24 @@ public class SealCreatePDFUtil2 {
             e.printStackTrace();
         }
     }
- 
-    
-    
-    
- 
- 
-	
+
+
+
+
+
+
+
 	public static Map<String,String> initPdfParametersMap(){
         Map<String,String> parametersMap=new HashMap<String, String>();
         parametersMap.put("sqrxm", "李四");// 申请人姓名
         parametersMap.put("xb", "男");
         return parametersMap;
     }
- 
- 
- 
- 
- 
+
+
+
+
+
     */
 /**
  * InputStream 转 byte[]
@@ -173,10 +193,10 @@ public class SealCreatePDFUtil2 {
         }
         return output.toByteArray();
     }
- 
- 
- 
- 
+
+
+
+
     */
 /**
  * 根据内容长度设置字体大小，
@@ -197,8 +217,8 @@ public class SealCreatePDFUtil2 {
             acroFields.setFieldProperty(key, "textsize", new Float(7), null);
         }
     }
- 
- 
+
+
     */
 /**
  * 根据内容长度设置字体大小，
@@ -219,8 +239,8 @@ public class SealCreatePDFUtil2 {
             acroFields.setFieldProperty(key, "textsize", new Float(6), null);
         }
     }
- 
- 
+
+
     */
 /**
  * 根据内容长度设置字体大小，
@@ -241,13 +261,13 @@ public class SealCreatePDFUtil2 {
             acroFields.setFieldProperty(key, "textsize", new Float(6), null);
         }
     }
- 
- 
- 
- 
- 
-    
-    
- 
- 
+
+
+
+
+
+
+
+
+
 }*/

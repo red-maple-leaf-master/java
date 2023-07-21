@@ -14,10 +14,11 @@ import java.util.List;
 public class KGManagerServiceimpl implements KGManagerService {
 
     @Resource
-    private  KnowledgeGraphMapper knowledgeGraphMapper;
+    private KnowledgeGraphMapper knowledgeGraphMapper;
 
     /**
      * 根据图谱名字查找
+     *
      * @param domainName
      * @return
      */
@@ -25,11 +26,13 @@ public class KGManagerServiceimpl implements KGManagerService {
     public List<KgDomain> getDomainByName(String domainName) {
         return knowledgeGraphMapper.getDomainByName(domainName);
     }
+
     /**
      * 保存图谱名称
-     * @param label 唯一标识
+     *
+     * @param label      唯一标识
      * @param domainName 图谱名称
-     * @param type 创建类型
+     * @param type       创建类型
      * @return
      */
     @Override
@@ -43,7 +46,7 @@ public class KGManagerServiceimpl implements KGManagerService {
         item.setCommend(0);
         item.setType(type);
         item.setStatus(1);
-        return  saveDomain(item);
+        return saveDomain(item);
     }
 
     /**
