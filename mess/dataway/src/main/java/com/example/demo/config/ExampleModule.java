@@ -8,13 +8,14 @@ import net.hasor.spring.SpringModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @DimModule
 @Component
 public class ExampleModule implements SpringModule {
-    @Autowired
-    private DataSource dataSource = null;
+    @Resource
+    private DataSource dataSource;
 
     @Override
     public void loadModule(ApiBinder apiBinder) throws Throwable {

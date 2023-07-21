@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @EnableHasor()
 @EnableHasorWeb()
-@SpringBootApplication(scanBasePackages = { "com.example.demo.config" })
+@SpringBootApplication
 public class DemoApplication {
 
     public static void main(String[] args) {
