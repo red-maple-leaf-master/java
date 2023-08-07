@@ -92,11 +92,11 @@
             <artifactId>itext-asian</artifactId>
             <version>5.2.0</version>
         </dependency>
-        <!--        <dependency>
+                <dependency>
                     <groupId>com.itextpdf</groupId>
                     <artifactId>itext-xtra</artifactId>
                     <version>5.5.13.2</version>
-                </dependency>-->
+                </dependency>
 
 
         <dependency>
