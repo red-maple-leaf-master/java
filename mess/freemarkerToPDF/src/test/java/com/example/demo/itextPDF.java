@@ -5,6 +5,8 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.BomInput;
+import sun.font.BidiUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -112,4 +114,24 @@ public class itextPDF {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void test01(){
+        BigDecimal one = new BigDecimal("10.000");
+        BigDecimal two = new BigDecimal("10");
+        System.out.println(one.doubleValue() == two.doubleValue());
+        System.out.println(one.doubleValue() );
+        System.out.println( two.doubleValue());
+        System.out.println(one.compareTo(new BigDecimal("10.000000000000000")) == 0);
+
+    }
+
+    @Test
+    public void test02(){
+        BigDecimal one = new BigDecimal("10.000");
+        BigDecimal two = new BigDecimal("10.0");
+        System.out.println(one.compareTo(two) < 0);
+        System.out.println(one.compareTo(two) == 0);
+    }
+
 }
