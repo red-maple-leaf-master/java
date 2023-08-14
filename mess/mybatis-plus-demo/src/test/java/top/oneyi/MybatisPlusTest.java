@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.oneyi.mapper.UserMapper;
@@ -21,7 +22,8 @@ import java.util.List;
 @RunWith(SpringRunner.class)//当前类为 springBoot 的测试类
 @SpringBootTest(classes = MybatisPlusDemo.class)//加载 SpringBoot 启动类
 public class MybatisPlusTest {
-    @Resource
+
+    @Autowired
     private UserMapper userMapper;
 
 

@@ -133,5 +133,22 @@ public class itextPDF {
         System.out.println(one.compareTo(two) < 0);
         System.out.println(one.compareTo(two) == 0);
     }
+   private double totalWeight = 56; // 总重量
+    private double totalNum = 6; // 总数量
+   private double reWeight = 56; // 总重量
+    private double reNum = 6; // 总数量
+    private double unit = 10; // 每个的重量
+    @Test
+    public void test03(){
+        double toWeight = 42;
+        double toNum = 4;
+        // 重量不等于剩余重量,出库的数量就可以 四舍五入
+        if(toWeight != reWeight){
 
+        }else{
+            // 等于剩余重量就是直接使用剩余的数量
+
+        }
+
+    }
 }

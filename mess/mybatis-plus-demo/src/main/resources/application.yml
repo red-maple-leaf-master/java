@@ -7,11 +7,11 @@ spring:
     url: jdbc:mysql://localhost:3306/oneyi?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: root
     password: root
-  devtools:
-    restart:
-      enabled: true  # 开启热部署
-      additional-paths: mybatis-plus-demo/src/main/java #重启目录
-      additional-exclude: WEB-INF/**
+#  devtools:
+#    restart:
+#      enabled: true  # 开启热部署
+#      additional-paths: mybatis-plus-demo/src/main/java #重启目录
+#      additional-exclude: WEB-INF/**
   freemarker:
     cache: false # 页面不加缓存,修改时生效
 # MyBatisPlus配置
@@ -19,7 +19,7 @@ spring:
 mybatis-plus:
   # 不支持多包, 如有需要可在注解配置 或 提升扫包等级
   # 例如 com.**.**.mapper
-  mapperPackage: top.oneyi.**.mapper
+#  mapperPackage: top.oneyi.mapper
   # 对应的 XML 文件位置
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 实体扫描，多个package用逗号或者分号分隔
