@@ -3,7 +3,9 @@ package top.oneyi;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.WordDictionary;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.util.Optional;
 
@@ -28,5 +30,17 @@ public class JDKNew {
         // 读取 dict 目录下所有的自定义词库**.dict文件。
         WordDictionary.getInstance().init(Paths.get("conf"));
         System.out.println(segmenter.sentenceProcess(sentences));
+    }
+
+    @Test
+    public void test03(){
+        String str = "9";
+        BigDecimal a = new BigDecimal(str);
+        String str2 = "5";
+        BigDecimal a2 = new BigDecimal(str2);
+        BigDecimal bigDecimal = a.divide(a2).setScale(0, BigDecimal.ROUND_HALF_UP);
+        BigDecimal bigDecimal2 = a.divide(a2).setScale(2, BigDecimal.ROUND_HALF_UP);
+        System.out.println("bigDecimal = " + bigDecimal);
+        System.out.println("bigDecimal2 = " + bigDecimal2);
     }
 }
