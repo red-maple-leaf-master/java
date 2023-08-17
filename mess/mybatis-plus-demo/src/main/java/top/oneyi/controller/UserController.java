@@ -37,7 +37,7 @@ public class UserController {
 
     /**
      * 模拟 mqtt 发送消息 阻塞 导致 更新状态比上一步晚
-     * 设置事务为可重复读
+     * 设置事务为可重复读  默认就是可重复读
      */
     @Transactional(rollbackFor = Exception.class,isolation = Isolation.REPEATABLE_READ)
     @GetMapping("/update01")
