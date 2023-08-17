@@ -43,4 +43,16 @@ public class JDKNew {
         System.out.println("bigDecimal = " + bigDecimal);
         System.out.println("bigDecimal2 = " + bigDecimal2);
     }
+
+    @Test
+    public void test04(){
+        String str = "9";
+        BigDecimal a = new BigDecimal(str);
+        String str2 = "360";
+        BigDecimal a2 = new BigDecimal(str2);
+        BigDecimal bigDecimal = a.divide(a2.subtract(new BigDecimal("1"))).setScale(10, BigDecimal.ROUND_UP );
+
+        System.out.println("bigDecimal = " + bigDecimal);
+
+    }
 }
