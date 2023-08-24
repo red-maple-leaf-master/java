@@ -86,5 +86,10 @@ public class JDKNew {
 
     }
 
+    @Test
+    public void test06() {
+
+    }
+
 
 }
