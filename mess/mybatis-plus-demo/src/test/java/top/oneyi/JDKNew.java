@@ -3,11 +3,11 @@ package top.oneyi;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.WordDictionary;
 import org.junit.Test;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.util.Optional;
+
 
 public class JDKNew {
 
@@ -33,7 +33,7 @@ public class JDKNew {
     }
 
     @Test
-    public void test03(){
+    public void test03() {
         String str = "9";
         BigDecimal a = new BigDecimal(str);
         String str2 = "5";
@@ -45,14 +45,46 @@ public class JDKNew {
     }
 
     @Test
-    public void test04(){
-        String str = "9";
+    public void test04() {
+        String str = "1";
         BigDecimal a = new BigDecimal(str);
         String str2 = "360";
         BigDecimal a2 = new BigDecimal(str2);
-        BigDecimal bigDecimal = a.divide(a2.subtract(new BigDecimal("1"))).setScale(10, BigDecimal.ROUND_UP );
-
+        BigDecimal bigDecimal = new BigDecimal("1000000").multiply(a.divide(new BigDecimal("100"), 4, BigDecimal.ROUND_HALF_UP));
         System.out.println("bigDecimal = " + bigDecimal);
+        bigDecimal = bigDecimal.divide(new BigDecimal("360").subtract(new BigDecimal("1")), 4, BigDecimal.ROUND_HALF_UP);
+        System.out.println("bigDecimal = " + bigDecimal);
+        System.out.println("bigDecimal = " + a.divide(new BigDecimal("100"), 4, BigDecimal.ROUND_HALF_UP).divide(new BigDecimal("360").subtract(new BigDecimal("1")), 4, BigDecimal.ROUND_HALF_UP));
+
+        System.out.println("bigDecimal = " + new BigDecimal("1000000").multiply(a.divide(new BigDecimal("100"), 4, BigDecimal.ROUND_HALF_UP)).divide(new BigDecimal("360").subtract(new BigDecimal("1")), 4, BigDecimal.ROUND_HALF_UP));
 
     }
+
+    @Test
+    public void test05() {
+        StockGoods stockGoods = new StockGoods();
+        // 总重量
+        BigDecimal totalWeight = new BigDecimal("1000");
+        BigDecimal totalNum = new BigDecimal("100");
+        stockGoods.setTotalWeight(totalWeight);
+        stockGoods.setTotalNum(totalNum);
+        stockGoods.setSgAvailableStockWeight(totalWeight);
+        stockGoods.setSgAvailableStockNum(totalNum);
+        // 申请仓单重量 和 数量
+        BigDecimal weight = new BigDecimal("23");
+        System.out.println("扣减重量之前的状态"+stockGoods);
+        totalWeight = totalWeight.subtract(weight);
+        stockGoods.setSgAvailableStockWeight(totalWeight.subtract(weight),new BigDecimal("10"));
+        System.out.println("扣减重量之后的状态"+stockGoods);
+        totalWeight = totalWeight.add(weight);
+        stockGoods.setSgAvailableStockWeight(totalWeight.subtract(weight),new BigDecimal("10"));
+        System.out.println("恢复库存"+stockGoods);
+        /*
+        生成仓单 传递进来重量 查到在库货物重量和数量
+
+         */
+
+    }
+
+
 }
