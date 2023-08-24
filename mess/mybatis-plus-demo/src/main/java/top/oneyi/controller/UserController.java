@@ -8,6 +8,9 @@ import top.oneyi.mapper.UserMapper;
 import top.oneyi.pojo.User;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -16,7 +19,7 @@ public class UserController {
     private UserMapper userMapper;
 
     /**
-     *  更新的最后状态    ,isolation = Isolation.READ_COMMITTED
+     *  更新的最后状态 ,isolation = Isolation.READ_COMMITTED
      */
     @GetMapping("/update")
     @Transactional(rollbackFor = Exception.class)
@@ -54,5 +57,18 @@ public class UserController {
             System.out.println("我更新了Jone的年龄  1122岁");
         }
 
+    }
+
+    /**
+     * 测试使用@Bean注解方式实现全局序列化配置
+     *
+     * @return
+     */
+    @GetMapping("/testJacksonByBean")
+    public List<Object> testJacksonByBean() {
+        List<Object> list = new ArrayList<>();
+//        list.add(1440931124753108994L);
+        list.add(new Date());
+        return list;
     }
 }
