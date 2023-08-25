@@ -1,6 +1,7 @@
 package top.oneyi;
 
 import lombok.Data;
+import top.oneyi.enums.StatusEnums;
 
 import java.math.BigDecimal;
 
@@ -23,6 +24,8 @@ public class StockGoods {
      * 可用重量
      */
     private BigDecimal sgAvailableStockWeight;
+
+    private StatusEnums statusEnums;
 
     public void setSgAvailableStockWeight(BigDecimal sgAvailableStockWeight,BigDecimal unit) {
         this.sgAvailableStockWeight = sgAvailableStockWeight;

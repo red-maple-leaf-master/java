@@ -3,10 +3,18 @@ package top.oneyi;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.WordDictionary;
 import org.junit.Test;
+import top.oneyi.FSM.Context;
+import top.oneyi.FSM.Machine;
+import top.oneyi.enums.StatusEnums;
 
 import java.math.BigDecimal;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.Optional;
+
+import static top.oneyi.FSM.Event.*;
+import static top.oneyi.FSM.State.APPROVE;
+import static top.oneyi.FSM.State.REFUSED;
 
 
 public class JDKNew {
@@ -88,8 +96,30 @@ public class JDKNew {
 
     @Test
     public void test06() {
+        String code = StatusEnums.ISUSER.getCode();
+        String name = StatusEnums.ISUSER.getName();
+        System.out.println(StatusEnums.ISUSER);
+        System.out.println("code = " + code);
+        System.out.println("name = " + name);
+        System.out.println(StatusEnums.valueOf("ISUSER"));
+        StockGoods stockGoods = new StockGoods();
+        stockGoods.setStatusEnums(StatusEnums.ISUSER);
+        System.out.println("stockGoods = " + stockGoods);
+    }
+
+    @Test
+    public void test07(){
+        Machine machine = new Machine();
+
+        machine.transform(APPROVE,APPROVE_REFUSED,new Context("咲夜"));
+        machine.transform(REFUSED,RECHECK_REFUSED,new Context("咲夜"));
+        machine.transform(REFUSED,RECHECK_PASS,new Context("帕秋莉"));
 
     }
 
+    @Test
+    public void test08(){
+        System.out.println(new Date().toString());
+    }
 
 }
