@@ -5,23 +5,34 @@
         <title>Title</title>
     </head>
     <body>
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
         <div id="app2">
 
         </div>
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
 
         <!-- 生产环境版本，优化了尺寸和速度 -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
         <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
+
         <script>
-            var app = new Vue({
+            const app = new Vue({
                 el: '#app2',
-                data: {
+                mounted() {
 
                 },
-                methods: {
-                }
+                // 计算属性
+                computed: {
 
-            })
+                },
+                // 数据
+                data: {},
+                // 方法区
+                methods: {}
+
+            });
 
 
         </script>

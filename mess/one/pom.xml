@@ -48,6 +48,23 @@
     </profiles>
 
     <dependencies>
+        <!--  生成条形码二维码的jar包   商业版 又水印 需要  -->
+<!--        <dependency>
+            <groupId>e-iceblue</groupId>
+            <artifactId>spire.barcode.free</artifactId>
+            <version>5.1.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/Spire.Barcode.jar</systemPath>
+        </dependency>-->
+
+        <!--  生成条形码二维码的jar包   免费版  -->
+        <dependency>
+            <groupId>e-iceblue</groupId>
+            <artifactId>spire.barcode.free</artifactId>
+            <version>5.1.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/Spire.Barcode-free.jar</systemPath>
+        </dependency>
 
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
