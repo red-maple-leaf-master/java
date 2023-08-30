@@ -77,7 +77,7 @@ public class itextPDF {
             //设置中文字体
             BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
             // 读取pdf模板
-            PdfReader reader = new PdfReader("E:\\Desktop\\代采模板.pdf");
+            PdfReader reader = new PdfReader("E:\\Desktop\\pdf\\融资\\融资电子仓单-（8-30）完成.pdf");
             // 获取字节数组输出流
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             // 操作pdf文件
