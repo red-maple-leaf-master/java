@@ -9,6 +9,7 @@ import com.example.demo.pdf.rule.BankCardReplace;
 import com.example.demo.pdf.rule.ReplaceRule;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import com.itextpdf.tool.xml.html.table.Table;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -162,5 +163,24 @@ public class itextCreatePDF {
             pdfReplacer.close();
         }
 
+    }
+
+    private final static String LOCAL_PATH = "E:\\Desktop\\YCT.pdf";
+
+    @Test
+    public void test05() throws DocumentException, FileNotFoundException {
+
+        //创建文件
+        Document document = new Document();
+        //建立一个书写器
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(LOCAL_PATH));
+        document.open();
+
+
+
+        // 关闭 document
+        document.close();
+        //关闭书写器
+        writer.close();
     }
 }
