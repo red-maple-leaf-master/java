@@ -60,9 +60,9 @@ class ItextPlusApplicationTests {
         BaseFont bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
         Font blueFont = new Font(bfChinese);
         doc.open();
-        setPargraph(doc, blueFont);
-        setPargraph(doc, blueFont);
-        setPargraph(doc, blueFont);
+        setParagraph(doc, blueFont);
+        setParagraph(doc, blueFont);
+        setParagraph(doc, blueFont);
 
         // 关闭 document
         doc.close();
@@ -70,7 +70,7 @@ class ItextPlusApplicationTests {
         writer.close();
     }
 
-    private void setPargraph(Document doc, Font blueFont) throws DocumentException {
+    private void setParagraph(Document doc, Font blueFont) throws DocumentException {
         Paragraph paragraph = new Paragraph("Hello World",blueFont);
 
         paragraph.setAlignment(1);//设置文字居中 0靠左   1，居中     2，靠右
@@ -80,9 +80,45 @@ class ItextPlusApplicationTests {
         paragraph.setLeading(20f); //行间距
         paragraph.setSpacingBefore(5f); //设置段落上空白
         paragraph.setSpacingAfter(10f); //设置段落下空白
-
-
         doc.add(paragraph);
     }
 
+    private void setOneParagraph(Document doc, Font blueFont) throws DocumentException {
+        Paragraph paragraph = new Paragraph("Hello World",blueFont);
+
+        paragraph.setAlignment(1);//设置文字居中 0靠左   1，居中     2，靠右
+        paragraph.setIndentationLeft(12);// 左缩进
+        paragraph.setIndentationRight(12);// 右缩进
+        paragraph.setFirstLineIndent(24);// 首行缩进
+        paragraph.setLeading(20f); //行间距
+        paragraph.setSpacingBefore(5f); //设置段落上空白
+        paragraph.setSpacingAfter(10f); //设置段落下空白
+        doc.add(paragraph);
+    }
+
+    private void setTwoParagraph(Document doc, Font blueFont) throws DocumentException {
+        Paragraph paragraph = new Paragraph("Hello World",blueFont);
+
+        paragraph.setAlignment(1);//设置文字居中 0靠左   1，居中     2，靠右
+        paragraph.setIndentationLeft(12);// 左缩进
+        paragraph.setIndentationRight(12);// 右缩进
+        paragraph.setFirstLineIndent(24);// 首行缩进
+        paragraph.setLeading(20f); //行间距
+        paragraph.setSpacingBefore(5f); //设置段落上空白
+        paragraph.setSpacingAfter(10f); //设置段落下空白
+        doc.add(paragraph);
+    }
+
+    private void setStreeParagraph(Document doc, Font blueFont) throws DocumentException {
+        Paragraph paragraph = new Paragraph("Hello World",blueFont);
+
+        paragraph.setAlignment(1);//设置文字居中 0靠左   1，居中     2，靠右
+        paragraph.setIndentationLeft(12);// 左缩进
+        paragraph.setIndentationRight(12);// 右缩进
+        paragraph.setFirstLineIndent(24);// 首行缩进
+        paragraph.setLeading(20f); //行间距
+        paragraph.setSpacingBefore(5f); //设置段落上空白
+        paragraph.setSpacingAfter(10f); //设置段落下空白
+        doc.add(paragraph);
+    }
 }
