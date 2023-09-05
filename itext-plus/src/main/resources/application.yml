@@ -1,1 +1,6 @@
+server:
+  port: 12400
+
+itext:
+  text: 我是pdf的内容
 
