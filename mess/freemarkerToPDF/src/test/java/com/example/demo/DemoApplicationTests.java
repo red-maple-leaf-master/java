@@ -17,7 +17,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootTest
+//@SpringBootTest
 class DemoApplicationTests {
     private static final String TEMPLATE = "E:\\project\\java\\freemarkerToPDF\\src\\main\\resources\\templates\\";//模板存储路径
     private static final String CONTRACT = "E:\\project\\java\\freemarkerToPDF\\src\\main\\resources\\";
