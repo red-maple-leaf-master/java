@@ -218,4 +218,12 @@ class DemoApplicationTests {
         contractHandler(templateName, paramMap);
     }
 
+    @Test
+    public void test02(){
+        Map<String,String> map = new HashMap<>();
+        for (Map.Entry<String, String> stringStringEntry : map.entrySet()) {
+            System.out.println("stringStringEntry.getKey() = " + stringStringEntry.getKey());
+            System.out.println("stringStringEntry.getValue() = " + stringStringEntry.getValue());
+        }
+    }
 }
