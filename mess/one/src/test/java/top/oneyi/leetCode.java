@@ -168,6 +168,49 @@ public class leetCode {
 
     }
 
+    @Test
+    public void test02(){
+        int [][] mat = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+        int[] diagonalOrder = findDiagonalOrder(mat);
+        System.out.println("diagonalOrder = " + Arrays.toString(diagonalOrder));
+    }
+
+    /**
+     * 对角线遍历
+     * [1,2,3]
+     * [4,5,6]
+     * [7,8,9]
+     * @param mat
+     * @return 给你一个大小为 m x n 的矩阵 mat ，请以对角线遍历的顺序，用一个数组返回这个矩阵中的所有元素。
+     */
+    public int[] findDiagonalOrder(int[][] mat) {
+        int row = mat.length;
+        int col = mat[0].length;
+        int[] result = new int[row * col];
+        // 遍历结束条件  对角线往返的次数
+        for (int i = 0, idx = 0; i < row + col - 1; i++) {
+            if (i % 2 == 0) {//偶数对角线 ，从下往上遍历
+                // 横坐标从0开始  以row为主
+                for (int x = Math.min(i, row - 1); x >= Math.max(0, i - col + 1); x--) {
+                    result[idx++] = mat[x][i - x];
+                }
+            } else {
+                // 纵坐标从最大值开始  以col为主
+                for (int x = Math.max(0, i - col + 1); x <= Math.min(i, row - 1); x++) {
+                    result[idx++] = mat[x][i - x];
+                }
+            }
+
+        }
+        return result;
+    }
+    /*
+    0 0
+    i=1  x=0  x<= 1  [0][1] x=1
+    i=2
+
+     */
+
 }
 
 
