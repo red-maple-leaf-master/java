@@ -169,10 +169,16 @@ public class leetCode {
     }
 
     @Test
-    public void test02(){
-        int [][] mat = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
-        int[] diagonalOrder = findDiagonalOrder(mat);
-        System.out.println("diagonalOrder = " + Arrays.toString(diagonalOrder));
+    public void test02() {
+//        int [][] mat = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+//        int[] diagonalOrder = findDiagonalOrder(mat);
+//        System.out.println("diagonalOrder = " + Arrays.toString(diagonalOrder));
+//        int delayedArrivalTime = findDelayedArrivalTime(14, 12);
+//        System.out.println("delayedArrivalTime = " + delayedArrivalTime);
+//        String str[] = new String[]{"flower","flow","flight"};
+        String str[] = new String[]{"cir", "car"};
+        String s = longestCommonPrefix(str);
+        System.out.println("s = " + s);
     }
 
     /**
@@ -180,6 +186,7 @@ public class leetCode {
      * [1,2,3]
      * [4,5,6]
      * [7,8,9]
+     *
      * @param mat
      * @return 给你一个大小为 m x n 的矩阵 mat ，请以对角线遍历的顺序，用一个数组返回这个矩阵中的所有元素。
      */
@@ -211,6 +218,62 @@ public class leetCode {
 
      */
 
+    /**
+     * 2651. 计算列车到站时间
+     *
+     * @param arrivalTime
+     * @param delayedTime
+     * @return
+     */
+    public int findDelayedArrivalTime(int arrivalTime, int delayedTime) {
+        return (arrivalTime + delayedTime) % 24;
+    }
+
+    /**
+     * 编写一个函数来查找字符串数组中的最长公共前缀。
+     *
+     * @param strs 最长公共前缀
+     * @return
+     */
+    public String longestCommonPrefix(String[] strs) {
+       /* // 简单判断
+        if (strs.length == 0 || strs == null) {
+            return "";
+        }
+        if (strs.length == 1) {
+            return strs[0];
+        }
+        //第一个为初始公共前缀,后续截取
+        String commonStrPre = strs[0];
+        for (int i = 1; i < strs.length; i++) {
+            int len = 0;
+            // 一个一个字符比较
+            for (int j = 0; j < commonStrPre.length() && strs[i].length() > j; j++) {
+                if (commonStrPre.charAt(j) == strs[i].charAt(j)) {
+                    len++;
+                }else{
+                    //遇到不相同的跳出循环
+                    break;
+                }
+            }
+            // 截取前缀
+            commonStrPre = commonStrPre.substring(0, len);
+        }
+
+        return commonStrPre;*/
+
+        //边界判断，
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+        String str = strs[0];//记录最长前缀
+        for (String s : strs) {
+            while (s.indexOf(str) != 0) {//indexOf  找出字符串第一次出现的索引  如果找不到 返回 -1
+                str = str.substring(0, str.length() - 1);// 找不到 就切去后面的一个字符  一直切到 能在字符串中找到这个前缀
+            }
+        }
+        return str;
+    }
 }
 
 
