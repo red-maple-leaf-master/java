@@ -1,8 +1,13 @@
 package top.oneyi;
 
+import io.swagger.models.auth.In;
 import org.junit.Test;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 
 public class leetCode {
@@ -176,9 +181,11 @@ public class leetCode {
 //        int delayedArrivalTime = findDelayedArrivalTime(14, 12);
 //        System.out.println("delayedArrivalTime = " + delayedArrivalTime);
 //        String str[] = new String[]{"flower","flow","flight"};
-        String str[] = new String[]{"cir", "car"};
-        String s = longestCommonPrefix(str);
-        System.out.println("s = " + s);
+//        String str[] = new String[]{"cir", "car"};
+//        String s = longestCommonPrefix(str);
+//        System.out.println("s = " + s);
+       int grid[][] = new int[][] {{0,11,16,5,20},{17,4,19,10,15},{12,1,8,21,6},{3,18,23,14,9},{24,13,2,7,22}};
+        System.out.println(checkValidGrid(grid));
     }
 
     /**
@@ -274,6 +281,70 @@ public class leetCode {
         }
         return str;
     }
+
+
+    /**
+     * 2596. 检查骑士巡视方案
+     * @param grid 二维数组棋盘
+     * @return
+     */
+    public boolean checkValidGrid(int[][] grid) {
+        // 检查是否从左上角出发
+        if (grid[0][0] != 0) {
+            return false;
+        }
+        // 二维数组的宽度
+        int n = grid.length;
+        // 记录x 和 y 的坐标
+        int[][] indices = new int[n * n][2];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                indices[grid[i][j]][0] = i;
+                indices[grid[i][j]][1] = j;
+            }
+        }
+        // 循环判断当前x 和 下一次的 x 的坐标的 差值 y值也是
+        for (int i = 1; i < n * n; i++) {
+            int dx = Math.abs(indices[i][0] - indices[i - 1][0]);
+            int dy = Math.abs(indices[i][1] - indices[i - 1][1]);
+            if (dx * dy != 2) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class CQueue{
+    Deque<Integer> inStack;
+    Deque<Integer> outStack;
+
+    public CQueue(){
+        inStack = new ArrayDeque<Integer>();
+        outStack = new ArrayDeque<Integer>();
+    }
+
+    public void appendTail(int value){
+        inStack.push(value);
+    }
+
+    public int deleteHead(){
+        if(outStack.isEmpty()){
+            if(inStack.isEmpty()){
+                return -1;
+            }
+            inOUt();
+        }
+       return outStack.pop();
+    }
+
+    private void inOUt() {
+        while(!inStack.isEmpty()){
+            outStack.push(inStack.pop());
+        }
+    }
+
+
 }
 
 
