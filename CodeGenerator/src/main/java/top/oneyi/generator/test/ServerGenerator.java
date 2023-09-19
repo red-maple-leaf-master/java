@@ -2,6 +2,7 @@ package top.oneyi.generator.test;
 
 
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import top.oneyi.generator.utils.DbUtil;
@@ -11,24 +12,57 @@ import top.oneyi.generator.utils.FreemarkerUtil;
 import java.io.File;
 import java.util.*;
 
+
 /**
- * 代码生成
- *
- * @Author wang suo
- * @Date 2020/10/12 0012 18:35
- * @Version 1.0
+ * @Description: 代码生成
+ * @Author: wanyi
+ * @Date: 2023/9/19
  */
 public class ServerGenerator {
 
-    private static String MODULE = "generator";
-    private static String generatorPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\resources\\generator\\generatorConfig.xml";
-
     public static void main(String[] args) throws Exception {
-        String module = MODULE;
+        String module = "generator";
 
-        /*
+        Map<String, Object> map = getData(module);
+
+        Object bigDoMain = map.get("Domain");
+
+        // 生成 dto
+        FreemarkerUtil.initConfig("dto");
+        String toDtoPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\dto\\";
+        FreemarkerUtil.generator(map, toDtoPath + bigDoMain + "Dto.java");
+
+        // 生成 domain
+        FreemarkerUtil.initConfig("domain");
+        String toDomainPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\domain\\";
+        FreemarkerUtil.generator(map, toDomainPath + bigDoMain + ".java");
+
+        // 生成 service
+        FreemarkerUtil.initConfig("service");
+        String toServicePath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\service\\";
+        FreemarkerUtil.generator(map, toServicePath + bigDoMain + "Service.java");
+
+        // 生成 serviceImpl
+        FreemarkerUtil.initConfig("serviceImpl");
+        String toServiceImplPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\service\\impl\\";
+        FreemarkerUtil.generator(map, toServiceImplPath + bigDoMain + "ServiceImpl.java");
+
+        // 生成 controller
+        FreemarkerUtil.initConfig("controller");
+        String toControllerPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\controller\\";
+        FreemarkerUtil.generator(map, toControllerPath + bigDoMain + "Controller.java");
+
+        // 生成 controller
+        FreemarkerUtil.initConfig("mapper");
+        String toMapperPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\mapper\\";
+        FreemarkerUtil.generator(map, toMapperPath + bigDoMain + "Mapper.java");
+    }
+
+    private static Map<String,Object> getData(String module) throws Exception {
+         /*
             读 generatorConfig.xml
         */
+        String generatorPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\resources\\generator\\generatorConfig.xml";
         File file = new File(generatorPath);
         SAXReader reader = new SAXReader();
         Document dom = reader.read(file);
@@ -83,36 +117,7 @@ public class ServerGenerator {
         map.put("module", module);
         map.put("fieldList", fieldList);
         map.put("typeSet", typeSet);
-
-        // 生成 dto
-        FreemarkerUtil.initConfig("dto");
-        String toDtoPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\dto\\";
-        FreemarkerUtil.generator(map, toDtoPath + bigDoMain + "Dto.java");
-
-        // 生成 domain
-        FreemarkerUtil.initConfig("domain");
-        String toDomainPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\domain\\";
-        FreemarkerUtil.generator(map, toDomainPath + bigDoMain + ".java");
-
-        // 生成 service
-        FreemarkerUtil.initConfig("service");
-        String toServicePath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\service\\";
-        FreemarkerUtil.generator(map, toServicePath + bigDoMain + "Service.java");
-
-        // 生成 serviceImpl
-        FreemarkerUtil.initConfig("serviceImpl");
-        String toServiceImplPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\service\\impl\\";
-        FreemarkerUtil.generator(map, toServiceImplPath + bigDoMain + "ServiceImpl.java");
-
-        // 生成 controller
-        FreemarkerUtil.initConfig("controller");
-        String toControllerPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\controller\\";
-        FreemarkerUtil.generator(map, toControllerPath + bigDoMain + "Controller.java");
-
-        // 生成 controller
-        FreemarkerUtil.initConfig("mapper");
-        String toMapperPath = "E:\\Desktop\\java_project\\one\\java\\CodeGenerator\\src\\main\\java\\top\\oneyi\\"+ module +"\\mapper\\";
-        FreemarkerUtil.generator(map, toMapperPath + bigDoMain + "Mapper.java");
+        return map;
     }
 
     private static Set<String> getJavaTypes(List<Field> fieldList) {
