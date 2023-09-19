@@ -1,4 +1,4 @@
-package top.oneyi.api.common.utils;
+package top.oneyi.generator.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 

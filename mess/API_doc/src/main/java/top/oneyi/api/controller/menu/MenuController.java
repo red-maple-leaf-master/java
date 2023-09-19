@@ -1,4 +1,4 @@
-package top.oneyi.api.controller.menu;
+package top.oneyi.generator.controller.menu;
 
 
 import io.swagger.annotations.Api;
@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-import top.oneyi.api.common.entity.Menu;
+import top.oneyi.generator.common.entity.Menu;
 
 import java.util.ArrayList;
 import java.util.List;

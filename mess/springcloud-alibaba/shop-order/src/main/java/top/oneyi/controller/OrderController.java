@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import top.oneyi.api.ProductApi;
+import top.oneyi.generator.ProductApi;
 import top.oneyi.pojo.po.Order;
 import top.oneyi.pojo.po.Product;
 import top.oneyi.service.OrderService;

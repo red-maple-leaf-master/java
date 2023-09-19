@@ -1,4 +1,4 @@
-package top.oneyi.api.config;
+package top.oneyi.generator.config;
 
 import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;

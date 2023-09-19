@@ -1,4 +1,4 @@
-package top.oneyi.api.common.entity;
+package top.oneyi.generator.common.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

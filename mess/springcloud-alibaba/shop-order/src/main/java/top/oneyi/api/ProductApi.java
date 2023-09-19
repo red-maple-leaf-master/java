@@ -1,4 +1,4 @@
-package top.oneyi.api;
+package top.oneyi.generator;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

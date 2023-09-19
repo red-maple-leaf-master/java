@@ -1,4 +1,4 @@
-package top.oneyi.api;
+package top.oneyi.generator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

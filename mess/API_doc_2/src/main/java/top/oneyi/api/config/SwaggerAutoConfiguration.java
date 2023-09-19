@@ -1,4 +1,4 @@
-package top.oneyi.api.config;
+package top.oneyi.generator.config;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;

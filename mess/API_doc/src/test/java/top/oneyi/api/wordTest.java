@@ -1,4 +1,4 @@
-package top.oneyi.api;
+package top.oneyi.generator;
 
 
 //import fr.opensagres.odfdom.converter.core.BasicURIResolver;
@@ -16,7 +16,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFPictureData;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.oneyi.api.common.utils.WordToHtmlUtil;
+import top.oneyi.generator.common.utils.WordToHtmlUtil;
 
 
 import javax.lang.model.element.Element;

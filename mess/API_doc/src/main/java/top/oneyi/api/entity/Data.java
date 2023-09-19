@@ -1,4 +1,4 @@
-package top.oneyi.api.entity;
+package top.oneyi.generator.entity;
 
 @lombok.Data
 public class Data {

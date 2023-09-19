@@ -3,6 +3,9 @@ package top.oneyi.generator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import top.oneyi.generator.utils.OneUtil;
+
+import java.io.FileNotFoundException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +17,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 // 启用swagger
 @EnableSwagger2
 public class CodeGeneratorSpringbootApplication {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         SpringApplication.run(CodeGeneratorSpringbootApplication.class, args);
+
+        OneUtil.test();
     }
 }

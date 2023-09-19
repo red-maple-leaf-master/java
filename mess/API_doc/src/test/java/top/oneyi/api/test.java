@@ -1,4 +1,4 @@
-package top.oneyi.api;
+package top.oneyi.generator;
 
 
 import org.junit.jupiter.api.Test;
