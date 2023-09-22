@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import top.oneyi.generator.domain.Generator;
 import top.oneyi.generator.service.GeneratorService;
-import top.oneyi.generator.utils.DbUtil;
-import top.oneyi.generator.utils.Field;
+import top.oneyi.generator.utils.FreemarkerUtil;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -31,6 +30,9 @@ public class GeneratorController {
     @Resource
     private GeneratorService generatorService;
 
+    @Resource
+    private FreemarkerUtil freemarkerUtil;
+
 
     /**
      * 需要注意的是不能使用  @rescontroller 因为这样返回的就是一个json字符串 导致无法使用模板
@@ -40,7 +42,7 @@ public class GeneratorController {
     @GetMapping("/hello")
     public String hello(ModelMap model,Generator generator) throws Exception {
 
-        Map<String, Object> map = DbUtil.getData(generator);
+        Map<String, Object> map = freemarkerUtil.getData(generator);
         model.addAllAttributes(map);
         return "controller";
     }

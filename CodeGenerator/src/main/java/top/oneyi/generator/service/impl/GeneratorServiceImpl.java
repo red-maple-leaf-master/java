@@ -7,14 +7,12 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import top.oneyi.generator.common.GenConstants;
 import top.oneyi.generator.domain.Generator;
 import top.oneyi.generator.service.GeneratorService;
-import top.oneyi.generator.utils.DbUtil;
+import top.oneyi.generator.utils.FreemarkerUtil;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +27,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 
     @Resource
     private FreeMarkerConfigurer freeMarkerConfigurer;
+
+    @Resource
+    private FreemarkerUtil freemarkerUtil;
 
     /**
      * 预览代码
@@ -74,7 +75,7 @@ public class GeneratorServiceImpl implements GeneratorService {
         for (String templateName : GenConstants.ALL_PREFIX) {
             Template template = configuration.getTemplate(templateName + GenConstants.FTL_SUFFIX);
             // 数据;
-            Map<String, Object> dataModel = DbUtil.getData(generator);
+            Map<String, Object> dataModel = freemarkerUtil.getData(generator);
 
             // 渲染模板
             template.process(dataModel, resultStr);
