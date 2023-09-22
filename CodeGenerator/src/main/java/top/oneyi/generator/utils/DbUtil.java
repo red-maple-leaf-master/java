@@ -131,7 +131,7 @@ public class DbUtil {
      * @param str 字符串
      * @return 小驼峰
      */
-    private static String lineToHump(String str) {
+    public static String lineToHump(String str) {
         Matcher matcher = PATTERN.matcher(str.toLowerCase());
         StringBuffer sb = new StringBuffer();
         while (matcher.find()) {
@@ -147,7 +147,7 @@ public class DbUtil {
      * @param str 字符串
      * @return 大驼峰
      */
-    private static String lineToBigHump(String str) {
+    public static String lineToBigHump(String str) {
         String s = lineToHump(str);
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
@@ -158,7 +158,7 @@ public class DbUtil {
      * @param sqlType 数据库类型
      * @return 返回 Java 类型
      */
-    private static String sqlTypeToJavaType(String sqlType) {
+    public static String sqlTypeToJavaType(String sqlType) {
         final String varchar = "VARCHAR";
         final String chr = "CHAR";
         final String text = "TEXT";

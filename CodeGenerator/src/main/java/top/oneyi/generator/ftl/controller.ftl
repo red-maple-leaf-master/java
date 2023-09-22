@@ -1,8 +1,8 @@
-package top.oneyi.${module}.controller;
+package ${package}.${module}.controller;
 
 import top.oneyi.generator.common.R;
-import top.oneyi.${module}.domain.${Domain};
-import top.oneyi.${module}.service.${Domain}Service;
+import ${package}.${module}.domain.${Domain};
+import ${package}.${module}.service.${Domain}Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +11,10 @@ import java.util.List;
 import javax.annotation.Resource;
 
 /**
-* Created with IntelliJ IDEA.
 *
-* @Author: wanyi
-* @Date: 2023/09/19/13:44
+* ${Domain}Controller
+* @Author: ${author}
+* @Date: ${date}
 */
 @RestController
 @RequestMapping("/${domain}")

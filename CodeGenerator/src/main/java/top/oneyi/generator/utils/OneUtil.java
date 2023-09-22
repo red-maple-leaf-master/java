@@ -16,6 +16,6 @@ public  class OneUtil {
         String path = ResourceUtils.getURL("classpath:").getPath();
         System.out.println("path = " + path);
         String path1 = OneUtil.class.getResource("/").getPath();
-        System.out.println("path1 = " + path1);
+        System.out.println("path1 = " +path1.replace("target/classes/","").substring(1));
     }
 }

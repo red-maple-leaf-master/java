@@ -19,7 +19,5 @@ import java.io.FileNotFoundException;
 public class CodeGeneratorSpringbootApplication {
     public static void main(String[] args) throws FileNotFoundException {
         SpringApplication.run(CodeGeneratorSpringbootApplication.class, args);
-
-        OneUtil.test();
     }
 }
