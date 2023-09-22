@@ -2,10 +2,9 @@ package top.oneyi.generator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import top.oneyi.generator.utils.OneUtil;
 
-import java.io.FileNotFoundException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,8 +15,9 @@ import java.io.FileNotFoundException;
 @SpringBootApplication
 // 启用swagger
 @EnableSwagger2
+@EnableWebMvc
 public class CodeGeneratorSpringbootApplication {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         SpringApplication.run(CodeGeneratorSpringbootApplication.class, args);
     }
 }

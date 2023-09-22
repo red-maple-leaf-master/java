@@ -1,10 +1,13 @@
 package top.oneyi.generator;
 
-import org.junit.Test;
-import org.springframework.util.ResourceUtils;
-import top.oneyi.generator.utils.OneUtil;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import top.oneyi.generator.controller.GeneratorController;
 
-import java.io.FileNotFoundException;
+import javax.annotation.Resource;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,15 +15,13 @@ import java.io.FileNotFoundException;
  * @Author: wanyi
  * @Date: 2023/09/19/17:56
  */
+
+@SpringBootTest
 public class test {
 
 
     @Test
-    public void test01() throws FileNotFoundException {
-//        String path = ResourceUtils.getURL("classpath:").getPath();
-//        System.out.println("path = " + path);
-//        String path1 = test.class.getResource("/").getPath();
-//        System.out.println("path1 = " + path1);
-        OneUtil.test();
+    public void test01() throws Exception {
+
     }
 }

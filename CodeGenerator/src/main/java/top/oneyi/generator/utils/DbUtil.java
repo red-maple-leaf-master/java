@@ -4,8 +4,7 @@ package top.oneyi.generator.utils;
 
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -182,4 +181,72 @@ public class DbUtil {
             return "String";
         }
     }
+
+    /**
+     *  获取字段数据
+     * @param module 模块名
+     * @param tableName 表名
+     * @return 字段数据
+     * @throws Exception
+     */
+    public static Map<String,Object> getData(String module, String tableName) throws Exception {
+        /*
+        获取大驼峰类名
+         */
+        String bigDoMain = lineToBigHump(tableName);
+        /*
+        获取小驼峰类名
+         */
+        String domain = lineToHump(tableName);
+
+        /*
+        将表名打印到控制台
+         */
+        System.out.println("表名 = " + tableName);
+        System.out.println("Domain = " + bigDoMain);
+        System.out.println("domain = " + domain);
+        /**
+         * 表的中文注释
+         */
+        String tableNameCn = getTableComment(tableName);
+
+        /*
+        获取数据库表的属性列表
+         */
+        List<Field> fieldList = getColumnByTableName(tableName);
+
+        /*
+        获取要导入的Java包
+         */
+        Set<String> typeSet = getJavaTypes(fieldList);
+
+        /*
+        放到 Map 集合中供 freemarker 使用
+         */
+        Map<String, Object> map = new HashMap<>(10);
+        map.put("Domain", bigDoMain);
+        map.put("package", "top.oneyi");
+        map.put("author", "oneyi");
+        map.put("date", "2023-09-22");
+        map.put("domain", domain);
+        map.put("tableNameCn", tableNameCn);
+        map.put("module", module);
+        map.put("fieldList", fieldList);
+        map.put("typeSet", typeSet);
+        return map;
+    }
+
+    /**
+     * 将Java数据类型保存到 set 中
+     * @param fieldList 字段集合
+     * @return
+     */
+    public static Set<String> getJavaTypes(List<Field> fieldList) {
+        Set<String> set = new HashSet<>();
+        for (Field field : fieldList) {
+            set.add(field.getJavaType());
+        }
+        return set;
+    }
+
 }

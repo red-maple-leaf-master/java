@@ -8,7 +8,8 @@ spring:
     username: root
     password: root
   freemarker:
-    suffix: .html
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
 mybatis:
   mapper-locations: classpath:mapper/*.xml  # xml文件路径
   type-aliases-package: top.oneyi.pojo.po
