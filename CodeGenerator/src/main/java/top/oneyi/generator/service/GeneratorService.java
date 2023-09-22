@@ -1,6 +1,9 @@
 package top.oneyi.generator.service;
 
+import top.oneyi.generator.domain.Generator;
+
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,7 +15,8 @@ import java.util.Map;
 public interface GeneratorService {
     /**
      * 预览代码
+     * @param generator        生成代码所需作者包名等数据
      * @return
      */
-    Map<String, Object> preview() throws IOException;
+    Map<String, Object> preview(Generator generator);
 }

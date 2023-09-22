@@ -3,8 +3,12 @@ package top.oneyi.generator.utils;
 
 
 
+import top.oneyi.generator.domain.Generator;
+
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -184,53 +188,34 @@ public class DbUtil {
 
     /**
      *  获取字段数据
-     * @param module 模块名
-     * @param tableName 表名
+     * @param generator 生成代码所需作者包名等数据
      * @return 字段数据
      * @throws Exception
      */
-    public static Map<String,Object> getData(String module, String tableName) throws Exception {
-        /*
-        获取大驼峰类名
-         */
-        String bigDoMain = lineToBigHump(tableName);
-        /*
-        获取小驼峰类名
-         */
-        String domain = lineToHump(tableName);
+    public static Map<String,Object> getData(Generator generator) throws Exception {
 
-        /*
-        将表名打印到控制台
-         */
-        System.out.println("表名 = " + tableName);
-        System.out.println("Domain = " + bigDoMain);
-        System.out.println("domain = " + domain);
-        /**
-         * 表的中文注释
-         */
-        String tableNameCn = getTableComment(tableName);
+       // 获取大驼峰类名
+        String bigDoMain = lineToBigHump(generator.getTableName());
+        //获取小驼峰类名
+        String domain = lineToHump(generator.getTableName());
+         //表的中文注释
+        String tableNameCn = getTableComment(generator.getTableName());
 
-        /*
-        获取数据库表的属性列表
-         */
-        List<Field> fieldList = getColumnByTableName(tableName);
-
-        /*
-        获取要导入的Java包
-         */
+        //获取数据库表的属性列表
+        List<Field> fieldList = getColumnByTableName(generator.getTableName());
+        //获取要导入的Java类型
         Set<String> typeSet = getJavaTypes(fieldList);
-
-        /*
-        放到 Map 集合中供 freemarker 使用
-         */
+        // 格式化时间
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        //放到 Map 集合中供 freemarker 使用
         Map<String, Object> map = new HashMap<>(10);
         map.put("Domain", bigDoMain);
-        map.put("package", "top.oneyi");
-        map.put("author", "oneyi");
-        map.put("date", "2023-09-22");
+        map.put("package", generator.getPackageName());
+        map.put("author", generator.getFunctionAuthor());
+        map.put("date", simpleDateFormat.format(new Date()));
         map.put("domain", domain);
         map.put("tableNameCn", tableNameCn);
-        map.put("module", module);
+        map.put("module", generator.getModuleName());
         map.put("fieldList", fieldList);
         map.put("typeSet", typeSet);
         return map;

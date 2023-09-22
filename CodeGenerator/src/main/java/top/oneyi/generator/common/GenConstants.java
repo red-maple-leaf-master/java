@@ -36,5 +36,9 @@ public class GenConstants {
      * 业务层实现类前缀
      */
     public static final String SERVICE_IMPL = "serviceImpl";
+    /**
+     * 所有前缀
+     */
+    public static final String[] ALL_PREFIX = {CONTROLLER,DOMAIN,DTO,MAPPER,SERVICE,SERVICE_IMPL};
 
 }

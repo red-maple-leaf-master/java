@@ -1,19 +1,18 @@
 package top.oneyi.generator.controller;
 
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+
+import top.oneyi.generator.domain.Generator;
 import top.oneyi.generator.service.GeneratorService;
 import top.oneyi.generator.utils.DbUtil;
 import top.oneyi.generator.utils.Field;
 
 import javax.annotation.Resource;
-import java.io.FileWriter;
-import java.io.StringWriter;
 import java.util.*;
 
 /**
@@ -27,6 +26,7 @@ import java.util.*;
 @RequestMapping("/generator")
 public class GeneratorController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(GeneratorController.class);
 
     @Resource
     private GeneratorService generatorService;
@@ -38,10 +38,9 @@ public class GeneratorController {
      * @return
      */
     @GetMapping("/hello")
-    public String hello(ModelMap model) throws Exception {
-        // 模块名
-        String module = "generator";
-        Map<String, Object> map = DbUtil.getData(module,"blade_role");
+    public String hello(ModelMap model,Generator generator) throws Exception {
+
+        Map<String, Object> map = DbUtil.getData(generator);
         model.addAllAttributes(map);
         return "controller";
     }
@@ -51,12 +50,12 @@ public class GeneratorController {
      *  返回生成的代码
      *
      *  预览代码
-     * @return
-     * @throws Exception
+     * @param generator        生成代码所需作者包名等数据
+     * @return 生成好的代码
      */
     @GetMapping("/preview")
     @ResponseBody
-    public  Map<String,Object> preview() throws Exception {
-        return generatorService.preview();
+    public  Map<String,Object> preview(Generator generator){
+        return generatorService.preview(generator);
     }
 }
