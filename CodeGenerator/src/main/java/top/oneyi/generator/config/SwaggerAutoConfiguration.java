@@ -31,30 +31,18 @@ public class SwaggerAutoConfiguration {
     }
 
 
-    // 用户接口组
 //    @Bean
     public Docket createRestApi() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 // groupName : 接口文档组名字
-                .apiInfo(apiInfo()).groupName("用户接口组")
+                .apiInfo(apiInfo()).groupName("接口")
                 .select()
                 // basePackage 表示扫描那个包
-                .apis(RequestHandlerSelectors.basePackage("top.oneyi.api.controller.user"))
+                .apis(RequestHandlerSelectors.basePackage("top.oneyi.api.controller"))
                 .build();
         return docket;
     }
 
-    // 菜单接口组
-//    @Bean
-    public Docket createRestApi2() {
-        Docket docket = new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo()).groupName("菜单接口组")
-                .select()
-                //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("top.oneyi.api.controller.menu"))
-                .build();
-        return docket;
-    }
 
 
     //构建 api文档的详细信息
