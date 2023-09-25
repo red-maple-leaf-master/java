@@ -55,6 +55,7 @@ public class MyMQTTClient {
         options.setKeepAliveInterval(keepalive);
         options.setCleanSession(true);
         options.setAutomaticReconnect(true);
+        options.setWill("oneer","我是客户端1 我掉线了".getBytes(),1,true);// 遗嘱消息
         return options;
     }
 
@@ -83,7 +84,7 @@ public class MyMQTTClient {
      * @param topic
      */
     public void publish(String pushMessage, String topic) {
-        publish(pushMessage, topic, 0, false);
+        publish(pushMessage, topic, 2, true);
     }
 
     /**
