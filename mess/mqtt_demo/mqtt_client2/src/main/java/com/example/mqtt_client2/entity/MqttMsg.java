@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.mqtt_client2.entity;
 
 /**
  * @author WXY

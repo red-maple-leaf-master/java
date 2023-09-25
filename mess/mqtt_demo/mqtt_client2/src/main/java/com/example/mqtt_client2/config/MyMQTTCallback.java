@@ -1,9 +1,12 @@
-package com.example.demo.config;
+package com.example.mqtt_client2.config;
 
-import cn.hutool.core.util.CharsetUtil;
 import com.alibaba.fastjson.JSON;
-import com.example.demo.util.SpringUtils;
-import org.eclipse.paho.client.mqttv3.*;
+
+import com.example.mqtt_client2.util.SpringUtils;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -92,7 +95,7 @@ public class MyMQTTCallback implements MqttCallbackExtended {
     public void connectComplete(boolean reconnect, String serverURI) {
         log.info("MQTT 连接成功，连接方式：{}", reconnect ? "重连" : "直连");
         //订阅主题
-        myMQTTClient.subscribe("oneer", 1);
+        myMQTTClient.subscribe("oneyi", 1);
     }
 
     /**

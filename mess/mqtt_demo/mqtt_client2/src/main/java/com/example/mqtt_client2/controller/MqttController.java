@@ -1,9 +1,10 @@
-package com.example.demo.controller;
+package com.example.mqtt_client2.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.config.MyMQTTClient;
-import com.example.demo.entity.MqttMsg;
+
+import com.example.mqtt_client2.config.MyMQTTClient;
+import com.example.mqtt_client2.entity.MqttMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;

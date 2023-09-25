@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.mqtt_client2.config;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;

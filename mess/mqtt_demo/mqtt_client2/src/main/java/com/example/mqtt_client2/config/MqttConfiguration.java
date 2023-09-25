@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.mqtt_client2.config;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.slf4j.Logger;
@@ -27,7 +27,6 @@ public class MqttConfiguration {
     int timeOut;
     @Value("${mqtt.keepalive}")
     int keepAlive;
-
     @Value("${mqtt.topic1}")
     String topic1;
 
@@ -62,5 +61,4 @@ public class MqttConfiguration {
     public void setTopic1(String topic1) {
         this.topic1 = topic1;
     }
-
 }
