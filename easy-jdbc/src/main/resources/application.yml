@@ -1,1 +1,8 @@
-
+server:
+  port: 20289
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blade?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: root
