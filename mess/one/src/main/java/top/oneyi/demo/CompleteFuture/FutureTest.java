@@ -1,5 +1,7 @@
 package top.oneyi.demo.CompleteFuture;
 
+import org.springframework.util.StopWatch;
+
 import java.util.concurrent.*;
 
 /**
@@ -10,7 +12,9 @@ public class FutureTest {
         // 创建固定大小的线程池   源码其实就是new 了一个ThreadPoolExecutor对象,
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-        long l2 = System.currentTimeMillis();
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
         FutureTask<Object> objectFutureTask = new FutureTask<>(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
@@ -42,11 +46,10 @@ public class FutureTest {
             Object o1 = objectFutureTask01.get();
             System.out.println(o + " === " + o1);
         }
-
-        long l3 = System.currentTimeMillis();
+        stopWatch.stop();
         // 关闭线程池
         executorService.shutdown();
-        System.out.println("总共耗时" + (l3 - l2));
+        System.out.println("总共耗时" + stopWatch.getTotalTimeMillis());
 
     }
 }

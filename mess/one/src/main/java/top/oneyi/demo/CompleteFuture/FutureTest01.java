@@ -9,17 +9,21 @@ public class FutureTest01 {
         long l2 = System.currentTimeMillis();
         MyThread myThread = new MyThread();
         MyThread myThread02 = new MyThread();
-        String str = "我是结果";
+        String str = "我是结果1";
+        String str2 = "我是结果2";
 
         FutureTask<Object> objectFutureTask = new FutureTask<>(myThread, str);
         executorService.submit(objectFutureTask);
 
-        FutureTask<Object> objectFutureTask02 = new FutureTask<>(myThread02, str);
 
-        Thread.sleep(200);
+        FutureTask<Object> objectFutureTask02 = new FutureTask<>(myThread02, str2);
+
+//        Thread.sleep(200);
         executorService.submit(objectFutureTask02);
         Object o2 = objectFutureTask.get();
-        Object o = objectFutureTask.get();
+        Object o = objectFutureTask02.get();
+        System.out.println(o2);
+        System.out.println(o);
         long l3 = System.currentTimeMillis();
         // 关闭线程池
         executorService.shutdown();
