@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+    </head>
+    <body>
+        <!--    <ul>
+                <li>知否知否，应是等你好久11</li>
+                <li>知否知否，应是等你好久22</li>
+                <li>知否知否，应是等你好久33</li>
+                <li>知否知否，应是等你好久44</li>
+                <li>知否知否，应是等你好久55</li>
+            </ul>
+            <ul id="nav">
+                <li>生僻字</li>
+                <li>生僻字</li>
+                <li>生僻字</li>
+                <li>生僻字</li>
+                <li>生僻字</li>
+            </ul>-->
+
+<!--        <div class="box">盒子1</div>
+        <div class="box">盒子2</div>
+        <div id="nav">
+            <ul>
+                <li>首页</li>
+                <li>产品</li>
+            </ul>
+        </div>-->
+        <div>
+            <!--        <img src="http://114.67.120.60:10888//paymentVoucher/WR230720000004/3cb3bdd0-a82e-489d-bd6e-6b7c24061ead_%E5%85%A5%E5%BA%93%E5%8D%95IQ231011000009.pdf">-->
+            <!--        <img src="http://114.67.120.60:10888//paymentVoucher/WR230720000004/13226d05-d7fc-4156-8c36-0403efc95121_2.png">-->
+            <!--        <embed src="http://114.67.120.60:10888//paymentVoucher/WR230720000004/3cb3bdd0-a82e-489d-bd6e-6b7c24061ead_%E5%85%A5%E5%BA%93%E5%8D%95IQ231011000009.pdf" type="application/pdf" style="width:100%;height:1300px;" />-->
+            <!--        <embed src="http://114.67.120.60:10888//paymentVoucher/WR230720000004/3cb3bdd0-a82e-489d-bd6e-6b7c24061ead_%E5%85%A5%E5%BA%93%E5%8D%95IQ231011000009.pdf" type="application/pdf" style="width:100%;height:1300px;" />-->
+            <!--        <embed src="http://114.67.120.60:10888//paymentVoucher/WR230720000004/3cb3bdd0-a82e-489d-bd6e-6b7c24061ead_%E5%85%A5%E5%BA%93%E5%8D%95IQ231011000009.pdf" type="application/pdf" style="width:100%;height:1300px;" />-->
+
+
+            <!--        <embed src="http://114.67.120.60:10888//paymentVoucher/WR230720000004/13226d05-d7fc-4156-8c36-0403efc95121_2.png" type="application/pdf" style="width:960px;height:1240px;" />-->
+        </div>
+
+<!--        <button id="btn">唐伯虎</button>-->
+        <button>显示当前系统时间</button>
+        <div id="one" class="font-size:90px;">某个时间</div>
+        <p>1123</p>
+        <div></div>
+        <p>
+            我是文字
+            <span>123</span>
+        </p>
+        <script>
+/*            var elementsByTagName = document.getElementsByTagName('li');
+            console.log(elementsByTagName);
+            console.log(elementsByTagName[0]);
+
+            var elementById = document.getElementById('nav');
+            console.log(elementById);
+            var elementsByClassName = elementById.getElementsByTagName('li');
+            console.log(elementsByClassName);*/
+/*            var elementsByClassName = document.getElementsByClassName("box");
+            //获取类名为box的document对象
+            console.log(elementsByClassName);
+            console.log(typeof elementsByClassName);
+        //  querySelector  取得第一个类名为  box的元素
+            var element = document.querySelector(".box");
+            console.log(element);
+            console.log(typeof element);
+            var element1 = document.querySelector("#nav");
+            console.log(element1);
+            // 返回指定选择器所有元素对象集合
+            var elementNodeListOf = document.querySelectorAll(".box");
+            console.log(elementNodeListOf);
+            var nodeListOf = document.querySelectorAll("li");
+            console.log(nodeListOf);
+            // 获取特殊元素 body html
+            var body = document.body;
+            var html = document.documentElement;
+            console.log(body);
+            console.log(html);*/
+
+            // 注册点击事件
+/*            var btn = document.getElementById("btn");
+            console.log(btn);
+            var btn2 = document.querySelector("#btn");
+            console.log(btn2);
+            btn2.onclick = function() {
+                            alert("点秋香")
+                        }*/
+            // 首先获取按钮注册事件
+            var btn = document.querySelector('button');
+            btn.onclick = function (){
+                // 获取div改变内容
+                var divElement = document.getElementById("one")
+                // divElement.innerText = new Date();
+                divElement.innerHTML = new Date().toDateString();
+            }
+
+
+        </script>
+    </body>
+</html>

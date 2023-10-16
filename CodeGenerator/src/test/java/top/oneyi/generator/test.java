@@ -1,12 +1,9 @@
 package top.oneyi.generator;
 
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.oneyi.generator.controller.GeneratorController;
 
-import javax.annotation.Resource;
+
 
 
 /**
