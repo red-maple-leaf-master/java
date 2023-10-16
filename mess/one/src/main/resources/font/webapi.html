@@ -3,6 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+        <style>
+
+            .box{
+                position: relative;
+                width: 400px;
+                border-bottom: 1px solid #ccc;
+                margin: 100px auto;
+            }
+            .box input{
+                width: 370px;
+                height: 30px;
+                border: 0;
+                outline: none;
+            }
+            .box img{
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                width: 24px;
+            }
+            div {
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+            }
+        </style>
 
     </head>
     <body>
@@ -41,15 +67,49 @@
         </div>
 
 <!--        <button id="btn">唐伯虎</button>-->
-        <button>显示当前系统时间</button>
-        <div id="one" class="font-size:90px;">某个时间</div>
+<!--        <button>显示当前系统时间</button>
+        <div id="one">某个时间</div>
         <p>1123</p>
         <div></div>
         <p>
             我是文字
             <span>123</span>
-        </p>
+        </p>-->
+
+        <div class="box">
+            <label for="">
+                <img src="../images/close.png" alt="" id="eye">
+            </label>
+            <input type="password" name="" id="pwd">
+        </div>
+
+        <div>
+
+        </div>
         <script>
+            var img = document.getElementById("eye");
+            var input = document.getElementById("pwd");
+            var flag = 0;
+            img.onclick = function () {
+                if(flag == 0){
+                    img.src = "../images/open.png";
+                    input.type='text';
+                    flag = 1;
+                }else{
+                    img.src = "../images/close.png";
+                    input.type='password';
+                    flag = 0;
+                }
+
+            }
+            var elementsByClassName = document.getElementsByTagName('div');
+            console.log(elementsByClassName);
+            var div02 = elementsByClassName[2];
+            console.log(div02);
+            div02.onclick = function () {
+                div02.style.backgroundColor = 'purple';
+                div02.style.width='500px'
+            }
 /*            var elementsByTagName = document.getElementsByTagName('li');
             console.log(elementsByTagName);
             console.log(elementsByTagName[0]);
@@ -88,13 +148,14 @@
                             alert("点秋香")
                         }*/
             // 首先获取按钮注册事件
-            var btn = document.querySelector('button');
+/*            var btn = document.querySelector('button');
             btn.onclick = function (){
                 // 获取div改变内容
-                var divElement = document.getElementById("one")
+                var divElement = document.querySelector("div")
+                var divElement2 = document.getElementById("one")
                 // divElement.innerText = new Date();
-                divElement.innerHTML = new Date().toDateString();
-            }
+                divElement.innerText = new Date().toDateString();
+            }*/
 
 
         </script>
