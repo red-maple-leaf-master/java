@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .one{
+            font-size: 14px;
+            color: #666;
+        }
+        one1{
+            font-size: 14px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<input type="text" value="密码" class="one">
+<script>
+    var htmlInputElement = document.querySelector('input');
+    htmlInputElement.onfocus =  function () {
+        this.value='';
+        this.className = 'one1'
+    }
+    htmlInputElement.onblur = function () {
+        if(this.value == ''){
+            this.value = '密码';
+            this.className = 'one'
+        }
+    }
+</script>
+</body>
+</html>
