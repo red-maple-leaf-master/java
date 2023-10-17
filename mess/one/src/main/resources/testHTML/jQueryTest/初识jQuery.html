@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .one{
+            width: 100px;
+            height: 400px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<!--<ul>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+</ul>
+<ol>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+    <li>多个里面筛选几个</li>
+</ol>-->
+
+<button>显示</button>
+<button>隐藏</button>
+<button>切换</button>
+<div></div>
+<br>
+<button>下拉滑动</button>
+<button>上拉滑动</button>
+<button>切换滑动</button>
+<div></div>
+<!--百度的CDN-->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+
+
+<script>
+    // DOM转jQuery对象
+/*    var box = document.getElementById('box');
+    let queryObject = $(box);
+    console.log(queryObject);
+    var queryObject2 = $('.box')[0];
+    console.log(queryObject2);*/
+
+/*$(function(){
+    $('ul li:first').css("color","red");
+    $('ul li:eq(2)').css("color","blue");
+    $('ol li:odd').css("color","skyblue");
+    $('ol li:even').css("color","pink");
+})*/
+
+$(function(){
+    $('button').eq(0).click(function (){
+        $('div').eq(0).show(1000,function(){
+            // alert("1");
+        }).addClass("one")
+    })
+
+    $('button').eq(1).click(function(){
+        $('div').eq(0).hide(1000,function(){
+            // alert('1')
+        }).addClass("one")
+    })
+    $('button').eq(2).click(function(){
+        $('div').eq(0).toggle(1000).addClass("one")
+    })
+
+    $('button').eq(3).click(function(){
+        $('div').eq(1).slideDown().addClass('one');
+    })
+
+    $('button').eq(4).click(function(){
+        $('div').eq(1).slideUp(500).addClass('one')
+    })
+
+    $('button').eq('5').click(function(){
+        $('div').eq(1).slideToggle(500).addClass('one')
+    })
+})
+</script>
+</body>
+</html>

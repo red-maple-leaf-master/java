@@ -73,9 +73,23 @@
 
     </div>
 </div>
+
+<!--百度的CDN-->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
 <script>
-    // 获取元素
-    var tab_list = document.querySelector('.tab_list');
+    // jQuery
+    $(function() {
+        $('.tab_list li').click(function() {
+            $(this).addClass('current').siblings().removeClass("current");
+            var index = $(this).index();
+            console.log(index);
+            $(".tab_con .item").eq(index).show().siblings().hide();
+        })
+    })
+
+    // 获取元素  原生js
+/*    var tab_list = document.querySelector('.tab_list');
     var lis = tab_list.querySelectorAll('li');
     var items = document.querySelectorAll('.item');
     for(var i=0;i< lis.length;i++){
@@ -92,7 +106,7 @@
             items[index].style.display = 'block';
 
         }
-    }
+    }*/
 </script>
 </body>
 </html>
