@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea name="" id=""></textarea>
+<button>发布</button>
+<ul>
+
+</ul>
+
+<script>
+    var btn = document.querySelector('button');
+    var text = document.querySelector('textarea');
+    var ul = document.querySelector('ul');
+    btn.onclick =function () {
+        if(text.value === ''){
+            alert('你没有输入内容');
+            return false;
+        }else{
+            var newLi = document.createElement('li');
+            newLi.innerHTML = text.value;
+            ul.insertBefore(newLi,ul.children[0]);
+            text.value = '';
+        }
+    }
+</script>
+</body>
+</html>

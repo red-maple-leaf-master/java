@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="demo">
+    <div class="box">
+        <span class="erweima">×</span>
+    </div>
+</div>
+
+<ul>
+    <li>我是li</li>
+    <li>我是li</li>
+    <li>我是li</li>
+    <li>我是li</li>
+</ul>
+<script>
+    var element = document.querySelector('.erweima');
+
+    // var box = document.querySelector('.box');
+    // 得到的是离元素最近的父级节点(亲爸爸) 如果找不到父节点就返回为 null
+    console.log(element.parentNode);
+
+    var elementUl = document.querySelector('ul');
+    console.log(elementUl.childNodes);
+    console.log(elementUl.childNodes[0].nodeType);
+    console.log(elementUl.childNodes[1].nodeType);
+    console.log(elementUl.childNodes[1]);
+
+    var newLi = document.createElement('li');
+    newLi.innerText = '我是新增的元素'
+    elementUl.appendChild(newLi);
+
+    var lili = document.createElement('li');
+    lili.innerText = '我是咨询发';
+    elementUl.insertBefore(lili, elementUl.children[0]);
+    // 4. 我们想要页面添加一个新的元素 ： 1. 创建元素 2. 添加元素
+</script>
+</body>
+</html>

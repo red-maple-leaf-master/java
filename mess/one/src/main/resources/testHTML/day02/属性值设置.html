@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo" index="1" class="nav" key="123465"></div>
+<script>
+    var div = document.querySelector('div');
+    // element.属性
+    console.log(div.id);
+    // element.getAttribute  获取属性值
+    console.log(div.getAttribute('id'));
+    console.log(div.getAttribute('index'));
+    console.log(div.getAttribute('key'));
+    // 3 移除属性 removeAttribute(属性)
+    div.removeAttribute('key');
+    console.log(div.getAttribute('key'));
+</script>
+</body>
+</html>
