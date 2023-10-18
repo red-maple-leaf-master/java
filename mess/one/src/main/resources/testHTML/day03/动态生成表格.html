@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table {
+        width: 500px;
+        margin: 100px auto;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    td,
+    th {
+        border: 1px solid #333;
+    }
+
+    thead tr {
+        height: 40px;
+        background-color: #ccc;
+    }
+</style>
+<body>
+<table cellspacing="0">
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>科目</th>
+        <th>成绩</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script>
+    // 1.先去准备好学生的数据
+    var datas = [{
+        name: '魏璎珞',
+        subject: 'JavaScript',
+        score: 100
+    }, {
+        name: '弘历',
+        subject: 'JavaScript',
+        score: 98
+    }, {
+        name: '傅恒',
+        subject: 'JavaScript',
+        score: 99
+    }, {
+        name: '明玉',
+        subject: 'JavaScript',
+        score: 88
+    }, {
+        name: '大猪蹄子',
+        subject: 'JavaScript',
+        score: 0
+    }];
+    // 获取body  在里面建立行
+    var tbody = document.querySelector('tbody');
+    for (let i = 0; i <datas.length ; i++) {
+        // 创建 tr行
+        var tr = document.createElement('tr');
+        tbody.appendChild(tr);
+        // 创建 td行 塞数据
+        for (let key in datas[i]) {
+            var td = document.createElement('td');
+            td.innerHTML = datas[i][key]
+            tr.appendChild(td);
+        }
+        // 创建俩个有删除 2个字的单元格
+        var deltd = document.createElement('td');
+        deltd.innerHTML = '<a href="javascript:;">删除 </a>';
+        tr.appendChild(deltd);
+    }
+
+    // 删除操作
+    var a = document.querySelectorAll('a');
+    // 挨个注册点击事件
+    for (let i = 0; i <a.length ; i++) {
+        a[i].onclick = function() {
+            // 点击a 删除 当前a 所在的行(链接的爸爸的爸爸)  node.removeChild(child)
+            tbody.removeChild(this.parentNode.parentNode);
+        }
+    }
+
+</script>
+</body>
+</html>

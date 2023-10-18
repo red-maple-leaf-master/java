@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="father">
+    <div class="son">son盒子</div>
+</div>
+<script>
+    // 事件冒泡 因为子和父都注册了点击事件 子触发会连带 父也触发
+
+
+    // onclick 和 attachEvent（ie） 在冒泡阶段触发
+    // 冒泡阶段 如果addEventListener 第三个参数是 false 或者 省略
+    // son -> father ->body -> html -> document
+
+    // 如果addEventListener() 第三个参数是 true 那么在捕获阶段触发
+    // document -> html -> body -> father -> son
+    var son = document.querySelector('.son');
+    son.addEventListener('click',function(e){
+        alert('son');
+        e.stopPropagation(); // stop 停止  Propagation 传播
+    },false);
+
+    var fahter = document.querySelector('.father');
+    fahter.addEventListener('click',function(){
+        alert('father');
+    },false);
+
+    document.addEventListener('click',function(){
+        alert('document');
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+
+<!--<button>传统注册事件</button>
+<button>方法监听注册事件</button>
+<button>ie9 attachEvent</button>-->
+
+<div>11111111</div>
+<div>2222222</div>
+<div>33333</div>
+
+<script>
+   /* var btns = document.querySelectorAll('button');
+    btns[0].onclick = function () {
+        alert('我是传统方式');
+    };
+
+    btns[1].addEventListener('click',function(){
+        alert("我是事件监听方式111")
+    });
+    btns[1].addEventListener('click', function() {
+        alert("我是事件监听方式33");
+    });
+
+    btns[2].attachEvent('onclick',function(){
+        alert("ie9以前版本支持")
+    })
+*/
+    var divs = document.querySelectorAll('div');
+    divs[0].onclick = function () {
+        alert(1);
+        divs[0].onclick = null;
+    }
+
+    // 2. removeEventListener 删除事件
+    divs[1].addEventListener('click', fn);// 里面的fn 不需要调用加小括号
+    function fn() {
+        alert(22);
+        divs[1].removeEventListener('click', fn);
+    }
+</script>
+</body>
+</html>
