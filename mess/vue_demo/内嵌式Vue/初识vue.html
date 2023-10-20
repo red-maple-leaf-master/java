@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--element-ui的样式-->
+    <link rel="stylesheet" href="../plugins/element-ui/index.css"/>
+</head>
+<body>
+
+<div id="app">
+    <!--    插值语法-->
+    <!--    <div>{{msg}}</div>-->
+
+    <h2 v-text='msg'></h2>
+    　<p v-html="html"></p> <!-- 输出：html标签在渲染的时候被解析 -->
+    <span v-pre>{{msg}}</span> 
+    <!--   即使data里面定义了msg这里仍然是显示的{{msg}}  -->
+
+    <!-- 即使data里面定义了msg 后期我们修改了 仍然显示的是第一次data里面存储的数据即 Hello Vue.js  -->
+    <span v-once>{{ msg}}</span>
+
+    <div>
+        当输入框中内容改变的时候，  页面上的msg  会自动更新
+        <input type="text" v-model='msg'>
+    </div>
+
+
+    <!-- 如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数 -->
+    <button v-on:click='handle1'>点击1</button>
+    <!-- 2、如果事件绑定函数调用，那么事件对象必须作为最后一个参数显示传递，
+         并且事件对象的名称必须是$event
+    -->
+    <button v-on:click='handle2(123, 456, $event)'>点击2</button>
+
+    <ul>
+        <li v-for="item in items">
+            {{item.message}}
+        </li>
+    </ul>
+
+    <!--
+      使用自定义的指令，只需在对用的元素中，加上'v-'的前缀形成类似于内部指令'v-if'，'v-text'的形式。
+    -->
+    <input type="text" v-focus>
+
+
+    <div>
+        <span>名：</span>
+        <span>
+        <input type="text" v-model='firstName'>
+      </span>
+    </div>
+    <div>
+        <span>姓：</span>
+        <span>
+        <input type="text" v-model='lastName'>
+      </span>
+    </div>
+    <div>{{fullName}}</div>
+
+    <!--
+      filterA 被定义为接收三个参数的过滤器函数。
+        其中 message 的值作为第一个参数，
+      普通字符串 'arg1' 作为第二个参数，表达式 arg2 的值作为第三个参数。
+  -->
+    {{ message | filterA('arg1', 'arg2') }}
+</div>
+
+
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="../plugins/vue/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="../plugins/element-ui/index.js"></script>
+<!-- 引入axios -->
+<script src="../plugins/axios/axios.min.js"></script>
+
+<script>
+    // 注意点：
+    //   1、 在自定义指令中  如果以驼峰命名的方式定义 如  Vue.directive('focusA',function(){})
+    //   2、 在HTML中使用的时候 只能通过 v-focus-a 来使用
+
+    // 注册一个全局自定义指令 v-focus
+    Vue.directive('focus', {
+        // 当绑定元素插入到 DOM 中。 其中 el为dom元素
+        inserted: function (el) {
+            // 聚焦元素
+            console.log("聚焦元素喽");
+            el.focus();
+        }
+    });
+
+    // 在过滤器中 第一个参数 对应的是  管道符前面的数据   n  此时对应 message
+    // 第2个参数  a 对应 实参  arg1 字符串
+    // 第3个参数  b 对应 实参  arg2 字符串
+    Vue.filter('filterA',function(n,a,b){
+        if(n<10){
+            return n+a;
+        }else{
+            return n+b;
+        }
+    });
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                message: "哈哈哈",
+                firstName: 'Jim',
+                lastName: 'Green',
+                fullName: 'Jim Green',
+                items: [
+                    { message: 'Foo' },
+                    { message: 'Bar' }
+                ],
+                msg: 'Hello Vue',
+                html: "<span>html标签在渲染的时候被解析</span>",
+            }
+        },
+        methods: {
+            handle1: function(event) {
+                console.log(event.target.innerHTML)
+            },
+            handle2: function(p, p1, event) {
+                console.log(p, p1)
+                console.log(event.target.innerHTML)
+                this.num++;
+            }
+        },
+        watch: {
+            firstName: function(val) {
+                this.fullName = val + ' ' + this.lastName;
+            },
+            lastName: function(val) {
+                this.fullName = this.firstName + ' ' + val;
+            }
+        }
+    })
+</script>
+</body>
+</html>
