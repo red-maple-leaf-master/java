@@ -5,6 +5,11 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
+// 导入字体图标
+import './assets/fonts/iconfont.css'
+// 导入全局样式表
+import './assets/css/global.css'
+
 
 // 引入ui库
 Vue.use(ElementUI);
