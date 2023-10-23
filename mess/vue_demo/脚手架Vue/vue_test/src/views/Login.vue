@@ -5,7 +5,7 @@
                 <img src="../assets/logo.png" alt="">
             </div>
 
-            <el-form :model="loginForm" :rules="LoginFormRef" ref="LoginFormRef" label-width="0px" class="login_form">
+            <el-form :model="loginForm" :rules="loginFormRules" ref="LoginFormRef" label-width="0px" class="login_form">
                 <el-form-item prop="username" prefix-icon="iconfont icon-user">
                     <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
                 </el-form-item>
@@ -37,7 +37,7 @@
                     password: "123456"
                 },
                 // 表单验证规则
-                LoginFormRef: {
+                loginFormRules: {
                     username: [
                         {required: true, message: '请输入登录名', trigger: 'blur'},
                         {min: 3, max: 5, message: '长度在 3 到 10 个字符', trigger: 'blur'}
@@ -56,9 +56,9 @@
                 this.$message.success(res.meta.status);
                 console.log(res)
             },
+            // 添加表单重置方法
             resetLoginForm() {
-                const ref = this.$ref.LoginFormRef;
-                console.log(ref);
+                this.$refs.LoginFormRef.resetFields();
             }
         }
 
@@ -67,7 +67,7 @@
 
 <style scoped>
     .login_container {
-        background-color: #2b5b6b;
+        background-color: #6dd5ed;
         height: 100%;
     }
 
