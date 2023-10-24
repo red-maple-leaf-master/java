@@ -44,17 +44,27 @@
                     ],
                     password: [
                         {required: true, message: '请输入密码', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 6 到 15 个字符', trigger: 'blur'}
+                        {min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur'}
                     ],
                 },
 
             }
         },
         methods: {
-            async login() {
-                const {data: res} = await this.$http.post('login', this.loginForm);
-                this.$message.success(res.meta.status);
-                console.log(res)
+             login() {
+                this.$refs.LoginFormRef.validate(async valid => {
+                    if(!valid){
+                        return
+                    }
+                    const {data: res} = await this.$http.post('login', this.loginForm);
+                    if(res.meta.status !== 200){
+                        return this.$message.error('登录失败:'+res.meta.msg);
+                    }
+                    this.$message.success('登录成功')
+                    window.sessionStorage.setItem('token',res.data.token);
+                    this.$router.push('/home')
+                });
+
             },
             // 添加表单重置方法
             resetLoginForm() {
