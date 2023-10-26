@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SuiteName" verbose="1" parallel="classes">
+    <parameter name="first-name"  value="Cedric"/>
+
     <test name="oneTest">
         <groups>
             <run>
-                <include name="ww"></include>
+                <include name="bb"/>
+                <exclude  name="fast"/>
             </run>
         </groups>
-        <classes>
+
+        <!--        设定需要启动测试类的包名-->
+        <packages>
+            <package name="top.oneyi.TestNG.demo"/>
+        </packages>
+        <!--        设定需要启动测试类的类名-->
+<!--        <classes>
             <class name="top.oneyi.TestNG.demo.demo"></class>
-        </classes>
+        </classes>-->
     </test>
 </suite>
