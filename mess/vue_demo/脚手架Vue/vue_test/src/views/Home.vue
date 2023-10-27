@@ -16,14 +16,8 @@
                 <el-aside :width="isCollapse ? '64px':'200px'">
                     <!-- 伸缩侧边栏按钮 -->
                     <div class="toggle-button" @click="toggleCollapse">|||</div>
-                    <el-menu default-active="2"
-                             background-color="#333744"
-                             text-color="#fff"
-                             active-text-color="#ffd04b"
-                             unique-opened
-                             :collapse="isCollapse"
-                             :collapse-transition="false"
-                             router :default-active="activePath">
+                    <!-- 侧边栏菜单区域 -->
+                    <el-menu background-color="#333744" text-color="#fff" active-text-color="#409EFF" unique-opened :collapse="isCollapse" :collapse-transition="false" router :default-active="activePath">
                         <!-- 一级菜单-->
                         <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
                             <template slot="title">
@@ -31,9 +25,7 @@
                                 <span>{{item.authName}}</span>
                             </template>
                             <!-- 二级菜单-->
-                            <el-menu-item :index="'/'+ subItem.path+''" v-for="subItem in item.children"
-                                          :Key="subItem.id"
-                                          @click="saveNavState('/'+subItem.path)">
+                            <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/' + subItem.path)">
                                 <template slot="title">
                                     <!-- 图标 -->
                                     <i class="el-icon-menu"></i>
@@ -103,7 +95,7 @@
 
 <style scoped>
     .home-container {
-        height: 100%;
+        height: 100vh;
     }
 
     img {
@@ -147,7 +139,6 @@
 
     .el-aside {
         background-color: #333744;
-
     }
 
     .el-aside .el-menu {
@@ -158,4 +149,5 @@
     .el-main {
         background-color: #eaedf1;
     }
+
 </style>

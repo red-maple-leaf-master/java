@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h3>用户列表组件</h3>
         <!-- 面包屑导航 -->
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -45,17 +44,19 @@
                     </template>
                 </el-table-column>
             </el-table>
+
+            <!--分页区域-->
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="queryInfo.pagenum"
+                    :page-sizes="[2, 4, 6, 8]"
+                    :page-size="queryInfo.pagesize"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+            </el-pagination>
         </el-card>
-        <!--分页区域-->
-        <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="queryInfo.pagenum"
-                :page-sizes="[2, 4, 6, 8]"
-                :page-size="queryInfo.pagesize"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="total">
-        </el-pagination>
+
 
         <!--对话框组件-->
         <!--添加用户-->
@@ -154,6 +155,12 @@
         },
         created() {
             this.getUserList();
+            this.$http.post("http://localhost:8080/goods/fingAll").then((res)=>{
+                console.log(res);
+            })
+            this.$http.get("http://localhost:8080/menu/getMenu").then((res)=>{
+                console.log(res);
+            })
         },
         methods: {
             async getUserList() {
@@ -205,12 +212,4 @@
 </script>
 
 <style scoped>
-    .el-table {
-        margin-top: 15px;
-    }
-
-    .box-card {
-        margin: 15px 0;
-        width: 98%;
-    }
 </style>
