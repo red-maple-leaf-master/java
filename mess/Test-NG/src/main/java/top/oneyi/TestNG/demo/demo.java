@@ -66,13 +66,13 @@ public class demo {
         return Arrays.asList(myObjects).iterator();
     } */
 // 一维数组  一维数组迭代器
-    @DataProvider(name = "test2")
-    public Object[] createData2() {
-        return new Object[]{"x", "y"};
-    }
-
-    @Test(dataProvider = "test2")
-    public void verifyData1(String n) {
-        System.out.println(n);
-    }
+//    @DataProvider(name = "test2")
+//    public Object[] createData2() {
+//        return new Object[]{"x", "y"};
+//    }
+//
+//    @Test(dataProvider = "test2")
+//    public void verifyData1(String n) {
+//        System.out.println(n);
+//    }
 }
