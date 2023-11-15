@@ -12,4 +12,8 @@ import lombok.Data;
 public class OUser {
     private String name;
     private String age;
+
+    public String getName(){
+        return "小明";
+    }
 }
