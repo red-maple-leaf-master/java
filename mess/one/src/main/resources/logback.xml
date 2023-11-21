@@ -1,99 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<configuration scan="false" scanPeriod="60000" debug="false">
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="1 seconds">
 
+    <contextName>logback</contextName>
+    <property name="log.path" value="D:/logs/xxl-job/xxl-job-admin.log"/>
 
-    <!--   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-           <layout class="ch.qos.logback.classic.PatternLayout">
-               <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
-           </layout>
-       </appender>-->
-    <!-- appender 是configuration的子节点 负责写日志的组件,有俩个必要属性 name 和 class
-            name : appender的名称
-            class : apppender的全限定名
-            encoder 是表示对参数进行格式化 layout也是可以的 推荐使用encoder
-    -->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <!-- name 为 FILE 表示将日志输出到文件中  file表示日志保存的地址 append 为true 表示日志将会被追加到文件结尾,
-    如果是false 表示清空文件
-    还有一个 标签为 prudent 如果为true 表示日志会被安全的写入文件,即使其他的FileAppender也在向此文件做写入操作,效
-    率低,默认为false
-    -->
-    <!--
-         <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-            <file>D:/logs/one.log</file>
-            <append>true</append>
-            <encoder>
-                <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
-            </encoder>
-         </appender>
-    -->
-
-    <!--
-     <fileNamePattern>，必要节点，包含文件名及"%d"转换符，"%d"可以包含
-    一个Java.text.SimpleDateFormat指定的时间格式，如%d{yyyy-MM}，如果直接使用%d那么格式为
-    yyyy-MM-dd。RollingFileAppender的file子节点可有可无，通过设置file可以为活动文件和归档文件指定不同的位置
-    <maxHistory>，可选节点，控制保留的归档文件的最大数量，如果超出数量就删除旧文件，假设设置每个月滚动
-    且<maxHistory>是6，则只保存最近6个月的文件
-    -->
-    <!--     <appender name="ROLLING-FILE-1" class="ch.qos.logback.core.rolling.RollingFileAppender">
-             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                 <fileNamePattern>rolling-file-%d{yyyy-MM-dd}.log</fileNamePattern>
-                <maxHistory>30</maxHistory>
-             </rollingPolicy>
-             <encoder>
-                 <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
-             </encoder>
-         </appender>-->
-
-
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="ROLLING-FILE-1" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>D:/rolling-file-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>30</maxHistory>
+            <fileNamePattern>${log.path}.%d{yyyy-MM-dd}.zip</fileNamePattern>
         </rollingPolicy>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %lo{35} - %msg%n</pattern>
+            <pattern>%date %level [%thread] %logger{36} [%file : %line] %msg%n
+            </pattern>
         </encoder>
     </appender>
 
-    <!--    当我们配置了AsyncAppender，系统启动时会初始化一条名为"AsyncAppender-Worker-ASYNC"的线程
-    当Logging Event进入AsyncAppender后，AsyncAppender会调用appender方法，appender方法中再将event填入Buffer
-    （使用的Buffer为BlockingQueue，具体实现为ArrayBlockingQueye）前，会先判断当前Buffer的容量以及丢弃日志特性
-    是否开启，当消费能力不如生产能力时，AsyncAppender会将超出Buffer容量的Logging Event的级别进行丢弃，作为消费
-    速度一旦跟不上生产速度导致Buffer溢出处理的一种方式。
-    上面的线程的作用，就是从Buffer中取出Event，交给对应的appender进行后面的日志推送
-    从上面的描述我们可以看出，AsyncAppender并不处理日志，只是将日志缓冲到一个BlockingQueue里面去，并在内部创建
-    一个工作线程从队列头部获取日志，之后将获取的日志循环记录到附加的其他appender上去，从而达到不阻塞主线程的效果。
-    因此AsyncAppender仅仅充当的是事件转发器，必须引用另外一个appender来做事。-->
-
-    <!-- 异步输出 -->
-    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
-        <discardingThreshold>0</discardingThreshold>
-        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
-        <queueSize>256</queueSize>
-        <!-- 添加附加的appender,最多只能添加一个 -->
-        <appender-ref ref="ROLLING-FILE-1"/>
-    </appender>
-
-    <logger name="java" additivity="false"/>
-    <logger name="java.lang" level="DEBUG">
-        <appender-ref ref="ASYNC"/>
-    </logger>
-
-    <root level="INFO">
-        <appender-ref ref="STDOUT"/>
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
     </root>
-
 
 </configuration>

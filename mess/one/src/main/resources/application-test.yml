@@ -26,3 +26,18 @@ knife4j:
     swaggerModelName: 实体类
   #开启生产环境屏蔽
   production: false
+
+logging:
+  config: classpath:logback.xml
+xxl:
+  job:
+    admin:
+      addresses: http://192.168.1.109:8080/xxl-job-admin
+    accessToken:
+    executor:
+      address:
+      appname: demo01
+      ip:
+      port: 9999
+      logpath: D:/logs/jobhandler
+      logretentiondays: 30

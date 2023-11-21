@@ -48,6 +48,14 @@
     </profiles>
 
     <dependencies>
+
+        <!--xxl-job-->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
         <!--  生成条形码二维码的jar包   商业版 又水印 需要  -->
 <!--        <dependency>
             <groupId>e-iceblue</groupId>
