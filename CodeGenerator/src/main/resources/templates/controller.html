@@ -40,52 +40,85 @@
         .el-container:nth-child(7) .el-aside {
             line-height: 320px;
         }
+
+        .one {
+            width: 960px;
+            margin: 0 auto;
+            line-height: 12px;
+            text-align: left;
+        }
     </style>
 
 </head>
 
 
-<style>
 
-</style>
 <body>
-    <div id="app">
-        <el-container>
-            <el-header>Header</el-header>
-            <el-main>Main</el-main>
-        </el-container>
-    </div>
+<div id="app">
+    <el-container>
+        <el-header>代码预览</el-header>
+        <el-main>
+            <el-card>
+                <pre class="one">
+                 <code>
+<!--                   {{code.controller}}-->
+{{code.dto}}
+<!--                   {{code.mapper}}-->
+                  </code>
+                </pre>
+            </el-card>
+        </el-main>
+    </el-container>
+</div>
 
-    <!-- 生产环境版本，优化了尺寸和速度 -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<!-- 生产环境版本，优化了尺寸和速度 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 
-    <script>
-        const app = new Vue({
-            el: '#app',
-            mounted() {
-
-            },
-            // 计算属性
-            computed: {},
-            // 数据
-            data: {
-
-            },
-            // 方法区
-            methods: {
-
+<script>
+    const app = new Vue({
+        el: '#app',
+        mounted() {
+            this.preview();
+        },
+        // 计算属性
+        computed: {},
+        // 数据
+        data() {
+            return {
+                code: ''
             }
+        },
+        // 方法区
+        methods: {
+            preview() {
+                axios({
+                    url: 'http://127.0.0.1:45450/generator/preview',
+                    params: {
+                        tableName: "goods",
+                        packageName: "com.oneyi",
+                        functionAuthor: "wanyi",
+                        moduleName: "generator"
+                    }
+                }).then(response => {
+                    console.log('/a', response.data);
+                    this.code = response.data;
+                    return response.data
+                }, error => {
+                    console.log('错误', error.message)
+                })
+            }
+        }
 
-        });
+    });
 
 
-    </script>
+</script>
 
 
 </body>

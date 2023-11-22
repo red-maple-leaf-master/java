@@ -1,9 +1,9 @@
-package top.oneyi.${module}.service.impl;
+package ${package}.${module}.service.impl;
 
 import org.springframework.stereotype.Service;
-import top.oneyi.${module}.domain.${Domain};
-import top.oneyi.${module}.mapper.${Domain}Mapper;
-import top.oneyi.${module}.service.${Domain}Service;
+import ${package}.${module}.domain.${Domain};
+import ${package}.${module}.mapper.${Domain}Mapper;
+import ${package}.${module}.service.${Domain}Service;
 
 import javax.annotation.Resource;
 import java.util.List;

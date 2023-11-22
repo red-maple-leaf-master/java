@@ -1,7 +1,7 @@
 package top.oneyi.${module}.mapper;
 
-import top.oneyi.${module}.utils.MyMapper;
-import top.oneyi.${module}.domain.${Domain};
+import ${package}.${module}.utils.MyMapper;
+import ${package}.${module}.domain.${Domain};
 import org.apache.ibatis.annotations.Mapper;
 /**
 * Created with IntelliJ IDEA.

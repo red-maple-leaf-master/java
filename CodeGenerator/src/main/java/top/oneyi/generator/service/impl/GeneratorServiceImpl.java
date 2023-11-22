@@ -46,7 +46,7 @@ public class GeneratorServiceImpl implements GeneratorService {
         try {
             // 设置数据
             setModelData(map, resultStr, generator);
-
+            // 设置好数据之后清除缓存
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -79,7 +79,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 
             // 渲染模板
             template.process(dataModel, resultStr);
-            map.put(templateName, resultStr.toString());
+            map.put(templateName, resultStr.getBuffer());
             resultStr.flush();
         }
 

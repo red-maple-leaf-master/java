@@ -1,6 +1,6 @@
-package top.oneyi.${module}.service;
+package ${package}.${module}.service;
 
-import top.oneyi.generator.domain.BladeUser;
+import ${package}.${module}.domain.BladeUser;
 
 import java.util.List;
 
