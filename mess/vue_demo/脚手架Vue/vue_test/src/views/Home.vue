@@ -15,7 +15,7 @@
                 <!-- 侧边栏 -->
                 <el-aside :width="isCollapse ? '64px':'200px'">
                     <!-- 伸缩侧边栏按钮 -->
-                    <div class="toggle-button" @click="toggleCollapse">|||</div>
+                    <div class="toggle-button" @click="toggleCollapse"> ||| </div>
                     <!-- 侧边栏菜单区域 -->
                     <el-menu background-color="#333744" text-color="#fff" active-text-color="#409EFF" unique-opened :collapse="isCollapse" :collapse-transition="false" router :default-active="activePath">
                         <!-- 一级菜单-->
@@ -70,6 +70,7 @@
         },
         methods: {
             logout() {
+
                 window.sessionStorage.clear();
                 this.$router.push('/login');
             },
@@ -108,7 +109,7 @@
         cursor: pointer;
         color: #fff;
         text-align: center;
-        background-color: #4a5064;
+        background-color: #373d41;
         font-size: 10px;
         line-height: 24px;
         letter-spacing: 0.2em;
@@ -139,6 +140,7 @@
 
     .el-aside {
         background-color: #333744;
+        transition: 0.3s; /* 0.5 秒过渡效果在侧边栏中滑动 */
     }
 
     .el-aside .el-menu {

@@ -16,7 +16,7 @@
                     </el-input>
                 </el-col>
                 <el-col :span="4">
-                    <el-button type="primary" @click="dialogFormVisible = true">添加用户</el-button>
+                    <el-button type="primary" @click="changeIsHandOff(true)">添加用户</el-button>
                 </el-col>
             </el-row>
             <!--表格-->
@@ -34,9 +34,10 @@
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <!-- 修改 -->
-                        <el-button type="primary" icon="el-icon-edit" size='mini'></el-button>
+                        <el-button type="primary" icon="el-icon-edit" size='mini'
+                                   @click="changeIsHandOff(false,scope.row.id)"></el-button>
                         <!-- 删除 -->
-                        <el-button type="danger" icon="el-icon-delete" size='mini'></el-button>
+                        <el-button type="danger" icon="el-icon-delete" size='mini' @click="deleteUser(scope.row.id)"></el-button>
                         <!-- 分配角色 -->
                         <el-tooltip effect="dark" content="分配角色" placement="top" :enterable="false">
                             <el-button type="warning" icon="el-icon-setting" size='mini'></el-button>
@@ -50,7 +51,7 @@
                     @size-change="handleSizeChange"
                     @current-change="handleCurrentChange"
                     :current-page="queryInfo.pagenum"
-                    :page-sizes="[2, 4, 6, 8]"
+                    :page-sizes="[10, 20, 30, 40]"
                     :page-size="queryInfo.pagesize"
                     layout="total, sizes, prev, pager, next, jumper"
                     :total="total">
@@ -60,13 +61,14 @@
 
         <!--对话框组件-->
         <!--添加用户-->
-        <el-dialog title="添加用户" :visible.sync="dialogFormVisible" width="50%" @close="addDialogClosed">
+        <el-dialog :title="isHandOff ? '添加用户' :'编辑用户' " :visible.sync="dialogFormVisible" width="50%"
+                   @close="addDialogClosed">
             <!-- 对话框主体区域 -->
             <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="addForm.username"></el-input>
                 </el-form-item>
-                <el-form-item label="密码" prop="password">
+                <el-form-item label="密码" prop="password" v-if="isHandOff">
                     <el-input v-model="addForm.password"></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱" prop="email">
@@ -76,11 +78,10 @@
                     <el-input v-model="addForm.mobile"></el-input>
                 </el-form-item>
             </el-form>
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="addUser">确 定</el-button>
-                </div>
-
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="addUser">确 定</el-button>
+            </div>
         </el-dialog>
     </div>
 </template>
@@ -89,7 +90,7 @@
     export default {
         name: "Users",
         data() {
-            var checkEmail = (rule ,value, cb)=>{
+            var checkEmail = (rule, value, cb) => {
                 const regEmail = /^\w+@\w+(\.\w+)+$/;
                 if (regEmail.test(value)) {
                     return cb()
@@ -110,8 +111,9 @@
                 queryInfo: {
                     query: '',
                     pagenum: 1,
-                    pagesize: 2
+                    pagesize: 10
                 },
+                isHandOff: true,
                 userList: [],
                 total: 0,
                 dialogFormVisible: false,
@@ -155,10 +157,10 @@
         },
         created() {
             this.getUserList();
-            this.$http.post("http://localhost:8080/goods/fingAll").then((res)=>{
+            this.$http.post("http://localhost:8080/goods/fingAll").then((res) => {
                 console.log(res);
             })
-            this.$http.get("http://localhost:8080/menu/getMenu").then((res)=>{
+            this.$http.get("http://localhost:8080/menu/getMenu").then((res) => {
                 console.log(res);
             })
         },
@@ -192,20 +194,57 @@
                 this.$message.success('更新状态成功');
 
             },
-            addDialogClosed(){
+            addDialogClosed() {
                 //对话框关闭之后，重置表达
                 this.$refs.addFormRef.resetFields();
             },
-            addUser(){
-                this.$refs.addFormRef.validate(async valid =>{
-                    if(!valid) return this.$message.error('请填写完整用户信息');
-                    const {data : res } = await this.$http.post('users',this.addForm);
-                    if(res.meta.status !== 201) return this.$message.error('添加用户失败');
-                    this.$message.success('添加用户成功');
-                    this.dialogFormVisible=false;
+            // 添加用户和编辑用户在一起
+            addUser() {
+                this.$refs.addFormRef.validate(async valid => {
+                    if (!valid) return this.$message.error('请填写完整用户信息');
+                    if(this.isHandOff){
+                        const {data: res} = await this.$http.post('users', this.addForm);
+                        if (res.meta.status !== 201) return this.$message.error('添加用户失败');
+                        this.$message.success('添加用户成功');
+                    }else{
+                        const {data: res} = await this.$http.put(`users/${this.addForm.id}`, this.addForm);
+                        if (res.meta.status !== 200) return this.$message.error('编辑用户失败');
+                        this.$message.success('编辑用户成功');
+                    }
+
+                    this.dialogFormVisible = false;
                     //重新请求最新的数据
                     this.getUserList()
                 })
+            },
+            // 切换弹窗的标题
+            async changeIsHandOff(val, id) {
+                this.dialogFormVisible = true;
+                this.isHandOff = val;
+                console.log(val, id);
+                if (!val && id != null) {
+                    // val为false 且id不为null 则是编辑需要回显数据
+                    const {data: res} = await this.$http.get(`users/${id}`);
+                    this.addForm = res.data;
+                }
+            },
+            // 删除用户
+            async deleteUser(id){//弹出确定取消框，是否删除用户
+                const confirmResult = await this.$confirm('请问是否要永久删除该用户','删除提示',{
+                    confirmButtonText:'确认删除',
+                    cancelButtonText:'取消',
+                    type:'warning'
+                }).catch(err=>err)
+                //如果用户点击确认，则confirmResult 为'confirm'
+                //如果用户点击取消, 则confirmResult获取的就是catch的错误消息'cancel'
+                if(confirmResult != "confirm"){
+                    return this.$message.info("已经取消删除")
+                }
+                const {data : res} = await this.$http.delete(`users/${id}`);
+                if (res.meta.status !== 200) return this.$message.error('删除用户失败');
+                this.$message.success('删除用户成功');
+                //重新请求最新的数据
+                this.getUserList()
             }
         }
     }
