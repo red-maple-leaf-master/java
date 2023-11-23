@@ -57,17 +57,18 @@ public class FreemarkerUtil {
      * 获取表的中文名称
      *
      * @param tableName 表名
+     * @param dataBaseName 数据库名
      * @return 返回表的注释
      */
-    public  String getTableComment(String tableName) throws SQLException {
+    public  String getTableComment(String tableName, String dataBaseName) throws SQLException {
         Connection conn = getConnection();
         Statement state = conn.createStatement();
         ResultSet res = state
                 .executeQuery("select table_comment from information_schema.TABLES where TABLE_NAME = '"
-                        + tableName + "';");
+                        + tableName +  "' and TABLE_SCHEMA = '"+ dataBaseName +"';");
         String tableNameCh = "";
         while (res.next()) {
-            tableNameCh = res.getString("table_comment");
+            tableNameCh = res.getString("TABLE_COMMENT");
         }
         res.close();
         state.close();
@@ -120,7 +121,6 @@ public class FreemarkerUtil {
         res.close();
         state.close();
         conn.close();
-        System.out.println("列信息 = " + fieldList);
         return fieldList;
     }
 
@@ -194,7 +194,7 @@ public class FreemarkerUtil {
         //获取小驼峰类名
         String domain = lineToHump(generator.getTableName());
         //表的中文注释
-        String tableNameCn = getTableComment(generator.getTableName());
+        String tableNameCn = getTableComment(generator.getTableName(),generator.getDataBaseName());
 
         //获取数据库表的属性列表
         List<Field> fieldList = getColumnByTableName(generator.getTableName());

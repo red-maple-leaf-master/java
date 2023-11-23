@@ -43,7 +43,7 @@
 
         .one {
             width: 960px;
-            margin: 0 auto;
+            margin: 20px auto;
             line-height: 12px;
             text-align: left;
         }
@@ -52,22 +52,20 @@
 </head>
 
 
-
 <body>
 <div id="app">
     <el-container>
         <el-header>代码预览</el-header>
-        <el-main>
-            <el-card>
-                <pre class="one">
-                 <code>
-<!--                   {{code.controller}}-->
-{{code.dto}}
-<!--                   {{code.mapper}}-->
-                  </code>
-                </pre>
-            </el-card>
-        </el-main>
+        <el-card class="one">
+            <el-tabs v-model="preview.activeName" type="card" @tab-click="handleClick" >
+                <el-tab-pane v-for="(value,key) in preview.data"
+                             :label="key"
+                             :name="key">
+                    <pre><code  v-html="value"></code></pre>
+                </el-tab-pane>
+            </el-tabs>
+        </el-card>
+
     </el-container>
 </div>
 
@@ -84,34 +82,49 @@
     const app = new Vue({
         el: '#app',
         mounted() {
-            this.preview();
+            this.getPreview();
         },
         // 计算属性
         computed: {},
         // 数据
         data() {
             return {
-                code: ''
+                code: '',
+                activeName2: 'first',
+                // 预览参数
+                preview: {
+                    open: false,
+                    title: "代码预览",
+                    data: {},
+                    activeName: "controller"
+                }
             }
         },
         // 方法区
         methods: {
-            preview() {
+            getPreview() {
                 axios({
                     url: 'http://127.0.0.1:45450/generator/preview',
                     params: {
+                        dataBaseName: "blade",
                         tableName: "goods",
                         packageName: "com.oneyi",
                         functionAuthor: "wanyi",
                         moduleName: "generator"
                     }
                 }).then(response => {
-                    console.log('/a', response.data);
-                    this.code = response.data;
+                    this.preview.data = response.data;
                     return response.data
                 }, error => {
                     console.log('错误', error.message)
                 })
+            },
+            /** 复制代码成功 */
+            clipboardSuccess() {
+                this.$modal.msgSuccess("复制成功");
+            },
+            handleClick(tab, event) {
+                console.log(tab, event);
             }
         }
 

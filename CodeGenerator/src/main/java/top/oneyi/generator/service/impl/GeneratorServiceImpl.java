@@ -71,7 +71,7 @@ public class GeneratorServiceImpl implements GeneratorService {
     private void setModelData(Map<String, Object> map, StringWriter resultStr, Generator generator) throws Exception {
         // 配置对象
         Configuration configuration = freeMarkerConfigurer.getConfiguration();
-
+        int len = 0;
         for (String templateName : GenConstants.ALL_PREFIX) {
             Template template = configuration.getTemplate(templateName + GenConstants.FTL_SUFFIX);
             // 数据;
@@ -79,7 +79,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 
             // 渲染模板
             template.process(dataModel, resultStr);
-            map.put(templateName, resultStr.getBuffer());
+            int length = resultStr.toString().length();
+            map.put(templateName, resultStr.toString().substring(len,length));
+            len = length;
             resultStr.flush();
         }
 

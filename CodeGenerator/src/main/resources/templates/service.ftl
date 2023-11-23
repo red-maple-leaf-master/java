@@ -3,7 +3,12 @@ package ${package}.${module}.service;
 import ${package}.${module}.domain.BladeUser;
 
 import java.util.List;
-
+/**
+*
+* ${Domain}Service
+* @Author: ${author}
+* @Date: ${date}
+*/
 public interface ${Domain}Service{
 
     List<${Domain}> getAll(${Domain} ${domain});

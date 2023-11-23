@@ -9,10 +9,10 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created with IntelliJ IDEA.
 *
-* @Author: wanyi
-* @Date: 2023/09/19/16:53
+* ${Domain}ServiceImpl
+* @Author: ${author}
+* @Date: ${date}
 */
 @Service
 public class ${Domain}ServiceImpl  implements ${Domain}Service {

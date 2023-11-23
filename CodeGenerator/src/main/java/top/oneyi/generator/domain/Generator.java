@@ -17,6 +17,10 @@ public class Generator {
     @NotBlank(message = "表名称不能为空")
     private String tableName;
 
+    /** 数据库名 */
+    @NotBlank(message = "表名称不能为空")
+    private String dataBaseName;
+
     /** 生成包路径 */
     @NotBlank(message = "生成包路径不能为空")
     private String packageName;
