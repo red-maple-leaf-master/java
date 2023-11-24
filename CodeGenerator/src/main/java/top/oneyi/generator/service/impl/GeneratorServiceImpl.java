@@ -5,7 +5,9 @@ import freemarker.template.Template;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import top.oneyi.generator.common.GenConstants;
+import top.oneyi.generator.domain.GenTable;
 import top.oneyi.generator.domain.Generator;
+import top.oneyi.generator.mapper.GeneratorMapper;
 import top.oneyi.generator.service.GeneratorService;
 import top.oneyi.generator.utils.FreemarkerUtil;
 
@@ -13,6 +15,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +33,9 @@ public class GeneratorServiceImpl implements GeneratorService {
 
     @Resource
     private FreemarkerUtil freemarkerUtil;
+
+    @Resource
+    private GeneratorMapper generatorMapper;
 
     /**
      * 预览代码
@@ -84,7 +90,20 @@ public class GeneratorServiceImpl implements GeneratorService {
             len = length;
             resultStr.flush();
         }
+    }
 
-
+    /**
+     * 获取数据库表列表
+     *
+     * @param genTable
+     * @return
+     */
+    @Override
+    public List<GenTable> tableList(GenTable genTable) {
+        List<GenTable> genTables = generatorMapper.tableList(genTable);
+        for (GenTable table : genTables) {
+            table.setClassName(freemarkerUtil.lineToHump(table.getTableName()));
+        }
+        return genTables;
     }
 }

@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import top.oneyi.generator.common.R;
+import top.oneyi.generator.domain.GenTable;
 import top.oneyi.generator.domain.Generator;
 import top.oneyi.generator.service.GeneratorService;
 import top.oneyi.generator.utils.FreemarkerUtil;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.*;
 
 /**
@@ -57,7 +60,18 @@ public class GeneratorController {
      */
     @GetMapping("/preview")
     @ResponseBody
-    public  Map<String,Object> preview(Generator generator){
-        return generatorService.preview(generator);
+    public R<Map<String,Object>> preview(@Valid @RequestBody Generator generator){
+        return R.data(generatorService.preview(generator));
+    }
+
+    /**
+     * 获取数据库表列表
+     * @param GenTable
+     * @return
+     */
+    @GetMapping("/tableList")
+    @ResponseBody
+    public  List<GenTable> tableList(GenTable GenTable){
+        return generatorService.tableList(GenTable);
     }
 }

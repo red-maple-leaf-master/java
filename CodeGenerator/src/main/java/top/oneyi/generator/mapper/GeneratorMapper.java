@@ -1,6 +1,9 @@
 package top.oneyi.generator.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import top.oneyi.generator.domain.GenTable;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,4 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface GeneratorMapper {
 
+    List<GenTable> tableList(GenTable genTable);
 }

@@ -1,5 +1,6 @@
 package top.oneyi.generator.service;
 
+import top.oneyi.generator.domain.GenTable;
 import top.oneyi.generator.domain.Generator;
 
 import java.io.IOException;
@@ -19,4 +20,11 @@ public interface GeneratorService {
      * @return
      */
     Map<String, Object> preview(Generator generator);
+
+    /**
+     *  获取数据库表列表
+     * @param genTable
+     * @return
+     */
+    List<GenTable> tableList(GenTable genTable);
 }

@@ -5,4 +5,13 @@
 <mapper namespace="top.oneyi.generator.mapper.GeneratorMapper">
 
 
+<!--    获取数据库中的表列表-->
+    <select id="tableList" resultType="top.oneyi.generator.domain.GenTable">
+        select
+        table_name,
+        create_time,
+        table_comment
+        from information_schema.TABLES
+        where TABLE_SCHEMA =  (select database())
+    </select>
 </mapper>
