@@ -41,12 +41,6 @@
             line-height: 320px;
         }
 
-        .one {
-            width: 960px;
-            margin: 20px auto;
-            line-height: 12px;
-            text-align: left;
-        }
     </style>
 
 </head>
@@ -131,8 +125,6 @@
     const app = new Vue({
         el: '#app',
         mounted() {
-            // 获取预览代码
-            // this.getPreview();
             // 获取表列表
             this.getTableList();
         },
@@ -156,24 +148,6 @@
         },
         // 方法区
         methods: {
-            // 获取预览代码
-          /*  getPreview() {
-                axios({
-                    url: 'http://127.0.0.1:45450/generator/preview',
-                    params: {
-                        dataBaseName: "blade",
-                        tableName: "goods",
-                        packageName: "com.oneyi",
-                        functionAuthor: "wanyi",
-                        moduleName: "generator"
-                    }
-                }).then(response => {
-                    this.preview.data = response.data.data;
-                    return response.data
-                }, error => {
-                    console.log('错误', error.message)
-                })
-            },*/
             /** 复制代码成功 */
             clipboardSuccess() {
                 this.$modal.msgSuccess("复制成功");
