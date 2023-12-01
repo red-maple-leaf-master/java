@@ -60,13 +60,13 @@ public class GeneratorController {
      */
     @GetMapping("/preview")
     @ResponseBody
-    public R<Map<String,Object>> preview(@Valid @RequestBody Generator generator){
+    public R<Map<String,Object>> preview(Generator generator){
         return R.data(generatorService.preview(generator));
     }
 
     /**
      * 获取数据库表列表
-     * @param GenTable
+     * @param GenTable 数据库表列表
      * @return
      */
     @GetMapping("/tableList")

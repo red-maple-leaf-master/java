@@ -10,7 +10,8 @@
         select
         table_name,
         create_time,
-        table_comment
+        table_comment,
+        table_schema as dataBaseName
         from information_schema.TABLES
         where TABLE_SCHEMA =  (select database())
     </select>
