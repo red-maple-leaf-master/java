@@ -8,11 +8,14 @@
 <!--    获取数据库中的表列表-->
     <select id="tableList" resultType="top.oneyi.generator.domain.GenTable">
         select
-        table_name,
-        create_time,
-        table_comment,
-        table_schema as dataBaseName
-        from information_schema.TABLES
+            b.table_name,
+            b.create_time,
+            b.table_comment,
+            b.table_schema as dataBaseName,
+            a.num as total
+        from information_schema.TABLES as b,
+             (select count(*) as num from information_schema.TABLES  where TABLE_SCHEMA =  (select database())) as a
         where TABLE_SCHEMA =  (select database())
+        limit #{page},#{size}
     </select>
 </mapper>

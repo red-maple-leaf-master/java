@@ -71,7 +71,7 @@ public class GeneratorController {
      */
     @GetMapping("/tableList")
     @ResponseBody
-    public  List<GenTable> tableList(GenTable GenTable){
-        return generatorService.tableList(GenTable);
+    public  List<GenTable> tableList(GenTable GenTable,int page,int size){
+        return generatorService.tableList(GenTable,page,size);
     }
 }

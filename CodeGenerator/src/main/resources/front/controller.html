@@ -8,7 +8,7 @@
 
     <style>
         .el-header, .el-footer {
-            background-color: #B3C0D1;
+            /*background-color: #B3C0D1;*/
             color: #333;
             text-align: center;
             line-height: 60px;
@@ -49,61 +49,102 @@
 <body>
 <div id="app">
     <el-container>
-        <el-header>代码生成器</el-header>
-        <el-card  style="width: 60%;margin: 20px auto">
-            <el-table
-                    :data="tableList"
-                    style="width: 100%">
-                <el-table-column
-                        prop="tableName"
-                        label="表名"
-                        width="180">
-                </el-table-column>
-                <el-table-column
-                        prop="tableComment"
-                        label="表描述"
-                        width="180">
-                </el-table-column>
-                <el-table-column
-                        prop="className"
-                        label="实体类名称">
-                </el-table-column>
-                <el-table-column
-                        prop="dataBaseName"
-                        label="数据库名">
-                </el-table-column>
-                <el-table-column
-                        prop="createTime"
-                        label="创建时间">
-                </el-table-column>
-                <el-table-column
-                        prop="updateTime"
-                        label="更新时间">
-                </el-table-column>
-                <el-table-column label="操作">
-                    <template slot-scope="scope">
-                        <el-button
-                                type="text"
-                                size="small"
-                                icon="el-icon-view"
-                                @click="handlePreview(scope.row)"
-                        >预览</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-        </el-card>
-
+        <el-header>
+            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                <el-menu-item index="1">代码生成器</el-menu-item>
+                <el-menu-item index="2">生成配置</el-menu-item>
+            </el-menu>
+        </el-header>
+        <!-- 表列表-->
+        <div v-if="activeIndex === '1'">
+            <el-card style="width: 80%;margin: 20px auto">
+                <el-table
+                        :data="tableList"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="tableName"
+                            label="表名"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="tableComment"
+                            label="表描述"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="className"
+                            label="实体类名称">
+                    </el-table-column>
+                    <el-table-column
+                            prop="dataBaseName"
+                            label="数据库名">
+                    </el-table-column>
+                    <el-table-column
+                            prop="createTime"
+                            label="创建时间">
+                    </el-table-column>
+                    <el-table-column
+                            prop="updateTime"
+                            label="更新时间">
+                    </el-table-column>
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-button
+                                    type="text"
+                                    size="small"
+                                    icon="el-icon-view"
+                                    @click="handlePreview(scope.row)"
+                            >预览
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-card>
+            <!--分页-->
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[10, 20, 30, 40]"
+                    :page-size="size"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+            </el-pagination>
+        </div>
+        <!-- 配置-->
+        <div v-if="activeIndex === '2'">
+            <el-card style="width: 80%;margin: 20px auto">
+                <el-form ref="form" :model="form" label-width="80px">
+                    <el-form-item label="包名称">
+                        <el-input v-model="form.packageName"></el-input>
+                    </el-form-item>
+                    <el-form-item label="作者名称">
+                        <el-input v-model="form.functionAuthor"></el-input>
+                    </el-form-item>
+                    <el-form-item label="模块名">
+                        <el-input v-model="form.moduleName"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">保存</el-button>
+                        <el-button>取消</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-card>
+        </div>
 
         <el-dialog
                 title="代码预览"
                 :visible.sync="centerDialogVisible"
                 width="80%"
                 center>
-            <el-tabs v-model="preview.activeName" type="card" @tab-click="handleClick" >
+            <el-tabs v-model="preview.activeName" type="card" @tab-click="handleClick">
                 <el-tab-pane v-for="(value,key) in preview.data"
                              :label="key"
                              :name="key">
-                    <pre><code  v-html="value"></code></pre>
+                    <el-link :underline="false" icon="el-icon-document-copy" @click="clipboardSuccess"
+                             style="float:right" class="btn">复制
+                    </el-link>
+                    <pre><code v-html="value"></code></pre>
                 </el-tab-pane>
             </el-tabs>
         </el-dialog>
@@ -119,7 +160,8 @@
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
+<!--引入clipboard.js-->
+<script src="https://www.itxst.com/package/clipboardjs/clipboard.min.js"></script>
 
 <script>
     const app = new Vue({
@@ -141,33 +183,73 @@
                     data: {},
                     activeName: "controller"
                 },
-                tableList:'',
-                centerDialogVisible: false
+                form: {
+                    packageName: "com.oneyi",
+                    functionAuthor: "wanyi",
+                    moduleName: "generator"
 
+                },
+                tableList: '',
+                centerDialogVisible: false,
+                activeIndex: '1',
+                currentPage: 1,
+                size: 10,
+                total: 0
             }
         },
         // 方法区
         methods: {
             /** 复制代码成功 */
             clipboardSuccess() {
-                this.$modal.msgSuccess("复制成功");
+                //实例化clipboard
+                const clipboard = new ClipboardJS('.btn', {
+                    target: function () {
+                        //获取文档中第一个 <div> 元素：
+                        return document.querySelector('code');
+                        //返回文档中id为copy-btn的元素
+                        //document.querySelector("#copy-btn");
+                        //返回文档中 class="btn" 的第一个元素:
+                        //document.querySelector(".btn");
+                        //返回文档中 class="btn" 的第一个 <p> 元素:
+                        //document.querySelector("p.btn");
+                        //还有更多方法，可自行百度
+                    },
+                });
+
+                //复制成功响应
+                clipboard.on('success', function (e) {
+                    console.log(e);
+                    Vue.prototype.$message({
+                        message: '复制成功',
+                        type: 'success'
+                    });
+                });
+
+                //复制失败响应
+                clipboard.on('error', function (e) {
+                    console.log(e);
+                });
             },
             handleClick(tab, event) {
                 console.log(tab, event);
             },
             // 获取数据库列表
-            getTableList(){
+            getTableList() {
                 axios({
-                    url:'http://127.0.0.1:45450/generator/tableList'
-                }).then(response=>{
+                    url: 'http://127.0.0.1:45450/generator/tableList',
+                    params: {
+                        page: this.currentPage,
+                        size: this.size
+                    }
+                }).then(response => {
                     this.tableList = response.data;
-                    console.log(response.data);
+                    this.total = response.data[0].total;
                 }, error => {
                     console.log('错误', error.message)
                 })
             },
             // 指定生成的表
-            handlePreview(val){
+            handlePreview(val) {
                 this.centerDialogVisible = true;
                 console.log(val);
                 axios({
@@ -175,9 +257,9 @@
                     params: {
                         dataBaseName: val.dataBaseName,
                         tableName: val.tableName,
-                        packageName: "com.oneyi",
-                        functionAuthor: "wanyi",
-                        moduleName: "generator"
+                        packageName: this.form.packageName,
+                        functionAuthor: this.form.functionAuthor,
+                        moduleName: this.form.moduleName
                     }
                 }).then(response => {
                     this.preview.data = response.data.data;
@@ -185,6 +267,24 @@
                 }, error => {
                     console.log('错误', error.message)
                 })
+            },
+            // 切换菜单
+            handleSelect(key, keyPath) {
+                this.activeIndex = key;
+            },
+            // 保存配置
+            onSubmit() {
+                Vue.prototype.$message({
+                    message: '保存成功',
+                    type: 'success'
+                });
+            },
+            handleSizeChange(val) {
+                this.size = val;
+            },
+            handleCurrentChange(val) {
+                this.currentPage = val;
+               this.getTableList();
             }
         }
 

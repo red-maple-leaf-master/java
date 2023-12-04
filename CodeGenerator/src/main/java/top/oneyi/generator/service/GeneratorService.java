@@ -26,5 +26,5 @@ public interface GeneratorService {
      * @param genTable
      * @return
      */
-    List<GenTable> tableList(GenTable genTable);
+    List<GenTable> tableList(GenTable genTable,int page,int size);
 }

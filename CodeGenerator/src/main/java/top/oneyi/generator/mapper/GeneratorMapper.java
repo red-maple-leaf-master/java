@@ -14,5 +14,5 @@ import java.util.List;
 @Mapper
 public interface GeneratorMapper {
 
-    List<GenTable> tableList(GenTable genTable);
+    List<GenTable> tableList(GenTable genTable,int page,int size);
 }

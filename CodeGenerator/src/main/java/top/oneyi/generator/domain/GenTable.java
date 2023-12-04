@@ -33,4 +33,6 @@ public class GenTable extends BaseEntity{
     @NotBlank(message = "数据库名称不能为空")
     private String dataBaseName;
 
+    private Integer total;
+
 }
