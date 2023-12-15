@@ -10,6 +10,13 @@ spring:
   freemarker:
     template-loader-path: classpath:/templates/
     suffix: .ftl
+# 线程池配置
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 15
+        queue-capacity: 1000
 mybatis:
   mapper-locations: classpath:mapper/*.xml  # xml文件路径
   type-aliases-package: top.oneyi.pojo.po
