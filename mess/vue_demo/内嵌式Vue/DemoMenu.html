@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../plugins/element-ui/index.css" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,
+        html,
+        .side-container,
+        #app,
+        .el-menu{
+            height: 100%;
+        }
+        .el-menu{
+            width: 190px;
+            border-right: none !important; /*去掉右侧的缝隙*/
+
+        }
+        .side-logo{
+            width: 190px;
+            height: 100px;
+            background-color: #4b5cc4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .side-logo span{
+            font-size: 20px;
+            line-height: 100px;
+            text-align: center;
+            margin: 0 auto;
+            color: #fff;
+        }
+        #app{
+
+        }
+
+        .side-container{
+
+        }
+        .el-menu-item.is-active {
+            background-color: #FFFFFF !important;//你要修改的颜色
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="side-container">
+
+        <el-menu
+                default-active="1"
+                class="el-menu-vertical-demo"
+                @open="handleOpen"
+                @close="handleClose"
+                background-color="#4b5cc4"
+                text-color="#fff"
+                active-text-color="#4b5cc4">
+            <div class="side-logo">
+                <span>小工具</span>
+            </div>
+            <el-menu-item index="1">
+                <i class="el-icon-menu"></i>
+                <span slot="title">导航一</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+                <i class="el-icon-menu"></i>
+                <span slot="title">导航二</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+                <i class="el-icon-document"></i>
+                <span slot="title">导航三</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">导航四</span>
+            </el-menu-item>
+        </el-menu>
+    </div>
+
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="../plugins/vue/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="../plugins/element-ui/index.js"></script>
+<!-- 引入axios -->
+<script src="../plugins/axios/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+
+        }
+    });
+</script>
+</body>
+</html>
