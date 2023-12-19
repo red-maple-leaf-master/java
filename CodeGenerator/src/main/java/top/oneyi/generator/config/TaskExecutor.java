@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  * 第一种方式使用: 线程池配置
  * 第二种方式: 在启动类上开启异步处理 @EnableAsync , 在方法上开启异步处理 @Async
  */
-@Component
+//@Component
 public class TaskExecutor {
 
     @Value("${spring.task.execution.pool.queue-capacity}")
