@@ -10,15 +10,39 @@ import java.util.List;
 * @Date: ${date}
 */
 public interface ${Domain}Service{
-
+    /**
+    *  获取列表
+    * @param SysUser
+    * @return
+    */
     List&lt${Domain}&gt; getAll(${Domain} ${domain});
 
+    /**
+    *  新增
+    * @param sysUser
+    * @return
+    */
     Boolean save(${Domain} ${domain});
 
+    /**
+    * 更新
+    * @param sysUser
+    * @return
+    */
     Boolean updateById(${Domain} ${domain});
 
+    /**
+    *  根据id删除
+    * @param id
+    * @return
+    */
     Boolean deleteById(String id);
 
+    /**
+    * 根据id获取信息
+    * @param id
+    * @return
+    */
     ${Domain} getById(String id);
 
 }
