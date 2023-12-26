@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 * @Date: ${date}
 */
 @Mapper
-public interface ${Domain}Mapper extends MyMapper<${Domain}> {
+public interface ${Domain}Mapper extends MyMapper&lt;${Domain}&gt; {
 
 
 }

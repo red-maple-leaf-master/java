@@ -4,7 +4,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/blade?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/base_admin?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: root
     password: root
   freemarker:
@@ -25,3 +25,6 @@ mybatis:
   type-aliases-package: top.oneyi.pojo.po
   configuration:
     map-underscore-to-camel-case: true   # 开启驼峰
+logging:
+  level:
+    top.oneyi.generator.mapper: DEBUG

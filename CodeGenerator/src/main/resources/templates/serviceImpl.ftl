@@ -21,8 +21,8 @@ public class ${Domain}ServiceImpl  implements ${Domain}Service {
     private ${Domain}Mapper ${domain}Mapper;
 
     @Override
-    public List<${Domain}> getAll(${Domain} ${domain}) {
-        return ${domain}Mapper.select(bladeUser);
+    public List&lt;${Domain}&gt; getAll(${Domain} ${domain}) {
+        return ${domain}Mapper.select(${domain});
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.List;
 */
 public interface ${Domain}Service{
 
-    List<${Domain}> getAll(${Domain} ${domain});
+    List&lt${Domain}&gt; getAll(${Domain} ${domain});
 
     Boolean save(${Domain} ${domain});
 

@@ -100,7 +100,7 @@ public class GeneratorServiceImpl implements GeneratorService {
      */
     @Override
     public List<GenTable> tableList(GenTable genTable,int page,int size) {
-        List<GenTable> genTables = generatorMapper.tableList(genTable,page,size);
+        List<GenTable> genTables = generatorMapper.tableList(genTable,page - 1,size);
         for (GenTable table : genTables) {
             table.setClassName(freemarkerUtil.lineToHump(table.getTableName()));
         }
