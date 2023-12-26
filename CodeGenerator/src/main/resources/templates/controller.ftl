@@ -28,7 +28,7 @@ public static final String BUSINESS_NAME = "${tableNameCn}";
 
     /**
     *  获取列表
-    * @param SysUser
+    * @param ${domain}
     * @return
     */
     @PostMapping("/list")
@@ -39,7 +39,7 @@ public static final String BUSINESS_NAME = "${tableNameCn}";
 
     /**
     *  新增
-    * @param sysUser
+    * @param ${domain}
     * @return
     */
     @PostMapping("/save")
@@ -49,7 +49,7 @@ public static final String BUSINESS_NAME = "${tableNameCn}";
 
     /**
     * 更新
-    * @param sysUser
+    * @param ${domain}
     * @return
     */
     @PostMapping("/update")

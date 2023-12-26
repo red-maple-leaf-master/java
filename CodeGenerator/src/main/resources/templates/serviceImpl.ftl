@@ -22,7 +22,7 @@ public class ${Domain}ServiceImpl  implements ${Domain}Service {
 
     /**
     *  获取列表
-    * @param SysUser
+    * @param ${domain}
     * @return
     */
     @Override
@@ -32,7 +32,7 @@ public class ${Domain}ServiceImpl  implements ${Domain}Service {
 
     /**
     *  新增
-    * @param sysUser
+    * @param ${domain}
     * @return
     */
     @Override
@@ -42,7 +42,7 @@ public class ${Domain}ServiceImpl  implements ${Domain}Service {
 
     /**
     * 更新
-    * @param sysUser
+    * @param ${domain}
     * @return
     */
     @Override

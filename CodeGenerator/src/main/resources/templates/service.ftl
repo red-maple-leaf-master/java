@@ -12,21 +12,21 @@ import java.util.List;
 public interface ${Domain}Service{
     /**
     *  获取列表
-    * @param SysUser
+    * @param ${domain}
     * @return
     */
     List&lt${Domain}&gt; getAll(${Domain} ${domain});
 
     /**
     *  新增
-    * @param sysUser
+    * @param ${domain}
     * @return
     */
     Boolean save(${Domain} ${domain});
 
     /**
     * 更新
-    * @param sysUser
+    * @param ${domain}
     * @return
     */
     Boolean updateById(${Domain} ${domain});
