@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service;
 import ${package}.${module}.domain.${Domain};
 import ${package}.${module}.mapper.${Domain}Mapper;
 import ${package}.${module}.service.${Domain}Service;
-
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -20,6 +21,23 @@ public class ${Domain}ServiceImpl  implements ${Domain}Service {
     @Resource
     private ${Domain}Mapper ${domain}Mapper;
 
+    /**
+    *  分页查询
+    * @param ${domain}
+    * @param page
+    * @param pageSize
+    * @return
+    */
+    @Override
+    public PageInfo&lt;${Domain}&gt; page(${Domain} ${domain}, Integer page, Integer pageSize){
+        // 分页
+        PageHelper.startPage(page,pageSize);
+        // 设置排序字段
+         PageHelper.orderBy("create_time");
+        //查询数据构造返回值
+        List&lt;${Domain}&gt; list = sysUserMapper.select(${domain});
+        return new PageInfo<>(list);
+    }
     /**
     *  获取列表
     * @param ${domain}

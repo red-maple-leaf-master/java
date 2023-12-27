@@ -1,4 +1,4 @@
-package top.oneyi.${module}.mapper;
+package ${package}.${module}.mapper;
 
 import ${package}.${module}.utils.MyMapper;
 import ${package}.${module}.domain.${Domain};

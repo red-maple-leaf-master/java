@@ -1,7 +1,7 @@
 package ${package}.${module}.service;
 
 import ${package}.${module}.domain.BladeUser;
-
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 /**
 *
@@ -10,12 +10,22 @@ import java.util.List;
 * @Date: ${date}
 */
 public interface ${Domain}Service{
+
+    /**
+    *  分页查询
+    * @param ${domain}
+    * @param page
+    * @param pageSize
+    * @return
+    */
+    PageInfo&lt;${Domain}&gt; page(${Domain} ${domain}, Integer page, Integer pageSize);
+
     /**
     *  获取列表
     * @param ${domain}
     * @return
     */
-    List&lt${Domain}&gt; getAll(${Domain} ${domain});
+    List&lt;${Domain}&gt; getAll(${Domain} ${domain});
 
     /**
     *  新增

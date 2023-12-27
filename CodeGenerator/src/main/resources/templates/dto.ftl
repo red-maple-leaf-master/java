@@ -1,4 +1,4 @@
-package top.oneyi.${module}.dto;
+package ${package}.${module}.dto;
 
 import lombok.Data;
 import lombok.ToString;
