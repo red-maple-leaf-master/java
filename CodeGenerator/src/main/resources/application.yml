@@ -10,6 +10,7 @@ spring:
   freemarker:
     template-loader-path: classpath:/templates/
     suffix: .ftl
+    cache: false  #关闭模板缓存，方便测试
   # 线程池配置
   task:
     execution:

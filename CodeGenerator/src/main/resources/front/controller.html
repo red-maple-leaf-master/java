@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>controller</title>
-
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="./plugins/element-ui/index.css"/>
     <style>
         .el-header, .el-footer {
             /*background-color: #B3C0D1;*/
@@ -153,16 +154,15 @@
     </el-container>
 </div>
 
-<!-- 生产环境版本，优化了尺寸和速度 -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 <!--引入clipboard.js-->
 <script src="https://www.itxst.com/package/clipboardjs/clipboard.min.js"></script>
-
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="./plugins/vue/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="./plugins/element-ui/index.js"></script>
+<!-- 引入axios -->
+<script src="./plugins/axios/axios.min.js"></script>
 <script>
     const app = new Vue({
         el: '#app',

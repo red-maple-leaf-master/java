@@ -3,9 +3,6 @@ package ${package}.${module}.domain;
 import lombok.Data;
 import lombok.ToString;
 import java.util.Date;
-<#if field.nameHump?contains("id")>
-import javax.persistence.Id;
-</#if>
 /**
 *
 * ${Domain}
@@ -20,8 +17,8 @@ public class ${Domain}{
     /**
     *  ${field.comment}
     */
-    <#if field.nameHump?contains("id")>
-    @Id
+    <#if field_index == 0>
+    @javax.persistence.Id
     </#if>
     private ${field.javaType} ${field.nameHump};
 </#list>
