@@ -13,7 +13,8 @@ public class MyArrayMyList<T> implements MyList<T> {
     private int index;
     // 有参 创建指定大小数组
     private static Object[] elementData = {};
-    // 默认无参创建数组 第一次添加数据的时候本体数据需要跟这个长度比较 来进行设置长度  如果 element的长度和这个相同就是第一次创建,直接可以赋值为 DEFAULT_LEN (10)
+    // 默认无参创建数组 第一次添加数据的时候本体数据需要跟这个长度比较 来进行设置长度
+    // 如果 element的长度和这个相同就是第一次创建,直接可以赋值为 DEFAULT_LEN (10)
     private static final Object[] elementDataEmpty = {};
 
     public MyArrayMyList(int initArraylen) {

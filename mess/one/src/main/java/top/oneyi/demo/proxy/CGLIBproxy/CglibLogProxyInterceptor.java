@@ -19,7 +19,7 @@ public class CglibLogProxyInterceptor implements MethodInterceptor {
     public Object intercept(Object object, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         System.out.println(" cglib dynamic proxy log begin ");
         Object result = methodProxy.invokeSuper(object, args);
-        System.out.println(" cglib dynamic proxy log begin ");
+        System.out.println(" cglib dynamic proxy log end ");
         return result;
     }
 
