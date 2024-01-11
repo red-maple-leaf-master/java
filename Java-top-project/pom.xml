@@ -19,6 +19,8 @@
         <maven.compiler.target>8</maven.compiler.target>
         <sensitive-word.version>0.12.0</sensitive-word.version>
         <slf4j-api.version>1.7.20</slf4j-api.version>
+        <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
+        <logback-classic.version>1.2.3</logback-classic.version>
     </properties>
 
     <parent>
@@ -36,6 +38,12 @@
                 <groupId>com.github.houbb</groupId>
                 <artifactId>sensitive-word</artifactId>
                 <version>${sensitive-word.version}</version>
+            </dependency>
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
             </dependency>
 
         </dependencies>
@@ -57,6 +65,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-api.version}</version>
+        </dependency>
+        <!-- logback 依赖 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
         </dependency>
     </dependencies>
     <build>
