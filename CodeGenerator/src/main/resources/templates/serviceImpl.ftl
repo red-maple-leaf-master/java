@@ -35,7 +35,7 @@ public class ${Domain}ServiceImpl  implements ${Domain}Service {
         // 设置排序字段
          PageHelper.orderBy("create_time");
         //查询数据构造返回值
-        List&lt;${Domain}&gt; list = sysUserMapper.select(${domain});
+        List&lt;${Domain}&gt; list = ${domain}Mapper.select(${domain});
         return new PageInfo<>(list);
     }
     /**

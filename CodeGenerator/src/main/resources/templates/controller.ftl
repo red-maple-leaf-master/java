@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import top.oneyi.common.R;
 
 import javax.annotation.Resource;
 
@@ -37,8 +38,8 @@ public class ${Domain}Controller {
     * @return
     */
     @GetMapping("/page")
-    public R&lt;PageInfo&lt;SysUser&gt;&gt; page(${Domain} ${domain}, Integer page, Integer pageSize) {
-        PageInfo<${Domain}> list = sysUserService.page(${domain},page,pageSize);
+    public R&lt;PageInfo&lt;${Domain}&gt;&gt; page(${Domain} ${domain}, Integer page, Integer pageSize) {
+        PageInfo&lt;${Domain}&gt;list = ${domain}Service.page(${domain},page,pageSize);
         return R.data(list);
     }
 
@@ -49,7 +50,7 @@ public class ${Domain}Controller {
     */
     @GetMapping("/list")
     public R&lt;List&lt;${Domain}&gt;&gt; getAll(@RequestBody ${Domain} ${domain}) {
-        List&lt;${Domain}&gt; list = ${domain}Service.getAll(${Domain});
+        List&lt;${Domain}&gt; list = ${domain}Service.getAll(${domain});
         return R.data(list);
     }
 
