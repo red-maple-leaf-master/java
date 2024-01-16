@@ -7,7 +7,25 @@
     <title>Title</title>
 </head>
 <body>
-hello zhangsan !
+
+<!-- 准备一个空的 DOM 元素，设置一定宽高，否则生成的 Canvas 默认宽高为：485，300 -->
+<div id="demo" style="width: 100%; height: 100vh;"></div>
+<!-- 方式二（推荐）：按需加载方式，先引入基础依赖 -->
+<script src="../plugins/jparticles/jparticles.base.js"></script>
+<!-- 再引入特定的效果，如下面的粒子特效 -->
+<script src="../plugins/jparticles/particle.js"></script>
+<script>
+    // 创建特效
+    new JParticles.Particle('#demo', {
+        color: '#7f7f7f',
+        lineShape: 'cube',
+        range: 2000,
+        proximity: 100,
+        // 开启视差效果
+        parallax: false,
+    })
+</script>
+
 </body>
 </html>
 <style>
