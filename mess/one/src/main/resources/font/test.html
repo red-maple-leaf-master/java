@@ -4,38 +4,11 @@
         <meta charset="UTF-8">
         <title>Title</title>
 
-        <style>
-            .clearfix:before,
-            .clearfix:after {
-                display: table;
-                content: "";
-            }
-            .clearfix:after {
-                clear: both
-            }
-
-            .box-card {
-                width: 960px;
-                margin-top: 25px;
-            }
-            #app{
-                margin-left: 100px;
-            }
-        </style>
     </head>
     <body>
         <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
         <div id="app">
-                <el-button type="primary" @click="one">预览代码</el-button>
-                <el-card class="box-card">
-                    <div slot="header" class="clearfix">
-                        <span>controller代码</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">复制</el-button>
-                    </div>
-                    {{code}}
-                </el-card>
-            <el-button type="primary" @click="wan">获取数据</el-button>
-            {{message}}
+
         </div>
         <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
 
@@ -53,7 +26,7 @@
             const app = new Vue({
                 el: '#app',
                 mounted() {
-                this.one();
+                     this.one();
                 },
                 // 计算属性
                 computed: {},
@@ -70,15 +43,12 @@
                      one() {
                           axios({
                             method: 'get',
-                            url:`http://localhost:45450/generator/list`
+                            url:`https://weather.cma.cn/api/weather/view?stationid=58238`
                         }).then(function(res){
-                           this.code =  res.data
-                              console.log(this.code)
+                              console.log(res);
                         })
                     },
-                    wan() {
-                         this.message = "我被点击了"
-                    }
+
                 }
 
             });

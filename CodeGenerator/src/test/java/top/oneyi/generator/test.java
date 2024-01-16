@@ -1,24 +1,28 @@
 package top.oneyi.generator;
 
 import com.alibaba.druid.sql.ast.statement.SQLForeignKeyImpl;
+import com.alibaba.fastjson.JSONObject;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
+
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.*;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.StopWatch;
 import org.springframework.web.client.RestTemplate;
 
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -216,4 +220,15 @@ public class test {
         System.out.println("s = " + s);
     }
 
+
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Test
+    public void test04() {
+        String url = "https://weather.cma.cn/api/weather/view?stationid=58238";
+        ResponseEntity<String> forEntity = restTemplate.getForEntity(url, String.class);
+        System.out.println("forEntity = " + forEntity.getBody());
+    }
 }
